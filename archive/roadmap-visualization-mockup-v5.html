@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap Visualization — v5 with Product Director box</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1A1A18; --ink-soft: #4A4A44; --ink-ghost: #9A9A92;
+    --surface: #F2EDE4; --card-bg: #FFFFFF; --border: #DDD8CE;
+    --amber: #C8A040; --terracotta: #8B4A2A;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', sans-serif; background: var(--surface); color: var(--ink); }
+  .note-banner { background: #FFF8E1; border: 1px solid var(--amber); color: var(--ink-soft); font-size: 13px; padding: 10px 16px; text-align: center; }
+  .page { padding: 24px 12px 60px; max-width: 480px; margin: 0 auto; }
+  .eyebrow { color: var(--terracotta); font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .headline { font-family: 'DM Serif Display', serif; font-size: 28px; margin: 0 0 20px; }
+
+  .roadmap-grid { display: grid; grid-template-columns: 72px 1fr 1fr 1fr; gap: 6px; margin-bottom: 24px; }
+  .header-cell { font-size: 10.5px; font-weight: 700; color: var(--ink-ghost); text-transform: uppercase; letter-spacing: 0.03em; padding: 0 2px 6px; text-align: center; }
+  .header-cell.now { color: var(--amber); }
+  .header-cell.corner { visibility: hidden; }
+  .theme-label { background: var(--ink); color: #F2EDE4; border-radius: 8px; padding: 8px 6px; display: flex; align-items: center; margin-bottom: 6px; }
+  .theme-name { font-family: 'DM Serif Display', serif; font-size: 11px; line-height: 1.2; }
+  .cell { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 6px; display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; }
+  .cell.now { border-color: var(--amber); border-width: 2px; }
+  .cell.empty { align-items: center; justify-content: center; color: var(--ink-ghost); font-size: 10px; border-style: dashed; }
+  .activity-chip { font-size: 10.5px; color: var(--ink); background: #FAFAF7; border-radius: 6px; padding: 5px 6px; line-height: 1.3; word-wrap: break-word; }
+
+  /* Product Director contextual box */
+  .pd-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+  }
+  .pd-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .pd-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--amber);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .pd-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .pd-role { font-size: 11px; color: var(--ink-ghost); }
+  .pd-prompt {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .pd-input-row {
+    display: flex;
+    gap: 8px;
+  }
+  .pd-input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    background: #FAFAF7;
+  }
+  .pd-send {
+    background: var(--amber);
+    color: var(--ink);
+    border: none;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .pd-suggestions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .pd-chip {
+    font-size: 11.5px;
+    color: var(--terracotta);
+    background: #FBF1E8;
+    border-radius: 20px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="note-banner">MOCKUP v5 — Product Director box added below the grid, doubles as the add-theme entry point</div>
+<div class="page">
+  <div class="eyebrow">This week</div>
+  <p class="headline">Getting the big picture</p>
+
+  <div class="roadmap-grid">
+    <div class="header-cell corner"></div>
+    <div class="header-cell now">Now</div>
+    <div class="header-cell">Next</div>
+    <div class="header-cell">Later</div>
+
+    <div class="theme-label"><span class="theme-name">Finalise the new brand name</span></div>
+    <div class="cell now"><div class="activity-chip">Write down the current baseline</div></div>
+    <div class="cell"><div class="activity-chip">Shortlist review with team</div><div class="activity-chip">Schedule the roadmap review</div></div>
+    <div class="cell empty">Nothing yet</div>
+
+    <div class="theme-label"><span class="theme-name">Reposition for a higher price point</span></div>
+    <div class="cell now"><div class="activity-chip">Decide what not to do this week</div></div>
+    <div class="cell empty">Nothing yet</div>
+    <div class="cell"><div class="activity-chip">Plan the peak-season relaunch</div></div>
+
+    <div class="theme-label"><span class="theme-name">Validate with customer feedback</span></div>
+    <div class="cell now"><div class="activity-chip">Choose first signal to validate</div></div>
+    <div class="cell"><div class="activity-chip">Create first outreach draft</div></div>
+    <div class="cell"><div class="activity-chip">Check whether feedback confirms direction</div></div>
+  </div>
+
+  <div class="pd-box">
+    <div class="pd-header">
+      <div class="pd-avatar">P</div>
+      <div>
+        <div class="pd-name">Product Director</div>
+        <div class="pd-role">Ask about your roadmap, or add something new</div>
+      </div>
+    </div>
+    <p class="pd-prompt">What do you think about the roadmap? Tell me if something's missing and I'll help you turn it into a theme.</p>
+    <div class="pd-input-row">
+      <input class="pd-input" placeholder="e.g. I think we should also track...">
+      <button class="pd-send">Send</button>
+    </div>
+    <div class="pd-suggestions">
+      <div class="pd-chip">+ Add a theme</div>
+      <div class="pd-chip">Why is this Now?</div>
+      <div class="pd-chip">Am I on track?</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

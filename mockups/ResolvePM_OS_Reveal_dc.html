@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#9A9A92;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)}
+.doc{padding:48px 40px 80px}
+.turntitle{font-size:13px;font-weight:700;color:var(--terracotta);margin-bottom:6px}
+.turnsub{font-size:14px;color:#6B665A;max-width:780px;line-height:1.55;margin-bottom:28px}
+.turnrow{display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start}
+.opt{display:flex;flex-direction:column;gap:12px}
+.optname{font-size:14px;font-weight:700}
+.optdesc{font-size:12.5px;color:#6B665A;line-height:1.45;max-width:340px}
+.phone{width:360px;height:720px;background:var(--surface);border-radius:26px;box-shadow:0 18px 50px rgba(0,0,0,.16);overflow:hidden;position:relative;display:flex;flex-direction:column}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 12px;flex-shrink:0}
+.hdr .l{display:flex;align-items:center;gap:9px}
+.hdr .logo{width:24px;height:24px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:14px}
+.hdr .greet{font-size:14px;font-weight:600}
+.hdr .sub{font-size:11px;color:var(--ink-ghost)}
+.hdr .avatar{width:32px;height:32px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--ink)}
+.content{flex:1;overflow:hidden;padding:6px 16px 16px;display:flex;flex-direction:column;gap:12px}
+.eyebrow{font-size:11px;font-weight:600;color:var(--terracotta);margin-bottom:6px}
+.eyebrow.oi{color:#D9A97C}
+.card{border-radius:10px;padding:15px}
+.card.win{background:var(--ink);position:relative;overflow:hidden}
+.win .glow{position:absolute;top:-50px;right:-30px;width:150px;height:150px;background:radial-gradient(circle,rgba(200,160,64,.28),transparent 70%)}
+.win .hl{font-family:'DM Serif Display',serif;color:#FBF8F2;font-size:21px;line-height:1.28;margin:0 0 7px;position:relative}
+.win .sp{font-size:12.5px;color:#C0BBAE;line-height:1.45;margin:0;position:relative}
+.win .pill{display:inline-flex;align-items:center;gap:5px;margin-top:11px;font-size:11px;font-weight:600;color:var(--amber);position:relative}
+.win .pill svg{width:11px;height:11px}
+.wcard{background:var(--card);border:1px solid var(--border)}
+.rowline{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.title{font-size:14px;font-weight:600;margin:0}
+.body{font-size:12px;color:#5C574C;line-height:1.45;margin:5px 0 0}
+.chip{font-size:10px;font-weight:600;color:var(--terracotta);background:#F4E9DC;border-radius:5px;padding:2px 7px;white-space:nowrap}
+.sched{display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--border)}
+.sched:first-of-type{border-top:none;padding-top:0}
+.stime{font-size:11px;font-weight:600;color:var(--ink-ghost);width:42px;flex-shrink:0}
+.stitle{font-size:12.5px;font-weight:500}
+.stag{font-size:10.5px;color:var(--ink-ghost);margin-top:1px}
+.pointer{display:flex;align-items:center;gap:10px}
+.pointer .pic{width:32px;height:32px;border-radius:7px;background:#F4E9DC;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pointer .pic svg{width:16px;height:16px;color:var(--terracotta)}
+.tabbar{flex-shrink:0;display:flex;background:var(--card);border-top:1px solid var(--border);padding:8px 6px 10px}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;font-weight:500;color:var(--ink-ghost)}
+.tab svg{width:20px;height:20px}
+.tab.active{color:var(--amber)}
+.gbar{position:absolute;left:16px;right:16px;bottom:62px;display:flex;align-items:center;gap:10px;background:var(--ink);border-radius:24px;padding:11px 15px;box-shadow:0 8px 22px rgba(26,26,24,.32);z-index:6}
+.gbar .gsp{color:var(--amber);flex-shrink:0;display:flex}.gbar .gsp svg{width:16px;height:16px;display:block}
+.gbar .gcap{flex:1;font-size:13px;color:#E7E2D6;font-weight:500}
+.gbar .gmic{display:flex}.gbar .gmic svg{width:16px;height:16px;color:#8A8578}
+/* veil */
+.veil{position:absolute;inset:0;z-index:20;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.veil .vlogo{width:52px;height:52px;border-radius:14px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:30px}
+.veil .vh{font-family:'DM Serif Display',serif;color:#FBF8F2;font-size:24px;margin:0}
+.veil .vs{font-size:13px;color:#9A9488;margin:0}
+/* animations */
+@keyframes rvUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes rvDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@keyframes slideUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
+@keyframes veilOut{to{opacity:0;visibility:hidden}}
+@keyframes vin{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+/* grand timeline */
+.g .veil{animation:veilOut .55s ease 1.5s forwards}
+.g .veil .vlogo{animation:vin .6s cubic-bezier(.34,1.56,.64,1) .1s both}
+.g .veil .vh{animation:rvUp .5s ease .5s both}
+.g .veil .vs{animation:rvUp .5s ease .7s both}
+.g .hdr{opacity:0;animation:rvDown .5s ease 1.7s both}
+.g .tabbar{animation:slideUp .55s cubic-bezier(.34,1.4,.64,1) 2s both}
+.g .c1{opacity:0;animation:rvUp .5s ease 2.4s both}
+.g .c2{opacity:0;animation:rvUp .5s ease 2.75s both}
+.g .c3{opacity:0;animation:rvUp .5s ease 3.1s both}
+.g .c4{opacity:0;animation:rvUp .5s ease 3.45s both}
+.g .gbar{opacity:0;animation:rvUp .5s ease 3.8s both}
+/* subtle timeline */
+.s .hdr{opacity:0;animation:rvDown .35s ease .05s both}
+.s .c1{opacity:0;animation:rvUp .35s ease .12s both}
+.s .c2{opacity:0;animation:rvUp .35s ease .22s both}
+.s .c3{opacity:0;animation:rvUp .35s ease .32s both}
+.s .c4{opacity:0;animation:rvUp .35s ease .42s both}
+.s .gbar{opacity:0;animation:rvUp .4s ease .5s both}
+.replay{align-self:flex-start;background:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:12.5px;color:#6B665A;cursor:pointer;font-family:inherit}
+</style></helmet>
+
+<section>
+<div class="turntitle">Turn 2 · Resolve OS reveal</div>
+<div class="turnsub">The moment after "Open my roadmap." Left: the grand one-time first-run assembly — a dark welcome beat, then the shell composes (header drops in, the tab bar slides up, cards populate in leverage order) and settles on the Dashboard. Right: the calmer version that plays on every later app open. Both auto-play; tap Replay to rewatch.</div>
+<div class="turnrow">
+
+<div class="opt">
+<div class="optname">First run — grand assembly</div>
+<div class="optdesc">Dark "welcome in" beat → the whole OS builds itself around you → lands on the Dashboard, tab bar lit.</div>
+<div class="phone g" key="{{ gKey }}">
+<div class="veil"><div class="vlogo">R</div><p class="vh">Welcome in, Simeon.</p><p class="vs">Your operating system is ready</p></div>
+<div class="hdr"><div class="l"><div class="logo">R</div><div><div class="greet">Good morning, Simeon</div><div class="sub">Here's what matters today</div></div></div><div class="avatar">S</div></div>
+<div class="content">
+<div class="card win c1"><div class="glow"></div><div class="eyebrow oi">Decide this first</div><p class="hl">Pick the auth provider so onboarding can start</p><p class="sp">Everything downstream is blocked until this is locked.</p><div class="pill"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Opens work item</div></div>
+<div class="card wcard c2"><div class="eyebrow">Waiting on</div><div class="rowline"><p class="title">Landing copy from Priya</p><span class="chip">3 days</span></div><p class="body">Final draft was due Monday.</p></div>
+<div class="card wcard c3"><div class="eyebrow">Today</div><div class="sched"><div class="stime">10:30</div><div><div class="stitle">Investor sync</div><div class="stag">Meeting · 30 min</div></div></div><div class="sched"><div class="stime">1:00</div><div><div class="stitle">Ship pricing copy</div><div class="stag">To-do</div></div></div></div>
+<div class="card wcard pointer c4"><div class="pic"><svg viewBox="0 0 18 18" fill="none"><path d="M3 9h11M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="eyebrow" style="margin:0 0 2px">Worth a look</div><p class="title" style="font-size:13px">Your roadmap shifted</p></div></div>
+</div>
+<div class="gbar"><span class="gsp"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l1.3 3.9L13 6.2l-3.7 1.1L8 11 6.7 7.3 3 6.2l3.7-1.1z" fill="currentColor"/></svg></span><span class="gcap">Ask Resolve, or capture a thought</span><span class="gmic"><svg viewBox="0 0 16 16" fill="none"><rect x="6" y="2" width="4" height="7" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 8a4 4 0 008 0M8 12v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span></div>
+<div class="tabbar">
+<div class="tab active"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>Dashboard</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 11h9M4 16h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Roadmap</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6l2 2 3-3M4 14l2 2 3-3M13 6h5M13 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Work</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 17c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4M15 6.5a2.2 2.2 0 010 4.4M16 17c0-2 1-3.2 2.5-3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Team</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M5 4h9a2 2 0 012 2v12l-4-2-4 2V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Knowledge</div>
+</div>
+</div>
+<button class="replay" onClick="{{ replayG }}">↻ Replay grand reveal</button>
+</div>
+
+<div class="opt">
+<div class="optname">Every open — subtle</div>
+<div class="optdesc">No dark beat. The shell's already there; content just settles in with a quick, calm fade.</div>
+<div class="phone s" key="{{ sKey }}">
+<div class="hdr"><div class="l"><div class="logo">R</div><div><div class="greet">Good morning, Simeon</div><div class="sub">Here's what matters today</div></div></div><div class="avatar">S</div></div>
+<div class="content">
+<div class="card win c1"><div class="glow"></div><div class="eyebrow oi">Decide this first</div><p class="hl">Pick the auth provider so onboarding can start</p><p class="sp">Everything downstream is blocked until this is locked.</p><div class="pill"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Opens work item</div></div>
+<div class="card wcard c2"><div class="eyebrow">Waiting on</div><div class="rowline"><p class="title">Landing copy from Priya</p><span class="chip">3 days</span></div><p class="body">Final draft was due Monday.</p></div>
+<div class="card wcard c3"><div class="eyebrow">Today</div><div class="sched"><div class="stime">10:30</div><div><div class="stitle">Investor sync</div><div class="stag">Meeting · 30 min</div></div></div><div class="sched"><div class="stime">1:00</div><div><div class="stitle">Ship pricing copy</div><div class="stag">To-do</div></div></div></div>
+<div class="card wcard pointer c4"><div class="pic"><svg viewBox="0 0 18 18" fill="none"><path d="M3 9h11M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="eyebrow" style="margin:0 0 2px">Worth a look</div><p class="title" style="font-size:13px">Your roadmap shifted</p></div></div>
+</div>
+<div class="gbar"><span class="gsp"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l1.3 3.9L13 6.2l-3.7 1.1L8 11 6.7 7.3 3 6.2l3.7-1.1z" fill="currentColor"/></svg></span><span class="gcap">Ask Resolve, or capture a thought</span><span class="gmic"><svg viewBox="0 0 16 16" fill="none"><rect x="6" y="2" width="4" height="7" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 8a4 4 0 008 0M8 12v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span></div>
+<div class="tabbar">
+<div class="tab active"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>Dashboard</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 11h9M4 16h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Roadmap</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6l2 2 3-3M4 14l2 2 3-3M13 6h5M13 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Work</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 17c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4M15 6.5a2.2 2.2 0 010 4.4M16 17c0-2 1-3.2 2.5-3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Team</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M5 4h9a2 2 0 012 2v12l-4-2-4 2V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Knowledge</div>
+</div>
+</div>
+<button class="replay" onClick="{{ replayS }}">↻ Replay subtle open</button>
+</div>
+
+</div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { g: 0, s: 0 };
+  renderVals() {
+    return {
+      gKey: 'g-' + this.state.g,
+      sKey: 's-' + this.state.s,
+      replayG: () => this.setState(st => ({ g: st.g + 1 })),
+      replayS: () => this.setState(st => ({ s: st.s + 1 })),
+    };
+  }
+}
+</script>
+</body>
+</html>

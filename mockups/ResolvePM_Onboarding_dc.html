@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)}
+.doc{display:flex;flex-direction:column;gap:56px;padding:56px 48px 80px;align-items:flex-start}
+.seclabel{font-size:13px;font-weight:700;color:var(--terracotta);margin-bottom:4px}
+.seccap{font-size:14px;color:#6B665A;max-width:680px;line-height:1.55;margin-bottom:20px}
+.app{width:1180px;height:740px;background:var(--ink);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.topbar{height:64px;flex-shrink:0;display:flex;align-items:center;gap:20px;padding:0 24px;border-bottom:1px solid rgba(255,255,255,.06)}
+.brandmark{display:flex;align-items:center;gap:9px}
+.brandmark .dot{width:26px;height:26px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:15px}
+.brandmark .name{font-size:16px;font-weight:700;color:#F5F1E8}
+.prog{flex:1;max-width:360px;height:4px;border-radius:2px;background:rgba(255,255,255,.12);position:relative;overflow:hidden}
+.prog i{position:absolute;left:0;top:0;bottom:0;background:var(--amber);border-radius:2px}
+.progtxt{font-size:12px;font-weight:600;color:#8A8578}
+.reset{margin-left:auto;font-size:12px;font-weight:600;color:#8A8578;border:1px solid rgba(255,255,255,.14);border-radius:7px;padding:7px 12px;display:flex;align-items:center;gap:6px}
+.reset svg{width:12px;height:12px}
+.body{flex:1;display:flex;overflow:hidden}
+.side{width:308px;flex-shrink:0;padding:26px 24px;display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,.06)}
+.step{display:flex;gap:12px;margin-bottom:22px}
+.step .num{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#8A8578;flex-shrink:0}
+.step.active .num{border-color:var(--amber);color:var(--amber)}
+.step .stitle{font-size:13.5px;font-weight:600;color:#6B665A}
+.step .sdesc{font-size:12px;color:#57534A;line-height:1.45;margin-top:3px}
+.step.active .stitle{color:#F5F1E8}
+.step.active .sdesc{color:#9A9488}
+.aftercard{margin-top:auto;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px}
+.aftercard .eb{font-size:11px;font-weight:700;color:var(--amber);margin-bottom:6px}
+.aftercard p{font-size:12px;color:#8A8578;line-height:1.5;margin:0}
+.main{flex:1;background:var(--surface);display:flex;flex-direction:column;justify-content:center;padding:0 72px;position:relative}
+.eyebrow{font-size:13px;font-weight:600;color:var(--terracotta);margin-bottom:12px}
+.serif{font-family:'DM Serif Display',serif;color:var(--ink);margin:0}
+.field{width:380px;height:52px;border:1px solid var(--border);border-radius:10px;background:var(--card);padding:0 16px;font-size:16px;font-family:inherit;color:var(--ink);outline:none;box-shadow:0 0 0 3px rgba(200,160,64,.18);border-color:var(--amber)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#F5F1E8;border:none;border-radius:10px;padding:13px 22px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer}
+.btn svg{width:15px;height:15px}
+.hint{font-size:12.5px;color:#8A8578;margin-top:14px}
+/* fused reveal */
+.r-hello{font-family:'DM Serif Display',serif;font-size:46px;color:var(--ink);margin:0;animation:rHello 7000ms infinite}
+.r-welcome{font-size:19px;color:#6B665A;margin:14px 0 0;animation:rWelcome 7000ms infinite}
+.r-welcome b{color:var(--amber);font-weight:600}
+.r-block{margin-top:34px}
+.r-prompt{animation:rPrompt 7000ms infinite;opacity:0}
+.r-prompt .eb{font-size:14px;font-weight:600;color:var(--terracotta);margin-bottom:6px}
+.r-prompt .q{font-size:22px;font-weight:700;color:var(--ink)}
+.opts{display:flex;flex-direction:column;gap:12px;margin-top:20px;max-width:640px}
+.opt{display:flex;align-items:flex-start;gap:14px;border:1px solid var(--border);border-radius:10px;background:var(--card);padding:16px}
+.opt .oic{width:40px;height:40px;border-radius:8px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.opt .otitle{font-size:15px;font-weight:600;color:var(--ink)}
+.opt .odesc{font-size:13px;color:#6B665A;line-height:1.45;margin-top:3px}
+.opt.sel{border-color:var(--amber);background:#FBF3E4;box-shadow:0 0 0 3px rgba(200,160,64,.14)}
+.opt.soon{opacity:.5}
+.opt .soonlab{font-size:11px;font-weight:600;color:#8A8578;margin-top:6px}
+.o1{animation:rO1 7000ms infinite;opacity:0}
+.o2{animation:rO2 7000ms infinite;opacity:0}
+.o3{animation:rO3 7000ms infinite;opacity:0}
+.r-side{animation:rSide 7000ms infinite;opacity:0}
+@keyframes rHello{0%{opacity:0;transform:translateY(14px)}9%{opacity:1;transform:translateY(0)}94%{opacity:1;transform:translateY(0)}100%{opacity:0}}
+@keyframes rWelcome{0%,6%{opacity:0;transform:translateY(10px)}13%{opacity:1;transform:translateY(0)}24%{opacity:1}31%{opacity:0}94%{opacity:0}100%{opacity:0}}
+@keyframes rPrompt{0%,28%{opacity:0;transform:translateY(10px)}38%{opacity:1;transform:translateY(0)}94%{opacity:1}100%{opacity:0}}
+@keyframes rO1{0%,40%{opacity:0;transform:translateY(12px)}48%{opacity:1;transform:translateY(0)}94%{opacity:1}100%{opacity:0}}
+@keyframes rO2{0%,46%{opacity:0;transform:translateY(12px)}54%{opacity:1;transform:translateY(0)}94%{opacity:1}100%{opacity:0}}
+@keyframes rO3{0%,52%{opacity:0;transform:translateY(12px)}60%{opacity:1;transform:translateY(0)}94%{opacity:1}100%{opacity:0}}
+@keyframes rSide{0%,30%{opacity:0}42%{opacity:1}94%{opacity:1}100%{opacity:0}}
+</style></helmet>
+<div class="doc">
+
+<section>
+<div class="seclabel">1 · Name entry</div>
+<div class="seccap">Centered to match the welcome screen. Eyebrow cleaned to sentence case. Behaviours to build in: field autofocuses, Enter submits, and Continue stays disabled until a name is typed — so the primary action is never a dead end. (Shown enabled with a name entered.)</div>
+<div class="app">
+<div class="topbar"><div class="brandmark"><div class="dot">R</div><div class="name">Resolve</div></div><div class="prog"><i style="width:25%"></i></div><div class="progtxt">Step 1 of 4</div><div class="reset"><svg viewBox="0 0 12 12" fill="none"><path d="M10 3a4.5 4.5 0 10.6 3.5M10 1.5V3.5H8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Reset</div></div>
+<div class="body"><div class="main" style="align-items:flex-start">
+<div class="eyebrow">Let's get started</div>
+<h1 class="serif" style="font-size:40px">What's your name?</h1>
+<input class="field" style="margin-top:26px" value="Simeon" readonly>
+<button class="btn" style="margin-top:22px">Continue<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<div class="hint">Press Enter to continue</div>
+</div></div>
+</div>
+</section>
+
+<section>
+<div class="seclabel">2 · Welcome → problem (fused reveal)</div>
+<div class="seccap">The delight beat and the first question are now one screen. "Hi Simeon." reveals as the serif hero and stays put; "Welcome to Resolve" gives way as the question and the three paths animate in beneath the same headline — no dead middle screen, no extra click. The top step counter is gone for this moment (the sidebar stepper is the progress now), and "Coming soon" / "After this session" are sentence case. Question is set in Inter so the screen keeps a single serif element. Loops for preview.</div>
+<div class="app">
+<div class="topbar"><div class="brandmark"><div class="dot">R</div><div class="name">Resolve</div></div><div class="prog"><i style="width:25%"></i></div><div class="reset"><svg viewBox="0 0 12 12" fill="none"><path d="M10 3a4.5 4.5 0 10.6 3.5M10 1.5V3.5H8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Reset</div></div>
+<div class="body">
+<div class="side r-side">
+<div class="step active"><div class="num">1</div><div><div class="stitle">Get started</div><div class="sdesc">Tell Resolve your name and what you need help with</div></div></div>
+<div class="step"><div class="num">2</div><div><div class="stitle">Bring it in</div><div class="sdesc">Share your project context — rough notes, imports, anything you have</div></div></div>
+<div class="step"><div class="num">3</div><div><div class="stitle">Confirm understanding</div><div class="sdesc">Check what Resolve understood and fill any gaps</div></div></div>
+<div class="step"><div class="num">4</div><div><div class="stitle">Your next move</div><div class="sdesc">One clear recommended action and a roadmap built from your project</div></div></div>
+<div class="aftercard"><div class="eb">After this session</div><p>Unlock the ability to save your path, track progress, and return to your project any time.</p></div>
+</div>
+<div class="main" style="align-items:flex-start">
+<h1 class="r-hello">Hi Simeon.</h1>
+<p class="r-welcome">Welcome to <b>Resolve</b>.</p>
+<div class="r-block">
+<div class="r-prompt"><div class="eb">So,</div><div class="q">What do you need help with?</div></div>
+<div class="opts">
+<div class="opt sel o1"><div class="oic">📁</div><div><div class="otitle">I have a messy project</div><div class="odesc">Notes everywhere, old AI chats, no clear next step. Help me make sense of it.</div></div></div>
+<div class="opt soon o2"><div class="oic">💡</div><div><div class="otitle">I have a new idea</div><div class="odesc">I want to shape it into something real.</div><div class="soonlab">Coming soon</div></div></div>
+<div class="opt soon o3"><div class="oic">🧭</div><div><div class="otitle">I'm stuck, not sure where to start</div><div class="odesc">Help me figure out what the actual problem is.</div><div class="soonlab">Coming soon</div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+</div>
+</x-dc>
+</body>
+</html>

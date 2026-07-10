@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#9A9A92;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface);font-family:'Inter',sans-serif;color:var(--ink)}
+.wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
+.col{width:100%;max-width:460px}
+.mark{display:flex;align-items:center;gap:8px;margin-bottom:26px}
+.mark .logo{width:24px;height:24px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:14px;flex:none}
+.mark .nm{font-size:15px;font-weight:700}
+.progress{display:flex;gap:6px;margin-bottom:22px}
+.seg{height:4px;flex:1;border-radius:2px;background:var(--border)}
+.seg.done{background:var(--amber)}
+.seg.on{background:rgba(200,160,64,.38)}
+.eyebrow{color:var(--terracotta);font-size:13px;font-weight:600;margin-bottom:10px}
+.headline{font-family:'DM Serif Display',serif;font-size:32px;line-height:1.18;margin:0 0 10px}
+.subhead{font-size:14.5px;color:var(--ink-soft);margin:0 0 26px;line-height:1.5;max-width:400px}
+.sheet{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px;box-shadow:0 2px 0 var(--border),0 4px 0 #EDE8DC}
+.inner{padding:18px 20px}
+.trow{display:flex;align-items:center;gap:11px;padding:9px 0;font-size:14px;min-height:34px;opacity:0}
+.tck{width:19px;height:19px;border-radius:50%;background:var(--amber);color:var(--ink);font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:0}
+.tck svg{width:11px;height:11px;color:var(--ink)}
+.ttext{color:var(--ink)}
+.d1{animation:rowIn .35s ease .3s both}.d1 .tck{animation:pop .5s cubic-bezier(.34,1.56,.64,1) .75s both}.d1 .ttext{animation:strike .01s linear 1.05s both}
+.d2{animation:rowIn .35s ease 1.5s both}.d2 .tck{animation:pop .5s cubic-bezier(.34,1.56,.64,1) 1.95s both}.d2 .ttext{animation:strike .01s linear 2.25s both}
+@keyframes rowIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(1.6)}to{opacity:1;transform:scale(1)}}
+@keyframes strike{from{color:var(--ink);text-decoration:none}to{color:var(--ink-ghost);text-decoration:line-through;text-decoration-color:var(--ink-ghost)}}
+.current{background:var(--ink);color:#F2EDE4;border-radius:10px;padding:16px;margin:10px 0;opacity:0;animation:rowIn .4s ease 2.7s both}
+.ctag{color:var(--amber);font-size:13px;font-weight:600;margin-bottom:6px}
+.ctext{font-size:15.5px;line-height:1.4}
+.uprow{display:flex;align-items:center;gap:11px;padding:10px 0;font-size:14px;color:var(--ink-soft);opacity:0}
+.updot{width:6px;height:6px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0}
+.u1{animation:rowIn .4s ease 3.25s both}.u2{animation:rowIn .4s ease 3.5s both}
+.counter{text-align:center;color:var(--ink-ghost);font-size:13px;margin-top:20px}
+.foot{display:flex;justify-content:center;margin-top:20px;opacity:0;animation:rowIn .4s ease 3.9s both}
+.cont{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#F5F1E8;border:none;border-radius:10px;padding:13px 24px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer}
+.cont svg{width:15px;height:15px}
+.replay{display:block;margin:16px auto 0;background:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:12.5px;color:#6B665A;cursor:pointer;font-family:inherit}
+</style></helmet>
+<div class="wrap"><div class="col">
+<div class="mark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="progress"><div class="seg done"></div><div class="seg on"></div><div class="seg"></div></div>
+<div class="eyebrow">Your first week</div>
+<h1 class="headline">Here's where to begin.</h1>
+<p class="subhead">Built straight from your roadmap — the first concrete moves, in the order they matter.</p>
+<div class="sheet" key="{{ runKey }}"><div class="inner">
+<div class="trow d1"><span class="tck"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ttext">Set up your Resolve workspace</span></div>
+<div class="trow d2"><span class="tck"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ttext">Confirm your roadmap</span></div>
+<div class="current"><div class="ctag">Up next</div><div class="ctext">Write down where the brand-name decision stands today</div></div>
+<div class="uprow u1"><span class="updot"></span>Pick the first customer signal to validate</div>
+<div class="uprow u2"><span class="updot"></span>Draft the first round of outreach</div>
+</div></div>
+<div class="counter">2 of 12 complete</div>
+<div class="foot"><button class="cont" onClick="{{ next }}">See it as a roadmap<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+<button class="replay" onClick="{{ replay }}">↻ Replay</button>
+</div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:800}}">
+class Component extends DCLogic {
+  state = { run: 0 };
+  renderVals() {
+    return {
+      runKey: 'run-' + this.state.run,
+      replay: () => this.setState(s => ({ run: s.run + 1 })),
+      next: () => this.setState(s => ({ run: s.run + 1 })),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#9A9A92;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)}
+.doc{padding:48px 40px 80px}
+.turntitle{font-size:13px;font-weight:700;color:var(--terracotta);margin-bottom:6px}
+.turnsub{font-size:14px;color:#6B665A;max-width:820px;line-height:1.55;margin-bottom:8px}
+.turnsub a{color:var(--terracotta);font-weight:600;text-decoration:none}
+.flag{background:#FBF3E4;border-left:3px solid var(--amber);padding:10px 13px;border-radius:0 6px 6px 0;font-size:13px;color:var(--ink-soft);max-width:820px;line-height:1.5;margin-bottom:28px}
+.turnrow{display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start}
+.opt{display:flex;flex-direction:column;gap:11px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700}
+.badge .id{background:var(--ink);color:#F5F1E8;border-radius:5px;padding:2px 7px;font-size:11px}
+.optdesc{font-size:12.5px;color:#6B665A;line-height:1.45;max-width:340px}
+.phone{width:344px;height:680px;background:var(--surface);border-radius:24px;box-shadow:0 16px 44px rgba(0,0,0,.15);overflow:hidden;position:relative;display:flex;flex-direction:column}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:15px 15px 9px;flex-shrink:0}
+.hdr .l{display:flex;align-items:center;gap:8px}
+.hdr .logo{width:24px;height:24px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:14px}
+.hdr .greet{font-size:13px;font-weight:600}
+.hdr .gsub{font-size:10.5px;color:var(--ink-ghost)}
+.hdr .avatar{width:30px;height:30px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--ink)}
+.hicon{width:32px;height:32px;border-radius:9px;border:1px solid var(--border);background:var(--card);display:flex;align-items:center;justify-content:center}
+.hicon svg{width:16px;height:16px;color:var(--ink-soft)}
+.hright{display:flex;align-items:center;gap:9px}
+.cmdbar{margin:2px 15px 8px;display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--border);border-radius:11px;padding:11px 13px;flex-shrink:0}
+.cmdbar .sp{color:var(--amber);flex-shrink:0}
+.cmdbar .sp svg{width:15px;height:15px;display:block}
+.cmdbar .ph{flex:1;font-size:13px;color:var(--ink-ghost)}
+.cmdbar .kbd{font-size:10px;font-weight:600;color:var(--ink-ghost);border:1px solid var(--border);border-radius:5px;padding:2px 6px}
+.content{flex:1;overflow:hidden;padding:4px 15px 14px;display:flex;flex-direction:column;gap:10px}
+.card{border-radius:10px;padding:13px}
+.win{background:var(--ink)}
+.win .we{font-size:10px;font-weight:600;color:#D9A97C;margin-bottom:5px}
+.win .wh{font-family:'DM Serif Display',serif;color:#FBF8F2;font-size:18px;line-height:1.25;margin:0}
+.wc{background:var(--card);border:1px solid var(--border)}
+.wc .we{font-size:10px;font-weight:600;color:var(--terracotta);margin-bottom:4px}
+.wc .t{font-size:13px;font-weight:600}
+.wc .b{font-size:11.5px;color:#5C574C;margin-top:3px;line-height:1.4}
+/* floating pill */
+.fpill{position:absolute;left:15px;right:15px;bottom:76px;display:flex;align-items:center;gap:10px;background:var(--ink);border-radius:26px;padding:12px 16px;box-shadow:0 8px 24px rgba(26,26,24,.3);z-index:12}
+.fpill .sp{color:var(--amber)}
+.fpill .sp svg{width:16px;height:16px;display:block}
+.fpill .ph{flex:1;font-size:13.5px;color:#C9C4B7;font-weight:500}
+.fpill .mic svg{width:16px;height:16px;color:#8A8578}
+/* tab bar */
+.tabbar{flex-shrink:0;display:flex;background:var(--card);border-top:1px solid var(--border);padding:7px 4px 10px}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9.5px;font-weight:500;color:var(--ink-ghost);position:relative}
+.tab svg{width:19px;height:19px}
+.tab.active{color:var(--amber)}
+.tab.locked{opacity:.4}
+.lockbadge{position:absolute;top:-2px;right:18px;width:12px;height:12px}
+.lockbadge svg{width:12px;height:12px;color:var(--ink-ghost)}
+/* expanded orchestrator */
+.sheet{position:absolute;inset:0;background:var(--surface);z-index:20;display:flex;flex-direction:column}
+.sheetbar{display:flex;align-items:center;gap:10px;padding:16px 15px;border-bottom:1px solid var(--border)}
+.sheetbar .sp{color:var(--amber)}
+.sheetbar .sp svg{width:16px;height:16px;display:block}
+.sheetbar input{flex:1;border:none;background:none;font-size:15px;font-family:inherit;color:var(--ink);outline:none}
+.sheetbar .esc{font-size:11px;font-weight:600;color:var(--ink-ghost);border:1px solid var(--border);border-radius:5px;padding:3px 7px}
+.results{flex:1;overflow:hidden;padding:14px 15px}
+.rgroup{font-size:10.5px;font-weight:700;color:var(--terracotta);margin:14px 0 7px}
+.rgroup:first-child{margin-top:0}
+.rrow{display:flex;align-items:center;gap:11px;padding:9px 8px;border-radius:8px;font-size:13.5px}
+.rrow.hot{background:var(--card);border:1px solid var(--border)}
+.rrow .ri{width:26px;height:26px;border-radius:7px;background:#EFE8DB;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rrow .ri svg{width:14px;height:14px;color:var(--ink-soft)}
+.rrow .rt{flex:1}
+.rrow .rt b{font-weight:600}
+.rrow .rk{font-size:10.5px;color:var(--ink-ghost)}
+/* nav states */
+.navcompare{display:flex;flex-direction:column;gap:18px}
+.navblock{width:344px}
+.navlbl{font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.navlbl span{color:var(--ink-ghost);font-weight:400}
+.navbar{display:flex;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:8px 4px}
+</style></helmet>
+
+<section>
+<div class="turntitle">Turn 5 · Global orchestrator bar — placement options</div>
+<div class="turnsub">The bar's behaviour is locked (ask · find · navigate · capture · confirmed-create) — only its placement is open. Three options: <a href="#ga">ga</a> top bar, <a href="#gb">gb</a> floating, <a href="#gc">gc</a> contextual. All open the same orchestrator (<a href="#gx">gx</a>). Nav states shown at <a href="#gn">gn</a>.</div>
+<div class="flag"><b>Confirmed:</b> the "Search workflows · Ctrl K" element at the top of the old sidebar <b>is</b> the early placeholder for this bar — option <b>ga</b> is its direct descendant. Worth deciding here rather than inheriting it by default.</div>
+<div class="turnrow">
+
+<div class="opt" id="ga">
+<div class="badge"><span class="id">ga</span>Top command bar</div>
+<div class="optdesc">Persistent under the header. Always in reach, discoverable, evolves the existing Ctrl-K placeholder. Costs a strip of vertical space on every screen.</div>
+<div class="phone">
+<div class="hdr"><div class="l"><div class="logo">R</div><div><div class="greet">Good morning, Simeon</div><div class="gsub">Here's what matters today</div></div></div><div class="avatar">S</div></div>
+<div class="cmdbar"><span class="sp"><svg viewBox="0 0 15 15" fill="none"><path d="M7.5 1l1.3 3.9L12.5 6l-3.7 1.1L7.5 11 6.2 7.1 2.5 6l3.7-1.1z" fill="currentColor"/></svg></span><span class="ph">Ask, find, or make anything…</span><span class="kbd">⌘K</span></div>
+<div class="content">
+<div class="card win"><div class="we">Decide this first</div><p class="wh">Pick the auth provider so onboarding can start</p></div>
+<div class="card wc"><div class="we">Waiting on</div><div class="t">Landing copy from Priya</div><div class="b">Due Monday · 3 days late</div></div>
+</div>
+<div class="tabbar">
+<div class="tab active"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>Dashboard</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6l2 2 3-3M4 14l2 2 3-3M13 6h5M13 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Work</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 11h9M4 16h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Roadmap</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 17c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4M15 6.5a2.2 2.2 0 010 4.4M16 17c0-2 1-3.2 2.5-3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Team</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M5 4h9a2 2 0 012 2v12l-4-2-4 2V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Knowledge</div>
+</div>
+</div>
+</div>
+
+<div class="opt" id="gb">
+<div class="badge"><span class="id">gb</span>Floating orchestrator</div>
+<div class="optdesc">A docked pill above the tab bar, thumb-reachable, visually the primary action. Expands upward into the orchestrator. Slightly overlaps content on scroll.</div>
+<div class="phone">
+<div class="hdr"><div class="l"><div class="logo">R</div><div><div class="greet">Good morning, Simeon</div><div class="gsub">Here's what matters today</div></div></div><div class="avatar">S</div></div>
+<div class="content">
+<div class="card win"><div class="we">Decide this first</div><p class="wh">Pick the auth provider so onboarding can start</p></div>
+<div class="card wc"><div class="we">Waiting on</div><div class="t">Landing copy from Priya</div><div class="b">Due Monday · 3 days late</div></div>
+<div class="card wc"><div class="we">Today</div><div class="t">Investor sync · 10:30</div></div>
+</div>
+<div class="fpill"><span class="sp"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l1.4 4.2L13.5 6.5l-3.9 1.2L8 12 6.4 7.7 2.5 6.5l4.1-1.3z" fill="currentColor"/></svg></span><span class="ph">Ask Resolve, or capture a thought</span><span class="mic"><svg viewBox="0 0 16 16" fill="none"><rect x="6" y="2" width="4" height="7" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 8a4 4 0 008 0M8 12v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span></div>
+<div class="tabbar">
+<div class="tab active"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>Dashboard</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6l2 2 3-3M4 14l2 2 3-3M13 6h5M13 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Work</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 11h9M4 16h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Roadmap</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 17c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4M15 6.5a2.2 2.2 0 010 4.4M16 17c0-2 1-3.2 2.5-3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Team</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M5 4h9a2 2 0 012 2v12l-4-2-4 2V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Knowledge</div>
+</div>
+</div>
+</div>
+
+<div class="opt" id="gc">
+<div class="badge"><span class="id">gc</span>Contextual per page</div>
+<div class="optdesc">No persistent bar — a command icon in the header opens the full orchestrator on demand. Cleanest screens; lowest discoverability, leans on the ⌘K habit.</div>
+<div class="phone">
+<div class="hdr"><div class="l"><div class="logo">R</div><div><div class="greet">Good morning, Simeon</div><div class="gsub">Here's what matters today</div></div></div><div class="hright"><div class="hicon"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l1.3 3.9L13 6.2l-3.7 1.1L8 11 6.7 7.3 3 6.2l3.7-1.1z" fill="currentColor" stroke="none"/></svg></div><div class="avatar">S</div></div></div>
+<div class="content">
+<div class="card win"><div class="we">Decide this first</div><p class="wh">Pick the auth provider so onboarding can start</p></div>
+<div class="card wc"><div class="we">Waiting on</div><div class="t">Landing copy from Priya</div><div class="b">Due Monday · 3 days late</div></div>
+<div class="card wc"><div class="we">Today</div><div class="t">Investor sync · 10:30</div></div>
+</div>
+<div class="tabbar">
+<div class="tab active"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>Dashboard</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6l2 2 3-3M4 14l2 2 3-3M13 6h5M13 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Work</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 11h9M4 16h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Roadmap</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 17c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4M15 6.5a2.2 2.2 0 010 4.4M16 17c0-2 1-3.2 2.5-3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Team</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M5 4h9a2 2 0 012 2v12l-4-2-4 2V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Knowledge</div>
+</div>
+</div>
+</div>
+
+<div class="opt" id="gx">
+<div class="badge"><span class="id">gx</span>Expanded — shared behaviour</div>
+<div class="optdesc">What every placement opens into. One input, five intents surfaced as you type: ask · find · go to · capture · create.</div>
+<div class="phone">
+<div class="sheet">
+<div class="sheetbar"><span class="sp"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l1.3 3.9L13 6.2l-3.7 1.1L8 11 6.7 7.3 3 6.2l3.7-1.1z" fill="currentColor"/></svg></span><input value="brand name" readonly><span class="esc">Esc</span></div>
+<div class="results">
+<div class="rgroup">Ask</div>
+<div class="rrow hot"><span class="ri"><svg viewBox="0 0 16 16" fill="none"><path d="M3 3h10v7H6l-3 3V3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="rt"><b>Ask the Product Director about the brand name</b></span></div>
+<div class="rgroup">Find</div>
+<div class="rrow"><span class="ri"><svg viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.3"/><path d="M10.5 10.5l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="rt">"Finalise the new brand name" <span class="rk">· Roadmap theme</span></span></div>
+<div class="rrow"><span class="ri"><svg viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.3"/><path d="M10.5 10.5l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="rt">Brand-name shortlist <span class="rk">· Knowledge base</span></span></div>
+<div class="rgroup">Go to</div>
+<div class="rrow"><span class="ri"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="rt">Roadmap <span class="rk">· tab</span></span></div>
+<div class="rgroup">Capture · create</div>
+<div class="rrow"><span class="ri"><svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="rt">Capture "brand name" to inbox <span class="rk">· ↵</span></span></div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="gn">
+<div class="turntitle" style="margin-top:20px">gn · Nav shell states (decided)</div>
+<div class="turnsub">During onboarding only Roadmap is reachable; the rest are present but locked until the roadmap is confirmed. After confirmation the full bar unlocks in steady-state order.</div>
+<div class="navcompare">
+<div class="navblock">
+<div class="navlbl">Onboarding <span>— only Roadmap unlocked</span></div>
+<div class="navbar">
+<div class="tab locked"><span class="lockbadge"><svg viewBox="0 0 12 12" fill="none"><rect x="2.5" y="5" width="7" height="4.5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5V3.8a2 2 0 014 0V5" stroke="currentColor" stroke-width="1"/></svg></span><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>Dashboard</div>
+<div class="tab locked"><span class="lockbadge"><svg viewBox="0 0 12 12" fill="none"><rect x="2.5" y="5" width="7" height="4.5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5V3.8a2 2 0 014 0V5" stroke="currentColor" stroke-width="1"/></svg></span><svg viewBox="0 0 22 22" fill="none"><path d="M4 6l2 2 3-3M4 14l2 2 3-3M13 6h5M13 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Work</div>
+<div class="tab active"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 11h9M4 16h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Roadmap</div>
+<div class="tab locked"><span class="lockbadge"><svg viewBox="0 0 12 12" fill="none"><rect x="2.5" y="5" width="7" height="4.5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5V3.8a2 2 0 014 0V5" stroke="currentColor" stroke-width="1"/></svg></span><svg viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 17c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4M15 6.5a2.2 2.2 0 010 4.4M16 17c0-2 1-3.2 2.5-3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Team</div>
+<div class="tab locked"><span class="lockbadge"><svg viewBox="0 0 12 12" fill="none"><rect x="2.5" y="5" width="7" height="4.5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5V3.8a2 2 0 014 0V5" stroke="currentColor" stroke-width="1"/></svg></span><svg viewBox="0 0 22 22" fill="none"><path d="M5 4h9a2 2 0 012 2v12l-4-2-4 2V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Knowledge</div>
+</div>
+</div>
+<div class="navblock">
+<div class="navlbl">Steady state <span>— all unlocked, Dashboard first</span></div>
+<div class="navbar">
+<div class="tab active"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>Dashboard</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6l2 2 3-3M4 14l2 2 3-3M13 6h5M13 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Work</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 11h9M4 16h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Roadmap</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 17c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4M15 6.5a2.2 2.2 0 010 4.4M16 17c0-2 1-3.2 2.5-3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Team</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M5 4h9a2 2 0 012 2v12l-4-2-4 2V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Knowledge</div>
+</div>
+</div>
+</div>
+</section>
+
+</x-dc>
+</body>
+</html>

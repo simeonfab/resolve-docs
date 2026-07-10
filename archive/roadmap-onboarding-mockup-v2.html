@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap Onboarding — v2 Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1A1A18;
+    --ink-soft: #4A4A44;
+    --ink-ghost: #9A9A92;
+    --surface: #F2EDE4;
+    --card-bg: #FFFFFF;
+    --border: #DDD8CE;
+    --amber: #C8A040;
+    --terracotta: #8B4A2A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .note-banner {
+    background: #FFF8E1;
+    border: 1px solid var(--amber);
+    color: var(--ink-soft);
+    font-size: 13px;
+    padding: 10px 16px;
+    text-align: center;
+  }
+  .screen {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+    display: none;
+  }
+  .screen.active { display: block; }
+
+  /* Screen 1: framing statement, said once */
+  .framing {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    line-height: 1.4;
+    margin: 40px 0 12px;
+  }
+  .framing-sub {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .theme-preview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .theme-preview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .theme-preview b { color: var(--ink); }
+
+  /* Screen 2: per-theme yes/no review */
+  .progress { display: flex; gap: 6px; margin-bottom: 24px; }
+  .dot { height: 4px; flex: 1; border-radius: 2px; background: var(--border); }
+  .dot.done { background: var(--amber); }
+  .dot.current { background: var(--ink); }
+  .step-label { color: var(--terracotta); font-size: 13px; font-weight: 600; margin-bottom: 16px; }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+  }
+  .card-theme-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 21px;
+    line-height: 1.4;
+    margin: 0 0 8px;
+  }
+  .card-source {
+    font-size: 12px;
+    color: var(--ink-ghost);
+    margin-bottom: 20px;
+  }
+  .yesno {
+    display: flex;
+    gap: 10px;
+  }
+  .btn-yes {
+    flex: 1;
+    background: var(--amber);
+    color: var(--ink);
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .btn-no {
+    flex: 1;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  /* Screen 3: catch-all */
+  .catchall-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin: 40px 0 12px;
+  }
+  .catchall-sub {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  .catchall-input {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    min-height: 90px;
+    background: #FAFAF7;
+  }
+  .btn-primary-full {
+    width: 100%;
+    background: var(--amber);
+    color: var(--ink);
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  .nav-strip {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-bottom: 20px;
+  }
+  .nav-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="note-banner">MOCKUP v2 — synthesis framing + yes/no + single catch-all. Not the real app.</div>
+
+<!-- SCREEN 1: framing, said once -->
+<div class="screen active" id="screen1">
+  <p class="framing">Based on what you told us, we've organised this into three themes.</p>
+  <p class="framing-sub">Take a quick look — you can confirm or adjust each one.</p>
+  <div class="theme-preview-list">
+    <div class="theme-preview"><b>1.</b> Finalise the new brand name from your shortlist</div>
+    <div class="theme-preview"><b>2.</b> Reposition the brand for a higher price point</div>
+    <div class="theme-preview"><b>3.</b> Validate the rebrand with real customer feedback</div>
+  </div>
+</div>
+
+<!-- SCREEN 2: per-theme yes/no -->
+<div class="screen" id="screen2">
+  <div class="progress">
+    <div class="dot done"></div>
+    <div class="dot current"></div>
+    <div class="dot"></div>
+  </div>
+  <div class="step-label">Theme 1 of 3</div>
+  <div class="card">
+    <p class="card-theme-name">Finalise the new brand name from your shortlist</p>
+    <p class="card-source">Based on your recommended next action</p>
+    <div class="yesno">
+      <button class="btn-yes">Yes, that's right</button>
+      <button class="btn-no">No, not quite</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 3: single catch-all at the end -->
+<div class="screen" id="screen3">
+  <p class="catchall-headline">Anything we've missed?</p>
+  <p class="catchall-sub">Add anything else you want on your roadmap — or leave it blank if these three cover it.</p>
+  <textarea class="catchall-input" placeholder="Type anything else you want tracked..."></textarea>
+  <button class="btn-primary-full">Confirm roadmap and unlock app</button>
+</div>
+
+<div class="nav-strip">
+  <button class="nav-btn" onclick="show(1)">1. Framing</button>
+  <button class="nav-btn" onclick="show(2)">2. Per-theme yes/no</button>
+  <button class="nav-btn" onclick="show(3)">3. Catch-all</button>
+</div>
+
+<script>
+function show(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen' + n).classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap Visualization — v2 Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1A1A18; --ink-soft: #4A4A44; --ink-ghost: #9A9A92;
+    --surface: #F2EDE4; --card-bg: #FFFFFF; --border: #DDD8CE;
+    --amber: #C8A040; --terracotta: #8B4A2A;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', sans-serif; background: var(--surface); color: var(--ink); }
+  .note-banner { background: #FFF8E1; border: 1px solid var(--amber); color: var(--ink-soft); font-size: 13px; padding: 10px 16px; text-align: center; }
+  .page { padding: 24px 16px 60px; }
+  .eyebrow { color: var(--terracotta); font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .headline { font-family: 'DM Serif Display', serif; font-size: 28px; margin: 0 0 20px; }
+
+  /* Horizontal scroll wrapper — user said sideways movement is fine */
+  .scroll-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+
+  /* ONE unified grid for the whole table — headers and rows share the exact same column tracks, so alignment is structural, not coincidental */
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: 140px repeat(3, 200px);
+    grid-auto-rows: auto;
+    gap: 8px;
+    min-width: 700px;
+  }
+
+  .header-cell {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-ghost);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0 4px 6px;
+    position: sticky;
+    top: 0;
+  }
+  .header-cell.now { color: var(--amber); }
+  .header-cell.corner { visibility: hidden; }
+
+  .theme-label {
+    background: var(--ink);
+    color: #F2EDE4;
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+  }
+  .theme-name { font-family: 'DM Serif Display', serif; font-size: 13px; line-height: 1.25; }
+
+  .cell {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .cell.now { border-color: var(--amber); border-width: 2px; }
+  .cell.empty { align-items: center; justify-content: center; color: var(--ink-ghost); font-size: 11px; border-style: dashed; }
+
+  .activity-chip {
+    font-size: 12px;
+    color: var(--ink);
+    background: #FAFAF7;
+    border-radius: 7px;
+    padding: 7px 9px;
+    line-height: 1.35;
+  }
+
+  .hint {
+    font-size: 12px;
+    color: var(--ink-ghost);
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="note-banner">MOCKUP v2 — unified grid (fixes alignment), no done-count, smaller theme boxes, horizontal scroll on mobile</div>
+<div class="page">
+  <div class="eyebrow">This week</div>
+  <p class="headline">Getting the big picture</p>
+
+  <div class="scroll-wrap">
+    <div class="roadmap-grid">
+      <div class="header-cell corner"></div>
+      <div class="header-cell now">Now</div>
+      <div class="header-cell">Next</div>
+      <div class="header-cell">Later</div>
+
+      <div class="theme-label"><span class="theme-name">Finalise the new brand name</span></div>
+      <div class="cell now"><div class="activity-chip">Write down the current baseline</div></div>
+      <div class="cell"><div class="activity-chip">Shortlist review with team</div><div class="activity-chip">Schedule the roadmap review</div></div>
+      <div class="cell empty">Nothing yet</div>
+
+      <div class="theme-label"><span class="theme-name">Reposition for a higher price point</span></div>
+      <div class="cell now"><div class="activity-chip">Decide what not to do this week</div></div>
+      <div class="cell empty">Nothing yet</div>
+      <div class="cell"><div class="activity-chip">Plan the peak-season relaunch</div></div>
+
+      <div class="theme-label"><span class="theme-name">Validate with customer feedback</span></div>
+      <div class="cell now"><div class="activity-chip">Choose first signal to validate</div></div>
+      <div class="cell"><div class="activity-chip">Create first outreach draft</div></div>
+      <div class="cell"><div class="activity-chip">Check whether feedback confirms direction</div></div>
+    </div>
+  </div>
+  <div class="hint">← scroll sideways to see Next and Later →</div>
+</div>
+</body>
+</html>

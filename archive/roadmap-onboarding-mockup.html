@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap Onboarding — Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1A1A18;
+    --ink-soft: #4A4A44;
+    --ink-ghost: #9A9A92;
+    --surface: #F2EDE4;
+    --card-bg: #FFFFFF;
+    --border: #DDD8CE;
+    --amber: #C8A040;
+    --terracotta: #8B4A2A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+  .note-banner {
+    background: #FFF8E1;
+    border: 1px solid var(--amber);
+    color: var(--ink-soft);
+    font-size: 13px;
+    padding: 10px 16px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  /* Confirmation banner — the one dominant dark moment */
+  .confirm-banner {
+    background: var(--ink);
+    color: #F2EDE4;
+    padding: 40px 24px 32px;
+    margin: 24px -20px 32px;
+  }
+  .eyebrow {
+    color: var(--amber);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+  }
+  .confirm-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+    line-height: 1.25;
+    margin: 0 0 16px;
+    max-width: 480px;
+  }
+  .confirm-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #D8D4C8;
+    max-width: 480px;
+    margin: 0;
+  }
+  .confirm-body strong { color: #F2EDE4; font-weight: 600; }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .tab {
+    padding: 10px 2px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-ghost);
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+  .tab.active {
+    color: var(--ink);
+    border-bottom-color: var(--amber);
+  }
+
+  .section-intro {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  /* Theme cards */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  .card-label {
+    color: var(--terracotta);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .drag {
+    color: var(--ink-ghost);
+    font-size: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 8px;
+  }
+  .grounded {
+    color: var(--ink-ghost);
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+  .field {
+    margin-bottom: 16px;
+  }
+  .field:last-child { margin-bottom: 0; }
+  .field-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .field-input {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: #FAFAF7;
+  }
+  textarea.field-input { min-height: 56px; resize: vertical; }
+
+  /* To-do items */
+  .todo-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+  .why-box { background: #FAFAF7; border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+  .confirm-btn {
+    width: 100%;
+    background: var(--amber);
+    color: var(--ink);
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    margin-top: 24px;
+  }
+  .confirm-btn.loading {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+</style>
+</head>
+<body>
+<div class="note-banner">MOCKUP for review — not the real app. Matches the finalized visual spec (light-Surface-first, brand tokens).</div>
+<div class="page">
+
+  <div class="confirm-banner">
+    <div class="eyebrow">Roadmap confirmation</div>
+    <h1 class="confirm-headline">Confirm the work that should drive the next phase</h1>
+    <p class="confirm-body">We think your goal is <strong>Conduct customer feedback on the logo draft and shortlisted names</strong>, based on what you told me.</p>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active">Themes</div>
+    <div class="tab">To-do list</div>
+  </div>
+
+  <p class="section-intro">Confirm or adjust the goal themes suggested from the project session. Each theme needs a measurable finish line.</p>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="card-label">Theme 1</span>
+      <span class="drag">Drag</span>
+    </div>
+    <div class="grounded">Grounded in: Call 2 recommended action</div>
+    <div class="field">
+      <label class="field-label">Goal</label>
+      <input class="field-input" value="Conduct customer feedback on the logo draft and shortlisted names.">
+    </div>
+    <div class="field">
+      <label class="field-label">Measurable target</label>
+      <input class="field-input" value="A clear measurable signal that 'Finalize the new brand name' is ready to decide.">
+    </div>
+    <div class="field">
+      <label class="field-label">Definition of done</label>
+      <textarea class="field-input">Done means the target is met and there is enough evidence to decide the next step.</textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="card-label">Theme 2</span>
+      <span class="drag">Drag</span>
+    </div>
+    <div class="grounded">Grounded in: Project session context</div>
+    <div class="field">
+      <label class="field-label">Goal</label>
+      <input class="field-input" value="Select the final brand name from the shortlist.">
+    </div>
+  </div>
+
+  <p class="section-intro" style="margin-top: 32px;">To-do list — near-term, undated activities that trace back to your themes.</p>
+
+  <div class="todo-card">
+    <div class="card-top">
+      <span class="card-label">Item 1</span>
+      <span class="drag">Drag</span>
+    </div>
+    <div class="field">
+      <label class="field-label">Activity</label>
+      <input class="field-input" value="Write down the current baseline for Finalize the new brand name.">
+    </div>
+    <div class="field">
+      <label class="field-label">Trace to theme</label>
+      <input class="field-input" value="Finalize the new brand name from the three shortlisted options.">
+    </div>
+    <div class="field">
+      <label class="field-label">Why this matters</label>
+      <div class="why-box">Supports "Finalize the new brand name from the three shortlisted options." from the confirmed Roadmap.</div>
+    </div>
+  </div>
+
+  <button class="confirm-btn">Confirm roadmap and unlock app</button>
+  <button class="confirm-btn loading" style="margin-top: 10px;">Confirming roadmap...</button>
+
+</div>
+</body>
+</html>

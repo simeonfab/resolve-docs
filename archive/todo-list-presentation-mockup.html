@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-do List Presentation — Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1A1A18; --ink-soft: #4A4A44; --ink-ghost: #9A9A92;
+    --surface: #F2EDE4; --card-bg: #FFFFFF; --border: #DDD8CE;
+    --amber: #C8A040; --terracotta: #8B4A2A;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', sans-serif; background: var(--surface); color: var(--ink); }
+  .note-banner { background: #FFF8E1; border: 1px solid var(--amber); color: var(--ink-soft); font-size: 13px; padding: 10px 16px; text-align: center; }
+  .page { max-width: 480px; margin: 0 auto; padding: 32px 20px 60px; }
+  .eyebrow { color: var(--terracotta); font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .headline { font-family: 'DM Serif Display', serif; font-size: 26px; margin: 0 0 28px; }
+
+  /* The "sheet" stack — completed items crossed off at top, next one highlighted */
+  .sheet-stack {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 4px;
+    box-shadow: 0 2px 0 var(--border), 0 4px 0 #EDE8DC;
+  }
+  .sheet-inner { padding: 20px; }
+
+  .done-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    color: var(--ink-ghost);
+    font-size: 14px;
+    text-decoration: line-through;
+    text-decoration-color: var(--ink-ghost);
+  }
+  .done-check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--amber);
+    color: var(--ink);
+    font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+  .divider { border-top: 1px dashed var(--border); margin: 8px 0; }
+
+  .current-row {
+    background: var(--ink);
+    color: #F2EDE4;
+    border-radius: 10px;
+    padding: 18px 16px;
+    margin: 12px 0;
+  }
+  .current-tag { color: var(--amber); font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+  .current-text { font-size: 16px; line-height: 1.4; }
+
+  .upcoming-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .upcoming-dot { width: 6px; height: 6px; border-radius: 50%; border: 1.5px solid var(--border); flex-shrink: 0; }
+
+  .counter { text-align: center; color: var(--ink-ghost); font-size: 13px; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="note-banner">MOCKUP — to-do list presented as a progressing sheet, not a flat list</div>
+<div class="page">
+  <div class="eyebrow">Your work</div>
+  <p class="headline">What's next</p>
+
+  <div class="sheet-stack">
+    <div class="sheet-inner">
+      <div class="done-row"><span class="done-check">✓</span> Initialise Resolve</div>
+      <div class="done-row"><span class="done-check">✓</span> Confirm your roadmap</div>
+
+      <div class="divider"></div>
+
+      <div class="current-row">
+        <div class="current-tag">Up next</div>
+        <div class="current-text">Write down the current baseline for finalising the new brand name</div>
+      </div>
+
+      <div class="upcoming-row"><span class="upcoming-dot"></span> Choose the first customer signal to validate</div>
+      <div class="upcoming-row"><span class="upcoming-dot"></span> Create the first outreach draft</div>
+    </div>
+  </div>
+
+  <div class="counter">2 of 12 complete</div>
+</div>
+</body>
+</html>
