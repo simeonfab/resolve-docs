@@ -7,6 +7,8 @@ Live project state (what is built, merged, in progress) lives in Notion, not her
 ## Root
 
 - `RESOLVE-ALPHA-MASTER-PLAN.md` [current] - The Alpha master plan v1 (9 Jul 2026): phases, parallelism map, standing rules, reference file index. Attach to any fresh working chat.
+- `resolve-naming-glossary.md` [current] - Canonical names for the whole Resolve estate (product family, repos, framework layers, the four roles). Step 1 of the ResolveOS refresh track.
+- `source-of-truth-map.md` [current] - Index of where every canonical thing lives (repo vs Notion). Step 2 of the ResolveOS refresh track. Names follow the glossary.
 
 ## briefs/ - Alpha build tickets
 
