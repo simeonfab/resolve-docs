@@ -70,9 +70,11 @@ Live project state (what is built, merged, in progress) lives in Notion, not her
 - `resolve-brand-reference.md` [current] - Brand reference: visual system tokens and rules.
 - `resolve-gamification-brief.md` [current] - Emotional weight & gamification brief. Future-phase direction.
 - `resolve-output-templates.md` [current] - Output template master definitions (v1) for the intake report.
+- `resolve-routing-framework.md` [current] - Canonical cross-provider model & provider routing framework. Product-repo CLAUDE.md/AGENTS.md carry the operational extract.
 - `resolveos-competitive-matrix.md` [current] - Competitive matrix (incl. Odysseus / open-source analysis).
 - `resolveos-role-authority-diagnosis.md` [current] - ResolveOS role authority gap diagnosis. Parked.
 - `roles-epic-handoff-brief.md` [current] - Roles epic + frontend-incorporation handoff brief (pointer to the Notion epic).
+- `routing-snippets.md` [current] - Routing nudge paste-ins for the two chat-app instruction boxes (Claude project / ChatGPT custom instructions). Reference only.
 - `tester-recruitment-copy-paste.md` [current] - Tester recruitment outreach material (Phase 4 / Phase S).
 - `work-mode-activity-system-brief.md` [current] - Work-mode activity system: mode-aware orchestrator prompts (PC / phone / voice / minimal).
 
