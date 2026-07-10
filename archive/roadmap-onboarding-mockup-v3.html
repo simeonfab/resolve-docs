@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap Onboarding — v3 Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1A1A18;
+    --ink-soft: #4A4A44;
+    --ink-ghost: #9A9A92;
+    --surface: #F2EDE4;
+    --card-bg: #FFFFFF;
+    --border: #DDD8CE;
+    --amber: #C8A040;
+    --terracotta: #8B4A2A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .note-banner {
+    background: #FFF8E1;
+    border: 1px solid var(--amber);
+    color: var(--ink-soft);
+    font-size: 13px;
+    padding: 10px 16px;
+    text-align: center;
+  }
+  .page {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+  }
+  .progress {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .dot { height: 4px; flex: 1; border-radius: 2px; background: var(--border); }
+  .dot.done { background: var(--amber); }
+  .dot.current { background: var(--ink); }
+
+  .eyebrow {
+    color: var(--terracotta);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .step-count {
+    color: var(--ink-ghost);
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .card-stack {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .card-behind {
+    position: absolute;
+    top: 12px; left: 8px; right: -8px; bottom: -12px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    opacity: 0.6;
+    z-index: 1;
+  }
+  .card-main {
+    position: relative;
+    z-index: 2;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+  }
+  .card-tag {
+    font-size: 12px;
+    color: var(--ink-ghost);
+    margin-bottom: 10px;
+  }
+  .card-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 23px;
+    line-height: 1.4;
+    margin: 0 0 24px;
+  }
+  .yesno {
+    display: flex;
+    gap: 10px;
+  }
+  .btn-yes {
+    flex: 1;
+    background: var(--amber);
+    color: var(--ink);
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .btn-no {
+    flex: 1;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .back-link {
+    text-align: center;
+    color: var(--ink-ghost);
+    font-size: 13px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="note-banner">MOCKUP v3 — v1's layout + v2's simplified copy, combined</div>
+<div class="page">
+
+  <div class="progress">
+    <div class="dot done"></div>
+    <div class="dot current"></div>
+    <div class="dot"></div>
+  </div>
+
+  <div class="eyebrow">Building your Roadmap</div>
+  <div class="step-count">Theme 1 of 3</div>
+
+  <div class="card-stack">
+    <div class="card-behind"></div>
+    <div class="card-main">
+      <div class="card-tag">A theme we've shaped from what you told us</div>
+      <p class="card-headline">Finalise the new brand name from your shortlist</p>
+      <div class="yesno">
+        <button class="btn-yes">Yes, add this to my roadmap</button>
+        <button class="btn-no">Not quite</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-link">← Back</div>
+
+</div>
+</body>
+</html>

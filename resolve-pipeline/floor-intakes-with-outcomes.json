@@ -1,0 +1,52 @@
+[
+  {
+    "id": "Q1_clear_lever",
+    "expected_human_read": "SUFFICIENT — real outcome + a clear pushable lever",
+    "note_to_self_not_sent": "candle biz, P4-style: validate willingness to pay is a genuine lever",
+    "outcome": "Buyers of premium candles choose this brand and pay £30 without hesitating.",
+    "project": "A premium candle brand differentiated by masculine woody scents at a £30 price point, at early test-batch stage with no validated demand.",
+    "top_priorities": ["Find out whether the target customer will actually pay £30", "Build a brand presence", "Sort scaled manufacturing"],
+    "recommended_action": "Test £30 willingness to pay before investing in production.",
+    "what_not_to_do": [{"item": "Commit to scaled manufacturing before validating demand", "reason": "Producing at scale before knowing anyone will pay risks unsold stock."}]
+  },
+  {
+    "id": "Q2_feature_pile",
+    "expected_human_read": "AMBIGUOUS/likely INSUFFICIENT — real outcome but the surfaces are an undifferentiated feature list, no single pushable lever",
+    "note_to_self_not_sent": "AI fridge, P2-style: everything is a feature, nothing is a lever",
+    "outcome": "People waste less of the food they buy.",
+    "project": "An AI food assistant: photograph your fridge, get recipes. Ambitions span shopping lists, social sharing, meal plans, calorie tracking, and grocery-delivery integration.",
+    "top_priorities": ["Recipes from a fridge photo", "Shopping list feature", "Meal plans", "Social sharing", "Calorie tracking", "Tesco integration"],
+    "recommended_action": "Build the recipe-from-photo feature.",
+    "what_not_to_do": [{"item": "Build the full feature set at once", "reason": "The scope is large and undifferentiated."}]
+  },
+  {
+    "id": "Q3_no_lever",
+    "expected_human_read": "INSUFFICIENT — real outcome but the only surfaces are tasks/undecided shape; nothing to push yet",
+    "note_to_self_not_sent": "dementia coordination, P3-style: real outcome, but no lever — it's all 'decide what form it takes'",
+    "outcome": "A family sharing dementia care stops missing important care tasks.",
+    "project": "A way for a family sharing care of a parent with early dementia to stay coordinated. The founder is not technical and does not know what form the solution should take — a shared board, an app, or something else.",
+    "top_priorities": ["Decide what form the solution takes", "Work out the two or three things that get missed"],
+    "recommended_action": "Decide whether it's a board, an app, or something else.",
+    "what_not_to_do": [{"item": "Adopt anything complex", "reason": "Founder is not technical and exhausted."}]
+  },
+  {
+    "id": "Q4_artifact_only",
+    "expected_human_read": "INSUFFICIENT — real outcome but the surface is purely an artifact being built, not a lever",
+    "note_to_self_not_sent": "heritage language, but stripped to artifact-only to test artifact detection with outcome present",
+    "outcome": "Second-generation people can hold a conversation with their grandparents in the family language.",
+    "project": "A heritage-language learning app. The plan is to build a lesson library, a vocabulary database, a spaced-repetition engine, and a mobile app.",
+    "top_priorities": ["Build the lesson library", "Build the vocabulary database", "Build the spaced-repetition engine", "Build the mobile app"],
+    "recommended_action": "Build the lesson library first.",
+    "what_not_to_do": [{"item": "Launch before the app is fully built", "reason": "It should be complete first."}]
+  },
+  {
+    "id": "Q5_clear_lever_2",
+    "expected_human_read": "SUFFICIENT — real outcome + a clear pushable lever (control, second domain)",
+    "note_to_self_not_sent": "YGOBrain-style clear lever with outcome present",
+    "outcome": "Competitive Yu-Gi-Oh players make better deck decisions and win more.",
+    "project": "An AI strategy assistant for competitive Yu-Gi-Oh players, focused on deck research.",
+    "top_priorities": ["Make deck research more effective for competitive players", "Cover card interactions", "Tournament prep"],
+    "recommended_action": "Improve the effectiveness of deck research.",
+    "what_not_to_do": [{"item": "Start development before the product shape is decided", "reason": "Shape is undecided."}]
+  }
+]

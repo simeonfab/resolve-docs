@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+doc-page:not(:defined){visibility:hidden}
+:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#7A756A;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+doc-page{font-family:'Inter',sans-serif;color:var(--ink);line-height:1.55;font-size:13.5px}
+.doctitle{font-family:'DM Serif Display',serif;font-size:34px;line-height:1.1;margin:0 0 8px}
+.docsub{font-size:14px;color:var(--ink-soft);margin:0 0 4px}
+.docmeta{font-size:12px;color:var(--ink-ghost);margin:0}
+.rule{height:2px;background:var(--ink);margin:18px 0 22px}
+.part{font-size:12px;font-weight:700;color:var(--terracotta);letter-spacing:.04em;margin:30px 0 4px}
+h2{font-size:19px;font-weight:700;margin:6px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.lead{font-size:13.5px;color:var(--ink-soft);margin:0 0 16px}
+.conv{margin:0 0 16px;padding-left:0;list-style:none}
+.conv li{position:relative;padding-left:18px;margin-bottom:7px}
+.conv li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--amber)}
+.screen{margin:0 0 18px;padding:14px 16px;border:1px solid var(--border);border-radius:8px;break-inside:avoid}
+.screen h3{font-size:15px;font-weight:700;margin:0 0 2px}
+.file{font-family:'Inter',monospace;font-size:11px;font-weight:600;color:var(--terracotta);margin-bottom:9px}
+.screen p{margin:0 0 7px}
+.screen p b{color:var(--ink);font-weight:700}
+.k{display:inline-block;min-width:74px;font-weight:700;color:var(--ink)}
+.flag{background:#FBF3E4;border-left:3px solid var(--amber);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 16px}
+strong.t{color:var(--terracotta)}
+.idx{margin:0 0 6px}
+.idxgroup{font-size:11px;font-weight:700;color:var(--terracotta);margin:16px 0 4px}
+.idxlink{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-size:13px;color:var(--ink);text-decoration:none;padding:8px 2px;border-bottom:1px solid var(--border)}
+.idxlink .lbl{font-weight:600}
+.idxlink .fn{font-family:'Inter',monospace;font-size:11px;color:var(--terracotta);white-space:nowrap}
+</style></helmet>
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="letter" margin="0.8in" hint-size="100%,100%">
+<p class="part">Developer handoff · Alpha</p>
+<h1 class="doctitle">ResolvePM — implementation brief</h1>
+<p class="docsub">End-to-end screen flow, expected behaviour and state logic. Pairs with the delivered HTML mockups (one file per screen, named inline below).</p>
+<p class="docmeta">Brand system is locked — see the brand spec. All colours, type (DM Serif Display for a single headline per screen; Inter everywhere else), 10px/6px radii and sentence-case labels are already baked into every mockup. Do not introduce new styles.</p>
+<div class="rule"></div>
+
+<h2>Screens — open each mockup</h2>
+<p class="lead">Every delivered screen, linked. Files are self-contained and open directly in a browser. Numbers match the sections below.</p>
+<div class="idx">
+<div class="idxgroup">A · Intake (desktop)</div>
+<a class="idxlink" href="ResolvePM%20Onboarding.dc.html"><span class="lbl">1–2 · Name entry + welcome/problem reveal</span><span class="fn">Onboarding</span></a>
+<a class="idxlink" href="ResolvePM%20Bring%20It%20In.dc.html"><span class="lbl">3 · Bring it in</span><span class="fn">Bring It In</span></a>
+<a class="idxlink" href="ResolvePM%20Confirm%20Understanding.dc.html"><span class="lbl">4 · Reading loader + confirm</span><span class="fn">Confirm Understanding</span></a>
+<a class="idxlink" href="ResolvePM%20Next%20Move.dc.html"><span class="lbl">5 · Weighing loader + next move</span><span class="fn">Next Move</span></a>
+<div class="idxgroup">B · Handoff &amp; sign-up</div>
+<a class="idxlink" href="ResolvePM%20Intake%20Transition.dc.html"><span class="lbl">6 · Final intake + bridge transition</span><span class="fn">Intake Transition</span></a>
+<a class="idxlink" href="ResolvePM%20Sign-in.dc.html"><span class="lbl">7 · Sign-up / login (OTP)</span><span class="fn">Sign-in</span></a>
+<div class="idxgroup">C · Build sequence (mobile, chrome-free)</div>
+<a class="idxlink" href="ResolvePM%20Roadmap%20Cards.dc.html"><span class="lbl">8 · Roadmap theme cards</span><span class="fn">Roadmap Cards</span></a>
+<a class="idxlink" href="ResolvePM%20Todo%20List.dc.html"><span class="lbl">9 · To-do list reveal</span><span class="fn">Todo List</span></a>
+<a class="idxlink" href="ResolvePM%20Roadmap%20Reveal.dc.html"><span class="lbl">10 · Roadmap reveal</span><span class="fn">Roadmap Reveal</span></a>
+<a class="idxlink" href="ResolvePM%20OS%20Reveal.dc.html"><span class="lbl">11 · OS assembly → Dashboard</span><span class="fn">OS Reveal</span></a>
+<div class="idxgroup">D · The app (mobile shell)</div>
+<a class="idxlink" href="ResolvePM%20Dashboard.dc.html"><span class="lbl">12 · Dashboard</span><span class="fn">Dashboard</span></a>
+<a class="idxlink" href="ResolvePM%20Roadmap%20Tab.dc.html"><span class="lbl">13 · Roadmap tab</span><span class="fn">Roadmap Tab</span></a>
+<a class="idxlink" href="ResolvePM%20Work%20Tab.dc.html"><span class="lbl">14 · Work tab</span><span class="fn">Work Tab</span></a>
+<a class="idxlink" href="ResolvePM%20Team%20Tab.dc.html"><span class="lbl">15 · Team tab</span><span class="fn">Team Tab</span></a>
+<a class="idxlink" href="ResolvePM%20Agent%20Chat.dc.html"><span class="lbl">15 · Agent chats (individual + stand-up)</span><span class="fn">Agent Chat</span></a>
+<a class="idxlink" href="ResolvePM%20Knowledge%20Base%20Tab.dc.html"><span class="lbl">16 · Knowledge base tab</span><span class="fn">Knowledge Base Tab</span></a>
+<a class="idxlink" href="ResolvePM%20Settings.dc.html"><span class="lbl">17 · Settings + avatar menu</span><span class="fn">Settings</span></a>
+<div class="idxgroup">Decisions &amp; explorations</div>
+<a class="idxlink" href="ResolvePM%20Global%20Bar%20Contextual.dc.html"><span class="lbl">Global orchestrator — chosen (floating, contextual)</span><span class="fn">Global Bar Contextual</span></a>
+<a class="idxlink" href="ResolvePM%20Global%20Bar.dc.html"><span class="lbl">Global orchestrator — placement options + nav states</span><span class="fn">Global Bar</span></a>
+<a class="idxlink" href="ResolvePM%20App%20Shell.dc.html"><span class="lbl">Navigation options (bottom bar chosen)</span><span class="fn">App Shell</span></a>
+</div>
+
+<div class="rule"></div>
+
+<h2>Read this first — global conventions</h2>
+<ul class="conv">
+<li><b>Two surfaces, one system.</b> The <b>intake flow</b> (pre-auth) is a desktop-width web experience with a 4-step left stepper. The <b>app</b> (post-auth, "ResolvePM") is <b>mobile-first</b> for Alpha (390px), desktop to follow. Same tokens throughout.</li>
+<li><b>Light Surface is the base.</b> Dark Ink is reserved for one dominant moment per screen (win card, recommended-action card, welcome veil). Never a dark theme throughout.</li>
+<li><b>App navigation</b> is a fixed <b>bottom tab bar</b> — steady-state order Dashboard · Work · Roadmap · Team · Knowledge. During onboarding only Roadmap is unlocked (the rest are visible but locked) until the roadmap is confirmed. Settings is not a tab — it opens from the header profile avatar.</li>
+<li><b>Global orchestrator = a floating pill</b> (docked above the tab bar), on every tab once the app shell has revealed — not during the chrome-free build sequence. Prompt + suggestions are contextual to the current tab; it drives ask · find · navigate · capture · confirmed-create and opens into one sheet. It supersedes the old "Search workflows · Ctrl K" sidebar element.</li>
+<li><b>Loaders narrate.</b> Every processing wait shows a short checklist of what Resolve is doing (not a bare spinner). Loaders run once through in product.</li>
+<li><b>First-run vs recurring.</b> Grand/one-time moments (OS assembly, Team intros) play only on first visit; every later open is the subtle version.</li>
+<li><b>Persistence.</b> The Dashboard "win for today" and the confirmed Roadmap are <b>stored, stable state</b> — not recomputed on load. The win changes only when its task is completed or explicitly superseded; never show a "refresh" affordance.</li>
+</ul>
+
+<p class="part">Part A</p>
+<h2>Intake (pre-auth, desktop)</h2>
+
+<div class="screen"><h3>1 · Name entry</h3><div class="file">ResolvePM Onboarding.dc.html</div>
+<p><b>Purpose.</b> Capture the user's first name to personalise everything downstream.</p>
+<p><b>Flow.</b> First screen after landing → on submit, advances to the welcome/problem reveal.</p>
+<p><b>Behaviour.</b> Single field, autofocused. Enter submits. "Continue" stays disabled until a name is entered (no dead-end). Eyebrow is sentence case ("Let's get started").</p>
+</div>
+
+<div class="screen"><h3>2 · Welcome → problem (fused reveal)</h3><div class="file">ResolvePM Onboarding.dc.html</div>
+<p><b>Purpose.</b> The delight beat and the first real question on one screen.</p>
+<p><b>Flow.</b> "Hi [name]." reveals as the serif hero and holds; "Welcome to Resolve" gives way as the question and three paths animate in beneath the same headline.</p>
+<p><b>Behaviour.</b> Options: <em>I have a messy project</em> (live) · <em>I have a new idea</em> / <em>I'm stuck</em> (both "Coming soon", disabled). Selecting the live path advances to step 2. The top step counter is hidden during this moment — the sidebar stepper is the progress. Question is Inter so the screen keeps one serif element.</p>
+</div>
+
+<div class="screen"><h3>3 · Bring it in (step 2)</h3><div class="file">ResolvePM Bring It In.dc.html</div>
+<p><b>Purpose.</b> The context dump — messy notes, pastes, anything.</p>
+<p><b>Behaviour.</b> Large textarea is the hero (voice-input affordance in corner). Starter chips ("A rebrand that's stalled" etc.) prefill a scaffold to beat the blank page. Helper hierarchy: <em>Try an example</em> (primary) · paste-from-another-chat prompt (link) · <em>Add material</em> (disabled, Coming soon). "Build my path" is disabled until there's content.</p>
+</div>
+
+<div class="screen"><h3>4 · Reading loader → Confirm understanding (step 3)</h3><div class="file">ResolvePM Confirm Understanding.dc.html</div>
+<p><b>Purpose.</b> Show what Resolve extracted and let the user correct it before it drives everything.</p>
+<p><b>Flow.</b> "Reading your project…" loader (reading → separating decided/open → spotting gaps → shaping) → confirm screen.</p>
+<p><b>Behaviour.</b> Four understanding cards (project, what you want, where it is, biggest uncertainty), each <b>individually editable</b> (per-card pencil). "A couple of things Resolve still needs" = optional gap questions. "What Resolve is assuming" is challengeable inline ("Not quite?"). Forward action in footer builds the path.</p>
+</div>
+
+<div class="screen"><h3>5 · Weighing loader → Your next move (step 4)</h3><div class="file">ResolvePM Next Move.dc.html</div>
+<p><b>Purpose.</b> Deliver the single highest-leverage action + the shape of what follows.</p>
+<p><b>Flow.</b> "Weighing it up…" loader (weighing → checking against confirmed → sequencing → choosing first move) → next-move screen.</p>
+<p><b>Behaviour.</b> The dark "Do this first" card holds the one serif element (page title is Inter). "This week" item in the timeline is flagged active. Footer "Continue" leads to the celebration handoff.</p>
+</div>
+
+<p class="part">Part B</p>
+<h2>Handoff &amp; sign-up</h2>
+
+<div class="screen"><h3>6 · Final intake screen + bridge transition</h3><div class="file">ResolvePM Intake Transition.dc.html</div>
+<p><b>Purpose.</b> Turn "leaving intake" into an earned reward, then carry the moment into the app without a hard cut.</p>
+<p><b>Flow.</b> Trophy celebration + the recommended-action handoff card are on screen together. User taps <b>Continue in Resolve</b> → a ~1.6s bridge (no click): fog headline lifts → first move pins with an amber check → Resolve mark + context chips form ("setting up your workspace") → settles into the sign-up screen.</p>
+<p><b>Behaviour.</b> Single dominant amber CTA; "Not now" is a quiet link. Copy is benefit-led (first move + roadmap + full context carry across) — not "send session data".</p>
+</div>
+
+<div class="screen"><h3>7 · Sign-up / login (OTP)</h3><div class="file">ResolvePM Sign-in.dc.html</div>
+<p><b>Purpose.</b> Create the workspace via one-time code (not magic link).</p>
+<p><b>Flow.</b> Email entry ("Send code") → 6-digit code entry ("Verify and continue") → into the app build sequence.</p>
+<p><b>Behaviour.</b> Six individual digit boxes. <b>Resend has a cooldown</b> (respect the mailer rate limit) — link disabled with a countdown, re-enabled after. Wrong/expired code shows an <b>inline error, no page reload</b>. All copy says "code", never "link".</p>
+</div>
+
+<p class="part">Part C</p>
+<h2>Post-auth build sequence (mobile, chrome-free)</h2>
+<p class="lead">A focused, full-screen sequence with no app chrome — this is the user "signing" their roadmap before the OS appears. A 3-segment progress bar threads it: Themes → To-do → Roadmap.</p>
+
+<div class="screen"><h3>8 · Roadmap theme cards</h3><div class="file">ResolvePM Roadmap Cards.dc.html</div>
+<p><b>Purpose.</b> Confirm the strategic themes one at a time; make the roadmap visibly form.</p>
+<p><b>Behaviour.</b> One card per theme (3 total). <b>"Yes, add to my roadmap"</b> drops the theme into an "On your roadmap" list (check pop) and advances. <b>"Not quite"</b> opens an inline correction field — on save it swaps the wording and adds the corrected version (correction re-runs the theme-vs-task check server-side). <span class="k"></span><strong class="t">No reject/remove path in Alpha</strong> — every theme ends on the roadmap, correction-only. End state hands to the to-do list.</p>
+</div>
+
+<div class="screen"><h3>9 · To-do list reveal</h3><div class="file">ResolvePM Todo List.dc.html</div>
+<p><b>Purpose.</b> Show the concrete first-week list generated from the roadmap.</p>
+<p><b>Behaviour.</b> Auto-plays: setup meta-steps ("Set up workspace", "Confirm your roadmap") check off and strike through, then the first real task surfaces as the dark "Up next" row, upcoming tasks below. Counter ("2 of 12 complete"). Headline copy is placeholder — confirm wording.</p>
+</div>
+
+<div class="screen"><h3>10 · Roadmap reveal</h3><div class="file">ResolvePM Roadmap Reveal.dc.html</div>
+<p><b>Purpose.</b> Present the plan as a Now / Next / Later grid, then open the door to the agents.</p>
+<p><b>Behaviour.</b> Reveals column by column (themes → Now, amber-emphasised → Next → Later), then drops in the <b>Product Director</b> to invite questions or additions before entering the app.</p>
+</div>
+
+<div class="screen"><h3>11 · OS assembly → Dashboard</h3><div class="file">ResolvePM OS Reveal.dc.html</div>
+<p><b>Purpose.</b> The grand, one-time reveal of the whole Resolve OS.</p>
+<p><b>Behaviour.</b> <b>First run:</b> dark "Welcome in, [name] / Your operating system is ready" beat → veil lifts → header drops in, bottom tab bar slides up, the four Dashboard cards populate in leverage order → settles on the Dashboard. <b>Every later open:</b> no dark beat; the shell's already there, content just settles in with a quick fade. Both land on the Dashboard.</p>
+</div>
+
+<p class="part">Part D</p>
+<h2>The app (mobile shell, bottom tabs)</h2>
+
+<div class="screen"><h3>12 · Dashboard</h3><div class="file">ResolvePM Dashboard.dc.html</div>
+<p><b>Purpose.</b> Answer "what do I do next?" Four cards, fixed order.</p>
+<p><b>Behaviour.</b> <span class="k">Win for today</span> dark full-width card, serif headline, entire card is the tap target — no button; routes contextually by action type (work item → opens it; agent-relevant → that role's chat). <span class="k">Blocked</span> only external-input stalls. <span class="k">Schedule</span> today's meetings + to-dos. <span class="k">Pointer</span> a lighter nudge (roadmap). <b>Tapping any card expands it in place</b> — background dims, detail surfaces inline, no open/close buttons. The win content is stored/stable (see persistence).</p>
+</div>
+
+<div class="screen"><h3>13 · Roadmap tab</h3><div class="file">ResolvePM Roadmap Tab.dc.html</div>
+<p><b>Behaviour.</b> View toggle: <b>By phase</b> (Now/Next/Later stacked, Now emphasised) ↔ <b>By theme</b> (theme cards, each with its own Now/Next/Later rows). <b>Product Director floating button</b> pinned bottom-right (above the tab bar) — reachable from any scroll position.</p>
+</div>
+
+<div class="screen"><h3>14 · Work tab</h3><div class="file">ResolvePM Work Tab.dc.html</div>
+<p><b>Purpose.</b> The execution surface (distinct from Roadmap's plan). Week-progress bar up top; checkable rows.</p>
+<p><b>Behaviour.</b> Sections in order: <b>Now</b> (active, amber) · <b>Waiting on</b> (external-dependency stalls, "Waiting · Nd") · <b>Captured inbox</b> (Alpha empty — fed by the global input bar) · <b>Upcoming from roadmap</b> · <b>Synced from tools</b> (Alpha empty). <b>Pre-populated from confirmed roadmap items — never starts blank.</b></p>
+</div>
+
+<div class="screen"><h3>15 · Team tab + agent chats</h3><div class="file">ResolvePM Team Tab.dc.html · ResolvePM Agent Chat.dc.html</div>
+<p><b>Purpose.</b> The AI agent roster: Product Director, Growth Lead, Tech Lead.</p>
+<p><b>Behaviour.</b> On <b>first visit</b> each lead introduces itself in plain English, contextualised to the project (staggered intro; static thereafter). Tapping a lead opens an <b>individual chat</b> (project-contextualised greeting + starter prompts; same pattern for all three). The <b>Stand-up room</b> lets the user address the group — only the relevant leads respond (not all three every time), each reply labelled with who's speaking.</p>
+</div>
+
+<div class="screen"><h3>16 · Knowledge base tab</h3><div class="file">ResolvePM Knowledge Base Tab.dc.html</div>
+<p><b>Purpose.</b> Read-only view of the intake handoff.</p>
+<p><b>Behaviour.</b> "Read-only · captured at intake" pill. Sections: project understanding (the four intake cards, no editing) · recommended action · full report (view/download PDF). <strong class="t">Alpha scope: no search/ask, no decision tracking</strong> — Beta or later.</p>
+</div>
+
+<div class="screen"><h3>17 · Settings</h3><div class="file">ResolvePM Settings.dc.html</div>
+<p><b>Flow.</b> Opens from the header profile avatar (menu: Profile · Settings · Sign out) — no sixth tab.</p>
+<p><b>Behaviour.</b> Groups: Account · Workspace (project, plan) · Preferences (daily briefing, waiting-on reminders toggles) · Session. <b>Reset onboarding flow</b> lives in Session — it clears the current session and replays the intake from the start, <b>but keeps the saved roadmap intact</b>. Sign out below it.</p>
+</div>
+
+<div class="flag"><b>Open items for the tech lead.</b> (1) To-do list headline copy is placeholder. (2) Agent intro/chat copy is draft voice — tune per role. (3) Desktop layouts for the app are out of scope for Alpha but the bottom-drawer nav was noted as the cleanest path to a desktop sidebar. (4) Confirm whether gap questions on the Confirm screen are required or skippable before building the path.</div>
+</x-import>
+</x-dc>
+</body>
+</html>

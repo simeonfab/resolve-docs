@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)}
+.doc{padding:56px 48px 80px;display:flex;flex-direction:column;align-items:flex-start}
+.seclabel{font-size:13px;font-weight:700;color:var(--terracotta);margin-bottom:4px}
+.seccap{font-size:14px;color:#6B665A;max-width:700px;line-height:1.55;margin-bottom:20px}
+.app{width:1180px;height:760px;background:var(--ink);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.topbar{height:64px;flex-shrink:0;display:flex;align-items:center;gap:20px;padding:0 24px;border-bottom:1px solid rgba(255,255,255,.06)}
+.brandmark{display:flex;align-items:center;gap:9px}
+.brandmark .dot{width:26px;height:26px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:15px}
+.brandmark .name{font-size:16px;font-weight:700;color:#F5F1E8}
+.prog{flex:1;max-width:360px;height:4px;border-radius:2px;background:rgba(255,255,255,.12);position:relative;overflow:hidden}
+.prog i{position:absolute;left:0;top:0;bottom:0;background:var(--amber);border-radius:2px}
+.reset{margin-left:auto;font-size:12px;font-weight:600;color:#8A8578;border:1px solid rgba(255,255,255,.14);border-radius:7px;padding:7px 12px;display:flex;align-items:center;gap:6px}
+.reset svg{width:12px;height:12px}
+.body{flex:1;display:flex;overflow:hidden}
+.side{width:308px;flex-shrink:0;padding:26px 24px;display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,.06)}
+.step{display:flex;gap:12px;margin-bottom:22px}
+.step .num{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#8A8578;flex-shrink:0}
+.step.done .num,.step.active .num{border-color:var(--amber);color:var(--amber)}
+.step .stitle{font-size:13.5px;font-weight:600;color:#6B665A}
+.step .sdesc{font-size:12px;color:#57534A;line-height:1.45;margin-top:3px}
+.step.active .stitle{color:#F5F1E8}
+.step.active .sdesc{color:#9A9488}
+.aftercard{margin-top:auto;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px}
+.aftercard .eb{font-size:11px;font-weight:700;color:var(--amber);margin-bottom:6px}
+.aftercard p{font-size:12px;color:#8A8578;line-height:1.5;margin:0}
+.main{flex:1;background:var(--surface);display:flex;flex-direction:column;padding:44px 56px 0}
+.eyebrow{font-size:13px;font-weight:600;color:var(--terracotta);margin-bottom:10px}
+.serif{font-family:'DM Serif Display',serif;color:var(--ink);margin:0;font-size:34px}
+.tawrap{position:relative;margin-top:24px;max-width:760px}
+.ta{width:100%;height:280px;border:1px solid var(--border);border-radius:10px;background:var(--card);padding:18px 20px;font-size:15px;font-family:inherit;color:var(--ink);line-height:1.6;resize:none;outline:none;box-shadow:0 0 0 3px rgba(200,160,64,.16);border-color:var(--amber)}
+.ta::placeholder{color:#9A9488}
+.mic{position:absolute;right:14px;bottom:14px;width:34px;height:34px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mic svg{width:15px;height:15px;color:#6B665A}
+.starters{margin-top:16px;max-width:760px}
+.starters .lead{font-size:12.5px;color:#8A8578;margin-bottom:9px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:8px 13px;font-size:13px;font-weight:500;color:var(--ink);cursor:pointer}
+.chip .pl{color:var(--terracotta);font-weight:700}
+.helprow{display:flex;align-items:center;gap:10px;margin-top:18px;max-width:760px;border-top:1px solid var(--border);padding-top:18px}
+.hbtn{display:inline-flex;align-items:center;gap:8px;border-radius:8px;padding:10px 15px;font-size:13.5px;font-weight:600;font-family:inherit;cursor:pointer}
+.hbtn.primary{background:var(--card);border:1px solid var(--amber);color:var(--ink)}
+.hbtn.primary .sp{color:var(--amber)}
+.hbtn.soon{background:transparent;border:1px dashed var(--border);color:#8A8578;cursor:default}
+.hbtn.soon .soonlab{font-weight:500;color:#A8A296}
+.pastelink{margin-left:auto;font-size:13px;font-weight:600;color:var(--terracotta);display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.pastelink svg{width:13px;height:13px}
+.footer{margin-top:auto;display:flex;align-items:center;gap:16px;padding:20px 0 26px;max-width:760px}
+.back{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px 22px;font-size:15px;font-weight:600;color:var(--ink);font-family:inherit;cursor:pointer}
+.build{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#F5F1E8;border:none;border-radius:10px;padding:14px 24px;font-size:15px;font-weight:600;font-family:inherit;opacity:.4;cursor:not-allowed}
+.build svg{width:15px;height:15px}
+.buildhint{font-size:12.5px;color:#8A8578}
+</style></helmet>
+<div class="doc">
+<div class="seclabel">Step 2 · Bring it in</div>
+<div class="seccap">Canvas right-sized so the input is the focus (no more dead space), top step counter dropped, caps cleaned to sentence case, and the helper affordances given a clear hierarchy: "Try an example" as the primary nudge, the paste-prompt as a link, "Add material" quiet and disabled. "Build my path" stays disabled until there's context — shown here in its empty (blank-page) state.</div>
+<div class="app">
+<div class="topbar"><div class="brandmark"><div class="dot">R</div><div class="name">Resolve</div></div><div class="prog"><i style="width:50%"></i></div><div class="reset"><svg viewBox="0 0 12 12" fill="none"><path d="M10 3a4.5 4.5 0 10.6 3.5M10 1.5V3.5H8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Reset</div></div>
+<div class="body">
+<div class="side">
+<div class="step done"><div class="num">✓</div><div><div class="stitle">Get started</div><div class="sdesc">Tell Resolve your name and what you need help with</div></div></div>
+<div class="step active"><div class="num">2</div><div><div class="stitle">Bring it in</div><div class="sdesc">Share your project context — rough notes, imports, anything you have</div></div></div>
+<div class="step"><div class="num">3</div><div><div class="stitle">Confirm understanding</div><div class="sdesc">Check what Resolve understood and fill any gaps</div></div></div>
+<div class="step"><div class="num">4</div><div><div class="stitle">Your next move</div><div class="sdesc">One clear recommended action and a roadmap built from your project</div></div></div>
+<div class="aftercard"><div class="eb">After this session</div><p>Unlock the ability to save your path, track progress, and return to your project any time.</p></div>
+</div>
+<div class="main">
+<div class="eyebrow">In your own words</div>
+<h1 class="serif">Tell Resolve what's going on.</h1>
+<div class="tawrap">
+<textarea class="ta" placeholder="Describe the project however you like. What exists, what's confusing, what you're trying to decide, what's blocking you. Don't tidy it up."></textarea>
+<div class="mic"><svg viewBox="0 0 15 15" fill="none"><rect x="5" y="1.5" width="5" height="8" rx="2.5" stroke="currentColor" stroke-width="1.2"/><path d="M3 7a4.5 4.5 0 009 0M7.5 11.5v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+</div>
+<div class="starters">
+<div class="lead">Not sure where to start? Pick one and Resolve drops in a scaffold:</div>
+<div class="chips">
+<span class="chip"><span class="pl">+</span>A rebrand that's stalled</span>
+<span class="chip"><span class="pl">+</span>Too many notes, no plan</span>
+<span class="chip"><span class="pl">+</span>Deciding between options</span>
+</div>
+</div>
+<div class="helprow">
+<button class="hbtn primary"><span class="sp">✦</span>Try an example</button>
+<button class="hbtn soon">Add material<span class="soonlab">· Coming soon</span></button>
+<span class="pastelink">Coming from another AI chat? Get a prompt to pull it in<svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5h8M6.5 3l3.5 3.5L6.5 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+</div>
+<div class="footer">
+<button class="back">Back</button>
+<button class="build">Build my path<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<span class="buildhint">Add a little context to continue</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+</body>
+</html>

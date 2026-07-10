@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#9A9A92;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface);font-family:'Inter',sans-serif;color:var(--ink)}
+.wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
+.col{width:100%;max-width:480px}
+.mark{display:flex;align-items:center;gap:8px;margin-bottom:24px}
+.mark .logo{width:24px;height:24px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:14px;flex:none}
+.mark .nm{font-size:15px;font-weight:700}
+.progress{display:flex;gap:6px;margin-bottom:22px}
+.seg{height:4px;flex:1;border-radius:2px;background:var(--border)}
+.seg.done{background:var(--amber)}
+.seg.on{background:rgba(200,160,64,.38)}
+.eyebrow{color:var(--terracotta);font-size:13px;font-weight:600;margin-bottom:8px}
+.headline{font-family:'DM Serif Display',serif;font-size:30px;line-height:1.15;margin:0 0 22px}
+.rv{opacity:0;animation:rvA .5s ease both}
+@keyframes rvA{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.rd1{animation-delay:.2s}.rd2{animation-delay:.35s}.rd3{animation-delay:.5s}
+.rd4{animation-delay:1.4s}.rd5{animation-delay:2s}.rd6{animation-delay:2.6s}.rd7{animation-delay:3.3s}
+.grid{display:grid;grid-template-columns:60px 1fr 1fr 1fr;gap:6px;margin-bottom:22px}
+.hcell{font-size:11px;font-weight:700;color:var(--ink-ghost);letter-spacing:.02em;padding:0 2px 6px;text-align:center}
+.hcell.now{color:var(--amber)}
+.corner{visibility:hidden}
+.tlabel{background:var(--ink);color:#F2EDE4;border-radius:8px;padding:8px 8px;display:flex;align-items:center}
+.tname{font-weight:600;font-size:11.5px;line-height:1.25}
+.cell{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px;display:flex;flex-direction:column;gap:4px}
+.cell.nowc{border-color:var(--amber);border-width:1.5px}
+.cell.empty{align-items:center;justify-content:center;color:var(--ink-ghost);font-size:10px;border-style:dashed}
+.chip{font-size:10.5px;color:var(--ink);background:#FAFAF7;border-radius:6px;padding:5px 6px;line-height:1.3}
+.pd{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
+.pdh{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.pdav{width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+.pdname{font-size:13px;font-weight:700}
+.pdrole{font-size:11px;color:var(--ink-ghost)}
+.pdprompt{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin:0 0 14px}
+.pdrow{display:flex;gap:8px}
+.pdin{flex:1;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;background:#FAFAF7;font-family:inherit;color:var(--ink);outline:none}
+.pdin::placeholder{color:var(--ink-ghost)}
+.pdsend{background:var(--amber);color:var(--ink);border:none;border-radius:8px;padding:0 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+.foot{display:flex;justify-content:center;margin-top:22px}
+.open{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#F5F1E8;border:none;border-radius:10px;padding:13px 24px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer}
+.open svg{width:15px;height:15px}
+.replay{display:block;margin:16px auto 0;background:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:12.5px;color:#6B665A;cursor:pointer;font-family:inherit}
+</style></helmet>
+<div class="wrap"><div class="col">
+<div class="mark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="progress"><div class="seg done"></div><div class="seg done"></div><div class="seg on"></div></div>
+<div class="eyebrow">Your roadmap</div>
+<h1 class="headline">Here's the whole picture.</h1>
+<div class="grid" key="{{ runKey }}">
+<div class="hcell corner"></div>
+<div class="hcell now rv rd4">Now</div>
+<div class="hcell rv rd5">Next</div>
+<div class="hcell rv rd6">Later</div>
+
+<div class="tlabel rv rd1"><span class="tname">Finalise the new brand name</span></div>
+<div class="cell nowc rv rd4"><div class="chip">Write down the current baseline</div></div>
+<div class="cell rv rd5"><div class="chip">Shortlist review with the team</div><div class="chip">Schedule the roadmap review</div></div>
+<div class="cell empty rv rd6">Nothing yet</div>
+
+<div class="tlabel rv rd2"><span class="tname">Reposition for a higher price point</span></div>
+<div class="cell nowc rv rd4"><div class="chip">Decide what not to do this week</div></div>
+<div class="cell empty rv rd5">Nothing yet</div>
+<div class="cell rv rd6"><div class="chip">Plan the peak-season relaunch</div></div>
+
+<div class="tlabel rv rd3"><span class="tname">Validate with customer feedback</span></div>
+<div class="cell nowc rv rd4"><div class="chip">Choose the first signal to validate</div></div>
+<div class="cell rv rd5"><div class="chip">Create the first outreach draft</div></div>
+<div class="cell rv rd6"><div class="chip">Check whether feedback confirms direction</div></div>
+</div>
+<div class="pd rv rd7">
+<div class="pdh"><div class="pdav">P</div><div><div class="pdname">Product Director</div><div class="pdrole">Ask about your roadmap, or add something new</div></div></div>
+<p class="pdprompt">What do you think — anything missing, or something you'd sequence differently?</p>
+<div class="pdrow"><input class="pdin" placeholder="e.g. we should also track…"><button class="pdsend">Send</button></div>
+</div>
+<div class="foot"><button class="open" onClick="{{ next }}">Open my roadmap<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+<button class="replay" onClick="{{ replay }}">↻ Replay</button>
+</div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:820}}">
+class Component extends DCLogic {
+  state = { run: 0 };
+  renderVals() {
+    return {
+      runKey: 'run-' + this.state.run,
+      replay: () => this.setState(s => ({ run: s.run + 1 })),
+      next: () => this.setState(s => ({ run: s.run + 1 })),
+    };
+  }
+}
+</script>
+</body>
+</html>

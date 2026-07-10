@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:#EAE4D8;font-family:'Inter',sans-serif;color:var(--ink)}
+.stage{display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start;justify-content:center;padding:48px 24px}
+.col{display:flex;flex-direction:column;align-items:center;gap:14px}
+.collabel{font-size:13px;font-weight:600;color:#8A8578;letter-spacing:.02em}
+.phone{width:390px;max-width:100vw;background:var(--surface);border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,.18);overflow:hidden;position:relative}
+.screen{padding:24px 16px 84px;min-height:640px;position:relative}
+.gbar{position:absolute;left:16px;right:16px;bottom:18px;display:flex;align-items:center;gap:10px;background:var(--ink);border-radius:24px;padding:12px 15px;box-shadow:0 8px 22px rgba(26,26,24,.3);z-index:4}
+.gbar .gsp{color:var(--amber);flex-shrink:0;display:flex}.gbar .gsp svg{width:16px;height:16px;display:block}
+.gbar .gcap{flex:1;font-size:13px;color:#E7E2D6;font-weight:500}
+.gbar .gmic{display:flex}.gbar .gmic svg{width:16px;height:16px;color:#8A8578}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:4px 4px 22px}
+.topbar .greeting{font-size:15px;font-weight:600;color:var(--ink)}
+.topbar .sub{font-size:12px;color:#8A8578;margin-top:2px}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--ink);font-size:14px}
+.eyebrow{font-size:12px;font-weight:600;color:var(--terracotta);margin-bottom:6px}
+.eyebrow.onink{color:#D9A97C}
+.stack{display:flex;flex-direction:column;gap:14px}
+.card{border-radius:10px;padding:16px;transition:filter .2s,opacity .2s}
+.card.white{background:var(--card);border:1px solid var(--border)}
+.card.win{background:var(--ink);cursor:pointer;position:relative}
+.win .headline{font-family:'DM Serif Display',serif;color:#FBF8F2;font-size:25px;line-height:1.28;margin:0 0 8px}
+.win .support{font-size:13.5px;color:#C9C4B7;line-height:1.5;margin:0}
+.win .routepill{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:600;color:var(--amber)}
+.win .routepill svg{width:12px;height:12px}
+.rowline{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.title{font-size:15px;font-weight:600;color:var(--ink);margin:0}
+.body{font-size:13px;color:#5C574C;line-height:1.5;margin:6px 0 0}
+.chip{font-size:11px;font-weight:600;color:var(--terracotta);background:#F4E9DC;border-radius:6px;padding:3px 8px;white-space:nowrap}
+.schedrow{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--border)}
+.schedrow:first-of-type{border-top:none;padding-top:0}
+.schedtime{font-size:12px;font-weight:600;color:#8A8578;width:52px;flex-shrink:0;padding-top:1px}
+.schedtitle{font-size:13.5px;font-weight:500;color:var(--ink)}
+.schedtag{font-size:11px;color:#8A8578;margin-top:1px}
+.pointer{display:flex;align-items:center;gap:12px}
+.pointer .icon{width:36px;height:36px;border-radius:8px;background:#F4E9DC;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pointer .icon svg{width:18px;height:18px}
+.pointer .txt .title{font-size:14px}
+.pointer .txt .body{margin-top:3px}
+.arrow{margin-left:auto;color:#8A8578;flex-shrink:0}
+.dim{position:absolute;inset:0;background:rgba(26,26,24,.42);z-index:5;border-radius:28px}
+.expwrap{position:relative;z-index:6}
+.expcard{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;box-shadow:0 12px 32px rgba(0,0,0,.2)}
+.expcard .divider{height:1px;background:var(--border);margin:14px 0}
+.expcard .metarow{display:flex;justify-content:space-between;align-items:center}
+.expcard .meta{font-size:12px;color:#8A8578}
+.expcard .note{font-size:13px;color:#5C574C;line-height:1.6;background:var(--surface);border-radius:6px;padding:10px 12px;margin-top:12px}
+.expcard .actions{display:flex;gap:10px;margin-top:16px}
+.btn{border-radius:6px;padding:9px 14px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;border:1px solid var(--border);color:var(--ink)}
+.dimmed{filter:blur(1px);opacity:.5}
+</style></helmet>
+<div class="stage">
+<div class="col"><div class="collabel">Collapsed</div><div class="phone"><div class="screen">
+<div class="topbar"><div><div class="greeting">Good morning, Simeon</div><div class="sub">Here's what matters today</div></div><div class="avatar">S</div></div>
+<div class="stack">
+<div class="card win"><div class="eyebrow onink">{{ winEyebrow }}</div><div class="headline">{{ winHeadline }}</div><p class="support">{{ winSupport }}</p><div class="routepill"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>{{ winRouteLabel }}</div></div>
+<div class="card white"><div class="eyebrow">Waiting on</div><div class="rowline"><p class="title">{{ blockedTitle }}</p><span class="chip">{{ blockedChip }}</span></div><p class="body">{{ blockedBody }}</p></div>
+<div class="card white"><div class="eyebrow">Today</div>
+<sc-for list="{{ scheduleItems }}" as="item" hint-placeholder-count="3">
+<div class="schedrow"><div class="schedtime">{{ item.time }}</div><div><div class="schedtitle">{{ item.title }}</div><div class="schedtag">{{ item.tag }}</div></div></div>
+</sc-for>
+</div>
+<div class="card white pointer"><div class="icon"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="#8B4A2A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="txt"><div class="eyebrow" style="margin-bottom:2px">Worth a look</div><p class="title">{{ pointerTitle }}</p><p class="body">{{ pointerBody }}</p></div></div>
+</div>
+<div class="gbar"><span class="gsp"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l1.3 3.9L13 6.2l-3.7 1.1L8 11 6.7 7.3 3 6.2l3.7-1.1z" fill="currentColor"/></svg></span><span class="gcap">Ask Resolve, or capture a thought</span><span class="gmic"><svg viewBox="0 0 16 16" fill="none"><rect x="6" y="2" width="4" height="7" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 8a4 4 0 008 0M8 12v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span></div>
+</div></div></div>
+
+<div class="col"><div class="collabel">Expanded — blocked card tapped</div><div class="phone"><div class="screen">
+<div class="topbar"><div><div class="greeting">Good morning, Simeon</div><div class="sub">Here's what matters today</div></div><div class="avatar">S</div></div>
+<div class="stack">
+<div class="card win dimmed"><div class="eyebrow onink">{{ winEyebrow }}</div><div class="headline">{{ winHeadline }}</div><p class="support">{{ winSupport }}</p></div>
+<div class="expwrap"><div class="expcard">
+<div class="eyebrow">Waiting on</div><div class="rowline"><p class="title">{{ blockedTitle }}</p><span class="chip">{{ blockedChip }}</span></div><p class="body">{{ blockedBody }}</p>
+<div class="divider"></div>
+<div class="metarow"><span class="meta">Stalled since</span><span class="meta">{{ blockedSince }}</span></div>
+<div class="metarow" style="margin-top:8px"><span class="meta">Waiting on</span><span class="meta">{{ blockedWho }}</span></div>
+<div class="note">{{ blockedNote }}</div>
+<div class="actions"><button class="btn primary">Send reminder</button><button class="btn ghost">View in Work</button></div>
+</div></div>
+<div class="card white dimmed"><div class="eyebrow">Today</div>
+<sc-for list="{{ scheduleItems }}" as="item" hint-placeholder-count="3">
+<div class="schedrow"><div class="schedtime">{{ item.time }}</div><div><div class="schedtitle">{{ item.title }}</div><div class="schedtag">{{ item.tag }}</div></div></div>
+</sc-for>
+</div>
+<div class="card white pointer dimmed"><div class="icon"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="#8B4A2A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="txt"><div class="eyebrow" style="margin-bottom:2px">Worth a look</div><p class="title">{{ pointerTitle }}</p><p class="body">{{ pointerBody }}</p></div></div>
+</div>
+<div class="dim"></div>
+</div></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:760},&quot;winHeadline&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Pick the auth provider so onboarding can start&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Win card&quot;},&quot;winSupport&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Everything downstream is blocked until this is locked.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Win card&quot;},&quot;winRouteLabel&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Opens work item&quot;,&quot;options&quot;:[&quot;Opens work item&quot;,&quot;Opens agent chat&quot;,&quot;Opens roadmap&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Win card&quot;},&quot;blockedNote&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;You asked for the hero section rewrite and two headline options. No reply on the thread yet.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Blocked card&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      winEyebrow: this.props.winEyebrow ?? 'Decide this first',
+      winHeadline: this.props.winHeadline ?? 'Pick the auth provider so onboarding can start',
+      winSupport: this.props.winSupport ?? 'Everything downstream — signup, billing, invites — is blocked until this is locked. Clerk vs. Auth0, from your notes on Tuesday.',
+      winRouteLabel: this.props.winRouteLabel ?? 'Opens work item',
+      blockedTitle: 'Landing page copy from contractor',
+      blockedChip: '3 days',
+      blockedBody: 'Final draft was due Monday. Nothing in the shared doc since your last note.',
+      blockedSince: 'Mon, Jul 3',
+      blockedWho: 'Priya (contractor)',
+      blockedNote: this.props.blockedNote ?? 'You asked for the hero section rewrite and two headline options. No reply on the thread yet.',
+      scheduleItems: [
+        { time: '10:30', title: 'Investor sync', tag: 'Meeting · 30 min' },
+        { time: '1:00', title: 'Ship pricing page copy', tag: 'To-do' },
+        { time: '4:00', title: 'Review onboarding flow', tag: 'To-do' },
+      ],
+      pointerTitle: 'Your roadmap shifted',
+      pointerBody: 'Two items moved after last week\u2019s changes — worth a check-in on the Roadmap tab.',
+    };
+  }
+}
+</script>
+</body>
+</html>

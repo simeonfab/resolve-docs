@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface);font-family:'Inter',sans-serif;color:var(--ink)}
+.wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
+.col{width:100%;max-width:460px}
+.mark{display:flex;align-items:center;gap:8px;margin-bottom:26px}
+.mark .logo{width:24px;height:24px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:14px;flex:none}
+.mark .nm{font-size:15px;font-weight:700}
+.progress{display:flex;gap:6px;margin-bottom:18px}
+.dot{height:4px;flex:1;border-radius:2px;background:var(--border);transition:background .4s}
+.dot.done{background:var(--amber)}
+.dot.current{background:var(--ink)}
+.eyebrow{color:var(--terracotta);font-size:13px;font-weight:600;margin-bottom:16px}
+.stack{position:relative;margin-bottom:22px}
+.behind{position:absolute;top:9px;left:7px;right:-7px;height:88%;background:var(--card);border:1px solid var(--border);border-radius:14px;opacity:.5;z-index:1}
+.card{position:relative;z-index:2;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 24px;animation:cardIn .45s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes cardIn{from{opacity:0;transform:scale(.94) translateY(10px)}to{opacity:1;transform:none}}
+.tag{font-size:12px;color:#9A9A92;margin-bottom:12px;animation:up .4s ease .05s both}
+.hl{font-family:'DM Serif Display',serif;font-size:24px;line-height:1.35;margin:0 0 22px;animation:up .45s ease .16s both}
+.btns{display:flex;gap:10px;animation:up .4s ease .3s both}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.byes{flex:1;background:var(--amber);color:var(--ink);border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+.bno{flex:1;background:none;border:1px solid var(--border);color:#4A4A44;border-radius:10px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.correction{margin-top:16px;border-top:1px solid var(--border);padding-top:16px}
+.clabel{font-size:12px;color:#9A9A92;margin-bottom:9px}
+.cinput{width:100%;border:1px solid var(--amber);border-radius:8px;padding:11px 13px;font-size:14px;font-family:inherit;background:#FBF5E8;color:var(--ink);outline:none;margin-bottom:11px}
+.csave{background:var(--amber);color:var(--ink);border:none;border-radius:8px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+.roadmapbox{background:transparent}
+.rlbl{font-size:12px;font-weight:600;color:#9A9A92;margin-bottom:12px}
+.rrow{display:flex;align-items:center;gap:11px;padding:11px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;animation:rIn .45s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes rIn{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.rrow .rck{width:20px;height:20px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:pop .5s cubic-bezier(.34,1.56,.64,1) .12s both}
+@keyframes pop{from{transform:scale(1.6);opacity:0}to{transform:scale(1);opacity:1}}
+.rrow .rck svg{width:11px;height:11px;color:var(--ink)}
+.rrow .rname{font-size:13.5px;font-weight:500;color:var(--ink);line-height:1.35}
+.endcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 24px;margin-bottom:22px;animation:cardIn .5s cubic-bezier(.34,1.56,.64,1) both}
+.endcard .eh{font-family:'DM Serif Display',serif;font-size:24px;margin:0 0 8px}
+.endcard .es{font-size:14px;color:#4A4A44;margin:0 0 20px;line-height:1.5}
+.cont{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#F5F1E8;border:none;border-radius:10px;padding:13px 22px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer}
+.cont svg{width:15px;height:15px}
+.replay{display:block;margin:20px auto 0;background:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:12.5px;color:#6B665A;cursor:pointer;font-family:inherit}
+</style></helmet>
+<div class="wrap"><div class="col">
+<div class="mark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="progress"><sc-for list="{{ dots }}" as="d" hint-placeholder-count="3"><div class="{{ d.cls }}"></div></sc-for></div>
+<div class="eyebrow">Building your roadmap</div>
+<sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
+<div class="stack">
+<sc-if value="{{ hasBehind }}" hint-placeholder-val="{{ true }}"><div class="behind"></div></sc-if>
+<div class="card" key="{{ cardKey }}">
+<div class="tag">{{ tag }}</div>
+<p class="hl">{{ headline }}</p>
+<sc-if value="{{ correcting }}" hint-placeholder-val="{{ false }}">
+<div class="correction"><div class="clabel">What should this theme be instead?</div><input class="cinput" ref="{{ inputRef }}" placeholder="Type the correct version…"><button class="csave" onClick="{{ saveCorrection }}">Save and continue</button></div>
+</sc-if>
+<sc-if value="{{ notCorrecting }}" hint-placeholder-val="{{ true }}">
+<div class="btns"><button class="byes" onClick="{{ approve }}">Yes, add to my roadmap</button><button class="bno" onClick="{{ notQuite }}">Not quite</button></div>
+</sc-if>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+<div class="endcard"><p class="eh">That's your roadmap taking shape.</p><p class="es">Three themes, in your order of leverage. Next, Resolve turns them into a to-do list.</p><button class="cont" onClick="{{ replay }}">Continue<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+</sc-if>
+<sc-if value="{{ hasApproved }}" hint-placeholder-val="{{ false }}">
+<div class="roadmapbox"><div class="rlbl">On your roadmap</div>
+<sc-for list="{{ approved }}" as="a" hint-placeholder-count="1"><div class="rrow"><span class="rck"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="rname">{{ a.headline }}</span></div></sc-for>
+</div>
+</sc-if>
+<button class="replay" onClick="{{ replay }}">↻ Replay from the top</button>
+</div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:880}}">
+class Component extends DCLogic {
+  inputRef = React.createRef();
+  state = {
+    index: 0,
+    approved: [],
+    correcting: false,
+    themes: [
+      { tag: 'Theme 1 of 3', headline: 'Finalise the new brand name from your shortlist' },
+      { tag: 'Theme 2 of 3', headline: 'Reposition Nook & Thread for a higher price point' },
+      { tag: 'Theme 3 of 3', headline: 'Validate the rebrand with real customer feedback' },
+    ],
+  };
+  approve() {
+    const { themes, index, approved } = this.state;
+    this.setState({ approved: [...approved, themes[index]], index: index + 1, correcting: false });
+  }
+  notQuite() {
+    this.setState({ correcting: true }, () => {
+      if (this.inputRef.current) this.inputRef.current.focus();
+    });
+  }
+  saveCorrection() {
+    const v = this.inputRef.current ? this.inputRef.current.value.trim() : '';
+    const themes = this.state.themes.slice();
+    if (v) themes[this.state.index] = { ...themes[this.state.index], headline: v };
+    this.setState({ themes }, () => this.approve());
+  }
+  replay() {
+    this.setState({ index: 0, approved: [], correcting: false });
+  }
+  renderVals() {
+    const { themes, index, approved, correcting } = this.state;
+    const done = index >= themes.length;
+    const cur = themes[index] || {};
+    const dots = themes.map((t, d) => ({ cls: 'dot' + (d < index ? ' done' : d === index ? ' current' : '') }));
+    return {
+      done, showCard: !done, cardKey: index,
+      tag: cur.tag, headline: cur.headline,
+      hasBehind: (themes.length - index - 1) > 0,
+      approved, hasApproved: approved.length > 0,
+      correcting, notCorrecting: !correcting,
+      dots,
+      inputRef: this.inputRef,
+      approve: () => this.approve(),
+      notQuite: () => this.notQuite(),
+      saveCorrection: () => this.saveCorrection(),
+      replay: () => this.replay(),
+    };
+  }
+}
+</script>
+</body>
+</html>

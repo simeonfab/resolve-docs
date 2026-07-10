@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#9A9A92;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)}
+.doc{padding:48px 40px 80px}
+.turntitle{font-size:13px;font-weight:700;color:var(--terracotta);margin-bottom:6px}
+.turnsub{font-size:14px;color:#6B665A;max-width:760px;line-height:1.55;margin-bottom:28px}
+.turnrow{display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start}
+.opt{display:flex;flex-direction:column;gap:12px}
+.optname{font-size:14px;font-weight:700}
+.optdesc{font-size:12.5px;color:#6B665A;line-height:1.45;max-width:340px}
+.phone{width:390px;height:760px;background:var(--surface);border-radius:26px;box-shadow:0 18px 50px rgba(0,0,0,.16);overflow:hidden;position:relative;display:flex;flex-direction:column}
+.chd{display:flex;align-items:center;gap:11px;padding:16px 16px 13px;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--surface)}
+.back{width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);flex-shrink:0}
+.back svg{width:18px;height:18px}
+.cav{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+.cttl{font-size:15px;font-weight:700;line-height:1.1}
+.csub{font-size:11px;color:var(--ink-ghost);margin-top:2px}
+.stack{display:flex;flex-shrink:0}
+.stack .m{width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;border:2px solid var(--surface);margin-left:-9px}
+.stack .m:first-child{margin-left:0}
+.msgs{flex:1;overflow-y:auto;padding:16px 16px 12px;display:flex;flex-direction:column;gap:14px}
+.ctxban{align-self:center;font-size:11px;color:var(--terracotta);font-weight:600;background:#F4E9DC;border-radius:20px;padding:5px 12px}
+.msg{max-width:82%;display:flex;flex-direction:column;gap:4px}
+.msg.out{align-self:flex-end;align-items:flex-end}
+.mlabel{font-size:11px;font-weight:700;color:var(--terracotta);display:flex;align-items:center;gap:6px}
+.mlabel .dot{width:16px;height:16px;border-radius:50%;background:var(--ink);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+.bubble{background:var(--card);border:1px solid var(--border);border-radius:13px;border-top-left-radius:4px;padding:11px 13px;font-size:13.5px;line-height:1.5;color:var(--ink)}
+.msg.out .bubble{background:var(--ink);color:#F2EDE4;border:none;border-radius:13px;border-top-right-radius:4px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+.chip{font-size:12px;font-weight:600;color:var(--ink-soft);background:var(--card);border:1px solid var(--border);border-radius:18px;padding:7px 12px}
+.inputbar{flex-shrink:0;display:flex;align-items:center;gap:9px;padding:12px 14px 16px;border-top:1px solid var(--border);background:var(--surface)}
+.tin{flex:1;height:44px;border:1px solid var(--border);border-radius:22px;background:var(--card);padding:0 16px;font-size:14px;font-family:inherit;color:var(--ink);outline:none}
+.tin::placeholder{color:var(--ink-ghost)}
+.send{width:44px;height:44px;border-radius:50%;background:var(--amber);border:none;display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer}
+.send svg{width:18px;height:18px;color:var(--ink)}
+</style></helmet>
+
+<section>
+<div class="turntitle">Turn 3 · Agent chat — preliminary</div>
+<div class="turnsub">Left: what opens when you tap a lead (Product Director shown — same pattern for all three). Right: the stand-up room, where you address the room and the relevant leads chime in — not all three every time. Both drill in from the Team tab (back arrow, no bottom nav).</div>
+<div class="turnrow">
+
+<div class="opt">
+<div class="optname">Individual chat — Product Director</div>
+<div class="optdesc">Opens contextualized to your project. Greeting + tappable starter prompts to skip the blank page.</div>
+<div class="phone">
+<div class="chd"><div class="back"><svg viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="cav">P</div><div><div class="cttl">Product Director</div><div class="csub">Roadmap &amp; sequencing</div></div></div>
+<div class="msgs">
+<div class="ctxban">Briefed on your Nook &amp; Thread rebrand</div>
+<div class="msg"><div class="bubble">Morning, Simeon. The one thing holding everything up is the brand name — you've got three on the shortlist. Want to work through picking one?</div></div>
+<div class="chips"><span class="chip">Help me decide</span><span class="chip">Why does it block everything?</span><span class="chip">Show the shortlist</span></div>
+<div class="msg out"><div class="bubble">Why does it block everything?</div></div>
+<div class="msg"><div class="bubble">Packaging, the site copy and your customer comms all bake in the name. Lock it and three downstream tasks unblock at once — I'll move them into Now for you.</div></div>
+</div>
+<div class="inputbar"><input class="tin" placeholder="Message Product Director…"><button class="send"><svg viewBox="0 0 18 18" fill="none"><path d="M3 9h11M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+</div>
+</div>
+
+<div class="opt">
+<div class="optname">Stand-up room</div>
+<div class="optdesc">Address the whole room; the leads whose remit is relevant respond. Each reply is labelled with who's speaking.</div>
+<div class="phone">
+<div class="chd"><div class="back"><svg viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="stack"><span class="m">P</span><span class="m">G</span><span class="m">T</span></div><div><div class="cttl">Stand-up room</div><div class="csub">Product Director, Growth Lead, Tech Lead</div></div></div>
+<div class="msgs">
+<div class="ctxban">Everyone's briefed on your rebrand</div>
+<div class="msg out"><div class="bubble">What should I focus on this week?</div></div>
+<div class="msg"><div class="mlabel"><span class="dot">P</span>Product Director</div><div class="bubble">Land the brand name. It's the single unlock for everything else on the roadmap.</div></div>
+<div class="msg"><div class="mlabel"><span class="dot">T</span>Tech Lead</div><div class="bubble">Agreed. And the moment it's chosen, I'll need a call on customer migration — there's still no plan for moving existing customers across.</div></div>
+<div class="chips"><span class="chip">Loop in Growth Lead</span><span class="chip">Turn this into tasks</span></div>
+</div>
+<div class="inputbar"><input class="tin" placeholder="Message the room…"><button class="send"><svg viewBox="0 0 18 18" fill="none"><path d="M3 9h11M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+</div>
+</div>
+
+</div>
+</section>
+
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:#EAE4D8;font-family:'Inter',sans-serif;color:var(--ink)}
+.stage{display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start;justify-content:center;padding:48px 24px}
+.col{display:flex;flex-direction:column;align-items:center;gap:14px}
+.collabel{font-size:13px;font-weight:600;color:#8A8578}
+.phone{width:390px;max-width:100vw;background:var(--surface);border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,.18);overflow:hidden}
+.screen{padding:40px 24px 32px;min-height:640px;display:flex;flex-direction:column}
+.brandmark{display:flex;align-items:center;gap:8px;margin-bottom:auto}
+.brandmark .dot{width:22px;height:22px;border-radius:6px;background:var(--ink);display:flex;align-items:center;justify-content:center;color:var(--amber);font-family:'DM Serif Display',serif;font-size:14px}
+.brandmark .name{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.block{margin-top:auto}
+.eyebrow{font-size:12px;font-weight:600;color:var(--terracotta);margin-bottom:12px}
+.headline{font-family:'DM Serif Display',serif;font-size:30px;line-height:1.22;margin:0 0 12px;color:var(--ink)}
+.subhead{font-size:14px;line-height:1.55;color:#5C574C;margin:0 0 24px}
+.subhead b{color:var(--ink);font-weight:600}
+.label{font-size:12px;font-weight:600;color:#8A8578;margin-bottom:7px;display:block}
+.input{width:100%;height:48px;border:1px solid var(--border);border-radius:10px;background:var(--card);padding:0 14px;font-size:15px;font-family:inherit;color:var(--ink);outline:none}
+.input:focus{border-color:var(--amber)}
+.input.focused{border-color:var(--amber);box-shadow:0 0 0 3px rgba(200,160,64,.18)}
+.btn{width:100%;height:48px;border-radius:10px;border:none;background:var(--amber);color:var(--ink);font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:18px}
+.foot{font-size:12.5px;color:#8A8578;text-align:center;margin-top:20px}
+.foot a{color:var(--terracotta);font-weight:600;text-decoration:none}
+.otp{display:flex;gap:9px;margin-bottom:4px}
+.otpbox{flex:1;aspect-ratio:1/1.15;border:1px solid var(--border);border-radius:10px;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;color:var(--ink)}
+.otpbox.filled{border-color:#C4BFB4}
+.otpbox.active{border-color:var(--amber);box-shadow:0 0 0 3px rgba(200,160,64,.18)}
+.otpbox.err{border-color:var(--terracotta);color:var(--terracotta)}
+.errmsg{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--terracotta);font-weight:500;margin-top:14px}
+.errmsg svg{width:14px;height:14px;flex-shrink:0}
+.resend{font-size:13px;color:#8A8578;text-align:center;margin-top:22px}
+.resend .cool{color:#A8A296;font-weight:500}
+.resend a{color:var(--terracotta);font-weight:600;text-decoration:none}
+.back{display:flex;align-items:center;gap:6px;font-size:13px;color:#8A8578;font-weight:600;margin-bottom:28px;cursor:pointer}
+.back svg{width:14px;height:14px}
+</style></helmet>
+<div class="stage">
+<div class="col"><div class="collabel">Screen 1 — Email entry</div><div class="phone"><div class="screen">
+<div class="brandmark"><div class="dot">R</div><div class="name">Resolve</div></div>
+<div class="block">
+<div class="eyebrow">Operational clarity for product work.</div>
+<h1 class="headline">Create your Resolve workspace</h1>
+<p class="subhead">Enter your email and we'll send you a code to sign in.</p>
+<label class="label">Email address</label>
+<input class="input focused" value="simeon@getresolve.app" readonly>
+<button class="btn">Send code</button>
+<div class="foot">Already have a workspace? <a href="#">Sign in</a></div>
+</div>
+</div></div></div>
+
+<div class="col"><div class="collabel">Screen 2 — Code entry</div><div class="phone"><div class="screen">
+<div class="brandmark"><div class="dot">R</div><div class="name">Resolve</div></div>
+<div class="block">
+<div class="back"><svg viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Change email</div>
+<div class="eyebrow">Operational clarity for product work.</div>
+<h1 class="headline">Check your email</h1>
+<p class="subhead">We've sent a 6-digit code to <b>simeon@getresolve.app</b>. Enter it below.</p>
+<div class="otp"><div class="otpbox filled">4</div><div class="otpbox filled">1</div><div class="otpbox filled">9</div><div class="otpbox filled">2</div><div class="otpbox active">7</div><div class="otpbox">|</div></div>
+<button class="btn">Verify and continue</button>
+<div class="resend">Didn't get it? <span class="cool">Resend available in 0:42</span></div>
+</div>
+</div></div></div>
+
+<div class="col"><div class="collabel">Screen 2 — Error state</div><div class="phone"><div class="screen">
+<div class="brandmark"><div class="dot">R</div><div class="name">Resolve</div></div>
+<div class="block">
+<div class="back"><svg viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Change email</div>
+<div class="eyebrow">Operational clarity for product work.</div>
+<h1 class="headline">Check your email</h1>
+<p class="subhead">We've sent a 6-digit code to <b>simeon@getresolve.app</b>. Enter it below.</p>
+<div class="otp"><div class="otpbox err">4</div><div class="otpbox err">1</div><div class="otpbox err">9</div><div class="otpbox err">2</div><div class="otpbox err">3</div><div class="otpbox err">8</div></div>
+<div class="errmsg"><svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M7 4v3.5M7 9.6v.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>That code is incorrect or expired. Try again.</div>
+<button class="btn">Verify and continue</button>
+<div class="resend">Didn't get it? <a href="#">Resend code</a></div>
+</div>
+</div></div></div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theme Confirmation — Animated</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1A1A18; --ink-soft: #4A4A44; --ink-ghost: #9A9A92;
+    --surface: #F2EDE4; --card-bg: #FFFFFF; --border: #DDD8CE;
+    --amber: #C8A040; --terracotta: #8B4A2A;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', sans-serif; background: var(--surface); color: var(--ink); }
+  .note-banner { background: #FFF8E1; border: 1px solid var(--amber); color: var(--ink-soft); font-size: 13px; padding: 10px 16px; text-align: center; }
+  .center-wrap { min-height: calc(100vh - 41px); display: flex; align-items: center; }
+  .page { max-width: 480px; margin: 0 auto; padding: 24px 20px 40px; width: 100%; }
+
+  .progress { display: flex; gap: 6px; margin-bottom: 20px; }
+  .dot { height: 4px; flex: 1; border-radius: 2px; background: var(--border); transition: background 0.4s ease; }
+  .dot.done { background: var(--amber); }
+  .dot.current { background: var(--ink); }
+
+  .eyebrow { color: var(--terracotta); font-size: 13px; font-weight: 600; margin-bottom: 24px; opacity: 0; transition: opacity 0.4s ease; }
+  .eyebrow.visible { opacity: 1; }
+  .step-count { color: var(--ink-ghost); font-size: 13px; margin-bottom: 20px; opacity: 0; transition: opacity 0.4s ease; }
+  .step-count.visible { opacity: 1; }
+
+  .card-stack { position: relative; margin-bottom: 20px; }
+  .card-behind {
+    position: absolute; top: 8px; left: 6px; right: -6px; height: 90%; max-height: 220px;
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px;
+    opacity: 0; transition: opacity 0.4s ease; z-index: 1;
+  }
+  .card-behind.visible { opacity: 0.5; }
+
+  .card-main {
+    position: relative; z-index: 2; background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px 24px;
+    opacity: 0; transform: scale(0.92) translateY(10px);
+    transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .card-main.visible { opacity: 1; transform: scale(1) translateY(0); }
+  .card-main.sliding-out { opacity: 0; transform: translateX(-60px) scale(0.95); transition: opacity 0.3s ease, transform 0.3s ease; }
+
+  .end-screen { text-align: center; padding: 40px 0; opacity: 0; transition: opacity 0.5s ease; }
+  .end-screen.visible { opacity: 1; }
+  .end-headline { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 8px; }
+  .end-sub { font-size: 14px; color: var(--ink-soft); }
+
+  .card-tag { font-size: 12px; color: var(--ink-ghost); margin-bottom: 10px; min-height: 15px; }
+  .card-tag::after { content: '|'; animation: blink 0.8s infinite; color: var(--amber); }
+  .card-tag.done::after { display: none; }
+
+  .card-headline { font-family: 'DM Serif Display', serif; font-size: 23px; line-height: 1.4; margin: 0 0 24px; min-height: 64px; }
+  .card-headline::after { content: '|'; animation: blink 0.8s infinite; color: var(--amber); }
+  .card-headline.done::after { display: none; }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .yesno { display: flex; gap: 10px; opacity: 0; transform: translateY(8px); transition: opacity 0.35s ease, transform 0.35s ease; }
+  .yesno.visible { opacity: 1; transform: translateY(0); }
+  .btn-yes { flex: 1; background: var(--amber); color: var(--ink); border: none; border-radius: 10px; padding: 14px; font-size: 14px; font-weight: 700; cursor: pointer; }
+  .btn-no { flex: 1; background: none; border: 1px solid var(--border); color: var(--ink-soft); border-radius: 10px; padding: 14px; font-size: 14px; font-weight: 600; cursor: pointer; }
+
+  .correction-panel {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
+  }
+  .correction-panel.open {
+    max-height: 160px;
+    opacity: 1;
+    margin-top: 14px;
+  }
+  .correction-label { font-size: 12px; color: var(--ink-ghost); margin-bottom: 8px; }
+  .correction-input {
+    width: 100%;
+    border: 1px solid var(--amber);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    background: #FBF5E8;
+    margin-bottom: 10px;
+  }
+  .correction-save {
+    background: var(--amber);
+    color: var(--ink);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .replay-btn { display: block; margin: 20px auto 0; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; font-size: 13px; color: var(--ink-soft); cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="note-banner">MOCKUP — animated theme confirmation. Watch it play, or tap Replay.</div>
+<div class="center-wrap">
+<div class="page">
+
+  <div class="progress" id="progress">
+    <div class="dot" id="dot0"></div>
+    <div class="dot" id="dot1"></div>
+    <div class="dot" id="dot2"></div>
+  </div>
+
+  <div class="eyebrow" id="eyebrow">Building your Roadmap</div>
+
+  <div class="card-stack">
+    <div class="card-behind" id="cardBehind"></div>
+    <div class="card-main" id="cardMain">
+      <div class="card-tag" id="cardTag"></div>
+      <p class="card-headline" id="cardHeadline"></p>
+      <div class="yesno" id="yesno">
+        <button class="btn-yes" onclick="advance()">Yes, add this to my roadmap</button>
+        <button class="btn-no" onclick="toggleCorrection()">Not quite</button>
+      </div>
+      <div class="correction-panel" id="correctionPanel">
+        <div class="correction-label">What should this theme actually be?</div>
+        <input class="correction-input" id="correctionInput" placeholder="Type the correct version...">
+        <button class="correction-save" onclick="saveCorrection()">Save and continue</button>
+      </div>
+    </div>
+    <div class="end-screen" id="endScreen">
+      <p class="end-headline">Nice — that's your three themes.</p>
+      <p class="end-sub">Next: here's your to-do list →</p>
+    </div>
+  </div>
+
+  <button class="replay-btn" onclick="playAll()">▶ Replay animation</button>
+</div>
+</div>
+
+<script>
+const themes = [
+  { tag: 'Strategic Objective 1', headline: 'Finalise the new brand name from your shortlist' },
+  { tag: 'Strategic Objective 2', headline: 'Reposition for a higher price point' },
+  { tag: 'Strategic Objective 3', headline: 'Validate the rebrand with real customer feedback' }
+];
+let currentIndex = 0;
+
+async function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function typeText(el, text, speed, callback) {
+  el.textContent = '';
+  if (!text) { if (callback) callback(); return; }
+  let i = 0;
+  const interval = setInterval(() => {
+    el.textContent += text[i];
+    i++;
+    if (i >= text.length) { clearInterval(interval); el.classList.add('done'); if (callback) callback(); }
+  }, speed);
+}
+
+function toggleCorrection() {
+  document.getElementById('correctionPanel').classList.toggle('open');
+  if (document.getElementById('correctionPanel').classList.contains('open')) {
+    document.getElementById('correctionInput').focus();
+  }
+}
+
+function saveCorrection() {
+  const val = document.getElementById('correctionInput').value.trim();
+  if (val) {
+    themes[currentIndex].headline = val; // in the real app this re-runs Product Director's theme-vs-task check on the corrected text
+  }
+  document.getElementById('correctionPanel').classList.remove('open');
+  document.getElementById('correctionInput').value = '';
+  advance();
+}
+
+async function showCard(index) {
+  const t = themes[index];
+
+  // update progress dots
+  for (let d = 0; d < 3; d++) {
+    const dot = document.getElementById('dot' + d);
+    dot.classList.remove('done', 'current');
+    if (d < index) dot.classList.add('done');
+    else if (d === index) dot.classList.add('current');
+  }
+
+  document.getElementById('cardTag').textContent = '';
+  document.getElementById('cardTag').classList.remove('done');
+  document.getElementById('cardHeadline').textContent = '';
+  document.getElementById('cardHeadline').classList.remove('done');
+  document.getElementById('yesno').classList.remove('visible');
+  document.getElementById('correctionPanel').classList.remove('open');
+  document.getElementById('correctionInput').value = '';
+
+  const cardMain = document.getElementById('cardMain');
+  cardMain.classList.remove('sliding-out');
+  cardMain.classList.add('visible');
+
+  await new Promise(res => typeText(document.getElementById('cardTag'), t.tag, 22, res));
+  await wait(400);
+  await new Promise(res => typeText(document.getElementById('cardHeadline'), t.headline, 28, res));
+  await wait(400);
+  document.getElementById('yesno').classList.add('visible');
+}
+
+async function advance() {
+  const cardMain = document.getElementById('cardMain');
+  cardMain.classList.add('sliding-out');
+  await wait(300);
+
+  currentIndex++;
+  if (currentIndex >= themes.length) {
+    // last theme done — show end screen
+    document.getElementById('dot' + (themes.length - 1)).classList.remove('current');
+    document.getElementById('dot' + (themes.length - 1)).classList.add('done');
+    document.getElementById('cardBehind').classList.remove('visible');
+    cardMain.style.display = 'none';
+    document.getElementById('endScreen').classList.add('visible');
+    return;
+  }
+
+  await showCard(currentIndex);
+}
+
+async function playAll() {
+  currentIndex = 0;
+  document.getElementById('endScreen').classList.remove('visible');
+  document.getElementById('cardMain').style.display = '';
+  document.getElementById('eyebrow').classList.add('visible');
+  document.getElementById('cardBehind').classList.add('visible');
+  await showCard(0);
+}
+
+window.onload = playAll;
+</script>
+</body>
+</html>

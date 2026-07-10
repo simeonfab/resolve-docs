@@ -1,0 +1,94 @@
+---
+status: historical
+---
+
+Repo: simeonfab/ResolveOS-intake-frontend, branch: main, current commit: 79564a0
+
+API is returning 200s correctly - all issues below are frontend only. Do not touch api/resolve.js unless explicitly stated. Do not touch anything not listed below. Ask rather than guess if context is missing.
+
+================================================================================
+FIX 1 - Loading screen too static ("Working out your next move")
+================================================================================
+
+The processing screen that shows while Call 2 runs (the "Working out your next move" state) feels like it has hung because there's no sense of active progress.
+
+Fix:
+- Add rotating status messages that cycle every 3-4 seconds while the call is in flight. Use these exact messages in this order, cycling:
+  1. "Reading your project..."
+  2. "Identifying what matters most..."
+  3. "Shaping your path forward..."
+  4. "Almost there..."
+- The existing ring animation should continue alongside the text
+- Messages should fade between each other (opacity transition), not hard-cut
+- Stop cycling and show final state ("Path found.") when the call resolves
+
+================================================================================
+FIX 2 - Phase cards on Screen 3 always show Now / Define / Launch
+================================================================================
+
+The three phase cards at the bottom of Screen 3 ("What happens after this") are hardcoded with Now / Define / Launch labels regardless of what Call 2 returns. 
+
+Fix: replace with This Week / Next / Later as the phase labels. These should be static labels (not driven by API) - the content inside each card (the action and output text) should remain dynamic from Call 2's roadmap field as already implemented. Only the phase label text changes: Now -> "This Week", Define -> "Next", Launch -> "Later".
+
+================================================================================
+FIX 3 - Output cards show partial text, expansion not working correctly
+================================================================================
+
+Clicking an output template card on Screen 4 should expand it to show the full generated content in a readable box. Currently text is truncating or not fully visible.
+
+Fix: when a card is clicked and generateOutput() runs:
+1. The card expands vertically to show ALL generated content - no truncation, no max-height clipping
+2. Content renders in a readable box inside the expanded card (proper line breaks, readable font size ~13px, scrollable if very long)
+3. Two action buttons appear below the content: "Copy" and "Close"
+4. "Copy" copies full content to clipboard, button briefly shows "Copied ✓" for 1.5 seconds then reverts
+5. The expanded card should be visually distinct from collapsed state (subtle background change or border highlight)
+
+================================================================================
+FIX 4 - Close button closes all expanded cards, not just the one clicked
+================================================================================
+
+Each card must manage its own open/closed state independently. Clicking "Close" on card 3 should only close card 3. Other expanded cards must remain open.
+
+Fix: each card's open/closed state must be tracked independently (e.g. per-card boolean in an object keyed by templateId or index). The close handler must only toggle the state of the specific card it belongs to, not reset a shared global state.
+
+================================================================================
+FIX 5 - Adjacent card stretches in height when neighbouring card expands
+================================================================================
+
+When one card in the grid expands, its grid neighbour stretches to match height due to CSS grid row alignment.
+
+Fix: cards in the output grid should be self-contained and not stretch to match neighbours. Use `align-items: start` on the grid container so each card sizes to its own content only. Expanded cards should grow downward without affecting the height of adjacent cards.
+
+================================================================================
+FIX 6 - Project plan download reverted to thin/old version
+================================================================================
+
+The "Output my project plan" button's downloaded report has reverted to a thin, brief version rather than the full 9-section assembly implemented in a previous round. This was likely overwritten when the output templates system was implemented.
+
+Fix: restore the full Call 4 assembly architecture:
+- Sections 1-4 (project identity, highest-leverage action, top priorities, what not to do yet) must be REUSED VERBATIM from existing Call 1 and Call 2 session data - NOT regenerated
+- Sections 5-9 (speculative roadmap, readiness table, risks if present, sharing paragraph, how to use this) are generated by Call 4
+- The downloaded report must render ALL sections with proper headings and readable formatting
+- Risks section (section 7) must be omitted entirely if empty/null - no empty heading, no placeholder
+- The report should feel like a substantial multi-section document, not a brief summary
+
+Verify the Call 4 system prompt still includes the full ResolveOS context files (business-analyst.md, strategic-product-director.md, project-readiness.md from /resolveos-context/) - check these weren't lost when the templates system was added.
+
+================================================================================
+FIX 7 - "Do this first" / "Decide this first" top card should be clickable
+================================================================================
+
+The primary recommendation card at the top of Screen 4 currently does nothing when clicked.
+
+Fix: make it clickable. On click, it expands (same pattern as the template cards in Fix 3 above) to show a "coming soon" message. Specifically:
+
+Expanded state shows:
+- A brief message: "This will connect to the next stage of your Resolve journey."
+- Below that, smaller text: "Coming soon — join the next cohort to be first."
+- A "Close" button to collapse back
+
+This is a placeholder for the ResolvePM/next-stage routing that will replace it for the next cohort of testers. Keep the implementation clean and easy to swap out later (the expanded content should be in a clearly marked section of the code so it can be updated without hunting for it).
+
+================================================================================
+After fixing all 7: git add -A && git commit -m "Fix loading animation, phase labels, card expansion, adjacent stretch, project plan report, and top card click" && git push origin main. Confirm commit hash and flag any assumptions made.
+================================================================================
