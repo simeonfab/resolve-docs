@@ -2,8 +2,8 @@
 
 Document archive for the **Resolve** product family — an AI-powered project management suite for non-technical and solo founders.
 
-- **[ResolveOS-intake-frontend](https://github.com/ResolveOS/ResolveOS-intake-frontend)** — Resolve Intake: the guided 6-screen discovery flow (static site, live on Vercel). *(Link valid once/if the repo is transferred into this org; currently under the personal account.)*
-- **[cap-pm-cockpit-alaria](https://github.com/ResolveOS/cap-pm-cockpit-alaria)** — ResolvePM: the ongoing PM cockpit (Next.js 14 / Supabase / Vercel). *(Same transfer caveat.)*
+- **[ResolveOS-intake-frontend](https://github.com/simeonfab/ResolveOS-intake-frontend)** — Resolve Intake: the guided 6-screen discovery flow (static site, live on Vercel).
+- **[cap-pm-cockpit-alaria](https://github.com/simeonfab/cap-pm-cockpit-alaria)** — ResolvePM: the ongoing PM cockpit (Next.js 14 / Supabase / Vercel).
 - **ResolveOS** — the role-based AI agent framework powering both. Role definitions live in Notion (Roles epic), not yet as code.
 
 **Live project state lives in Notion, not here.** This repo holds artifacts: briefs, mockups, specs, strategy docs, and their history.
