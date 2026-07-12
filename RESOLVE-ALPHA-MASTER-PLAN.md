@@ -86,6 +86,10 @@ Build order (dependencies, not preference):
   wording — "continued effort keeps producing value, no natural endpoint"; do NOT
   use finish-line or diminishing-returns wording). Halts with ONE question on
   INSUFFICIENT. *Blocks: 1.4. Parallel with 1.1.*
+  > ⚠️ The lever discriminator here ("no natural endpoint") is SUPERSEDED — it is
+  > neither necessary nor sufficient. See `resolve-pipeline/FLOOR-GATE-DESIGN-FINDING.md`
+  > before using or changing this gate. The floor's architecture (isolated reject-only
+  > call, one criterion per call) stands.
 - **1.3 Schema migration.** Add `outcome` (+confirmed) to project_sessions;
   `initiatives.provisional` + `inferred_from`; a refusals store; wire
   `what_not_to_do` to be READ (currently captured, dropped). *Parallel with 1.1/1.2.*

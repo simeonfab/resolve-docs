@@ -3,6 +3,11 @@ status: current
 note: "Gate 2 wording superseded - use the corrected lever discriminator in /RESOLVE-ALPHA-MASTER-PLAN.md Phase 1.2 ('continued effort keeps producing value, no natural endpoint'; NOT finish-line or diminishing-returns wording). Rest of module current."
 ---
 
+> ⚠️ The lever discriminator in this file ("no natural endpoint") is SUPERSEDED — it is
+> neither necessary nor sufficient. See FLOOR-GATE-DESIGN-FINDING.md before using or
+> changing this gate. The file's architecture (isolated reject-only call, one criterion
+> per call) stands.
+
 # Stage 3 — The Floor Gate
 
 **Type:** structural gate. **Model call:** yes, ISOLATED (its own call, nothing else

@@ -25,13 +25,16 @@ Live project state (what is built, merged, in progress) lives in Notion, not her
 - `12-N6-knowledge-base.md` [current] - N6 - Knowledge Base build brief (hosts the refusals / cut record).
 - `13-N7-settings.md` [current] - N7 - Settings build brief.
 - `14-N8-global-bar.md` [current] - N8 - Global bar build brief. Uses the Contextual mockup variant; the non-Contextual mockup is rejected and archived.
+- `PHASE-1-PLAN.md` [current] - Phase 1 pipeline build plan (grounded, 11 Jul 2026): floor placement, schema migration, build order, open items, routing.
+- `TICKETS-1.1-1.2.md` [current] - Phase 1 tickets 1.1 (Referee service) and 1.2 (Floor service): server-side, standalone, isolated reject-only calls. Uses corrected lever wording; see FLOOR-GATE-DESIGN-FINDING for the open supersession of that discriminator.
 
 ## resolve-pipeline/ - Phase 1 pipeline modules
 
 - `00-README.md` [current] - Pipeline module set overview (v0.1): prompt modules + enforcement spec, model-agnostic.
 - `01-elicit.md` [current] - Stage 1 - Elicit: challenge the brain dump, surface outcome + raw material.
 - `02-structure.md` [current] - Stage 2 - Structure.
-- `03-floor-gate.md` [current] - Stage 3 - Floor gate (Gate 1 outcome, Gate 2 lever). Gate 2 wording corrected in root master plan.
+- `03-floor-gate.md` [current] - Stage 3 - Floor gate (Gate 1 outcome, Gate 2 lever). Gate 2 lever discriminator SUPERSEDED - see FLOOR-GATE-DESIGN-FINDING.md; architecture stands.
+- `FLOOR-GATE-DESIGN-FINDING.md` [open-design-finding] - Open design finding (12 Jul 2026): the "no natural endpoint" lever discriminator is neither necessary nor sufficient; supersedes it in 03-floor-gate.md and master-plan Phase 1.2. Beta spike; architecture is proven and must not be re-litigated.
 - `04-extract-themes.md` [current] - Stage 4 - Extract themes / classification.
 - `05-referee.md` [current] - Stage 5 - Referee (validator clauses, AND rule). Parser fix pending: Ticket 0.1.
 - `06-assemble.md` [current] - Stage 6 - Assemble (deterministic, no model call).
