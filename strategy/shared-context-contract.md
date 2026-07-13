@@ -24,6 +24,8 @@ note: "Project-agnostic. Canonical here for now; extract to a workflow repo when
 4. Code claims carry repo, branch, commit, and validation evidence.
 5. Never claim an update, commit, test, or deployment occurred without evidence — verify it, then say so.
 6. Anything generated in a chat is not durable until committed to a repo.
+7. Verification means an ARTIFACT, not a claim. "Verified", "matches the mockup", "confirmed", "tested" mean nothing without the thing that proves it: a screen matches its mockup → a screenshot of the rendered page next to the mockup; data is real → the actual query and rows; a migration applied → the schema queried back; a commit landed → the SHA; an interaction works → you performed it and describe what happened. A passing build and a clean typecheck prove the code compiles — nothing about whether the screen is right or the button goes anywhere. Click through what you built. Never substitute a confident summary, and never end by telling Simeon to go and check it himself — that IS the work.
+8. Built ≠ wired ≠ shipped. A feature is not done until a user can REACH it. Before calling anything done, trace the path a real user takes to reach it and walk it: is it rendered by a route they can navigate to, is there a link/button/tab that gets them there, does the data it depends on flow in? An unreferenced component is not shipped — it is dead code. If a component has zero consumers, say so — that is a bug, not a detail.
 
 ## HANDOFF (before switching tools or ending a long session)
 

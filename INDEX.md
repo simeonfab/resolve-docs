@@ -21,7 +21,7 @@ Live project state (what is built, merged, in progress) lives in Notion, not her
 - `08-N2-os-reveal.md` [current] - N2 - OS Reveal build brief (Batch D; needs N3).
 - `09-N3-dashboard.md` [current] - N3 - Dashboard build brief.
 - `10-N4-work-tab.md` [current] - N4 - Work tab build brief (users edit derived dates here).
-- `11-N5-team-tab-agent-chat.md` [current] - N5 - Team tab build brief. Rescoped to N5-lite (roster + intros only); chat is Beta scope.
+- `11-N5-team-tab-agent-chat.md` [current] - N5 - Team tab build brief. Full N5 shipped in Alpha (roster + intros AND chat); see TICKET-N5-REVISED.md for the architecture.
 - `12-N6-knowledge-base.md` [current] - N6 - Knowledge Base build brief (hosts the refusals / cut record).
 - `13-N7-settings.md` [current] - N7 - Settings build brief.
 - `14-N8-global-bar.md` [current] - N8 - Global bar build brief. Uses the Contextual mockup variant; the non-Contextual mockup is rejected and archived.
@@ -30,6 +30,13 @@ Live project state (what is built, merged, in progress) lives in Notion, not her
 - `TICKETS-1.1-1.2.md` [current] - Phase 1 tickets 1.1 (Referee) and 1.2 (Floor): server-side services with no UI, built and tested standalone; wiring happens in 1.4.
 - `TICKET-1.4.md` [current] - Ticket 1.4 - Generation replacement + wiring: kills the fake pipeline; replaces string-concat roadmap generation with the validated pipeline.
 - `1.3-REVISED-BRIEF.md` [current] - Ticket 1.3 revised - Gate 1 halt screen + provisional marking: revised scope replacing previous 1.3 brief, shrunk UI changes for Claude Design.
+- `1.6-BLIND-GRADING-BRIEF.md` [current] - Ticket 1.6 blind grading brief: pre-registered criteria for the two-roadmap A/B blind grade (invention count, themes-are-themes, real DoDs, sequencing, honesty). The Alpha go/no-go grading harness.
+- `TICKET-N5-REVISED.md` [current] - N5 revised - Team tab + agent chat architecture decisions (role prompts as system prompts, isolated stand-up router, shared context). Adds the decisions the original N5 brief was blocked on.
+- `TICKET-N8-REVISED.md` [current] - N8 revised - Global bar / orchestrator architecture decisions (isolated intent router, confirmation-gated writes, capture → knowledge_base_items). Adds the engine spec the original N8 brief was blocked on.
+
+## briefs/handoffs/ - session handoffs (point-in-time)
+
+- `SESSION-HANDOFF.md` [historical] - Resolve Alpha session handoff (13 Jul 2026). Filing note prepended: §1 incident is CLOSED (no incident, main git-verified) and §2's "string-concat generator is now gone" is FALSE (1.4 never committed). Live state lives in Notion `Resolve Current Context`.
 
 ## resolve-pipeline/ - Phase 1 pipeline modules
 

@@ -1,6 +1,6 @@
 ---
 status: current
-note: "N5 rescoped to N5-lite: roster + intros only, no chat, no orchestration (master plan Phase 2.2). Chat portion is Beta scope."
+note: "Full N5 shipped in Alpha — roster + intros AND individual/stand-up chat with isolated-call routing. Superseded the earlier N5-lite rescoping. See TICKET-N5-REVISED.md for the architecture decisions."
 ---
 
 # Ticket N5 — Team Tab + Agent Chat
