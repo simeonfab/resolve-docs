@@ -24,6 +24,14 @@ note: "Project-agnostic. Canonical here for now; extract to a workflow repo when
 4. Code claims carry repo, branch, commit, and validation evidence.
 5. Never claim an update, commit, test, or deployment occurred without evidence — verify it, then say so.
 6. Anything generated in a chat is not durable until committed to a repo.
+7. Click through what you built. A screenshot of a rendered page proves the page renders. It proves NOTHING about whether it works. Before any screen or component is called done, you must actually USE it in the browser on the preview deploy:
+   - Click every button, link, card, and tab you built. Report where each one actually took you. "It should open the Work tab" is not a verification — open it and say what happened.
+   - Perform every interaction the ticket specifies (expand, collapse, submit, toggle, filter, dismiss). Screenshot the resulting state.
+   - Follow every route through to its destination and confirm the destination is the right one and renders correctly.
+   - Exercise the real states, not just the default: populated, empty, error, loading.
+   - If something is unreachable, dead, or goes to the wrong place, that is a BUG — report it, do not quietly note it as out of scope.
+   
+   A build passing, TypeScript compiling, and a page rendering are three things that are all true of a screen whose buttons do nothing. Separately: motion, easing, timing and overall feel are the product owner's judgement, at the end. Do not claim an animation "looks good" — you cannot assess that. Report only that it fires and what it does.
 
 ## HANDOFF (before switching tools or ending a long session)
 
