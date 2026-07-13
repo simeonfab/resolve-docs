@@ -24,10 +24,12 @@ Explicitly OUT of Alpha (Beta parking lot): deep ResolveOS orchestration, real a
 chat, roles-in-frontend execution, production hardening, monetisation/API cost model,
 prompt-injection fencing (required only before any agent chat exists).
 
-**The differentiation being tested:** structure and refusal — a written, enforced
-criterion for what qualifies as a theme and when a thing is done, applied by a
-pipeline that can decline. The commodity layer (dashboards, chat, task lists) is
-free everywhere; the judgement layer is the product.
+**The differentiation being tested:** **not just any direction — the right direction.**
+Resolve gives direction, shows honestly what it is confident in versus what it inferred,
+and refuses to manufacture a plausible plan out of nothing. Only Gate 1 (no real outcome)
+halts. Gate 2 (no lever) marks affected themes provisional rather than refusing — see
+briefs/BETA-EPIC-SHARPEN-LOOP.md. This supersedes the earlier 'structure and refusal'
+framing.
 
 **Two definitions everything rests on (final, tested):**
 - A **theme** is a **lever**: continued effort keeps producing value, it has no
