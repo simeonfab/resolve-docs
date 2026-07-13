@@ -86,6 +86,8 @@ Build order (dependencies, not preference):
   wording — "continued effort keeps producing value, no natural endpoint"; do NOT
   use finish-line or diminishing-returns wording). Halts with ONE question on
   INSUFFICIENT. *Blocks: 1.4. Parallel with 1.1.*
+  
+  ⚠️ **SUPERSEDED IN TWO WAYS.** (a) The lever discriminator ('no natural endpoint') is neither necessary nor sufficient — see FLOOR-GATE-DESIGN-FINDING.md. (b) Gate 2 NO LONGER HALTS. It sets provisional=true on affected themes and logs to refusals as a diagnostic. Only Gate 1 halts. See BETA-EPIC-SHARPEN-LOOP.md. The file's architecture (isolated reject-only calls, one criterion per call, temp 0) stands and is proven.
 - **1.3 Schema migration.** Add `outcome` (+confirmed) to project_sessions;
   `initiatives.provisional` + `inferred_from`; a refusals store; wire
   `what_not_to_do` to be READ (currently captured, dropped). *Parallel with 1.1/1.2.*

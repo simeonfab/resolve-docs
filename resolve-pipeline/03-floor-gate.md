@@ -3,6 +3,8 @@ status: current
 note: "Gate 1 and boundary wording sharpened 12 July 2026 after first structural eval over-rejected 5/5. Gate 2 uses the corrected lever discriminator: continued effort keeps producing value, no natural endpoint; NOT finish-line or diminishing-returns wording."
 ---
 
+⚠️ **SUPERSEDED IN TWO WAYS.** (a) The lever discriminator ('no natural endpoint') is neither necessary nor sufficient — see FLOOR-GATE-DESIGN-FINDING.md. (b) Gate 2 NO LONGER HALTS. It sets provisional=true on affected themes and logs to refusals as a diagnostic. Only Gate 1 halts. See BETA-EPIC-SHARPEN-LOOP.md. The file's architecture (isolated reject-only calls, one criterion per call, temp 0) stands and is proven.
+
 # Stage 3 - The Floor Gate
 
 **Type:** structural gate. **Model call:** yes, ISOLATED (its own call, nothing else

@@ -25,6 +25,11 @@ Live project state (what is built, merged, in progress) lives in Notion, not her
 - `12-N6-knowledge-base.md` [current] - N6 - Knowledge Base build brief (hosts the refusals / cut record).
 - `13-N7-settings.md` [current] - N7 - Settings build brief.
 - `14-N8-global-bar.md` [current] - N8 - Global bar build brief. Uses the Contextual mockup variant; the non-Contextual mockup is rejected and archived.
+- `BETA-EPIC-SHARPEN-LOOP.md` [beta-epic] - Phase 1 sharpen loop (12 Jul 2026): Gate 2 no longer halts; it sets provisional=true on affected themes and logs to refusals as a diagnostic. Only Gate 1 halts. Deliberately out of Alpha scope.
+- `PHASE-1-PLAN.md` [current] - Phase 1 pipeline build plan (grounded, 11 July 2026): every claim grounded in code read, live DB state, or pipeline modules.
+- `TICKETS-1.1-1.2.md` [current] - Phase 1 tickets 1.1 (Referee) and 1.2 (Floor): server-side services with no UI, built and tested standalone; wiring happens in 1.4.
+- `TICKET-1.4.md` [current] - Ticket 1.4 - Generation replacement + wiring: kills the fake pipeline; replaces string-concat roadmap generation with the validated pipeline.
+- `1.3-REVISED-BRIEF.md` [current] - Ticket 1.3 revised - Gate 1 halt screen + provisional marking: revised scope replacing previous 1.3 brief, shrunk UI changes for Claude Design.
 
 ## resolve-pipeline/ - Phase 1 pipeline modules
 
@@ -37,6 +42,8 @@ Live project state (what is built, merged, in progress) lives in Notion, not her
 - `06-assemble.md` [current] - Stage 6 - Assemble (deterministic, no model call).
 - `07-input-safety.md` [current] - Stage 7 - Input safety. Beta-gated.
 - `08-integration-map.md` [current] - Integration map: new pipeline onto the live intake system + project_sessions schema. [INFERRED] sections await Ticket 0.2.
+- `FLOOR-GATE-DESIGN-FINDING.md` [open-design-finding] - Floor gate discriminator finding (12 Jul 2026): validates the isolated call architecture but flags that the "no natural endpoint" lever criterion is wrong. Blocks nothing in Alpha; must be resolved before the refusal behaviour is sold as a differentiator.
+- `GATE-2-QUESTION-PROBLEM.md` [current] - The question we can't get right: problem statement for the floor gate Gate 2 lever discriminator.
 - `floor-intakes-with-outcomes.json` [current] - Test data for the floor gate. NOTE: sibling test file synthetic_intakes.json (referenced by the master plan) is NOT yet in this repo.
 
 ## mockups/ - current pixel-target mockups (dc set)
