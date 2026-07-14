@@ -78,10 +78,12 @@ a single clause's verdict reintroduces that leak.
 2. If all PASS → accept.
 3. If any FAIL → return the candidate to its generator (Stage 4) WITH the failing
    clause and its one-sentence reason attached, and regenerate.
-4. Cap at **N retries** (start N=2). If still failing after N, do not ship a bad
-   candidate: either drop the theme (if others survive) or, if it was the only theme,
-   escalate to the floor outcome — return "we don't yet have a clean focus; here is the
-   question" rather than shipping a failing definition of done.
+4. Cap at **N retries** (start N=2). If still failing after N, do not loop forever: drop
+   the theme if others survive. If it was the only theme, do NOT halt and do NOT ask the
+   user a question — ship it as `provisional=true`, log the failing clause and its reason
+   to `refusals`, and show the reasoning for correction. Only Gate 1 (no outcome) halts;
+   a referee that cannot perfect the last theme degrades to a provisional plan, it does
+   not escalate to a question.
 
 ## Parsing (fix the known bug)
 

@@ -24,9 +24,13 @@ exact failure these modules exist to remove.
 1. **Generators** (Stages 1, 2, 4) — produce candidates. A better prompt makes better
    raw material. These carry the lever concept and the evidence discipline. They are
    allowed to be wrong; the referee catches them.
-2. **The floor** (Stage 3) — a structural gate that decides whether the intake can
-   support a roadmap at all. Returns a *question*, not a manufactured plan, when it
-   can't. This is the single highest-risk component; it must be its own decision.
+2. **The floor** (Stage 3) — a structural gate that reads the intake before any roadmap
+   is generated. It applies two checks with DIFFERENT consequences. **Gate 1 (no real
+   outcome) is the single legitimate halt in the pipeline:** with nothing to aim at it
+   returns one question and loops back — it never manufactures a plan. **Gate 2 (no
+   lever) NEVER halts:** it marks the affected themes `provisional`, logs the reason to
+   `refusals` as a diagnostic, and lets generation proceed with the reasoning shown for
+   correction. This is the single highest-risk component; it must be its own decision.
 3. **The referee** (Stage 5) — isolated reject-only checks. Each theme and each
    definition of done is judged one criterion at a time, with no other context.
    On failure: regenerate with the failure reason attached, capped at N retries.

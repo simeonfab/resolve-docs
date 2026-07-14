@@ -68,13 +68,15 @@ its output contract.
 ### Stage 3 Floor Gate → NEW, between intake and roadmap [INVESTIGATED context]
 There is no floor today — roadmap generation always produces something. This is a NEW
 isolated call that runs after `project_sessions` is written and BEFORE
-`buildThemeDrafts`/its replacement. On INSUFFICIENT it must be able to halt and surface
-one question on a screen.
+`buildThemeDrafts`/its replacement. **Gate 1 (no real outcome) halts** and surfaces one
+question on a screen; **Gate 2 (no lever) NEVER halts** — it marks themes `provisional`
+and logs to `refusals`, then generation proceeds.
 → **Process change:** the Confirm Understanding screen (or a new interstitial) must be
-able to display "we need one more thing: {question}" and loop back, instead of always
-proceeding to themes.
-→ **Storage:** log floor verdict + question (new small table or a `project_sessions`
-field) so it's auditable.
+able to display Gate 1's "we need one more thing: {question}" and loop back. This is the
+ONLY halt — Gate 2 never blocks the user; it degrades to a provisional plan with the
+reasoning shown for correction.
+→ **Storage:** log the floor verdict, the Gate 1 question, and every Gate 2 provisional/
+refusal reason (a `refusals` store) so it's auditable.
 
 ### Stage 4 Extract Themes → replaces `buildThemeDrafts` entirely [INVESTIGATED]
 This is the core replacement. `buildThemeDrafts` (string concatenation) and
@@ -116,7 +118,7 @@ query results as untrusted — mirror that discipline in app calls.
 |---|---|---|
 | Discovery | screens → 4 calls | + establish & confirm the **outcome** |
 | Understanding | Confirm Understanding (4 cards) | + a 5th card: the outcome, editable |
-| **Floor** | *(none)* | **NEW: sufficiency gate; can halt & ask 1 question** |
+| **Floor** | *(none)* | **NEW: Gate 1 (no outcome) halts + asks 1 question; Gate 2 (no lever) never halts — marks provisional + logs refusals** |
 | Theme gen | string concat, browser round-trip | server-side model gen + isolated classify |
 | Theme review | R2 cards from raw drafts | R2 cards from **referee-approved** themes |
 | "Not quite" | re-runs keyword heuristic | re-runs the **referee** |
@@ -130,7 +132,8 @@ query results as untrusted — mirror that discipline in app calls.
 2. **Verify the intake calls** [INFERRED → grounded]: read the actual intake generation
    code before touching Stage 1/2 mappings. Do not build on inference.
 3. **Floor gate standalone** — build + test against the 10 synthetic intakes. Highest
-   risk. Must decline the ones that should be declined.
+   risk. Gate 1 must halt the outcome-less intakes; Gate 2 must flag the lever-less ones
+   as provisional (and log them) WITHOUT halting.
 4. **Referee standalone** — package validator-v2 as the enforcement layer + regenerate
    loop. Proven component.
 5. **Replace `buildThemeDrafts`/`buildTodoDrafts`** with Stage 4, server-side. Delete
@@ -145,6 +148,6 @@ query results as untrusted — mirror that discipline in app calls.
 - [ ] Read the real intake generation calls; correct every [INFERRED] claim above.
 - [ ] Confirm where `outcome` should live (new column vs nested).
 - [ ] Confirm the R2 "Not quite" correction path can call the referee.
-- [ ] Confirm the confirm-screen can host a floor-gate halt/question loop.
+- [ ] Confirm the confirm-screen can host the Gate 1 halt/question loop (Gate 2 never halts).
 - [ ] Schema migration plan for: `outcome`, `initiatives.provisional`,
       `initiatives.inferred_from`, refusals store.
