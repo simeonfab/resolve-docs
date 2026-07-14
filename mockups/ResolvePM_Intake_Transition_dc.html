@@ -51,6 +51,8 @@ body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)
 .carry{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .carry .pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:8px 12px;font-size:12.5px;font-weight:500;color:#D8D3C7}
 .carry .pill svg{width:13px;height:13px;color:var(--amber)}
+.secbtn{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:12px 18px;font-size:14px;font-weight:600;font-family:inherit;color:#D8D3C7;cursor:pointer;margin-bottom:14px}
+.secbtn svg{width:15px;height:15px;color:var(--amber)}
 .ho-actions{display:flex;align-items:center;gap:18px}
 .cta{display:inline-flex;align-items:center;gap:9px;background:var(--amber);color:var(--ink);border:none;border-radius:10px;padding:13px 22px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer}
 .cta svg{width:16px;height:16px}
@@ -62,6 +64,7 @@ body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)
 .stage{width:1120px;height:520px;background:var(--ink);border-radius:14px;position:relative;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.28)}
 .layer{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 40px}
 .tglow{position:absolute;left:50%;top:50%;width:520px;height:520px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(200,160,64,.16),transparent 62%);animation:glowpulse 4400ms infinite}
+.l-fog .growcard{background:var(--ink);border:1px solid rgba(200,160,64,.28);border-radius:16px;padding:38px 46px;box-shadow:0 30px 80px rgba(0,0,0,.4)}
 .l-fog .ic{font-size:40px;margin-bottom:14px}
 .l-fog h1{font-family:'DM Serif Display',serif;color:#FBF8F2;font-size:34px;margin:0}
 .l-fog p{font-size:15px;color:#B4AFA3;margin:12px 0 0}
@@ -74,20 +77,22 @@ body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)
 .tmark .nm{font-size:26px;font-weight:700;color:#F5F1E8}
 .fan{display:flex;gap:10px}
 .fan .p{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:9px 14px;font-size:13px;color:#D8D3C7;font-weight:500}
-.l-settle .eb{font-size:12px;font-weight:600;color:var(--terracotta);margin-bottom:10px}
-.l-settle h1{font-family:'DM Serif Display',serif;color:#FBF8F2;font-size:30px;margin:0 0 22px}
-.fakefield{width:320px;height:46px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;padding:0 14px;color:#8A8578;font-size:14px}
+.l-settle .smark{display:flex;align-items:center;gap:9px;position:absolute;top:34px;left:50%;transform:translateX(-50%)}
+.l-settle .smark .dot{width:24px;height:24px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:14px}
+.l-settle .smark .nm{font-size:15px;font-weight:700;color:#F5F1E8}
+.l-settle h1{font-family:'DM Serif Display',serif;color:#FBF8F2;font-size:30px;margin:0 0 22px;max-width:320px}
+.fakefield{width:320px;height:46px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid var(--amber);box-shadow:0 0 0 3px rgba(200,160,64,.22);display:flex;align-items:center;padding:0 14px;color:#8A8578;font-size:14px}
 .fakebtn{width:320px;height:46px;border-radius:10px;background:var(--amber);color:var(--ink);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:10px}
-/* animation timing on the shared 4.4s loop */
-.l-fog{animation:fog 4400ms infinite}
-.l-pin{animation:pin 4400ms infinite;opacity:0}
-.l-brand{animation:brand 4400ms infinite;opacity:0}
-.l-settle{animation:settle 4400ms infinite;opacity:0}
-@keyframes fog{0%{opacity:0;transform:scale(1.02)}4%{opacity:1;transform:scale(1)}11%{opacity:1;transform:scale(1)}18%{opacity:0;transform:translateY(-26px) scale(.94)}100%{opacity:0}}
-@keyframes pin{0%,15%{opacity:0;transform:translateY(24px) scale(.96)}24%{opacity:1;transform:translateY(0) scale(1)}34%{opacity:1;transform:translateY(0) scale(1)}42%{opacity:0;transform:translateY(-18px) scale(.98)}100%{opacity:0}}
-@keyframes brand{0%,38%{opacity:0;transform:translateY(20px)}48%{opacity:1;transform:translateY(0)}62%{opacity:1;transform:translateY(0)}70%{opacity:0;transform:translateY(-16px)}100%{opacity:0}}
-@keyframes settle{0%,62%{opacity:0;transform:translateY(18px)}74%{opacity:1;transform:translateY(0)}95%{opacity:1;transform:translateY(0)}100%{opacity:0}}
-@keyframes glowpulse{0%,18%{opacity:.4}30%{opacity:.9}70%{opacity:.9}100%{opacity:.4}}
+/* animation timing on the shared 9.2s loop — four held beats */
+.l-fog{animation:fog 9200ms infinite;transform-origin:center center;will-change:transform,opacity;backface-visibility:hidden}
+.l-pin{animation:pin 9200ms infinite;opacity:0}
+.l-brand{animation:brand 9200ms infinite;opacity:0}
+.l-settle{animation:settle 9200ms infinite;opacity:0}
+@keyframes fog{0%{opacity:0;transform:scale(.62);animation-timing-function:cubic-bezier(.22,.61,.36,1)}8%{opacity:1;transform:scale(.72);animation-timing-function:cubic-bezier(.33,0,.22,1)}25%{opacity:1;transform:scale(1.05);animation-timing-function:cubic-bezier(.55,0,.85,.35)}31%{opacity:0;transform:scale(1.16)}100%{opacity:0;transform:scale(1.16)}}
+@keyframes pin{0%,26%{opacity:0;transform:translateY(22px) scale(.97)}31%{opacity:1;transform:translateY(0) scale(1)}47%{opacity:1;transform:translateY(0) scale(1)}52%{opacity:0;transform:translateY(-16px) scale(.99)}100%{opacity:0}}
+@keyframes brand{0%,50%{opacity:0;transform:translateY(18px)}55%{opacity:1;transform:translateY(0)}70%{opacity:1;transform:translateY(0)}75%{opacity:0;transform:translateY(-14px)}100%{opacity:0}}
+@keyframes settle{0%,73%{opacity:0;transform:translateY(16px)}80%{opacity:1;transform:translateY(0)}100%{opacity:1;transform:translateY(0)}}
+@keyframes glowpulse{0%,23%{opacity:.35}30%{opacity:.85}72%{opacity:.85}100%{opacity:.35}}
 /* keyframe stills */
 .kfrow{display:flex;gap:18px;flex-wrap:wrap}
 .kf{width:255px}
@@ -102,7 +107,7 @@ body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)
 
 <section>
 <div class="seclabel">1 · Final intake screen</div>
-<div class="seccap">Same layout you're happy with — the handoff block is the redesign. It stops reading like a system dialog ("send your confirmed session data… / Open · Close") and instead frames leaving as the reward: your untangled work becomes a living workspace, and your first move is already waiting inside it. One dominant amber CTA; "Close" demoted to a quiet link.</div>
+<div class="seccap">The screen ends at the handoff card — trophy box, Next steps handoff, nothing below. Inside the handoff: the carry-over pills and the "Not now" link are gone (first move is already shown here; the full roadmap is the post-transition reveal, not handed over free). Download report moves up as the single secondary button directly above the CTA and pulls the full project report. Continue in Resolve is unchanged.</div>
 <div class="app">
 <div class="side">
 <div class="brandmark"><div class="dot">R</div><div class="name">Resolve</div></div>
@@ -120,34 +125,28 @@ body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)
 <div class="ho-eb"><div class="rd"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="#C8A040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Decide this first</div>
 <h2>Finalize the brand name selection from the shortlists.</h2>
 <p class="sub">This becomes your first move inside Resolve — pinned and waiting, with everything you just untangled carried across. Pick up exactly where you left off, no re-explaining.</p>
-<div class="carry">
-<div class="pill"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Your first move, ready</div>
-<div class="pill"><svg viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 5.5h5M4.5 8.5h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Full roadmap</div>
-<div class="pill"><svg viewBox="0 0 14 14" fill="none"><path d="M2 3.5h10M2 7h10M2 10.5h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Project context</div>
-</div>
-<div class="ho-actions"><button class="cta">Continue in Resolve<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="quietlink">Not now</button></div>
-</div>
-<div class="download"><svg viewBox="0 0 15 15" fill="none"><path d="M7.5 1.5v9M4 7l3.5 3.5L11 7M2.5 13h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Download report</div>
+<button class="secbtn"><svg viewBox="0 0 15 15" fill="none"><path d="M7.5 1.5v9M4 7l3.5 3.5L11 7M2.5 13h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Download report</button>
+<div class="ho-actions"><button class="cta">Continue in Resolve<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
 </div>
 </div>
 </section>
 
 <section>
 <div class="seclabel">2 · Bridge transition</div>
-<div class="seccap">First-pass concept — this is motion, not a static page, so it's shown two ways: the live loop plays the ~1.6s bridge (auto-runs, no click, then hands to the email screen); the keyframe strip below freezes each beat. Nothing visually resets — it stays on Ink + Amber, and DM Serif carries the headline the whole way, so the celebration flows straight into Resolve rather than hard-cutting to a blank form.</div>
+<div class="seccap">Motion, not a static page — shown two ways: the live loop plays the real ~9s bridge (auto-runs, four held beats of ~2s each with smooth cross-transitions), and the keyframe strip below freezes each beat. Beat 1 is one continuous zoom — the trophy box already on the final screen grows to take over, no cut to a fresh screen. It stays on Ink + Amber the whole way and hands directly to the dark sign-in, so there's no dark→light flash mid-flow. <b>The final beat is the canonical sign-in's minimal state — dead-centre, amber glow, serif headline, brandmark, and the “Your email” field + Send code — so it is pixel-identical to R1's first frame. The eyebrow, subhead and returning-user link are not shown here; they fade in only after the real screen lands.</b></div>
 <div class="tstrip">
 <div class="stage">
 <div class="tglow"></div>
-<div class="layer l-fog"><div class="ic">🏆</div><h1>You just cleared the fog, Simeon.</h1><p>That's the hard part done.</p></div>
+<div class="layer l-fog"><div class="growcard"><div class="ic">🏆</div><h1>You just cleared the fog, Simeon.</h1><p>That's the hard part done.</p></div></div>
 <div class="layer l-pin"><div class="tchip"><div class="ck"><svg viewBox="0 0 15 15" fill="none"><path d="M3 7.5l3 3L12 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Finalize the brand name selection</div><div class="tcap">Bringing your first move with you</div></div>
 <div class="layer l-brand"><div class="tmark"><div class="dot">R</div><div class="nm">Resolve</div></div><div class="fan"><div class="p">First move</div><div class="p">Roadmap</div><div class="p">Context</div></div><div class="tcap">Setting up your workspace</div></div>
-<div class="layer l-settle"><div class="eb">Operational clarity for product work.</div><h1>Create your Resolve workspace</h1><div class="fakefield">simeon@getresolve.app</div><div class="fakebtn">Send code</div></div>
+<div class="layer l-settle"><div class="smark"><div class="dot">R</div><div class="nm">Resolve</div></div><h1>Create your Resolve workspace</h1><div class="fakefield">Your email</div><div class="fakebtn">Send code</div></div>
 </div>
 <div class="kfrow">
-<div class="kf"><div class="kfframe"><div class="mi-serif" style="font-size:15px">🏆 You just cleared the fog</div></div><div class="kftime">0.0s — carried from intake</div><div class="kfdesc">The celebration moment holds, then lifts.</div></div>
-<div class="kf"><div class="kfframe"><div class="mi-chip"><span style="color:#C8A040">✓</span>Finalize the brand name</div></div><div class="kftime">≈0.5s — first move pins</div><div class="kfdesc">The recommended action glides in with an amber check.</div></div>
-<div class="kf"><div class="kfframe"><div style="display:flex;align-items:center;gap:8px"><div class="mi-dot">R</div><span style="color:#F5F1E8;font-weight:700;font-size:16px">Resolve</span></div></div><div class="kftime">≈1.0s — workspace forms</div><div class="kfdesc">Resolve mark appears; context chips fan in.</div></div>
-<div class="kf"><div class="kfframe"><div class="mi-serif" style="font-size:14px;margin-bottom:8px">Create your workspace</div><div style="width:150px;height:26px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)"></div></div><div class="kftime">≈1.6s — hands to email</div><div class="kfdesc">Settles into the sign-up screen.</div></div>
+<div class="kf"><div class="kfframe"><div class="mi-serif" style="font-size:15px">🏆 You just cleared the fog</div></div><div class="kftime">0.0–2.3s — trophy zoom</div><div class="kfdesc">The trophy box grows to take over the screen — one continuous zoom, no cut.</div></div>
+<div class="kf"><div class="kfframe"><div class="mi-chip"><span style="color:#C8A040">✓</span>Finalize the brand name</div></div><div class="kftime">2.4–4.5s — first move pins</div><div class="kfdesc">The user's real next task glides in — “Bringing your first move with you.”</div></div>
+<div class="kf"><div class="kfframe"><div style="display:flex;align-items:center;gap:8px"><div class="mi-dot">R</div><span style="color:#F5F1E8;font-weight:700;font-size:16px">Resolve</span></div></div><div class="kftime">4.6–6.6s — workspace forms</div><div class="kfdesc">Resolve mark appears; context chips fan in — “Setting up your workspace.”</div></div>
+<div class="kf"><div class="kfframe"><div class="mi-serif" style="font-size:14px;margin-bottom:8px">Create your workspace</div><div style="width:150px;height:26px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid #C8A040;box-shadow:0 0 0 3px rgba(200,160,64,.22)"></div></div><div class="kftime">6.8s → holds — canonical sign-in</div><div class="kfdesc">Minimal state, pixel-identical to R1's first frame. Eyebrow, subhead + Sign-in link fade in after landing.</div></div>
 </div>
 </div>
 </section>

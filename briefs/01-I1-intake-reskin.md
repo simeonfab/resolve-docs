@@ -2,6 +2,9 @@
 status: current
 ---
 
+> ⚠️ **SUPERSEDED by [`briefs/ALPHA-BUILD-TICKETS.md`](./ALPHA-BUILD-TICKETS.md) where they differ** — that pack (THE AUTHORITY for the Alpha build) carries the binding element / action / motion contract per screen. Use this brief for background only.
+
+
 # Ticket I1 — Intake Reskin, Screens 1–5
 
 **Repo:** `ResolveOS-intake-frontend`

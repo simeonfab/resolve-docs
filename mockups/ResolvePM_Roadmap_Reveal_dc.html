@@ -30,8 +30,13 @@ body{margin:0;background:var(--surface);font-family:'Inter',sans-serif;color:var
 .hcell{font-size:11px;font-weight:700;color:var(--ink-ghost);letter-spacing:.02em;padding:0 2px 6px;text-align:center}
 .hcell.now{color:var(--amber)}
 .corner{visibility:hidden}
-.tlabel{background:var(--ink);color:#F2EDE4;border-radius:8px;padding:8px 8px;display:flex;align-items:center}
+.tlabel{background:var(--ink);color:#F2EDE4;border-radius:8px;padding:8px 8px;display:flex;align-items:center;gap:6px;position:relative}
 .tname{font-weight:600;font-size:11.5px;line-height:1.25}
+.provg{margin-left:auto;flex:none;width:15px;height:15px;color:var(--amber);cursor:default}
+.provg svg{width:15px;height:15px;display:block}
+.tlabel .ptip{position:absolute;bottom:calc(100% + 7px);left:0;width:180px;background:#FFF;color:var(--ink);border:1px solid var(--border);font-size:10.5px;font-weight:500;line-height:1.45;padding:8px 10px;border-radius:8px;box-shadow:0 8px 22px rgba(0,0,0,.22);opacity:0;pointer-events:none;transition:opacity .16s;z-index:5}
+.tlabel:hover .ptip{opacity:1}
+.ptip b{color:var(--terracotta)}
 .cell{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px;display:flex;flex-direction:column;gap:4px}
 .cell.nowc{border-color:var(--amber);border-width:1.5px}
 .cell.empty{align-items:center;justify-content:center;color:var(--ink-ghost);font-size:10px;border-style:dashed}
@@ -67,7 +72,7 @@ body{margin:0;background:var(--surface);font-family:'Inter',sans-serif;color:var
 <div class="cell rv rd5"><div class="chip">Shortlist review with the team</div><div class="chip">Schedule the roadmap review</div></div>
 <div class="cell empty rv rd6">Nothing yet</div>
 
-<div class="tlabel rv rd2"><span class="tname">Reposition for a higher price point</span></div>
+<div class="tlabel rv rd2"><span class="tname">Reposition for a higher price point</span><span class="provg"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M15 9l-1.8 4.2L9 15l1.8-4.2L15 9z" fill="currentColor"/></svg></span><span class="ptip"><b>Provisional</b> — inferred by Resolve, not stated in your intake. Shown so you can check the reasoning.</span></div>
 <div class="cell nowc rv rd4"><div class="chip">Decide what not to do this week</div></div>
 <div class="cell empty rv rd5">Nothing yet</div>
 <div class="cell rv rd6"><div class="chip">Plan the peak-season relaunch</div></div>

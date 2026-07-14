@@ -3,6 +3,9 @@ status: current
 note: "N6 hosts the refusals / cut record (master plan Phase 2.1)."
 ---
 
+> ⚠️ **SUPERSEDED by [`briefs/ALPHA-BUILD-TICKETS.md`](./ALPHA-BUILD-TICKETS.md) where they differ** — that pack (THE AUTHORITY for the Alpha build) carries the binding element / action / motion contract per screen. Use this brief for background only.
+
+
 # Ticket N6 — Knowledge Base Tab
 
 **Repo:** `cap-pm-cockpit-alaria`

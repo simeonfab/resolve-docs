@@ -3,6 +3,9 @@ status: current
 note: "Full N5 shipped in Alpha — roster + intros AND individual/stand-up chat with isolated-call routing. Superseded the earlier N5-lite rescoping. See TICKET-N5-REVISED.md for the architecture decisions."
 ---
 
+> ⚠️ **SUPERSEDED by [`briefs/ALPHA-BUILD-TICKETS.md`](./ALPHA-BUILD-TICKETS.md) where they differ** — that pack (THE AUTHORITY for the Alpha build) carries the binding element / action / motion contract per screen. Use this brief for background only.
+
+
 # Ticket N5 — Team Tab + Agent Chat
 
 **Repo:** `cap-pm-cockpit-alaria`

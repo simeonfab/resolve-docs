@@ -37,8 +37,13 @@ body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)
 .acttext{font-size:14px;font-weight:500;line-height:1.35}
 /* by-theme view */
 .tcard{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden}
-.tcardhd{display:flex;align-items:center;gap:8px;padding:13px 14px 11px;font-size:14px;font-weight:700}
+.tcardhd{display:flex;align-items:center;gap:8px;padding:13px 14px 11px;font-size:14px;font-weight:700;position:relative}
 .tcardhd .cd{width:8px;height:8px;border-radius:50%;background:var(--terracotta);flex-shrink:0}
+.provg{margin-left:auto;flex:none;width:16px;height:16px;color:var(--amber);cursor:default;display:flex}
+.provg svg{width:16px;height:16px;display:block}
+.tcardhd .ptip{position:absolute;top:calc(100% - 2px);right:8px;width:196px;background:var(--ink);color:#F5F1E8;font-size:11px;font-weight:500;line-height:1.5;padding:9px 11px;border-radius:8px;box-shadow:0 8px 22px rgba(0,0,0,.32);opacity:0;pointer-events:none;transition:opacity .16s;z-index:8}
+.tcardhd:hover .ptip{opacity:1}
+.ptip b{color:var(--amber)}
 .tline{display:flex;gap:12px;padding:11px 14px;border-top:1px solid var(--border)}
 .tline.now{background:#FBF7EE}
 .tline .tl{width:42px;flex-shrink:0;font-size:11px;font-weight:700;color:var(--ink-ghost);padding-top:2px}
@@ -88,7 +93,7 @@ body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)
 
 <sc-if value="{{ showGrid }}" hint-placeholder-val="{{ false }}">
 <div class="tcard"><div class="tcardhd"><span class="cd"></span>Finalise the new brand name</div><div class="tline now"><span class="tl">Now</span><div class="tacts"><span class="ta">Write down the current baseline</span></div></div><div class="tline"><span class="tl">Next</span><div class="tacts"><span class="ta">Shortlist review with the team</span><span class="ta">Schedule the roadmap review</span></div></div><div class="tline"><span class="tl">Later</span><div class="tacts"><span class="tnone">Nothing yet</span></div></div></div>
-<div class="tcard"><div class="tcardhd"><span class="cd"></span>Reposition for a higher price point</div><div class="tline now"><span class="tl">Now</span><div class="tacts"><span class="ta">Decide what not to do this week</span></div></div><div class="tline"><span class="tl">Next</span><div class="tacts"><span class="tnone">Nothing yet</span></div></div><div class="tline"><span class="tl">Later</span><div class="tacts"><span class="ta">Plan the peak-season relaunch</span></div></div></div>
+<div class="tcard"><div class="tcardhd"><span class="cd"></span>Reposition for a higher price point<span class="provg"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M15 9l-1.8 4.2L9 15l1.8-4.2L15 9z" fill="currentColor"/></svg></span><span class="ptip"><b>Provisional</b> — inferred by Resolve, not stated in your intake. Shown so you can check the reasoning.</span></div><div class="tline now"><span class="tl">Now</span><div class="tacts"><span class="ta">Decide what not to do this week</span></div></div><div class="tline"><span class="tl">Next</span><div class="tacts"><span class="tnone">Nothing yet</span></div></div><div class="tline"><span class="tl">Later</span><div class="tacts"><span class="ta">Plan the peak-season relaunch</span></div></div></div>
 <div class="tcard"><div class="tcardhd"><span class="cd"></span>Validate with customer feedback</div><div class="tline now"><span class="tl">Now</span><div class="tacts"><span class="ta">Choose the first signal to validate</span></div></div><div class="tline"><span class="tl">Next</span><div class="tacts"><span class="ta">Create the first outreach draft</span></div></div><div class="tline"><span class="tl">Later</span><div class="tacts"><span class="ta">Check whether feedback confirms direction</span></div></div></div>
 </sc-if>
 </div>

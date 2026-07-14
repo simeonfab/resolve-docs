@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#9A9A92;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:#26241F;font-family:'Inter',sans-serif;color:#1A1A18}
+a{color:var(--amber)}a:hover{color:#b8902f}
+.wrap{display:flex;min-height:100vh;align-items:flex-start}
+.stagepane{flex:1;display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px 24px 48px}
+.toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.seg{display:flex;background:#1B1A16;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:3px}
+.segbtn{font-family:inherit;font-size:13px;font-weight:600;color:#B8B2A2;background:none;border:none;padding:7px 18px;border-radius:7px;cursor:pointer}
+.segbtn.on{background:var(--amber);color:#1A1A18}
+.phone{width:360px;background:var(--surface);border-radius:30px;box-shadow:0 30px 70px rgba(0,0,0,.45);overflow:hidden;position:relative}
+.screen{min-height:640px;position:relative;display:flex;flex-direction:column}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:20px 18px 8px;flex-shrink:0}
+.hdr .l{display:flex;align-items:center;gap:9px}
+.hdr .logo{width:26px;height:26px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:15px}
+.hdr .nm{font-size:15px;font-weight:700}
+.hdr .avatar{width:32px;height:32px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--ink)}
+.content{flex:1;padding:8px 16px 150px;overflow:hidden}
+.eyebrow{font-size:12px;font-weight:600;color:var(--terracotta);margin:6px 0 6px}
+.ptitle{font-family:'DM Serif Display',serif;font-size:26px;margin:0 0 16px}
+.task{display:flex;gap:11px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:10px;padding:13px 14px;margin-bottom:9px;overflow:hidden}
+.cb{width:19px;height:19px;border-radius:50%;border:1.6px solid var(--border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.cb.don{background:var(--amber);border-color:var(--amber)}
+.cb.don svg{width:11px;height:11px;color:var(--ink)}
+.tt{font-size:14px;font-weight:500;line-height:1.35;transition:color .25s}
+.task.done .tt{color:var(--ink-ghost);text-decoration:line-through}
+.tsub{font-size:11.5px;color:var(--ink-ghost);margin-top:4px}
+.rcard{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:6px}
+.rcard .rt{font-size:14px;font-weight:600}
+.rcard .rs{font-size:12px;color:var(--ink-soft);line-height:1.5;margin:5px 0 12px}
+.rbtns{display:flex;gap:9px}
+.btn{border-radius:8px;padding:9px 14px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;border:1px solid var(--border);color:var(--ink)}
+.toast{position:absolute;left:16px;right:16px;bottom:74px;background:var(--ink);border-radius:13px;box-shadow:0 10px 30px rgba(26,26,24,.34);padding:0;z-index:30;display:none;overflow:hidden}
+.toast.open{display:block}
+.toastrow{display:flex;align-items:center;gap:12px;padding:13px 15px}
+.tick{width:20px;height:20px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tick svg{width:11px;height:11px;color:var(--ink)}
+.tmsg{flex:1;font-size:13.5px;font-weight:600;color:#F1ECE0}
+.tundo{background:none;border:none;color:var(--amber);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;padding:4px 6px}
+.ttimer{height:2px;background:rgba(255,255,255,.12)}
+.ttimer i{display:block;height:100%;width:100%;background:var(--amber);transform-origin:left}
+.gbar{position:absolute;left:16px;right:16px;bottom:16px;display:flex;align-items:center;gap:10px;background:var(--ink);border-radius:24px;padding:12px 15px;box-shadow:0 8px 22px rgba(26,26,24,.3);z-index:8}
+.gbar .gsp{color:var(--amber);flex-shrink:0;display:flex}.gbar .gsp svg{width:16px;height:16px;display:block}
+.gbar .gcap{flex:1;font-size:13.5px;color:#E7E2D6;font-weight:500}
+.gbar .gmic{display:flex}.gbar .gmic svg{width:16px;height:16px;color:#8A8578}
+.specpane{width:452px;flex-shrink:0;background:#1B1A16;color:#E8E2D4;min-height:100vh;border-left:1px solid rgba(255,255,255,.08)}
+.spechead{padding:26px 26px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.spectitle-main{font-family:'DM Serif Display',serif;font-size:23px;color:#F5F1E8;margin:0 0 4px}
+.specsub{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#9A9484;line-height:1.5;margin:0}
+.speccard{padding:22px 26px;border-bottom:1px solid rgba(255,255,255,.08)}
+.spectop{display:flex;align-items:baseline;gap:10px}
+.specnum{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);font-weight:500}
+.specname{font-size:15px;font-weight:600;color:#F5F1E8;flex:1}
+.playbtn{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:#1A1A18;background:var(--amber);border:none;border-radius:6px;padding:6px 12px;cursor:pointer}
+.playbtn:hover{background:#d8b053}
+.spectrig{font-family:'JetBrains Mono',monospace;font-size:11px;color:#B0632E;margin:7px 0 4px;letter-spacing:.02em}
+.step{margin-top:13px;padding-left:12px;border-left:2px solid rgba(200,160,64,.28)}
+.steplabel{font-size:12.5px;font-weight:600;color:#D8D3C7;margin-bottom:4px}
+.steptiming{font-family:'JetBrains Mono',monospace;font-size:11px;color:#D8B45A;line-height:1.5}
+.stepkf{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#8F8A76;line-height:1.55;margin-top:3px;white-space:pre-wrap}
+.stepkf.to{color:#C9C4B7}
+.specnote{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#9A9484;line-height:1.5;margin-top:12px;background:#141311;border-radius:6px;padding:9px 11px}
+</style></helmet>
+<div class="wrap">
+<div class="stagepane">
+<div class="toolbar"><div class="seg"><button class="segbtn {{ seamCls }}" onClick="{{ setSeam }}">Match seam</button><button class="segbtn {{ slowCls }}" onClick="{{ setSlow }}">Slower</button></div><button class="segbtn" onClick="{{ doComplete }}" style="border:1px solid rgba(255,255,255,.14)">▶ complete (undo)</button><button class="segbtn" onClick="{{ doReminder }}" style="border:1px solid rgba(255,255,255,.14)">▶ send reminder</button></div>
+<div class="phone" ref="{{ setPhone }}"><div class="screen">
+<div class="hdr"><div class="l"><div class="logo">R</div><div class="nm">Resolve</div></div><div class="avatar">S</div></div>
+<div class="content">
+<div class="eyebrow">Now</div><h1 class="ptitle">Your work</h1>
+<div class="task t-a"><span class="cb" onClick="{{ completeA }}"></span><div><div class="tt">Write down the current baseline</div><div class="tsub">Finalise the brand name</div></div></div>
+<div class="task t-b"><span class="cb" onClick="{{ completeB }}"></span><div><div class="tt">Choose the first signal to validate</div><div class="tsub">Validate with customer feedback</div></div></div>
+<div class="rcard"><div class="rt">Landing page copy from Priya</div><div class="rs">Stalled 3 days. Nudge the contractor?</div><div class="rbtns"><button class="btn primary" onClick="{{ doReminder }}">Send reminder</button><button class="btn ghost" onClick="{{ doSave }}">Save for later</button></div></div>
+</div>
+<div class="toast" ref="{{ setToast }}"><div class="toastrow"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="tmsg">Completed</span><button class="tundo" onClick="{{ tapUndo }}">Undo</button></div><div class="ttimer"><i></i></div></div>
+<div class="gbar"><span class="gsp"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l1.3 3.9L13 6.2l-3.7 1.1L8 11 6.7 7.3 3 6.2l3.7-1.1z" fill="currentColor"/></svg></span><span class="gcap">Add a task, or ask what's next</span><span class="gmic"><svg viewBox="0 0 16 16" fill="none"><rect x="6" y="2" width="4" height="7" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 8a4 4 0 008 0M8 12v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span></div>
+</div></div>
+</div>
+<div class="specpane">
+<div class="spechead"><p class="spectitle-main">Feedback — Motion Spec</p><p class="specsub">Mode: {{ modeLabel }} · confirmation toasts + undo · WAAPI</p></div>
+<sc-for list="{{ anims }}" as="a" hint-placeholder-count="3">
+<div class="speccard">
+<div class="spectop"><span class="specnum">{{ a.num }}</span><span class="specname">{{ a.title }}</span><button class="playbtn" onClick="{{ a.onPlay }}">▶ play</button></div>
+<div class="spectrig">trigger: {{ a.trigger }}</div>
+<sc-for list="{{ a.steps }}" as="s" hint-placeholder-count="3">
+<div class="step"><div class="steplabel">{{ s.label }}</div><div class="steptiming">{{ s.timing }}</div><div class="stepkf">from  {{ s.from }}</div><div class="stepkf to">to    {{ s.to }}</div></div>
+</sc-for>
+<sc-if value="{{ a.note }}" hint-placeholder-val="{{ true }}"><div class="specnote">{{ a.note }}</div></sc-if>
+</div>
+</sc-for>
+<div class="speccard" style="border:none"><div class="specnote">Same easing tokens as the app: spring cubic-bezier(.34,1.56,.64,1) · out cubic-bezier(.22,.61,.36,1) · std cubic-bezier(.4,0,.2,1) · in cubic-bezier(.55,0,.85,.35). One toast at a time — a new action replaces the current toast (fast out, then in).</div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:880},&quot;startMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;seam&quot;,&quot;options&quot;:[&quot;seam&quot;,&quot;slow&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { mode: 'seam' };
+  setPhone = (el) => { this.phoneEl = el; };
+  setToast = (el) => { this.toastEl = el; };
+  setSeam = () => this.setState({ mode: 'seam' });
+  setSlow = () => this.setState({ mode: 'slow' });
+
+  completeA = () => this.completeTask('.t-a');
+  completeB = () => this.completeTask('.t-b');
+  doComplete = () => this.completeTask('.t-a');
+  doReminder = () => this.confirm('Reminder sent to Priya');
+  doSave = () => this.confirm('Saved for later');
+
+  T() { const m = this.state.mode; return { SPRING: 'cubic-bezier(.34,1.56,.64,1)', OUT: 'cubic-bezier(.22,.61,.36,1)', STD: 'cubic-bezier(.4,0,.2,1)', IN: 'cubic-bezier(.55,0,.85,.35)', S: (a, b) => (m === 'seam' ? a : b) }; }
+
+  // ---- toast engine ----
+  showToast({ msg, undo, onUndo, hold }) {
+    const t = this.toastEl; if (!t) return;
+    const { SPRING, IN, S } = this.T();
+    clearTimeout(this._hideT); clearTimeout(this._doneT);
+    this._onUndo = onUndo || null;
+    t.querySelector('.tmsg').textContent = msg;
+    t.querySelector('.tundo').style.display = undo ? '' : 'none';
+    const timer = t.querySelector('.ttimer'); const bar = t.querySelector('.ttimer i');
+    const wasOpen = t.classList.contains('open');
+    const runIn = () => {
+      t.classList.add('open');
+      t.getAnimations().forEach((x) => x.cancel());
+      t.animate([{ opacity: 0, transform: 'translateY(20px)' }, { opacity: 1, transform: 'none' }], { duration: S(360, 470), easing: SPRING, fill: 'both' });
+      const dur = hold || (undo ? 4000 : 2600);
+      timer.style.display = undo ? '' : 'none';
+      if (undo) { bar.getAnimations().forEach((x) => x.cancel()); bar.animate([{ transform: 'scaleX(1)' }, { transform: 'scaleX(0)' }], { duration: dur, easing: 'linear', fill: 'both' }); }
+      this._hideT = setTimeout(() => this.hideToast(), dur);
+    };
+    if (wasOpen) { // replace: quick out then in
+      const a = t.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(10px)' }], { duration: S(160, 210), easing: IN, fill: 'both' });
+      a.onfinish = runIn;
+    } else runIn();
+  }
+  hideToast() {
+    const t = this.toastEl; if (!t || !t.classList.contains('open')) return;
+    const { IN, S } = this.T();
+    t.querySelector('.ttimer i').getAnimations().forEach((x) => x.cancel());
+    const a = t.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(16px)' }], { duration: S(260, 340), easing: IN, fill: 'both' });
+    a.onfinish = () => { t.classList.remove('open'); this._onUndo = null; };
+  }
+  tapUndo = () => { const cb = this._onUndo; clearTimeout(this._hideT); this._onUndo = null; this.hideToast(); if (cb) cb(); };
+
+  confirm(msg) { this.showToast({ msg, undo: false }); }
+
+  completeTask(sel) {
+    const root = this.phoneEl; const task = root.querySelector(sel);
+    if (!task || task.dataset.gone === '1') return;
+    const { SPRING, IN, S } = this.T();
+    const cb = task.querySelector('.cb');
+    cb.classList.add('don');
+    cb.innerHTML = '<svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    cb.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.25)' }, { transform: 'scale(1)' }], { duration: S(300, 400), easing: SPRING });
+    task.classList.add('done');
+    const h = task.offsetHeight;
+    clearTimeout(task._ct);
+    task._ct = setTimeout(() => {
+      const a = task.animate([{ height: h + 'px', opacity: 1, marginBottom: '9px', paddingTop: '13px', paddingBottom: '13px' }, { height: '0px', opacity: 0, marginBottom: '0px', paddingTop: '0px', paddingBottom: '0px' }], { duration: S(320, 420), easing: IN, fill: 'both' });
+      a.onfinish = () => { task.style.display = 'none'; task.dataset.gone = '1'; };
+    }, S(360, 460));
+    this.showToast({ msg: 'Completed', undo: true, onUndo: () => this.restoreTask(task) });
+  }
+  restoreTask(task) {
+    clearTimeout(task._ct);
+    task.getAnimations().forEach((x) => x.cancel());
+    ['display', 'height', 'opacity', 'margin-bottom', 'padding-top', 'padding-bottom'].forEach((p) => task.style.removeProperty(p));
+    task.dataset.gone = '0';
+    task.classList.remove('done');
+    const cb = task.querySelector('.cb'); cb.classList.remove('don'); cb.innerHTML = '';
+    const { SPRING, S } = this.T();
+    task.animate([{ opacity: 0, transform: 'translateX(-10px)' }, { opacity: 1, transform: 'none' }], { duration: S(300, 400), easing: SPRING, fill: 'both' });
+  }
+
+  catalog() {
+    return {
+      confirmundo: { title: 'Confirmation toast + undo', trigger: 'complete a task (tick)', note: 'Reversible actions get an amber tick toast with an Undo affordance and a 4s timer bar that depletes left→right. Tapping Undo cancels the timer, dismisses the toast, and reverses the action (the row slides back in). Auto-dismiss if the window lapses.', steps: [
+        { label: 'Toast rises', sel: '.toast', kf: [{ opacity: 0, transform: 'translateY(20px)' }, { opacity: 1, transform: 'none' }], seam: { dur: 360, ease: 'spring' }, slow: { dur: 470, ease: 'spring' } },
+        { label: 'Undo timer bar depletes', sel: '.ttimer i', kf: [{ transform: 'scaleX(1)' }, { transform: 'scaleX(0)' }], seam: { dur: 4000, ease: 'linear' }, slow: { dur: 4000, ease: 'linear' } },
+        { label: 'Auto-dismiss (slides out)', sel: '.toast', kf: [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(16px)' }], seam: { dur: 260, ease: 'in', delay: 4000 }, slow: { dur: 340, ease: 'in', delay: 4000 } },
+      ]},
+      undo: { title: 'Undo (reverse the action)', trigger: 'tap Undo before the timer lapses', note: 'Toast exits immediately and the completed row returns — cb un-fills, row slides back from translateX(-10px). Same reversal for any undo-able action.', steps: [
+        { label: 'Toast dismisses', sel: '.toast', kf: [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(16px)' }], seam: { dur: 260, ease: 'in' }, slow: { dur: 340, ease: 'in' } },
+        { label: 'Row returns', sel: '.task', kf: [{ opacity: 0, transform: 'translateX(-10px)' }, { opacity: 1, transform: 'none' }], seam: { dur: 300, ease: 'spring' }, slow: { dur: 400, ease: 'spring' } },
+      ]},
+      plain: { title: 'Plain confirmation (no undo)', trigger: 'Send reminder · Save · non-reversible actions', note: 'Non-reversible or low-stakes actions get a shorter toast (2.6s, no timer bar, no Undo) — just acknowledgement. One toast at a time: firing a new one does a fast out (160ms) then in.', steps: [
+        { label: 'Toast rises', sel: '.toast', kf: [{ opacity: 0, transform: 'translateY(20px)' }, { opacity: 1, transform: 'none' }], seam: { dur: 360, ease: 'spring' }, slow: { dur: 470, ease: 'spring' } },
+        { label: 'Holds 2.6s, then slides out', sel: '.toast', kf: [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(16px)' }], seam: { dur: 260, ease: 'in', delay: 2600 }, slow: { dur: 340, ease: 'in', delay: 2600 } },
+      ]},
+    };
+  }
+
+  play(id) {
+    if (id === 'confirmundo') return this.completeTask('.t-a');
+    if (id === 'undo') { this.completeTask('.t-b'); clearTimeout(this._u); this._u = setTimeout(() => this.tapUndo(), this.state.mode === 'seam' ? 900 : 1100); return; }
+    if (id === 'plain') return this.confirm('Reminder sent to Priya');
+  }
+
+  ez(name) { return { spring: 'cubic-bezier(.34,1.56,.64,1)', out: 'cubic-bezier(.22,.61,.36,1)', std: 'cubic-bezier(.4,0,.2,1)', in: 'cubic-bezier(.55,0,.85,.35)', linear: 'linear' }[name]; }
+  frameStr(f) { const b = []; if ('transform' in f) b.push('transform: ' + f.transform); if ('opacity' in f) b.push('opacity: ' + f.opacity); return b.join('  ·  ') || '—'; }
+
+  renderVals() {
+    const mode = this.state.mode, cat = this.catalog();
+    const order = ['confirmundo', 'undo', 'plain'];
+    const anims = order.map((id, idx) => {
+      const a = cat[id];
+      return {
+        num: String(idx + 1).padStart(2, '0'), title: a.title, trigger: a.trigger, note: a.note || '',
+        onPlay: () => this.play(id),
+        steps: a.steps.map((s) => {
+          const t = s[mode];
+          let timing = t.dur + 'ms · ' + this.ez(t.ease);
+          if (t.delay) timing += ' · after ' + t.delay + 'ms';
+          return { label: s.label, timing, from: this.frameStr(s.kf[0]), to: this.frameStr(s.kf[s.kf.length - 1]) };
+        }),
+      };
+    });
+    return {
+      setPhone: this.setPhone, setToast: this.setToast, setSeam: this.setSeam, setSlow: this.setSlow,
+      completeA: this.completeA, completeB: this.completeB, doComplete: this.doComplete, doReminder: this.doReminder, doSave: this.doSave, tapUndo: this.tapUndo,
+      seamCls: mode === 'seam' ? 'on' : '', slowCls: mode === 'slow' ? 'on' : '',
+      modeLabel: mode === 'seam' ? 'Match seam (spring)' : 'Slower', anims,
+    };
+  }
+}
+</script>
+</body>
+</html>

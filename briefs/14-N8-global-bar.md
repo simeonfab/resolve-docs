@@ -3,6 +3,9 @@ status: current
 note: "Build against ResolvePM_Global_Bar_Contextual_dc.html. ResolvePM_Global_Bar_dc.html is a rejected exploration (archived)."
 ---
 
+> ⚠️ **SUPERSEDED by [`briefs/ALPHA-BUILD-TICKETS.md`](./ALPHA-BUILD-TICKETS.md) where they differ** — that pack (THE AUTHORITY for the Alpha build) carries the binding element / action / motion contract per screen. Use this brief for background only.
+
+
 # Ticket N8 — Global Bar / Orchestrator
 
 **Repo:** `cap-pm-cockpit-alaria`

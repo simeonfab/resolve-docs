@@ -7,59 +7,98 @@
 </head>
 <body>
 <x-dc>
-<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
 doc-page:not(:defined){visibility:hidden}
-:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#7A756A;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#7A756A;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A;--green:#5E7D4F}
 *{box-sizing:border-box}
-doc-page{font-family:'Inter',sans-serif;color:var(--ink);line-height:1.55;font-size:13.5px}
-.doctitle{font-family:'DM Serif Display',serif;font-size:34px;line-height:1.1;margin:0 0 8px}
+doc-page{font-family:'Inter',sans-serif;color:var(--ink);line-height:1.55;font-size:13px}
+.doctitle{font-family:'DM Serif Display',serif;font-size:33px;line-height:1.1;margin:0 0 8px}
 .docsub{font-size:14px;color:var(--ink-soft);margin:0 0 4px}
 .docmeta{font-size:12px;color:var(--ink-ghost);margin:0}
 .rule{height:2px;background:var(--ink);margin:18px 0 22px}
 .part{font-size:12px;font-weight:700;color:var(--terracotta);letter-spacing:.04em;margin:30px 0 4px}
 h2{font-size:19px;font-weight:700;margin:6px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.lead{font-size:13.5px;color:var(--ink-soft);margin:0 0 16px}
+.lead{font-size:13px;color:var(--ink-soft);margin:0 0 16px}
 .conv{margin:0 0 16px;padding-left:0;list-style:none}
 .conv li{position:relative;padding-left:18px;margin-bottom:7px}
 .conv li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--amber)}
 .screen{margin:0 0 18px;padding:14px 16px;border:1px solid var(--border);border-radius:8px;break-inside:avoid}
 .screen h3{font-size:15px;font-weight:700;margin:0 0 2px}
-.file{font-family:'Inter',monospace;font-size:11px;font-weight:600;color:var(--terracotta);margin-bottom:9px}
+.file{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--terracotta);margin-bottom:9px}
 .screen p{margin:0 0 7px}
 .screen p b{color:var(--ink);font-weight:700}
-.k{display:inline-block;min-width:74px;font-weight:700;color:var(--ink)}
+.k{display:inline-block;min-width:92px;font-weight:700;color:var(--ink);vertical-align:top}
 .flag{background:#FBF3E4;border-left:3px solid var(--amber);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 16px}
+.settled{background:#F0F3EC;border-left:3px solid var(--green);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 12px}
+.settled b{color:#3F5836}
+.diverge{background:#FBECE4;border-left:3px solid var(--terracotta);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:10px 0 4px}
+.diverge b{color:var(--terracotta)}
 strong.t{color:var(--terracotta)}
 .idx{margin:0 0 6px}
 .idxgroup{font-size:11px;font-weight:700;color:var(--terracotta);margin:16px 0 4px}
 .idxlink{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-size:13px;color:var(--ink);text-decoration:none;padding:8px 2px;border-bottom:1px solid var(--border)}
 .idxlink .lbl{font-weight:600}
-.idxlink .fn{font-family:'Inter',monospace;font-size:11px;color:var(--terracotta);white-space:nowrap}
+.idxlink .fn{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--terracotta);white-space:nowrap}
+.acts{margin:9px 0 2px;border-top:1px dashed var(--border);padding-top:9px}
+.acthd{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-ghost);margin-bottom:7px}
+.act{display:grid;grid-template-columns:150px 13px 1fr;gap:8px;align-items:baseline;font-size:12.5px;margin-bottom:6px;line-height:1.45;break-inside:avoid}
+.act .el{font-weight:700;color:var(--ink)}
+.act .el em{display:block;font-style:normal;font-size:9px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-ghost);margin-top:1px}
+.act .arw{color:var(--amber);font-weight:700;text-align:center}
+.act .dst{color:var(--ink-soft)}
+.act .dst b{color:var(--ink);font-weight:600}
+.mots{margin:11px 0 2px;border-top:1px dashed var(--border);padding-top:9px}
+.mothd{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--terracotta);margin-bottom:8px}
+.mrw{padding:0 0 7px;margin-bottom:7px;border-bottom:1px dotted var(--border);break-inside:avoid}
+.mrw:last-child{border-bottom:none;margin-bottom:0}
+.mrw .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.mel{font-weight:700;font-size:12.5px;color:var(--ink)}
+.mel em{font-style:normal;font-weight:600;font-size:9.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-ghost);margin-left:7px}
+.mtm{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);white-space:nowrap;flex:none}
+.mmv{font-size:12px;color:var(--ink-soft);margin-top:2px}
+.mmv code{font-family:'JetBrains Mono',monospace;font-size:10.5px;background:#F3EFE7;border-radius:3px;padding:0 4px;color:#5A4A1E}
+.tok{width:100%;border-collapse:collapse;margin:2px 0 6px}
+.tok td{font-size:12px;padding:5px 9px;border-bottom:1px solid var(--border);vertical-align:top}
+.tok td:first-child{font-family:'JetBrains Mono',monospace;color:#5A4A1E;white-space:nowrap;width:120px}
+.copy{background:#FAFAF7;border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin:0 0 12px;break-inside:avoid}
+.copy .cl{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-ghost);margin-bottom:8px}
+.copy .row{display:flex;gap:10px;margin-bottom:6px;font-size:12.5px;line-height:1.5}
+.copy .row:last-child{margin-bottom:0}
+.copy .lbl{min-width:80px;font-weight:700;color:var(--terracotta);flex:none}
+.copy .ser{font-family:'DM Serif Display',serif;font-size:15px;line-height:1.3}
+.dynm{background:rgba(200,160,64,.16);border-bottom:1px dashed var(--amber);border-radius:2px;padding:0 2px}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--ink-soft);margin:0 0 16px}
+.fstep{border:1px solid var(--border);border-radius:7px;padding:6px 10px}
+.fstep.here{border-color:var(--amber);background:#FBF3E4;color:var(--ink);font-weight:600}
+.far{color:var(--ink-ghost)}
 </style></helmet>
 <x-import component-from-global-scope="doc-page" from="./doc-page.js" size="letter" margin="0.8in" hint-size="100%,100%">
-<p class="part">Developer handoff · Alpha</p>
+<p class="part">Developer handoff · Alpha · consolidated build + motion brief</p>
 <h1 class="doctitle">ResolvePM — implementation brief</h1>
-<p class="docsub">End-to-end screen flow, expected behaviour and state logic. Pairs with the delivered HTML mockups (one file per screen, named inline below).</p>
-<p class="docmeta">Brand system is locked — see the brand spec. All colours, type (DM Serif Display for a single headline per screen; Inter everywhere else), 10px/6px radii and sentence-case labels are already baked into every mockup. Do not introduce new styles.</p>
+<p class="docsub">The single source of truth. Every screen, every interactive element and every animation in the delivered mockups — what each one is, what it does, where it leads, and how it moves (trigger, motion, duration, easing). Built to be audited element by element against the mockups.</p>
+<p class="docmeta">Absorbs the former Gate 1 / Floor Refusal brief and the standalone Motion Spec. Motion values below are transcribed verbatim from the mockups and Resolve Flow Spec (Surfaces A–I) and can be followed as written. Brand system is locked — colours, type (DM Serif Display for one headline per screen; Inter elsewhere), 10px/6px radii, sentence-case labels are baked into every mockup. Do not introduce new styles.</p>
 <div class="rule"></div>
 
-<h2>Screens — open each mockup</h2>
-<p class="lead">Every delivered screen, linked. Files are self-contained and open directly in a browser. Numbers match the sections below.</p>
+<h2>How to read this</h2>
+<p class="lead">Each screen carries up to three blocks. <b>Behaviour</b> — state logic and copy notes. <b>Elements &amp; actions</b> — a row per control, with what it is and where it leads (terracotta arrow). <b>Motion</b> — a row per scripted animation, with its trigger (small caps), what moves, and a mono timing badge (duration · easing). Use the two audit blocks to confirm every affordance and every moving part in the mockup has a defined behaviour. Decisions taken where a mockup and the motion spec differed (Roadmap, Work, Knowledge) are recorded inline in green <b>Decision</b> boxes.</p>
+
+<h2>Files — open each mockup</h2>
 <div class="idx">
-<div class="idxgroup">A · Intake (desktop)</div>
+<div class="idxgroup">A · Intake (desktop, pre-auth)</div>
 <a class="idxlink" href="ResolvePM%20Onboarding.dc.html"><span class="lbl">1–2 · Name entry + welcome/problem reveal</span><span class="fn">Onboarding</span></a>
 <a class="idxlink" href="ResolvePM%20Bring%20It%20In.dc.html"><span class="lbl">3 · Bring it in</span><span class="fn">Bring It In</span></a>
 <a class="idxlink" href="ResolvePM%20Confirm%20Understanding.dc.html"><span class="lbl">4 · Reading loader + confirm</span><span class="fn">Confirm Understanding</span></a>
 <a class="idxlink" href="ResolvePM%20Next%20Move.dc.html"><span class="lbl">5 · Weighing loader + next move</span><span class="fn">Next Move</span></a>
 <div class="idxgroup">B · Handoff &amp; sign-up</div>
 <a class="idxlink" href="ResolvePM%20Intake%20Transition.dc.html"><span class="lbl">6 · Final intake + bridge transition</span><span class="fn">Intake Transition</span></a>
-<a class="idxlink" href="ResolvePM%20Sign-in.dc.html"><span class="lbl">7 · Sign-up / login (OTP)</span><span class="fn">Sign-in</span></a>
+<a class="idxlink" href="ResolvePM%20Sign-in.dc.html"><span class="lbl">7 · Sign-up / login (OTP) + exit transition</span><span class="fn">Sign-in</span></a>
 <div class="idxgroup">C · Build sequence (mobile, chrome-free)</div>
+<a class="idxlink" href="ResolvePM%20Floor%20Refusal.dc.html"><span class="lbl">7.5 · Gate 1 halt (fires rarely)</span><span class="fn">Floor Refusal</span></a>
 <a class="idxlink" href="ResolvePM%20Roadmap%20Cards.dc.html"><span class="lbl">8 · Roadmap theme cards</span><span class="fn">Roadmap Cards</span></a>
 <a class="idxlink" href="ResolvePM%20Todo%20List.dc.html"><span class="lbl">9 · To-do list reveal</span><span class="fn">Todo List</span></a>
 <a class="idxlink" href="ResolvePM%20Roadmap%20Reveal.dc.html"><span class="lbl">10 · Roadmap reveal</span><span class="fn">Roadmap Reveal</span></a>
 <a class="idxlink" href="ResolvePM%20OS%20Reveal.dc.html"><span class="lbl">11 · OS assembly → Dashboard</span><span class="fn">OS Reveal</span></a>
-<div class="idxgroup">D · The app (mobile shell)</div>
+<div class="idxgroup">D · The app (mobile shell, bottom tabs)</div>
 <a class="idxlink" href="ResolvePM%20Dashboard.dc.html"><span class="lbl">12 · Dashboard</span><span class="fn">Dashboard</span></a>
 <a class="idxlink" href="ResolvePM%20Roadmap%20Tab.dc.html"><span class="lbl">13 · Roadmap tab</span><span class="fn">Roadmap Tab</span></a>
 <a class="idxlink" href="ResolvePM%20Work%20Tab.dc.html"><span class="lbl">14 · Work tab</span><span class="fn">Work Tab</span></a>
@@ -67,129 +106,356 @@ strong.t{color:var(--terracotta)}
 <a class="idxlink" href="ResolvePM%20Agent%20Chat.dc.html"><span class="lbl">15 · Agent chats (individual + stand-up)</span><span class="fn">Agent Chat</span></a>
 <a class="idxlink" href="ResolvePM%20Knowledge%20Base%20Tab.dc.html"><span class="lbl">16 · Knowledge base tab</span><span class="fn">Knowledge Base Tab</span></a>
 <a class="idxlink" href="ResolvePM%20Settings.dc.html"><span class="lbl">17 · Settings + avatar menu</span><span class="fn">Settings</span></a>
+<div class="idxgroup">Motion references (literal-value spec)</div>
+<a class="idxlink" href="Resolve%20Flow%20Spec.html"><span class="lbl">Master motion spec — Surfaces A–I, all timing/easing</span><span class="fn">Resolve Flow Spec</span></a>
+<a class="idxlink" href="ResolvePM%20Dashboard%20Motion.dc.html"><span class="lbl">Dashboard motion demo (Surface E)</span><span class="fn">Dashboard Motion</span></a>
+<a class="idxlink" href="ResolvePM%20Roadmap%20Motion.dc.html"><span class="lbl">Roadmap motion demo (Surface F)</span><span class="fn">Roadmap Motion</span></a>
+<a class="idxlink" href="ResolvePM%20Work%20Motion.dc.html"><span class="lbl">Work motion demo (Surface G)</span><span class="fn">Work Motion</span></a>
+<a class="idxlink" href="ResolvePM%20Knowledge%20Motion.dc.html"><span class="lbl">Knowledge/library motion demo (Surface H)</span><span class="fn">Knowledge Motion</span></a>
+<a class="idxlink" href="ResolvePM%20Feedback%20Motion.dc.html"><span class="lbl">Toast / undo motion demo (Surface I)</span><span class="fn">Feedback Motion</span></a>
 <div class="idxgroup">Decisions &amp; explorations</div>
 <a class="idxlink" href="ResolvePM%20Global%20Bar%20Contextual.dc.html"><span class="lbl">Global orchestrator — chosen (floating, contextual)</span><span class="fn">Global Bar Contextual</span></a>
-<a class="idxlink" href="ResolvePM%20Global%20Bar.dc.html"><span class="lbl">Global orchestrator — placement options + nav states</span><span class="fn">Global Bar</span></a>
-<a class="idxlink" href="ResolvePM%20App%20Shell.dc.html"><span class="lbl">Navigation options (bottom bar chosen)</span><span class="fn">App Shell</span></a>
+<a class="idxlink" href="ResolvePM%20Global%20Bar.dc.html"><span class="lbl">Orchestrator placement options (ga/gb/gc/gx) + nav states</span><span class="fn">Global Bar</span></a>
+<a class="idxlink" href="ResolvePM%20App%20Shell.dc.html"><span class="lbl">Navigation options 1a/1b/1c (bottom bar chosen)</span><span class="fn">App Shell</span></a>
 </div>
 
 <div class="rule"></div>
 
 <h2>Read this first — global conventions</h2>
 <ul class="conv">
-<li><b>Two surfaces, one system.</b> The <b>intake flow</b> (pre-auth) is a desktop-width web experience with a 4-step left stepper. The <b>app</b> (post-auth, "ResolvePM") is <b>mobile-first</b> for Alpha (390px), desktop to follow. Same tokens throughout.</li>
-<li><b>Light Surface is the base.</b> Dark Ink is reserved for one dominant moment per screen (win card, recommended-action card, welcome veil). Never a dark theme throughout.</li>
-<li><b>App navigation</b> is a fixed <b>bottom tab bar</b> — steady-state order Dashboard · Work · Roadmap · Team · Knowledge. During onboarding only Roadmap is unlocked (the rest are visible but locked) until the roadmap is confirmed. Settings is not a tab — it opens from the header profile avatar.</li>
-<li><b>Global orchestrator = a floating pill</b> (docked above the tab bar), on every tab once the app shell has revealed — not during the chrome-free build sequence. Prompt + suggestions are contextual to the current tab; it drives ask · find · navigate · capture · confirmed-create and opens into one sheet. It supersedes the old "Search workflows · Ctrl K" sidebar element.</li>
-<li><b>Loaders narrate.</b> Every processing wait shows a short checklist of what Resolve is doing (not a bare spinner). Loaders run once through in product.</li>
-<li><b>First-run vs recurring.</b> Grand/one-time moments (OS assembly, Team intros) play only on first visit; every later open is the subtle version.</li>
-<li><b>Persistence.</b> The Dashboard "win for today" and the confirmed Roadmap are <b>stored, stable state</b> — not recomputed on load. The win changes only when its task is completed or explicitly superseded; never show a "refresh" affordance.</li>
+<li><b>Two surfaces, one system.</b> The <b>intake flow</b> (pre-auth) is a desktop-width web experience (~1180px) with a 4-step left stepper and a dark topbar carrying an amber progress bar (25/50/75/88/100%) + "Reset" pill. The <b>app</b> (post-auth) is <b>mobile-first</b> for Alpha (390px), desktop to follow. Same tokens throughout.</li>
+<li><b>Light Surface is the base.</b> Dark Ink is reserved for one dominant moment per screen (win card, do-first card, welcome veil). Never a dark theme throughout. Exactly one DM Serif element per screen.</li>
+<li><b>App navigation</b> is a fixed <b>bottom tab bar</b> (chosen: App Shell 1a) — <b>locked order: Dashboard · Roadmap · Work · Team · Knowledge</b> (align every mockup to this). During onboarding only Roadmap is unlocked; the rest are visible but locked (padlock badge) until the roadmap is confirmed (Global Bar · gn). Settings is not a tab.</li>
+<li><b>Global orchestrator = a floating pill</b> (chosen: Global Bar gb, contextual gc copy), docked above the tab bar on every tab once the app shell has revealed — not during the chrome-free build sequence. Prompt + suggestions are contextual to the tab; drives ask · find · navigate · capture · confirmed-create; opens into one sheet (gx). Supersedes the old "Search workflows · ⌘K" sidebar element (Global Bar ga is its descendant).</li>
+<li><b>Loaders narrate.</b> Every processing wait shows an amber spinner ring + a short checklist that ticks off stages (not a bare spinner). Loaders run once through in product; the mockups loop for preview.</li>
+<li><b>First-run vs recurring.</b> Grand one-time moments (bridge, OS assembly, Team intros) play only on first visit; every later open is the subtle version.</li>
+<li><b>Persistence.</b> The Dashboard "win for today" and the confirmed Roadmap are stored, stable state — not recomputed on load. Never show a "refresh" affordance.</li>
+<li><b>The honesty thesis</b> governs the Gate 1 halt (§7.5) and provisional theme marking (Part E): show the right direction, and mark what was inferred vs what the founder said.</li>
 </ul>
 
-<p class="part">Part A</p>
-<h2>Intake (pre-auth, desktop)</h2>
+<div class="screen"><h3>Global motion tokens (shared across the app — Surfaces E–I)</h3>
+<p class="lead" style="margin-bottom:8px">Every app-side animation uses these four easings. Implement with WAAPI (<code>element.animate</code>, <code>fill:'both'</code>); staggered steps apply <code>delay + (index × stagger)</code> in DOM order.</p>
+<table class="tok">
+<tr><td>--e-spring</td><td><b>cubic-bezier(.34,1.56,.64,1)</b> — arrivals, expansions, sheets (slight overshoot)</td></tr>
+<tr><td>--e-out</td><td><b>cubic-bezier(.22,.61,.36,1)</b> — decelerate-in reveals, restore</td></tr>
+<tr><td>--e-std</td><td><b>cubic-bezier(.4,0,.2,1)</b> — dims, press, tab colour</td></tr>
+<tr><td>--e-in</td><td><b>cubic-bezier(.55,0,.85,.35)</b> — exits, route-out</td></tr>
+<tr><td>amber focus</td><td>border #C8A040 + <code>box-shadow:0 0 0 3px rgba(200,160,64,.22)</code></td></tr>
+</table>
+<p style="margin-top:6px"><b>Global bar → agent chat</b> (E4, reused on every tab): backdrop dim <code>240ms</code>; chat sheet (80% height, rounded top) rises <code>translateY(100%)→0</code> <code>460ms · spring</code> delay 40ms; sheet rows fade up <code>300ms · out</code> delay 300ms stagger 60ms. Only the resting caption differs per tab.</p>
+</div>
+
+<p class="part">Part A · Intake (pre-auth, desktop)</p>
 
 <div class="screen"><h3>1 · Name entry</h3><div class="file">ResolvePM Onboarding.dc.html</div>
-<p><b>Purpose.</b> Capture the user's first name to personalise everything downstream.</p>
-<p><b>Flow.</b> First screen after landing → on submit, advances to the welcome/problem reveal.</p>
-<p><b>Behaviour.</b> Single field, autofocused. Enter submits. "Continue" stays disabled until a name is entered (no dead-end). Eyebrow is sentence case ("Let's get started").</p>
-</div>
+<p><b>Purpose.</b> Capture the first name to personalise everything downstream. Progress 25% · "Step 1 of 4". Eyebrow "Let's get started"; serif hero "What's your name?".</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Name field<em>text input · autofocus</em></span><span class="arw">→</span><span class="dst">Enter key submits (equals Continue)</span></div>
+<div class="act"><span class="el">Continue<em>ink button + arrow</em></span><span class="arw">→</span><span class="dst"><b>disabled until a name is entered</b>; advances to the welcome/problem reveal (screen 2)</span></div>
+<div class="act"><span class="el">Reset<em>topbar pill</em></span><span class="arw">→</span><span class="dst">restarts the intake from the top (present on every intake screen)</span></div>
+</div></div>
 
 <div class="screen"><h3>2 · Welcome → problem (fused reveal)</h3><div class="file">ResolvePM Onboarding.dc.html</div>
-<p><b>Purpose.</b> The delight beat and the first real question on one screen.</p>
-<p><b>Flow.</b> "Hi [name]." reveals as the serif hero and holds; "Welcome to Resolve" gives way as the question and three paths animate in beneath the same headline.</p>
-<p><b>Behaviour.</b> Options: <em>I have a messy project</em> (live) · <em>I have a new idea</em> / <em>I'm stuck</em> (both "Coming soon", disabled). Selecting the live path advances to step 2. The top step counter is hidden during this moment — the sidebar stepper is the progress. Question is Inter so the screen keeps one serif element.</p>
+<p><b>Purpose.</b> The delight beat and the first real question on one screen. Step counter hidden here; the sidebar stepper carries progress. Question is Inter so the one serif element is the "Hi [name]." hero.</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">I have a messy project<em>path option · live, pre-selected</em></span><span class="arw">→</span><span class="dst">advances to step 2 (Bring it in, screen 3)</span></div>
+<div class="act"><span class="el">I have a new idea<em>path option</em></span><span class="arw">→</span><span class="dst"><b>disabled</b> — "Coming soon"</span></div>
+<div class="act"><span class="el">I'm stuck, not sure where to start<em>path option</em></span><span class="arw">→</span><span class="dst"><b>disabled</b> — "Coming soon"</span></div>
 </div>
+<div class="mots"><div class="mothd">Motion — fused reveal (7000ms loop in preview; plays once in product)</div>
+<div class="mrw"><div class="top"><span class="mel">"Hi Simeon." hero<em>on load</em></span><span class="mtm">rHello · 0→9%</span></div><div class="mmv">fades up <code>translateY(14px)→0</code>, then holds the whole time (exits only at loop end)</div></div>
+<div class="mrw"><div class="top"><span class="mel">"Welcome to Resolve"<em>after hero</em></span><span class="mtm">rWelcome · 6→31%</span></div><div class="mmv">fades in under the hero, holds briefly, then fades out to make room for the question</div></div>
+<div class="mrw"><div class="top"><span class="mel">Question block<em>after welcome clears</em></span><span class="mtm">rPrompt · 28→38%</span></div><div class="mmv">"So, / What do you need help with?" fades up <code>translateY(10px)→0</code></div></div>
+<div class="mrw"><div class="top"><span class="mel">Three path options<em>staggered</em></span><span class="mtm">rO1/2/3 · 40/46/52%</span></div><div class="mmv">each fades up <code>translateY(12px)→0</code> in turn</div></div>
+<div class="mrw"><div class="top"><span class="mel">Sidebar stepper<em>with block</em></span><span class="mtm">rSide · 30→42%</span></div><div class="mmv">fades in as the question appears</div></div>
+</div></div>
 
 <div class="screen"><h3>3 · Bring it in (step 2)</h3><div class="file">ResolvePM Bring It In.dc.html</div>
-<p><b>Purpose.</b> The context dump — messy notes, pastes, anything.</p>
-<p><b>Behaviour.</b> Large textarea is the hero (voice-input affordance in corner). Starter chips ("A rebrand that's stalled" etc.) prefill a scaffold to beat the blank page. Helper hierarchy: <em>Try an example</em> (primary) · paste-from-another-chat prompt (link) · <em>Add material</em> (disabled, Coming soon). "Build my path" is disabled until there's content.</p>
-</div>
+<p><b>Purpose.</b> The context dump. Progress 50%. Large textarea is the hero; helper hierarchy: "Try an example" (primary) · paste-prompt (link) · "Add material" (disabled).</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Context textarea<em>text input · hero</em></span><span class="arw">→</span><span class="dst">holds the dump; its content gates "Build my path"</span></div>
+<div class="act"><span class="el">Mic button<em>icon · bottom-right of textarea</em></span><span class="arw">→</span><span class="dst">voice dictation into the textarea (confirm Alpha scope)</span></div>
+<div class="act"><span class="el">Starter chips ×3<em>"A rebrand that's stalled" etc.</em></span><span class="arw">→</span><span class="dst">prefill a scaffold into the textarea</span></div>
+<div class="act"><span class="el">Try an example<em>primary helper button</em></span><span class="arw">→</span><span class="dst">fills the textarea with a worked example</span></div>
+<div class="act"><span class="el">Paste from another AI chat<em>link</em></span><span class="arw">→</span><span class="dst">prompt to pull in an existing conversation</span></div>
+<div class="act"><span class="el">Add material<em>dashed button</em></span><span class="arw">→</span><span class="dst"><b>disabled</b> — "Coming soon"</span></div>
+<div class="act"><span class="el">Back<em>button</em></span><span class="arw">→</span><span class="dst">returns to screen 2</span></div>
+<div class="act"><span class="el">Build my path<em>ink button + arrow</em></span><span class="arw">→</span><span class="dst"><b>disabled until content</b> ("Add a little context to continue"); triggers the reading loader → Confirm (screen 4)</span></div>
+</div></div>
 
 <div class="screen"><h3>4 · Reading loader → Confirm understanding (step 3)</h3><div class="file">ResolvePM Confirm Understanding.dc.html</div>
-<p><b>Purpose.</b> Show what Resolve extracted and let the user correct it before it drives everything.</p>
-<p><b>Flow.</b> "Reading your project…" loader (reading → separating decided/open → spotting gaps → shaping) → confirm screen.</p>
-<p><b>Behaviour.</b> Four understanding cards (project, what you want, where it is, biggest uncertainty), each <b>individually editable</b> (per-card pencil). "A couple of things Resolve still needs" = optional gap questions. "What Resolve is assuming" is challengeable inline ("Not quite?"). Forward action in footer builds the path.</p>
+<p><b>Purpose.</b> Show what Resolve extracted and let the user correct it before it drives everything. Progress 50→75%.</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Understanding card ×4<em>editable cards</em></span><span class="arw">→</span><span class="dst">per-card pencil opens inline edit (📁 Project · 🎯 What you want · 📍 Where it is · ❓ Biggest uncertainty)</span></div>
+<div class="act"><span class="el">Gap question inputs ×2<em>text</em></span><span class="arw">→</span><span class="dst">"A couple of things Resolve still needs" — the <b>outcome question is required</b>; the rest are skippable</span></div>
+<div class="act"><span class="el">Not quite?<em>inline challenge link</em></span><span class="arw">→</span><span class="dst">opens inline correction on the amber "What Resolve is assuming" card</span></div>
+<div class="act"><span class="el">Back<em>button</em></span><span class="arw">→</span><span class="dst">returns to screen 3</span></div>
+<div class="act"><span class="el">This looks right — build my path<em>ink button</em></span><span class="arw">→</span><span class="dst">triggers the weighing loader → Your next move (screen 5)</span></div>
 </div>
+<div class="mots"><div class="mothd">Motion — reading loader (5000ms loop; runs once in product)</div>
+<div class="mrw"><div class="top"><span class="mel">Spinner ring<em>while loading</em></span><span class="mtm">spin · 900ms linear ∞</span></div><div class="mmv">amber-topped ring rotates 360°</div></div>
+<div class="mrw"><div class="top"><span class="mel">Checklist ×4<em>sequential</em></span><span class="mtm">17 / 37 / 57 / 79%</span></div><div class="mmv">each row in turn: label greys→ink, circle fills amber (border+bg), check fades in. Stages: reading → separating decided/open → spotting gaps → shaping. On completion the confirm screen replaces the loader.</div></div>
+</div></div>
 
 <div class="screen"><h3>5 · Weighing loader → Your next move (step 4)</h3><div class="file">ResolvePM Next Move.dc.html</div>
-<p><b>Purpose.</b> Deliver the single highest-leverage action + the shape of what follows.</p>
-<p><b>Flow.</b> "Weighing it up…" loader (weighing → checking against confirmed → sequencing → choosing first move) → next-move screen.</p>
-<p><b>Behaviour.</b> The dark "Do this first" card holds the one serif element (page title is Inter). "This week" item in the timeline is flagged active. Footer "Continue" leads to the celebration handoff.</p>
+<p><b>Purpose.</b> Deliver the single highest-leverage action + the shape of what follows. Progress 88→100%. The dark "Do this first" card holds the one serif element; page title is Inter.</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">"Do this first" card<em>dark hero · display</em></span><span class="arw">→</span><span class="dst">the single recommended action + first-milestone card beneath it</span></div>
+<div class="act"><span class="el">Timeline "This week"<em>flagged card (amber border)</em></span><span class="arw">→</span><span class="dst">marked active; "Next" and "Later" cards follow (display only)</span></div>
+<div class="act"><span class="el">Back<em>button</em></span><span class="arw">→</span><span class="dst">returns to screen 4</span></div>
+<div class="act"><span class="el">Continue<em>ink button</em></span><span class="arw">→</span><span class="dst">leads to the celebration handoff (Intake Transition, screen 6)</span></div>
 </div>
+<div class="mots"><div class="mothd">Motion — weighing loader (identical mechanic to §4)</div>
+<div class="mrw"><div class="top"><span class="mel">Spinner + checklist ×4<em>sequential</em></span><span class="mtm">spin 900ms · steps 17/37/57/79%</span></div><div class="mmv">stages: weighing what matters → checking against confirmed → sequencing the work → choosing your first move. Reveals the next-move screen on completion.</div></div>
+</div></div>
 
-<p class="part">Part B</p>
-<h2>Handoff &amp; sign-up</h2>
+<p class="part">Part B · Handoff &amp; sign-up</p>
 
 <div class="screen"><h3>6 · Final intake screen + bridge transition</h3><div class="file">ResolvePM Intake Transition.dc.html</div>
-<p><b>Purpose.</b> Turn "leaving intake" into an earned reward, then carry the moment into the app without a hard cut.</p>
-<p><b>Flow.</b> Trophy celebration + the recommended-action handoff card are on screen together. User taps <b>Continue in Resolve</b> → a ~1.6s bridge (no click): fog headline lifts → first move pins with an amber check → Resolve mark + context chips form ("setting up your workspace") → settles into the sign-up screen.</p>
-<p><b>Behaviour.</b> Single dominant amber CTA; "Not now" is a quiet link. Copy is benefit-led (first move + roadmap + full context carry across) — not "send session data".</p>
+<p><b>Purpose.</b> Turn "leaving intake" into an earned reward, then carry the moment into sign-up without a hard cut. Screen ends at the handoff card — nothing renders below it. Copy is benefit-led, not "send session data".</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Download report<em>secondary button (dark)</em></span><span class="arw">→</span><span class="dst">downloads the full project report PDF (sits directly above the CTA)</span></div>
+<div class="act"><span class="el">Continue in Resolve<em>primary amber CTA</em></span><span class="arw">→</span><span class="dst">plays the ~9.2s bridge → settles into sign-up (screen 7). <b>Note: "Not now" link and the 3 carry-pills were removed</b> (Flow Spec A3)</span></div>
 </div>
+<div class="mots"><div class="mothd">Motion — bridge transition (9200ms loop, 4 held beats; auto, no click; Ink+Amber throughout)</div>
+<div class="mrw"><div class="top"><span class="mel">Shared glow<em>under all beats</em></span><span class="mtm">glowpulse · 9.2s</span></div><div class="mmv">amber radial pulses opacity .35↔.85 on the shared clock</div></div>
+<div class="mrw"><div class="top"><span class="mel">Beat 1 · trophy zoom<em>0.0–2.3s</em></span><span class="mtm">fog · one segment</span></div><div class="mmv">the trophy card grows <code>scale(.62→1.16)</code> in ONE continuous zoom (8→25% is a single easing segment — do not subdivide, that caused jutter). "You just cleared the fog."</div></div>
+<div class="mrw"><div class="top"><span class="mel">Beat 2 · first move pins<em>2.4–4.5s</em></span><span class="mtm">pin</span></div><div class="mmv">amber-check chip with the user's <b>real</b> next task (bind live, never hardcode) glides in <code>translateY(22px)→0</code>; caption "Bringing your first move with you."</div></div>
+<div class="mrw"><div class="top"><span class="mel">Beat 3 · workspace forms<em>4.6–6.6s</em></span><span class="mtm">brand</span></div><div class="mmv">Resolve mark (44px tile + wordmark) + 3 context chips fan in; caption "Setting up your workspace."</div></div>
+<div class="mrw"><div class="top"><span class="mel">Beat 4 · sign-in settles<em>6.8s → holds</em></span><span class="mtm">settle</span></div><div class="mmv">renders the canonical sign-in minimal state — <b>pixel-identical to R1's first frame</b>. No eyebrow/subhead/footer here.</div></div>
+</div></div>
 
-<div class="screen"><h3>7 · Sign-up / login (OTP)</h3><div class="file">ResolvePM Sign-in.dc.html</div>
-<p><b>Purpose.</b> Create the workspace via one-time code (not magic link).</p>
-<p><b>Flow.</b> Email entry ("Send code") → 6-digit code entry ("Verify and continue") → into the app build sequence.</p>
-<p><b>Behaviour.</b> Six individual digit boxes. <b>Resend has a cooldown</b> (respect the mailer rate limit) — link disabled with a countdown, re-enabled after. Wrong/expired code shows an <b>inline error, no page reload</b>. All copy says "code", never "link".</p>
+<div class="screen"><h3>7 · Sign-up / login (OTP) + exit transition</h3><div class="file">ResolvePM Sign-in.dc.html</div>
+<p><b>Purpose.</b> Create the workspace via one-time code (never a magic link — all copy says "code"). Dark shell, amber glow, serif headline. Seam contract: R1's initial frame === bridge beat 4. Eyebrow/subhead/footer sit in the DOM at <code>opacity:0</code> so layout never jumps; they fade in only on the landed screen.</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Email field<em>text input</em></span><span class="arw">→</span><span class="dst">gates "Send code"</span></div>
+<div class="act"><span class="el">Send code<em>amber button</em></span><span class="arw">→</span><span class="dst">reveals the 6-digit code entry state</span></div>
+<div class="act"><span class="el">Code boxes ×6<em>digit inputs</em></span><span class="arw">→</span><span class="dst">states: filled / active (amber ring) / err (terracotta); wrong or expired shows inline error, <b>no reload</b></span></div>
+<div class="act"><span class="el">Change email<em>back link</em></span><span class="arw">→</span><span class="dst">returns to email entry</span></div>
+<div class="act"><span class="el">Verify and continue<em>amber button</em></span><span class="arw">→</span><span class="dst">enters the app — <b>Gate 1 check runs here</b>: passes to the build sequence (7.5/8), or halts on Floor refusal</span></div>
+<div class="act"><span class="el">Resend code<em>link · cooldown</em></span><span class="arw">→</span><span class="dst"><b>disabled with a countdown</b> ("Resend available in 0:42"); becomes an active amber link after, and on the error state</span></div>
+<div class="act"><span class="el">Already have a workspace? Sign in<em>footer link</em></span><span class="arw">→</span><span class="dst">existing-workspace login path</span></div>
 </div>
+<div class="mots"><div class="mothd">Motion — landed fade-in + exit to roadmap (6500ms loop)</div>
+<div class="mrw"><div class="top"><span class="mel">Eyebrow / subhead / footer<em>on land only (.landed)</em></span><span class="mtm">fadein · 520ms staggered 420/560/700ms</span></div><div class="mmv">fade up <code>translateY(6px)→0</code> a beat after arrival; bridge beat 4 must NOT render these</div></div>
+<div class="mrw"><div class="top"><span class="mel">Exit D1 · verified<em>0.0–2.2s</em></span><span class="mtm">xdark</span></div><div class="mmv">dark layer holds: 56px amber check, "You're in.", "Setting up your workspace…"</div></div>
+<div class="mrw"><div class="top"><span class="mel">Exit D2 · amber bloom + wash<em>2.2–3.6s</em></span><span class="mtm">xbloom / xlight</span></div><div class="mmv">amber bloom ripples from centre <code>scale(.4→11)</code>; light surface fades up beneath the anchored brandmark; dark layer fades out</div></div>
+<div class="mrw"><div class="top"><span class="mel">Exit D3 · roadmap lands<em>3.6s → holds</em></span><span class="mtm">xcard · spring</span></div><div class="mmv">first theme card scales in with the Roadmap Cards spring <code>cubic-bezier(.34,1.56,.64,1)</code> — reuse verbatim. Brandmark position identical across dark/light = the through-line.</div></div>
+</div></div>
 
-<p class="part">Part C</p>
-<h2>Post-auth build sequence (mobile, chrome-free)</h2>
-<p class="lead">A focused, full-screen sequence with no app chrome — this is the user "signing" their roadmap before the OS appears. A 3-segment progress bar threads it: Themes → To-do → Roadmap.</p>
+<p class="part">Part C · Post-auth build sequence (mobile, chrome-free)</p>
+<p class="lead">A full-screen sequence with no app chrome — the user "signing" their roadmap before the OS appears. A 3-segment progress bar threads it: Themes → To-do → Roadmap.</p>
+
+<div class="screen"><h3>7.5 · Gate 1 halt — the one deliberate stop</h3><div class="file">ResolvePM Floor Refusal.dc.html</div>
+<p><b>Purpose.</b> The single case where Resolve stops and asks before building: intake captured no real outcome, so there's nothing to aim at. Sits in the R2 light shell, 3-segment progress (done · done · on). <b>Fires rarely.</b> Register: honest, not sorry — never an error, never a form; the question elicits, it does not advise. <strong class="t">No escape hatch</strong> (Part E). Eyebrow/headline/consequence are static; Para-1 reason and the one question are dynamic from the floor service and must flex ≈8→30 words. Prop: <code>accent</code> (color, default #C8A040).</p>
+<div class="acts"><div class="acthd">Elements &amp; actions — states 1→4</div>
+<div class="act"><span class="el">Question card<em>dynamic hero</em></span><span class="arw">→</span><span class="dst">shows the one generated question; card grows, Para 1 reflows (state 5 shows short + long payloads)</span></div>
+<div class="act"><span class="el">Answer textarea<em>text input</em></span><span class="arw">→</span><span class="dst">Default (empty, button off) → Filled (focused, button on)</span></div>
+<div class="act"><span class="el">Continue<em>button</em></span><span class="arw">→</span><span class="dst"><b>off until content</b>; on submit → Submitting</span></div>
+<div class="act"><span class="el">Submitting<em>"Re-running the check" + spinner</em></span><span class="arw">→</span><span class="dst">input locks; nothing implies outcome; on success → Passed</span></div>
+<div class="act"><span class="el">Passed<em>"That's the piece we needed."</em></span><span class="arw">→</span><span class="dst">brief amber-check + 3-dot loader, then hands straight to Roadmap Reveal. <b>No confetti, no "you passed".</b></span></div>
+<div class="act"><span class="el">(no skip control)<em>deliberate omission</em></span><span class="arw">→</span><span class="dst">the only path out is answering</span></div>
+</div>
+<div class="mots"><div class="mothd">Motion</div>
+<div class="mrw"><div class="top"><span class="mel">Submit spinner<em>submitting state</em></span><span class="mtm">sp · 0.7s linear ∞</span></div><div class="mmv">small ring in the button rotates 360°</div></div>
+<div class="mrw"><div class="top"><span class="mel">Passed 3-dot loader<em>passed state</em></span><span class="mtm">pl · 1.1s ∞ stagger .18s</span></div><div class="mmv">three amber dots pulse opacity .3↔1 in sequence while the roadmap builds</div></div>
+</div></div>
 
 <div class="screen"><h3>8 · Roadmap theme cards</h3><div class="file">ResolvePM Roadmap Cards.dc.html</div>
-<p><b>Purpose.</b> Confirm the strategic themes one at a time; make the roadmap visibly form.</p>
-<p><b>Behaviour.</b> One card per theme (3 total). <b>"Yes, add to my roadmap"</b> drops the theme into an "On your roadmap" list (check pop) and advances. <b>"Not quite"</b> opens an inline correction field — on save it swaps the wording and adds the corrected version (correction re-runs the theme-vs-task check server-side). <span class="k"></span><strong class="t">No reject/remove path in Alpha</strong> — every theme ends on the roadmap, correction-only. End state hands to the to-do list.</p>
+<p><b>Purpose.</b> Confirm the strategic themes one at a time (3 total); make the roadmap visibly form. Progress dots done/current. <strong class="t">No reject/remove path in Alpha</strong> — correction-only. Stateful DC (index, approved[], correcting).</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Yes, add to my roadmap<em>amber button</em></span><span class="arw">→</span><span class="dst">pushes theme into "On your roadmap" (check-pop), advances index to next card</span></div>
+<div class="act"><span class="el">Not quite<em>outline button</em></span><span class="arw">→</span><span class="dst">opens inline correction field (auto-focus)</span></div>
+<div class="act"><span class="el">Save and continue<em>amber inline button</em></span><span class="arw">→</span><span class="dst">swaps this theme's wording to the typed version, then approves + advances (re-runs theme-vs-task check server-side)</span></div>
+<div class="act"><span class="el">Continue<em>end card, after 3rd theme</em></span><span class="arw">→</span><span class="dst">hands to the to-do list (screen 9)</span></div>
+<div class="act"><span class="el">↻ Replay from the top<em>dev control</em></span><span class="arw">→</span><span class="dst">resets the sequence (mockup only)</span></div>
 </div>
+<div class="mots"><div class="mothd">Motion</div>
+<div class="mrw"><div class="top"><span class="mel">Card arrival<em>each new theme</em></span><span class="mtm">cardIn · .45s spring</span></div><div class="mmv"><code>scale(.94) translateY(10px)→none</code>; a faint "behind" card offsets to show more remain; inner tag/headline/buttons fade up staggered (.05/.16/.3s)</div></div>
+<div class="mrw"><div class="top"><span class="mel">Approved row drop-in<em>on approve</em></span><span class="mtm">rIn .45s + pop .5s spring</span></div><div class="mmv">row slides in <code>translateX(-14px)→0</code>; its amber check pops <code>scale(1.6→1)</code></div></div>
+</div></div>
 
 <div class="screen"><h3>9 · To-do list reveal</h3><div class="file">ResolvePM Todo List.dc.html</div>
-<p><b>Purpose.</b> Show the concrete first-week list generated from the roadmap.</p>
-<p><b>Behaviour.</b> Auto-plays: setup meta-steps ("Set up workspace", "Confirm your roadmap") check off and strike through, then the first real task surfaces as the dark "Up next" row, upcoming tasks below. Counter ("2 of 12 complete"). Headline copy is placeholder — confirm wording.</p>
+<p><b>Purpose.</b> Show the concrete first-week list built from the roadmap. Progress: seg1 done, seg2 on. Counter "2 of 12 complete". Headline "Here's where to begin." — approved.</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">See it as a roadmap<em>ink button</em></span><span class="arw">→</span><span class="dst">advances to Roadmap reveal (screen 10)</span></div>
+<div class="act"><span class="el">↻ Replay<em>dev control</em></span><span class="arw">→</span><span class="dst">re-runs the auto sequence (mockup only)</span></div>
 </div>
+<div class="mots"><div class="mothd">Motion — auto-plays on mount</div>
+<div class="mrw"><div class="top"><span class="mel">Meta-steps ×2<em>auto, sequential</em></span><span class="mtm">rowIn .35s → pop .5s → strike @ .3s/1.5s</span></div><div class="mmv">"Set up workspace" then "Confirm your roadmap": row fades up, amber check pops, text strikes through and greys</div></div>
+<div class="mrw"><div class="top"><span class="mel">"Up next" dark row<em>@2.7s</em></span><span class="mtm">rowIn · .4s</span></div><div class="mmv">the first real task surfaces as the dark card</div></div>
+<div class="mrw"><div class="top"><span class="mel">Upcoming rows ×2 + footer<em>@3.25/3.5/3.9s</em></span><span class="mtm">rowIn · .4s</span></div><div class="mmv">fade up <code>translateY(6px)→0</code>; the Continue button lands last</div></div>
+</div></div>
 
 <div class="screen"><h3>10 · Roadmap reveal</h3><div class="file">ResolvePM Roadmap Reveal.dc.html</div>
-<p><b>Purpose.</b> Present the plan as a Now / Next / Later grid, then open the door to the agents.</p>
-<p><b>Behaviour.</b> Reveals column by column (themes → Now, amber-emphasised → Next → Later), then drops in the <b>Product Director</b> to invite questions or additions before entering the app.</p>
+<p><b>Purpose.</b> Present the plan as a theme × Now/Next/Later grid, then open the door to the agents. Progress: seg1+2 done, seg3 on. The provisional theme carries the marker here (Part E, treatment A/B).</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Provisional marker + tooltip<em>on the inferred theme label</em></span><span class="arw">→</span><span class="dst">marker on the inferred theme (chip/label — compass glyph out of scope); hover shows "Provisional — inferred by Resolve, not stated…"</span></div>
+<div class="act"><span class="el">Product Director input + Send<em>agent prompt</em></span><span class="arw">→</span><span class="dst">ask about the roadmap or add something before entering the app</span></div>
+<div class="act"><span class="el">Open my roadmap<em>ink button</em></span><span class="arw">→</span><span class="dst">plays OS assembly (screen 11) → Dashboard</span></div>
+<div class="act"><span class="el">↻ Replay<em>dev control</em></span><span class="arw">→</span><span class="dst">re-runs the reveal (mockup only)</span></div>
 </div>
+<div class="mots"><div class="mothd">Motion — column-by-column reveal (rvA .5s ease each, staggered)</div>
+<div class="mrw"><div class="top"><span class="mel">Theme labels ×3<em>first</em></span><span class="mtm">rd1/2/3 · .2/.35/.5s</span></div><div class="mmv">fade up <code>translateY(8px)→0</code></div></div>
+<div class="mrw"><div class="top"><span class="mel">Now → Next → Later columns<em>then</em></span><span class="mtm">rd4/5/6 · 1.4/2.0/2.6s</span></div><div class="mmv">column headers + cells fade in per column; Now is amber-emphasised</div></div>
+<div class="mrw"><div class="top"><span class="mel">Product Director card<em>last</em></span><span class="mtm">rd7 · 3.3s</span></div><div class="mmv">drops in to invite questions/additions</div></div>
+</div></div>
 
 <div class="screen"><h3>11 · OS assembly → Dashboard</h3><div class="file">ResolvePM OS Reveal.dc.html</div>
-<p><b>Purpose.</b> The grand, one-time reveal of the whole Resolve OS.</p>
-<p><b>Behaviour.</b> <b>First run:</b> dark "Welcome in, [name] / Your operating system is ready" beat → veil lifts → header drops in, bottom tab bar slides up, the four Dashboard cards populate in leverage order → settles on the Dashboard. <b>Every later open:</b> no dark beat; the shell's already there, content just settles in with a quick fade. Both land on the Dashboard.</p>
+<p><b>Purpose.</b> The grand one-time reveal of the whole Resolve OS. Two versions in the mockup: first-run grand, and the calm every-open. Both auto-play and land on the Dashboard.</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">↻ Replay grand / subtle<em>dev controls</em></span><span class="arw">→</span><span class="dst">re-run either reveal (mockup only)</span></div>
+<div class="act"><span class="el">(no user controls)<em>auto sequence</em></span><span class="arw">→</span><span class="dst">settles onto the live Dashboard (screen 12)</span></div>
 </div>
+<div class="mots"><div class="mothd">Motion — first run (grand)</div>
+<div class="mrw"><div class="top"><span class="mel">Welcome veil<em>0–1.5s</em></span><span class="mtm">vin/rvUp → veilOut @1.5s</span></div><div class="mmv">logo pops <code>scale(.8→1)</code>, "Welcome in, Simeon / Your operating system is ready" fade up, then the dark veil fades out</div></div>
+<div class="mrw"><div class="top"><span class="mel">Header<em>1.7s</em></span><span class="mtm">rvDown · .5s</span></div><div class="mmv">drops in <code>translateY(-8px)→0</code></div></div>
+<div class="mrw"><div class="top"><span class="mel">Tab bar<em>2.0s</em></span><span class="mtm">slideUp · .55s</span></div><div class="mmv">slides up from below <code>translateY(110%)→0</code></div></div>
+<div class="mrw"><div class="top"><span class="mel">4 cards + global bar<em>2.4–3.8s</em></span><span class="mtm">rvUp · .5s each</span></div><div class="mmv">win → blocked → today → pointer populate in leverage order, then the global bar rises</div></div>
+<div class="mrw"><div class="top"><span class="mel">Every-open (subtle)<em>recurring</em></span><span class="mtm">.05–.5s</span></div><div class="mmv">no veil; header + 4 cards + bar settle in a quick calm fade (same rvUp, tighter delays)</div></div>
+</div></div>
 
-<p class="part">Part D</p>
-<h2>The app (mobile shell, bottom tabs)</h2>
+<p class="part">Part D · The app (mobile shell, bottom tabs)</p>
 
-<div class="screen"><h3>12 · Dashboard</h3><div class="file">ResolvePM Dashboard.dc.html</div>
-<p><b>Purpose.</b> Answer "what do I do next?" Four cards, fixed order.</p>
-<p><b>Behaviour.</b> <span class="k">Win for today</span> dark full-width card, serif headline, entire card is the tap target — no button; routes contextually by action type (work item → opens it; agent-relevant → that role's chat). <span class="k">Blocked</span> only external-input stalls. <span class="k">Schedule</span> today's meetings + to-dos. <span class="k">Pointer</span> a lighter nudge (roadmap). <b>Tapping any card expands it in place</b> — background dims, detail surfaces inline, no open/close buttons. The win content is stored/stable (see persistence).</p>
+<div class="screen"><h3>12 · Dashboard</h3><div class="file">ResolvePM Dashboard.dc.html · motion: Dashboard Motion / Flow Spec E</div>
+<p><b>Purpose.</b> Answer "what do I do next?" Four cards, fixed order. Win content is stored/stable. Tweakable props: winHeadline, winSupport, winRouteLabel (enum: opens work item / agent chat / roadmap), blockedNote.</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Win for today<em>dark card · whole card is the tap target, no button</em></span><span class="arw">→</span><span class="dst">routes contextually by winRouteLabel — work item opens it; agent-relevant opens that role's chat; roadmap opens the tab</span></div>
+<div class="act"><span class="el">Waiting on (blocked)<em>card</em></span><span class="arw">→</span><span class="dst">expands in place → detail: stalled-since, waiting-on, note, + <b>Send reminder</b> / <b>View in Work</b></span></div>
+<div class="act"><span class="el">Today (schedule)<em>card</em></span><span class="arw">→</span><span class="dst">expands in place; meetings + to-dos with times</span></div>
+<div class="act"><span class="el">Worth a look (pointer)<em>card</em></span><span class="arw">→</span><span class="dst">routes to the Roadmap tab</span></div>
+<div class="act"><span class="el">Avatar<em>header, top-right</em></span><span class="arw">→</span><span class="dst">opens the profile menu (Profile · Settings · Sign out)</span></div>
+<div class="act"><span class="el">Global bar<em>floating pill</em></span><span class="arw">→</span><span class="dst">opens the orchestrator chat sheet (E4)</span></div>
 </div>
+<div class="mots"><div class="mothd">Motion — Flow Spec Surface E (literal)</div>
+<div class="mrw"><div class="top"><span class="mel">E1 · screen entrance<em>on land / tab return</em></span><span class="mtm">≈940ms total</span></div><div class="mmv">topbar <code>340ms out</code> <code>translateY(-8px)</code> → card stack <code>460ms spring</code> delay 120ms stagger 70ms <code>translateY(18px) scale(.98)</code> → global bar <code>480ms spring</code> delay 460ms <code>translateY(30px)</code>. Tab bar static.</div></div>
+<div class="mrw"><div class="top"><span class="mel">E2 · blocked card expand<em>tap "Waiting on"</em></span><span class="mtm">.dim 220ms · expcard 420ms spring</span></div><div class="mmv">backdrop dims; other cards blur+dim to .5; the card swaps in-place for the detail panel <code>translateY(10px) scale(.96)→none</code>; detail rows fade up stagger 55ms</div></div>
+<div class="mrw"><div class="top"><span class="mel">E3 · collapse<em>tap backdrop</em></span><span class="mtm">≈300ms, --e-in</span></div><div class="mmv">reverse of E2, slightly quicker</div></div>
+<div class="mrw"><div class="top"><span class="mel">E5 · win press + route-out<em>tap win</em></span><span class="mtm">press 240ms · exit 280ms in</span></div><div class="mmv">card presses <code>scale→.975→1</code>; screen exits left <code>translateX(-28px)</code>. <b>Idle loop:</b> route arrow drifts +3px on <code>2.6s ease-in-out ∞</code> (winArrow), always running.</div></div>
+<div class="mrw"><div class="top"><span class="mel">E6 · pointer route-out<em>tap "Worth a look"</em></span><span class="mtm">press 260ms · exit 280ms</span></div><div class="mmv">press <code>scale .99</code> + bg tint to #FBF4EA; screen exits left</div></div>
+<div class="mrw"><div class="top"><span class="mel">E7 · profile menu<em>tap avatar</em></span><span class="mtm">amenu 300ms spring</span></div><div class="mmv">avatar presses + amber focus ring; backdrop dims; menu unfolds from <code>transform-origin:top right</code> <code>scale(.9) translateY(-6px)→none</code>; rows stagger 40ms</div></div>
+<div class="mrw"><div class="top"><span class="mel">E8 · switch tab<em>tap another tab</em></span><span class="mtm">out 240ms in · in 400ms spring</span></div><div class="mmv">directional: outgoing exits <code>translateX(-24px)</code>, incoming enters <code>translateX(28px)→none</code>; active tab colour greys→amber mid-transition (300ms). Flip sign for backward nav.</div></div>
+</div></div>
 
-<div class="screen"><h3>13 · Roadmap tab</h3><div class="file">ResolvePM Roadmap Tab.dc.html</div>
-<p><b>Behaviour.</b> View toggle: <b>By phase</b> (Now/Next/Later stacked, Now emphasised) ↔ <b>By theme</b> (theme cards, each with its own Now/Next/Later rows). <b>Product Director floating button</b> pinned bottom-right (above the tab bar) — reachable from any scroll position.</p>
+<div class="screen"><h3>13 · Roadmap tab</h3><div class="file">ResolvePM Roadmap Tab.dc.html · motion: Roadmap Motion / Flow Spec F</div>
+<p><b>Purpose.</b> The living plan. Stateful view toggle. Provisional marker on the by-theme card (Part E, treatment B).</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">By phase ↔ By theme<em>segmented toggle</em></span><span class="arw">→</span><span class="dst">By phase = Now/Next/Later stacked (Now amber); By theme = per-theme cards each with Now/Next/Later rows</span></div>
+<div class="act"><span class="el">Provisional marker + tooltip<em>by-theme card header only</em></span><span class="arw">→</span><span class="dst">header only — not repeated per action; hover shows "Provisional — inferred by Resolve, not stated in your intake"</span></div>
+<div class="act"><span class="el">Action card<em>Now/Next/Later row</em></span><span class="arw">→</span><span class="dst">(F3) expands inline → context line + <b>Go to work item</b>; one open at a time</span></div>
+<div class="act"><span class="el">Global bar<em>floating pill</em></span><span class="arw">→</span><span class="dst">"Ask about your roadmap" → orchestrator sheet (routes roadmap intents to the Product Director)</span></div>
+<div class="act"><span class="el">Bottom tabs / avatar<em>nav</em></span><span class="arw">→</span><span class="dst">switch tab (E8) / profile menu</span></div>
 </div>
+<div class="settled"><b>Decision.</b> <b>Remove the Product Director FAB</b> — the global bar is the single entry point for roadmap questions. <b>F3 inline action-expand is IN</b>: it carries "Go to work item", the only link from the plan to execution. <b>F5 "whole picture" matrix overlay is OUT for Alpha</b> (Beta).</div>
+<div class="mots"><div class="mothd">Motion — Flow Spec Surface F</div>
+<div class="mrw"><div class="top"><span class="mel">F1 · entrance<em>tab-in</em></span><span class="mtm">hdr→title→toggle→phases→bar</span></div><div class="mmv">header <code>340ms out</code>, title <code>420ms out</code> delay 80ms, toggle <code>360ms spring</code>, phase groups ×3 <code>460ms spring</code> delay 260ms stagger 80ms, global bar <code>480ms spring</code> delay 620ms</div></div>
+<div class="mrw"><div class="top"><span class="mel">F2 · view toggle<em>tap segmented control</em></span><span class="mtm">thumb 320ms spring</span></div><div class="mmv">directional: thumb slides <code>translateX(0↔100%)</code>; outgoing view exits <code>∓18px</code> (200ms in), incoming enters <code>±24px→none</code> (380ms spring) after swap at midpoint</div></div>
+<div class="mrw"><div class="top"><span class="mel">F3/F4 · action expand/collapse<em>tap card</em></span><span class="mtm">360ms spring / 240ms in</span></div><div class="mmv">press <code>scale .99</code>; detail animates measured <code>height 0→scrollHeight</code>, inner rows stagger 50ms; collapse reverses and removes node</div></div>
+<div class="mrw"><div class="top"><span class="mel">F5/F6 · matrix overlay<em>Beta — out of Alpha</em></span><span class="mtm">deferred</span></div><div class="mmv">the "whole picture" matrix overlay and its slide-down dismiss are deferred to Beta; not built for Alpha</div></div>
+</div></div>
 
-<div class="screen"><h3>14 · Work tab</h3><div class="file">ResolvePM Work Tab.dc.html</div>
-<p><b>Purpose.</b> The execution surface (distinct from Roadmap's plan). Week-progress bar up top; checkable rows.</p>
-<p><b>Behaviour.</b> Sections in order: <b>Now</b> (active, amber) · <b>Waiting on</b> (external-dependency stalls, "Waiting · Nd") · <b>Captured inbox</b> (Alpha empty — fed by the global input bar) · <b>Upcoming from roadmap</b> · <b>Synced from tools</b> (Alpha empty). <b>Pre-populated from confirmed roadmap items — never starts blank.</b></p>
+<div class="screen"><h3>14 · Work tab</h3><div class="file">ResolvePM Work Tab.dc.html · motion: Work Motion / Flow Spec G</div>
+<p><b>Purpose.</b> The execution surface (distinct from Roadmap's plan). Week-progress bar (17% · "2 of 12 done"). <b>Pre-populated from confirmed roadmap — never blank.</b> Sections: Now (amber) · Waiting on (terracotta, "Waiting · Nd") · Captured inbox (Alpha empty) · Upcoming from roadmap · Synced from tools (Alpha empty).</p>
+<div class="acts"><div class="acthd">Elements &amp; actions — two targets per row</div>
+<div class="act"><span class="el">Task tick (circle)<em>the ONLY complete control</em></span><span class="arw">→</span><span class="dst">completes the item (check-pop, strike, row collapses out); advances the progress bar ~8%. Wire with <code>stopPropagation</code>.</span></div>
+<div class="act"><span class="el">Task row body<em>tap</em></span><span class="arw">→</span><span class="dst">(G3) opens the item editor (push from right): Title · Theme · End date · Notes + Save / Mark complete. Never completes.</span></div>
+<div class="act"><span class="el">"N done this week ›"<em>progress row</em></span><span class="arw">→</span><span class="dst">(G5) opens Completed view (push from right), grouped This week / Earlier; footer "View all in Knowledge"</span></div>
+<div class="act"><span class="el">Global bar<em>floating pill</em></span><span class="arw">→</span><span class="dst">"Add a task, or ask what's next" — type to capture into the inbox (G4), or open the chat sheet (E4)</span></div>
 </div>
+<div class="settled"><b>Decision.</b> Build <b>G2–G5 from Flow Spec G</b> — check-off collapse (G2), row-tap editor (G3), capture-to-inbox (G4), completed view (G5). A work tab you can't tick things off in isn't a work tab. The static mockup shows the resting rows only; these interactions are the build spec.</div>
+<div class="mots"><div class="mothd">Motion — Flow Spec Surface G</div>
+<div class="mrw"><div class="top"><span class="mel">G1 · entrance<em>tab-in</em></span><span class="mtm">bar fills 0→17% @640ms</span></div><div class="mmv">header/title fade, progress bar fills quietly, 5 sections spring in stagger 80ms, global bar rises</div></div>
+<div class="mrw"><div class="top"><span class="mel">G2 · check-off<em>tap tick</em></span><span class="mtm">cb 300ms spring · row collapse 340ms @440ms</span></div><div class="mmv">tick fills amber + pops <code>scale 1.25→1</code>, text strikes to .6, row collapses out (height/margin→0), bar advances n/12→(n+1)/12</div></div>
+<div class="mrw"><div class="top"><span class="mel">G3/G5 · editor / completed<em>tap row / "N done"</em></span><span class="mtm">420ms spring in · 300ms in out</span></div><div class="mmv">panel pushes <code>translateX(100%)→0</code>; rows stagger 45ms; back slides off right</div></div>
+<div class="mrw"><div class="top"><span class="mel">G4 · capture → inbox<em>type in global bar</em></span><span class="mtm">new row 380ms spring</span></div><div class="mmv">inbox "Empty" collapses; new row grows in <code>translateY(-8px)</code>; count flips to "1 item", amber "Just captured" chip</div></div>
+</div></div>
 
 <div class="screen"><h3>15 · Team tab + agent chats</h3><div class="file">ResolvePM Team Tab.dc.html · ResolvePM Agent Chat.dc.html</div>
-<p><b>Purpose.</b> The AI agent roster: Product Director, Growth Lead, Tech Lead.</p>
-<p><b>Behaviour.</b> On <b>first visit</b> each lead introduces itself in plain English, contextualised to the project (staggered intro; static thereafter). Tapping a lead opens an <b>individual chat</b> (project-contextualised greeting + starter prompts; same pattern for all three). The <b>Stand-up room</b> lets the user address the group — only the relevant leads respond (not all three every time), each reply labelled with who's speaking.</p>
+<p><b>Purpose.</b> The AI roster: Product Director, Growth Lead, Tech Lead. Header reads "Coming soon" — <b>Team + agent chat are out of scope for Alpha</b>. Documented here for continuity only; not built this version.</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Agent card ×3<em>tap</em></span><span class="arw">→</span><span class="dst">opens that lead's individual chat (project-contextualised greeting + starter-prompt chips)</span></div>
+<div class="act"><span class="el">Stand-up room<em>stacked-avatar row</em></span><span class="arw">→</span><span class="dst">group chat — only the relevant leads respond, each reply labelled with who's speaking</span></div>
+<div class="act"><span class="el">Starter prompt chips<em>in chat</em></span><span class="arw">→</span><span class="dst">send that prompt (e.g. "Help me decide", "Turn this into tasks")</span></div>
+<div class="act"><span class="el">Send / input<em>chat footer</em></span><span class="arw">→</span><span class="dst">message the lead or the room</span></div>
+<div class="act"><span class="el">Back arrow<em>chat header</em></span><span class="arw">→</span><span class="dst">returns to the Team tab (chats drill in, no bottom nav)</span></div>
 </div>
+<div class="mots"><div class="mothd">Motion</div>
+<div class="mrw"><div class="top"><span class="mel">Roster intros ×4<em>first visit, staggered</em></span><span class="mtm">rvUp .5s · .15/.4/.65/.95s</span></div><div class="mmv">three agent cards + stand-up row fade up <code>translateY(12px)→0</code>; static thereafter</div></div>
+<div class="mrw"><div class="top"><span class="mel">Chat conversation<em>send → reply</em></span><span class="mtm">deferred post-Alpha</span></div><div class="mmv">send→thinking→streamed reply is NOT specced for Alpha; only the global bar → chat opening (E4) is</div></div>
+</div></div>
 
-<div class="screen"><h3>16 · Knowledge base tab</h3><div class="file">ResolvePM Knowledge Base Tab.dc.html</div>
-<p><b>Purpose.</b> Read-only view of the intake handoff.</p>
-<p><b>Behaviour.</b> "Read-only · captured at intake" pill. Sections: project understanding (the four intake cards, no editing) · recommended action · full report (view/download PDF). <strong class="t">Alpha scope: no search/ask, no decision tracking</strong> — Beta or later.</p>
+<div class="screen"><h3>16 · Knowledge base tab</h3><div class="file">ResolvePM Knowledge Base Tab.dc.html · motion: Knowledge Motion / Flow Spec H</div>
+<p><b>Purpose.</b> A <b>library you both read from and add to</b> — the home for intake knowledge, completed work, global-bar captures, and the cut list ("what not to do"). Ship the library (Flow Spec H), <b>not the read-only mockup</b>. Search + filter chips (All / Intake / Completed / Files / Notes); two-column typed-card grid (badges: Intake · Done · Files · Notes).</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Search + filter chips<em>All/Intake/Completed/Files/Notes</em></span><span class="arw">→</span><span class="dst">filter the grid; active chip = ink pill</span></div>
+<div class="act"><span class="el">Typed card<em>tap</em></span><span class="arw">→</span><span class="dst">opens a preview/document screen (push from right) with a Download action</span></div>
+<div class="act"><span class="el">Add tile / ＋ / global bar<em>tap</em></span><span class="arw">→</span><span class="dst">bottom sheet: Write a note / Attach a file / Paste text → drops a fresh card into the grid</span></div>
+<div class="act"><span class="el">Global bar<em>floating pill</em></span><span class="arw">→</span><span class="dst">"Add to your library, or ask about your project" — captures land here; or opens the chat sheet (E4)</span></div>
 </div>
+<div class="settled"><b>Decision.</b> Ship the <b>library</b>, not read-only — captures from the global bar already write here, and the cut list needs a home. <b>Remove the Recommended-action card</b> (the Now theme supersedes it). Motion below is the library (H) version.</div>
+<div class="mots"><div class="mothd">Motion — Flow Spec Surface H (library direction)</div>
+<div class="mrw"><div class="top"><span class="mel">H1 · library reveal<em>tab-in</em></span><span class="mtm">libcard 420ms spring stagger 55ms</span></div><div class="mmv">header/head fade; cards reveal grid-y <code>translateY(14px) scale(.96)→none</code>; global bar rises</div></div>
+<div class="mrw"><div class="top"><span class="mel">H2 · filter chip<em>tap chip</em></span><span class="mtm">grid 300ms out</span></div><div class="mmv">grid reflows + fades up; non-matching cards fade to display:none; active chip = ink pill</div></div>
+<div class="mrw"><div class="top"><span class="mel">H3 · add / brain-dump<em>tap tile / + / bar</em></span><span class="mtm">addsheet 460ms spring</span></div><div class="mmv">bottom sheet rises <code>translateY(100%)→none</code>, options stagger 55ms; new card lands top-left <code>scale(.9)→none</code>, grid shuffles down</div></div>
+<div class="mrw"><div class="top"><span class="mel">H4 · open item preview<em>tap card</em></span><span class="mtm">prevpanel 420ms spring</span></div><div class="mmv">preview pushes in from right with a Download action (same push as G3/G5)</div></div>
+</div></div>
 
 <div class="screen"><h3>17 · Settings</h3><div class="file">ResolvePM Settings.dc.html</div>
-<p><b>Flow.</b> Opens from the header profile avatar (menu: Profile · Settings · Sign out) — no sixth tab.</p>
-<p><b>Behaviour.</b> Groups: Account · Workspace (project, plan) · Preferences (daily briefing, waiting-on reminders toggles) · Session. <b>Reset onboarding flow</b> lives in Session — it clears the current session and replays the intake from the start, <b>but keeps the saved roadmap intact</b>. Sign out below it.</p>
-</div>
+<p><b>Purpose.</b> Account and session management. Not a tab — opens from the header avatar (the bar is full at five).</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Avatar menu<em>header profile</em></span><span class="arw">→</span><span class="dst">Profile · Settings · Sign out (Settings opens this screen)</span></div>
+<div class="act"><span class="el">Account row<em>Simeon Fabian</em></span><span class="arw">→</span><span class="dst">opens account detail (chevron)</span></div>
+<div class="act"><span class="el">Workspace rows<em>Project · Plan</em></span><span class="arw">→</span><span class="dst">Project "Nook &amp; Thread rebrand" (chevron); Plan "Alpha · early access" (display)</span></div>
+<div class="act"><span class="el">Daily briefing<em>toggle · ON</em></span><span class="arw">→</span><span class="dst">morning nudge on the win for today</span></div>
+<div class="act"><span class="el">Waiting-on reminders<em>toggle · OFF</em></span><span class="arw">→</span><span class="dst">ping when something's stalled too long</span></div>
+<div class="act"><span class="el">Reset onboarding flow<em>button · Session</em></span><span class="arw">→</span><span class="dst">clears the session and replays intake from the start, <b>but keeps the saved roadmap intact</b></span></div>
+<div class="act"><span class="el">Sign out<em>Session</em></span><span class="arw">→</span><span class="dst">ends the session (below Reset)</span></div>
+</div></div>
 
-<div class="flag"><b>Open items for the tech lead.</b> (1) To-do list headline copy is placeholder. (2) Agent intro/chat copy is draft voice — tune per role. (3) Desktop layouts for the app are out of scope for Alpha but the bottom-drawer nav was noted as the cleanest path to a desktop sidebar. (4) Confirm whether gap questions on the Confirm screen are required or skippable before building the path.</div>
+<div class="screen"><h3>Global orchestrator (all tabs)</h3><div class="file">ResolvePM Global Bar Contextual.dc.html · options: Global Bar</div>
+<p><b>Purpose.</b> The floating pill (chosen placement gb), docked above the tab bar on every tab once the shell has revealed — not during the chrome-free build sequence. Prompt + suggestions adapt to the tab. Expanded orchestrator = gx.</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Pill<em>tap</em></span><span class="arw">→</span><span class="dst">expands into one sheet driving ask · find · go to · capture · create</span></div>
+<div class="act"><span class="el">Contextual suggestions<em>"Try" list</em></span><span class="arw">→</span><span class="dst">tab-aware: Dashboard "What should I focus on?" · Work "Add a task to Now" · Roadmap "What's missing from this plan?"</span></div>
+<div class="act"><span class="el">Mic<em>pill icon</em></span><span class="arw">→</span><span class="dst">voice input into the orchestrator</span></div>
+<div class="act"><span class="el">Result rows (gx)<em>grouped Ask/Find/Go to/Capture·create</em></span><span class="arw">→</span><span class="dst">route to agent chat, open a found item, navigate, or capture/create; Esc closes</span></div>
+</div></div>
+
+<p class="part">Cross-cutting · Feedback (Surface I)</p>
+<div class="screen"><h3>Toasts, confirmations &amp; undo</h3><div class="file">ResolvePM Feedback Motion.dc.html · Flow Spec I</div>
+<p><b>Purpose.</b> One toast at a time, seated just above the global bar; a new action fast-swaps the current one (160ms out, then in). Cancel any pending follow-through (e.g. a check-off's row-collapse timer) when Undo fires.</p>
+<div class="acts"><div class="acthd">Elements &amp; actions</div>
+<div class="act"><span class="el">Undo<em>toast action · reversible</em></span><span class="arw">→</span><span class="dst">reverses the action (task returns, tick un-fills); cancels the timer + pending follow-through</span></div>
+<div class="act"><span class="el">Toast (plain)<em>non-reversible</em></span><span class="arw">→</span><span class="dst">Send reminder / Save — short confirm, no Undo, no timer</span></div>
+</div>
+<div class="mots"><div class="mothd">Motion</div>
+<div class="mrw"><div class="top"><span class="mel">I1 · confirm + undo<em>reversible action</em></span><span class="mtm">rise 360ms spring · timer 4000ms</span></div><div class="mmv">dark pill rises <code>translateY(20px)→none</code>; amber depletion bar <code>scaleX(1→0)</code> over 4s; auto-dismisses if the window lapses</div></div>
+<div class="mrw"><div class="top"><span class="mel">I2 · undo tapped<em>before lapse</em></span><span class="mtm">toast 260ms in · task 300ms spring</span></div><div class="mmv">toast dismisses; the completed row returns <code>translateX(-10px)→none</code></div></div>
+<div class="mrw"><div class="top"><span class="mel">I3 · plain confirm<em>low-stakes</em></span><span class="mtm">rise 360ms · out @2600ms</span></div><div class="mmv">rises as I1, no timer/Undo, slides out after 2.6s</div></div>
+</div></div>
+
+<p class="part">Part E · Provisional theme marking &amp; the honesty thesis</p>
+<p class="lead">Why the Gate 1 halt (§7.5) has no escape hatch, and why some roadmap themes are marked.</p>
+<div class="flow"><span class="fstep">Sign-in · verify</span><span class="far">→</span><span class="fstep here">Gate 1 check</span><span class="far">→</span><span class="fstep">passes: Roadmap cards → Reveal</span></div>
+<ul class="conv">
+<li><b>Two gates considered; only one halts.</b> <strong class="t">Gate 1</strong> (no real outcome) halts — nothing to build toward. <strong class="t">Gate 2</strong> (no lever) <b>no longer halts</b>: if we know the outcome and the current state, working out the path between them <b>is the product</b>.</li>
+<li><b>Gate 2 failing is our failure, not theirs.</b> Instead of halting we build the roadmap and mark inferred themes <b>provisional</b> — honest about what we inferred; Beta offers to sharpen.</li>
+<li><b>Why no escape hatch on Gate 1.</b> A hatch made sense only while Gate 2 halted (known outcome → honest inference toward a target). Gate 1 means <b>no outcome</b>, so a "provisional roadmap anyway" would be aimed at nothing — fabrication. A hatch would also kill the halt in practice (one click beats typing a sentence).</li>
+<li><b>The marker is the smallest expression of the thesis.</b> ChatGPT hides uncertainty behind confident prose; Resolve shows it. (The compass / map motif is out of scope for Alpha — the marker is the provisional chip + why line.)</li>
+</ul>
+<div class="screen"><h3>Marker requirements &amp; treatments</h3>
+<p><span class="k">Specific</span> Marks the one theme, never a page-wide banner. Confident themes stay visibly unmarked — that contrast keeps the roadmap credible.</p>
+<p><span class="k">Says why</span> Short. Inferred, not stated. A line or a tooltip.</p>
+<p><span class="k">Tone</span> Honest and specific ("we inferred this"), never apologetic, never alarming ("unverified / at risk").</p>
+<p><span class="k">No action</span> Label only in Alpha — presentational, no click target; built so a Beta "sharpen" action attaches later without redesign.</p>
+<p><b>A · At roadmap reveal (the line).</b> Provisional chip on the row + one-line why: "We inferred this one. You didn't name it directly, so we mapped the likely path. Worth a look." <b>B · Denser surfaces (the tooltip).</b> On the reveal grid label and the roadmap tab by-theme card header, the provisional marker carries the signal; hover tooltip: "Inferred by Resolve, not stated in your intake. Shown so you can check the reasoning." Driven by a theme's <code>provisional</code> boolean from the roadmap service. Marker on the by-theme header only — not repeated per action. (Theme wording throughout is placeholder — see Settled decisions §4.)</p>
+</div>
+<div class="settled"><b>Settled decisions.</b> (1) <b>No escape hatch</b> on the Gate 1 halt. (2) Gate 2 <b>never halts</b> — builds provisional instead. (3) Marker is <b>presentational only</b> in Alpha (compass glyph out of scope). (4) Eyebrow token #8B4A2A (Reveal family). <b>Demo themes: replace the rebrand set.</b> "Finalise brand name" has a binary finish line and would be rejected by our own theme rules — it teaches the wrong concept on every screen. Use Resolve's own project instead (themes like "Creating your path"); <b>exact wording TBC — placeholder until the generation logic firms up</b>.</div>
+
+<div class="rule"></div>
+<h2>Still open</h2>
+<div class="flag"><b>One item — demo content.</b> Theme/example wording is a placeholder; settle once the theme-generation logic firms up (no binary finish-line themes like "Finalise brand name" — use Resolve's own project, e.g. "Creating your path"). <b>Also unify the demo dataset:</b> the mockups currently mix two — a rebrand ("Nook &amp; Thread", the roadmap themes, Settings project, intake starter chips) and a generic SaaS startup ("Pick the auth provider", "Landing copy from Priya", "Ship pricing copy" on Dashboard / OS Reveal / Shell / Global Bar). Pick one project (Resolve's own) so every screen tells one story. Applies wherever content strings appear — intake (1–6), Roadmap cards (8), reveal (10), Dashboard (12), roadmap/work tabs (13–14), Settings (17), Part E.</div>
+<div class="settled" style="margin-top:12px"><b>Now decided</b> (was open). To-do headline approved · agent voice + Team out of Alpha scope · desktop out of scope, App Shell 1b is the later desktop path · Confirm-screen: outcome question required, rest skippable · compass glyph out of scope · provisional marker on by-theme header only · <b>tab order locked: Dashboard · Roadmap · Work · Team · Knowledge</b> · Roadmap FAB removed (global bar absorbs it), F3 in / F5 Beta · Work builds G2–G5 · Knowledge ships the library, Recommended-action card removed.</div>
 </x-import>
 </x-dc>
 </body>

@@ -3,6 +3,9 @@ status: current
 note: "Sequencing superseded by /RESOLVE-ALPHA-MASTER-PLAN.md (its own words: 'superseded by this doc for sequencing; still holds ticket detail'). Ticket-level detail remains authoritative."
 ---
 
+> ⚠️ **SUPERSEDED by [`briefs/ALPHA-BUILD-TICKETS.md`](./ALPHA-BUILD-TICKETS.md) where they differ** — that pack is THE AUTHORITY for the Alpha build (binding element / action / motion contract per screen). This master plan is retained for context.
+
+
 # ResolvePM Alpha — Full Engineering Handoff — Master Plan
 
 ## Purpose

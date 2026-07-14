@@ -8,82 +8,167 @@
 <body>
 <x-dc>
 <helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
-:root{--ink:#1A1A18;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A}
+:root{--ink:#1A1A18;--pane:#201F1C;--amber:#C8A040;--terracotta:#C97A4A}
 *{box-sizing:border-box}
-body{margin:0;background:#EAE4D8;font-family:'Inter',sans-serif;color:var(--ink)}
-.stage{display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start;justify-content:center;padding:48px 24px}
-.col{display:flex;flex-direction:column;align-items:center;gap:14px}
-.collabel{font-size:13px;font-weight:600;color:#8A8578}
-.phone{width:390px;max-width:100vw;background:var(--surface);border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,.18);overflow:hidden}
-.screen{padding:40px 24px 32px;min-height:640px;display:flex;flex-direction:column}
-.brandmark{display:flex;align-items:center;gap:8px;margin-bottom:auto}
-.brandmark .dot{width:22px;height:22px;border-radius:6px;background:var(--ink);display:flex;align-items:center;justify-content:center;color:var(--amber);font-family:'DM Serif Display',serif;font-size:14px}
-.brandmark .name{font-size:15px;font-weight:700;letter-spacing:-.01em}
-.block{margin-top:auto}
-.eyebrow{font-size:12px;font-weight:600;color:var(--terracotta);margin-bottom:12px}
-.headline{font-family:'DM Serif Display',serif;font-size:30px;line-height:1.22;margin:0 0 12px;color:var(--ink)}
-.subhead{font-size:14px;line-height:1.55;color:#5C574C;margin:0 0 24px}
-.subhead b{color:var(--ink);font-weight:600}
-.label{font-size:12px;font-weight:600;color:#8A8578;margin-bottom:7px;display:block}
-.input{width:100%;height:48px;border:1px solid var(--border);border-radius:10px;background:var(--card);padding:0 14px;font-size:15px;font-family:inherit;color:var(--ink);outline:none}
-.input:focus{border-color:var(--amber)}
-.input.focused{border-color:var(--amber);box-shadow:0 0 0 3px rgba(200,160,64,.18)}
-.btn{width:100%;height:48px;border-radius:10px;border:none;background:var(--amber);color:var(--ink);font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:18px}
+body{margin:0;background:#141311;font-family:'Inter',sans-serif;color:#FBF8F2}
+.stage{display:flex;gap:44px;flex-wrap:wrap;align-items:flex-start;justify-content:center;padding:44px 24px}
+.col{display:flex;flex-direction:column;align-items:center;gap:12px;width:390px;max-width:100vw}
+.collabel{font-size:13px;font-weight:600;color:#F5F1E8}
+.colnote{font-size:12px;line-height:1.5;color:#8A8578;text-align:center;max-width:340px}
+.colnote b{color:#C8A040;font-weight:600}
+.phone{width:390px;max-width:100vw;background:var(--pane);border:1px solid rgba(255,255,255,.07);border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden;position:relative}
+/* amber radial glow — shared backdrop across the seam */
+.glow{position:absolute;top:-70px;left:50%;transform:translateX(-50%);width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(200,160,64,.20) 0%,rgba(200,160,64,.07) 38%,transparent 70%);pointer-events:none}
+.screen{position:relative;padding:36px 26px 30px;min-height:660px;display:flex;flex-direction:column}
+.brandmark{display:flex;align-items:center;gap:8px}
+.brandmark .dot{width:22px;height:22px;border-radius:6px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:14px}
+.brandmark .name{font-size:15px;font-weight:700;letter-spacing:-.01em;color:#F5F1E8}
+/* the block is centred vertically — canonical position for BOTH ends */
+.block{margin:auto 0;width:100%}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.eyebrow{font-size:12px;font-weight:600;color:var(--amber);margin-bottom:12px}
+.headline{font-family:'DM Serif Display',serif;font-size:30px;line-height:1.22;margin:0 0 12px;color:#FBF8F2}
+.subhead{font-size:14px;line-height:1.55;color:#B4AFA3;margin:0 0 24px}
+.subhead b{color:#F5F1E8;font-weight:600}
+.field-gap{margin-top:24px}
+.input{width:100%;height:48px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.05);padding:0 14px;font-size:15px;font-family:inherit;color:#FBF8F2;outline:none}
+.input::placeholder{color:#8A8578}
+.input.focused{border-color:var(--amber);box-shadow:0 0 0 3px rgba(200,160,64,.22)}
+.btn{width:100%;height:48px;border-radius:10px;border:none;background:var(--amber);color:var(--ink);font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:14px}
 .foot{font-size:12.5px;color:#8A8578;text-align:center;margin-top:20px}
-.foot a{color:var(--terracotta);font-weight:600;text-decoration:none}
+.foot a{color:var(--amber);font-weight:600;text-decoration:none}
+/* fade-in group — present in DOM at opacity 0 in BOTH ends so layout is pixel-identical.
+   On the real landed screen (.landed) they animate in a beat after arrival — no layout jump. */
+.lands{opacity:0}
+.landed .eyebrow.lands{animation:fadein 520ms 420ms ease both}
+.landed .subhead.lands{animation:fadein 520ms 560ms ease both}
+.landed .foot.lands{animation:fadein 520ms 700ms ease both}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .otp{display:flex;gap:9px;margin-bottom:4px}
-.otpbox{flex:1;aspect-ratio:1/1.15;border:1px solid var(--border);border-radius:10px;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;color:var(--ink)}
-.otpbox.filled{border-color:#C4BFB4}
-.otpbox.active{border-color:var(--amber);box-shadow:0 0 0 3px rgba(200,160,64,.18)}
+.otpbox{flex:1;aspect-ratio:1/1.15;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;color:#FBF8F2}
+.otpbox.filled{border-color:rgba(255,255,255,.22)}
+.otpbox.active{border-color:var(--amber);box-shadow:0 0 0 3px rgba(200,160,64,.22)}
 .otpbox.err{border-color:var(--terracotta);color:var(--terracotta)}
 .errmsg{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--terracotta);font-weight:500;margin-top:14px}
 .errmsg svg{width:14px;height:14px;flex-shrink:0}
 .resend{font-size:13px;color:#8A8578;text-align:center;margin-top:22px}
-.resend .cool{color:#A8A296;font-weight:500}
-.resend a{color:var(--terracotta);font-weight:600;text-decoration:none}
-.back{display:flex;align-items:center;gap:6px;font-size:13px;color:#8A8578;font-weight:600;margin-bottom:28px;cursor:pointer}
+.resend .cool{color:#6B665A;font-weight:500}
+.resend a{color:var(--amber);font-weight:600;text-decoration:none}
+.back{display:flex;align-items:center;gap:6px;font-size:13px;color:#8A8578;font-weight:600;margin-bottom:24px;cursor:pointer}
 .back svg{width:14px;height:14px}
+/* ---- exit transition: dark sign-in -> light roadmap ---- */
+.xsec{width:100%;border-top:1px solid rgba(255,255,255,.08);margin-top:8px;padding:44px 24px 8px;display:flex;flex-direction:column;align-items:center;gap:22px}
+.xhead{text-align:center;max-width:640px}
+.xhead .t{font-size:15px;font-weight:700;color:#F5F1E8}
+.xhead .c{font-size:13px;line-height:1.55;color:#8A8578;margin-top:8px}
+.xhead .c b{color:#C8A040;font-weight:600}
+.xframe{width:390px;max-width:100vw;height:520px;border-radius:28px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.07);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.xlayer{position:absolute;inset:0;padding:34px 26px;display:flex;flex-direction:column}
+.xmark{display:flex;align-items:center;gap:8px}
+.xmark .dot{width:22px;height:22px;border-radius:6px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:14px}
+/* dark 'you're in' layer */
+.x-dark{background:var(--pane);animation:xdark 6500ms infinite}
+.x-dark .xmark .nm{font-size:15px;font-weight:700;color:#F5F1E8}
+.x-dark .body{margin:auto;text-align:center}
+.x-dark .check{width:56px;height:56px;border-radius:50%;background:rgba(200,160,64,.16);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.x-dark .check svg{width:28px;height:28px;color:var(--amber)}
+.x-dark h3{font-family:'DM Serif Display',serif;font-size:24px;color:#FBF8F2;margin:0 0 8px}
+.x-dark p{font-size:13.5px;color:#8A8578;margin:0}
+/* amber bloom that carries the accent across the seam */
+.xbloom{position:absolute;left:50%;top:52%;width:60px;height:60px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(200,160,64,.55),rgba(200,160,64,.12) 45%,transparent 70%);opacity:0;animation:xbloom 6500ms infinite;pointer-events:none}
+/* light roadmap layer */
+.x-light{background:#F2EDE4;opacity:0;animation:xlight 6500ms infinite}
+.x-light .xmark .nm{font-size:15px;font-weight:700;color:var(--ink)}
+.x-light .xeb{color:#B0632E;font-size:13px;font-weight:600;margin:22px 0 14px}
+.x-light .prog{display:flex;gap:6px;margin-bottom:18px}
+.x-light .prog i{height:4px;flex:1;border-radius:2px;background:#DDD8CE}
+.x-light .prog i.on{background:var(--ink)}
+.x-card{background:#fff;border:1px solid #DDD8CE;border-radius:14px;padding:24px 22px;box-shadow:0 12px 30px rgba(0,0,0,.06);animation:xcard 6500ms infinite}
+.x-card .tg{font-size:12px;color:#9A9A92;margin-bottom:10px}
+.x-card .hl{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.35;color:var(--ink);margin:0 0 20px}
+.x-card .rowb{display:flex;gap:10px}
+.x-card .rowb .y{flex:1;background:var(--amber);color:var(--ink);border-radius:10px;padding:13px;text-align:center;font-size:13.5px;font-weight:700}
+.x-card .rowb .n{flex:1;border:1px solid #DDD8CE;color:#4A4A44;border-radius:10px;padding:13px;text-align:center;font-size:13.5px;font-weight:600}
+@keyframes xdark{0%,34%{opacity:1}44%,100%{opacity:0}}
+@keyframes xbloom{0%,30%{opacity:0;transform:translate(-50%,-50%) scale(.4)}44%{opacity:1;transform:translate(-50%,-50%) scale(6)}58%,100%{opacity:0;transform:translate(-50%,-50%) scale(11)}}
+@keyframes xlight{0%,36%{opacity:0}48%,100%{opacity:1}}
+@keyframes xcard{0%,50%{opacity:0;transform:scale(.94) translateY(10px)}60%,100%{opacity:1;transform:none}}
+.xstrip{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.xkf{width:200px}
+.xkftime{font-size:11px;font-weight:700;color:var(--amber);margin-top:9px}
+.xkfdesc{font-size:12px;color:#8A8578;line-height:1.45;margin-top:3px}
 </style></helmet>
 <div class="stage">
-<div class="col"><div class="collabel">Screen 1 — Email entry</div><div class="phone"><div class="screen">
+
+<div class="col"><div class="collabel">Seam — bridge final beat = R1 initial</div><div class="phone"><div class="glow"></div><div class="screen">
 <div class="brandmark"><div class="dot">R</div><div class="name">Resolve</div></div>
 <div class="block">
-<div class="eyebrow">Operational clarity for product work.</div>
+<div class="eyebrow lands">Operational clarity for product work.</div>
 <h1 class="headline">Create your Resolve workspace</h1>
-<p class="subhead">Enter your email and we'll send you a code to sign in.</p>
-<label class="label">Email address</label>
-<input class="input focused" value="simeon@getresolve.app" readonly>
+<p class="subhead lands">Enter your email and we'll send you a code to sign in.</p>
+<label class="sr-only" for="e1">Email address</label>
+<input id="e1" class="input focused field-gap" placeholder="Your email" value="" readonly>
 <button class="btn">Send code</button>
-<div class="foot">Already have a workspace? <a href="#">Sign in</a></div>
+<div class="foot lands">Already have a workspace? <a href="#">Sign in</a></div>
 </div>
-</div></div></div>
+</div></div>
+<div class="colnote">Both the bridge's last beat and the real screen render <b>exactly this</b> — centred, glow, serif headline, field + Send code. Eyebrow, subhead and footer are in the DOM at <b>opacity 0</b>, so there is no layout jump at the hand-off.</div></div>
 
-<div class="col"><div class="collabel">Screen 2 — Code entry</div><div class="phone"><div class="screen">
+<div class="col"><div class="collabel">R1 — landed (extras fade in)</div><div class="phone"><div class="glow"></div><div class="screen landed">
+<div class="brandmark"><div class="dot">R</div><div class="name">Resolve</div></div>
+<div class="block">
+<div class="eyebrow lands">Operational clarity for product work.</div>
+<h1 class="headline">Create your Resolve workspace</h1>
+<p class="subhead lands">Enter your email and we'll send you a code to sign in.</p>
+<label class="sr-only" for="e2">Email address</label>
+<input id="e2" class="input focused field-gap" placeholder="Your email" value="simeon@getresolve.app" readonly>
+<button class="btn">Send code</button>
+<div class="foot lands">Already have a workspace? <a href="#">Sign in</a></div>
+</div>
+</div></div>
+<div class="colnote">A beat after landing, the <b>eyebrow, subhead and returning-user link</b> fade in (staggered). Screen readers get the programmatic <b>label</b> + placeholder from the first frame.</div></div>
+
+<div class="col"><div class="collabel">Code entry</div><div class="phone"><div class="glow"></div><div class="screen">
 <div class="brandmark"><div class="dot">R</div><div class="name">Resolve</div></div>
 <div class="block">
 <div class="back"><svg viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Change email</div>
 <div class="eyebrow">Operational clarity for product work.</div>
 <h1 class="headline">Check your email</h1>
 <p class="subhead">We've sent a 6-digit code to <b>simeon@getresolve.app</b>. Enter it below.</p>
-<div class="otp"><div class="otpbox filled">4</div><div class="otpbox filled">1</div><div class="otpbox filled">9</div><div class="otpbox filled">2</div><div class="otpbox active">7</div><div class="otpbox">|</div></div>
+<div class="otp field-gap"><div class="otpbox filled">4</div><div class="otpbox filled">1</div><div class="otpbox filled">9</div><div class="otpbox filled">2</div><div class="otpbox active">7</div><div class="otpbox">|</div></div>
 <button class="btn">Verify and continue</button>
 <div class="resend">Didn't get it? <span class="cool">Resend available in 0:42</span></div>
 </div>
-</div></div></div>
+</div></div>
+<div class="colnote">Same dark shell, glow and serif — only the body swaps to the OTP grid.</div></div>
 
-<div class="col"><div class="collabel">Screen 2 — Error state</div><div class="phone"><div class="screen">
+<div class="col"><div class="collabel">Code entry — error</div><div class="phone"><div class="glow"></div><div class="screen">
 <div class="brandmark"><div class="dot">R</div><div class="name">Resolve</div></div>
 <div class="block">
 <div class="back"><svg viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Change email</div>
 <div class="eyebrow">Operational clarity for product work.</div>
 <h1 class="headline">Check your email</h1>
 <p class="subhead">We've sent a 6-digit code to <b>simeon@getresolve.app</b>. Enter it below.</p>
-<div class="otp"><div class="otpbox err">4</div><div class="otpbox err">1</div><div class="otpbox err">9</div><div class="otpbox err">2</div><div class="otpbox err">3</div><div class="otpbox err">8</div></div>
+<div class="otp field-gap"><div class="otpbox err">4</div><div class="otpbox err">1</div><div class="otpbox err">9</div><div class="otpbox err">2</div><div class="otpbox err">3</div><div class="otpbox err">8</div></div>
 <div class="errmsg"><svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M7 4v3.5M7 9.6v.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>That code is incorrect or expired. Try again.</div>
 <button class="btn">Verify and continue</button>
 <div class="resend">Didn't get it? <a href="#">Resend code</a></div>
 </div>
-</div></div></div>
+</div></div>
+</div>
+
+<div class="xsec">
+<div class="xhead"><div class="t">Exit → roadmap (the dark→light hand-off)</div><div class="c">A deliberate move out of sign-in into the app. The <b>Resolve brandmark holds its position</b> as the shared anchor, an <b>amber bloom</b> ripples out from centre so the accent carries the seam, and the light surface washes up beneath it — then the first theme card scales in. No hard cut; the amber is the through-line, so dark→light reads as arrival, not a flash.</div></div>
+<div class="xframe">
+<div class="xlayer x-light"><div class="xmark"><div class="dot">R</div><div class="nm">Resolve</div></div><div class="xeb">Building your roadmap</div><div class="prog"><i class="on"></i><i></i><i></i></div><div class="x-card"><div class="tg">Theme 1 of 3</div><div class="hl">Finalise the new brand name from your shortlist</div><div class="rowb"><div class="y">Yes, add to roadmap</div><div class="n">Not quite</div></div></div></div>
+<div class="xlayer x-dark"><div class="xmark"><div class="dot">R</div><div class="nm">Resolve</div></div><div class="body"><div class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>You're in.</h3><p>Setting up your workspace…</p></div></div>
+<div class="xbloom"></div>
+</div>
+<div class="xstrip">
+<div class="xkf"><div class="xkftime">0.0–2.2s — verified</div><div class="xkfdesc">Code accepted; amber check, “You're in.” Still fully dark.</div></div>
+<div class="xkf"><div class="xkftime">2.2–3.6s — amber bloom</div><div class="xkfdesc">Bloom ripples from centre; light surface washes up under the anchored mark.</div></div>
+<div class="xkf"><div class="xkftime">3.6s → holds — roadmap</div><div class="xkfdesc">First theme card scales in — hands straight into the roadmap flow.</div></div>
+</div>
 </div>
 </x-dc>
 </body>

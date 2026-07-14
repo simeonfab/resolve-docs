@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1A18;--amber:#9A7420;--terra:#B0632E;--muted:#6B665A;--line:#E2DCD0}
+*{box-sizing:border-box}
+body{margin:0;background:#E4DED2;font-family:'Inter',sans-serif;color:var(--ink)}
+doc-page:not(:defined){visibility:hidden}
+h1{font-family:'DM Serif Display',serif;font-size:34px;line-height:1.15;margin:0 0 6px;letter-spacing:-.01em}
+.lede{font-size:15px;line-height:1.6;color:var(--muted);margin:0 0 4px}
+.meta{font-size:12.5px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin:14px 0 26px;padding-bottom:18px;border-bottom:2px solid var(--ink)}
+.meta b{color:var(--ink);font-weight:500}
+h2{font-family:'DM Serif Display',serif;font-size:23px;margin:34px 0 4px;padding-top:20px;border-top:1px solid var(--line)}
+h2 .sid{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--terra);font-weight:500;display:block;margin-bottom:3px;letter-spacing:.04em}
+h3{font-size:15px;font-weight:700;margin:22px 0 8px;color:var(--ink)}
+.repo{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--muted);background:#F0EBE0;border:1px solid var(--line);border-radius:5px;padding:2px 8px;margin-left:2px;vertical-align:middle}
+p{font-size:14px;line-height:1.65;margin:0 0 12px}
+ul{margin:0 0 12px;padding-left:0;list-style:none}
+li{font-size:14px;line-height:1.6;margin:0 0 9px;padding-left:20px;position:relative}
+li::before{content:"";position:absolute;left:4px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--amber)}
+li ul{margin-top:9px}
+li li::before{background:none;border:1px solid var(--amber);width:5px;height:5px;top:8px}
+b,strong{font-weight:600}
+code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:#F0EBE0;border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:#5A4A1E}
+.rm{color:var(--terra);font-weight:600}
+pre{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.6;background:#1F1E1B;color:#E8E2D4;border-radius:8px;padding:15px 17px;margin:6px 0 14px;overflow-x:auto;white-space:pre;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+pre .c{color:#8F8A76}
+pre .k{color:#D8B45A}
+figcaption{font-size:11.5px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin:-8px 0 16px}
+.tok{width:100%;border-collapse:collapse;margin:6px 0 16px}
+.tok td{font-size:12.5px;padding:6px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.tok td:first-child{font-family:'JetBrains Mono',monospace;color:#5A4A1E;white-space:nowrap;width:150px}
+.tok tr:first-child td{border-top:1px solid var(--line)}
+.callout{background:#F6F1E6;border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:12px 16px;margin:6px 0 16px}
+.callout p{margin:0;font-size:13px;line-height:1.55}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:4px}
+.beat{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--terra);font-weight:500}
+</style>
+</head>
+<body>
+<doc-page size="letter" margin="0.75in">
+
+<h1>Resolve — Motion Spec (Sign-in → App)</h1>
+<p class="lede">Implementation-grade specification for the intake→sign-in→roadmap flow. Values are literal — hex, px, timing functions and keyframe percentages can be followed as written.</p>
+<div class="meta">Prepared for <b>engineering</b> &nbsp;·&nbsp; Repos: <b>Intake</b> (bridge) + <b>ResolvePM / cap-pm</b> (dark sign-in, roadmap, dashboard) &nbsp;·&nbsp; Reference files: <b>ResolvePM Sign-in.dc.html</b>, <b>ResolvePM Intake Transition.dc.html</b>, <b>ResolvePM Dashboard Motion.dc.html</b>, <b>ResolvePM Roadmap Motion.dc.html</b>, <b>ResolvePM Roadmap Reveal.dc.html</b>, <b>ResolvePM Work Motion.dc.html</b>, <b>ResolvePM Knowledge Motion.dc.html</b>, <b>ResolvePM Feedback Motion.dc.html</b></div>
+
+<h3>Design tokens (shared)</h3>
+<table class="tok">
+<tr><td>--ink</td><td><code>#1A1A18</code> — dark surfaces / light-mode text</td></tr>
+<tr><td>--pane</td><td><code>#201F1C</code> — dark card / sheet background</td></tr>
+<tr><td>--amber</td><td><code>#C8A040</code> — primary accent, CTAs, focus, glow</td></tr>
+<tr><td>--terracotta</td><td><code>#C97A4A</code> — error / eyebrow on dark</td></tr>
+<tr><td>page-dark-bg</td><td><code>#141311</code></td></tr>
+<tr><td>Light mode</td><td>surface <code>#F2EDE4</code> · card <code>#FFFFFF</code> · border <code>#DDD8CE</code> · eyebrow-on-light <code>#B0632E</code> · text <code>#1A1A18</code></td></tr>
+<tr><td>Fonts</td><td>Inter (400/500/600/700) body &amp; UI · DM Serif Display headlines</td></tr>
+<tr><td>Amber focus ring</td><td>border <code>#C8A040</code> + <code>box-shadow: 0 0 0 3px rgba(200,160,64,.22)</code></td></tr>
+</table>
+
+<h2><span class="sid">SURFACE A</span>Final intake screen <span class="repo">repo: Intake</span></h2>
+
+<h3>A1 · Remove entirely</h3>
+<p>Nothing replaces these — the screen ends at the handoff card.</p>
+<ul>
+<li><span class="rm">Remove</span> the output-template grid, all 6 boxes: <i>Your plan for this week</i>, <i>Explain the rebrand to someone else</i>, <i>Download your rebrand project brief</i>, <i>Update your team</i>, <i>What to avoid right now</i>, <i>Pick this up in Claude/ChatGPT</i>.</li>
+<li><span class="rm">Remove</span> the <i>“Or ask Resolve something specific…”</i> textarea.</li>
+</ul>
+
+<h3>A2 · Screen retains, top → bottom</h3>
+<p>Trophy box → “Next steps” eyebrow → handoff card. Nothing renders below the handoff card.</p>
+
+<h3>A3 · Handoff card internal changes</h3>
+<ul>
+<li><span class="rm">Remove</span> the 3 carry pills (<i>Your first move, ready</i> / <i>Full roadmap</i> / <i>Project context</i>) — delete the <code>.carry</code> container.</li>
+<li><span class="rm">Remove</span> the <i>Not now</i> quiet link.</li>
+<li><b>Add Download report</b> as a secondary button in the vacated pill row, directly above the CTA. Style: bg <code>rgba(255,255,255,.05)</code>, <code>1px solid rgba(255,255,255,.14)</code>, radius 10, padding 12/18, font 14/600, text <code>#D8D3C7</code>, 15px amber download icon, <code>margin-bottom:14px</code>. Action = download the full project report.</li>
+<li><b>Continue in Resolve</b> CTA is unchanged (amber bg, ink text, radius 10, padding 13/22, font 15/700). Do not resize.</li>
+<li>Final card order: eyebrow row → headline → sub <code>&lt;p&gt;</code> → Download report (secondary) → CTA.</li>
+</ul>
+
+<h2><span class="sid">SURFACE B</span>Bridge transition <span class="repo">repo: Intake</span></h2>
+<p>Container = single dark stage (<code>background:var(--ink)</code>). Total loop <b>9200ms</b>, 4 beats via 4 absolutely-stacked layers (<code>position:absolute; inset:0; flex-center</code>), each running its own <code>@keyframes … 9200ms infinite</code>. Stays on Ink + Amber throughout — no dark→light shift mid-bridge. A shared amber glow pulses under all beats.</p>
+
+<figure>
+<pre><span class="c">/* B0 · shared glow */</span>
+@keyframes <span class="k">glowpulse</span>{0%,23%{opacity:.35}30%{opacity:.85}72%{opacity:.85}100%{opacity:.35}}</pre>
+<figcaption>B0 — glow pulse on the shared 9.2s clock.</figcaption>
+</figure>
+
+<h3>B1 · Beat 1 — “You just cleared the fog” <span class="beat">0.0–2.3s</span></h3>
+<p>The trophy card already on the final screen (<code>.growcard</code>: dark bg, <code>1px solid rgba(200,160,64,.28)</code>, radius 16, shadow) grows in <b>one continuous smooth zoom</b> to take over the screen. Not a cut to a fresh fog screen. Must not step or jutter.</p>
+<figure>
+<pre>.l-fog{animation:fog 9200ms infinite;transform-origin:center center;
+       will-change:transform,opacity;backface-visibility:hidden}
+@keyframes <span class="k">fog</span>{
+  0%  {opacity:0;transform:scale(.62);animation-timing-function:cubic-bezier(.22,.61,.36,1)}
+  8%  {opacity:1;transform:scale(.72);animation-timing-function:cubic-bezier(.33,0,.22,1)}
+  25% {opacity:1;transform:scale(1.05);animation-timing-function:cubic-bezier(.55,0,.85,.35)}
+  31% {opacity:0;transform:scale(1.16)}
+  100%{opacity:0;transform:scale(1.16)}
+}</pre>
+<figcaption>B1 — the main growth (.72→1.05) is ONE keyframe segment on a single easing curve.</figcaption>
+</figure>
+<div class="callout"><span class="lbl">Key rule</span><p>Do not subdivide the growth into small scale steps — uneven per-segment velocity was the original jutter cause. Keep 8%→25% as a single segment.</p></div>
+
+<h3>B2 · Beat 2 — First move <span class="beat">2.4–4.5s</span></h3>
+<p>Amber-check chip showing the user’s <b>real</b> next task — <span class="rm">bind to the live value, never hardcode</span> (example: “Finalize the brand name selection”) — with caption “Bringing your first move with you.”</p>
+<figure>
+<pre>@keyframes <span class="k">pin</span>{0%,26%{opacity:0;transform:translateY(22px) scale(.97)}
+  31%{opacity:1;transform:translateY(0) scale(1)}47%{opacity:1;transform:none}
+  52%{opacity:0;transform:translateY(-16px) scale(.99)}100%{opacity:0}}</pre>
+</figure>
+
+<h3>B3 · Beat 3 — Workspace forming <span class="beat">4.6–6.6s</span></h3>
+<p>Resolve mark (44px amber tile “R” + wordmark) and 3 context chips fan in; caption “Setting up your workspace.”</p>
+<figure>
+<pre>@keyframes <span class="k">brand</span>{0%,50%{opacity:0;transform:translateY(18px)}55%{opacity:1;transform:none}
+  70%{opacity:1;transform:none}75%{opacity:0;transform:translateY(-14px)}100%{opacity:0}}</pre>
+</figure>
+
+<h3>B4 · Beat 4 — Sign-in <span class="beat">6.8s → holds</span></h3>
+<p>Renders the <b>canonical sign-in minimal state</b> (Surface C): brandmark top-centre, DM Serif headline “Create your Resolve workspace”, field placeholder “Your email” with amber focus ring, “Send code” button. <span class="rm">No eyebrow / subhead / footer shown.</span> Must be pixel-identical to R1’s first frame.</p>
+<figure>
+<pre>@keyframes <span class="k">settle</span>{0%,73%{opacity:0;transform:translateY(16px)}80%{opacity:1;transform:none}100%{opacity:1;transform:none}}</pre>
+</figure>
+
+<h2><span class="sid">SURFACE C</span>Canonical sign-in <span class="repo">cap-pm R1 + Intake beat 4</span></h2>
+<div class="callout"><span class="lbl">Contract</span><p>This one layout is the seam’s single source of truth. <b>R1’s initial frame === bridge beat 4, pixel-identical.</b> Fully dark (Ink + amber), no colour shift at the hand-off.</p></div>
+
+<h3>C1 · Layout</h3>
+<ul>
+<li>Sheet: <code>--pane</code> bg, <code>1px solid rgba(255,255,255,.07)</code>, radius 28.</li>
+<li>Brandmark (22px amber tile “R” + wordmark <code>#F5F1E8</code>) pinned to the top — persistent anchor.</li>
+<li>Content block <b>vertically centred</b> (<code>margin:auto 0</code>) — dead-centre position for both ends.</li>
+<li>Amber radial glow behind, top-centre: <code>radial-gradient(circle, rgba(200,160,64,.20) 0%, rgba(200,160,64,.07) 38%, transparent 70%)</code>.</li>
+</ul>
+
+<h3>C2 · Minimal state (what BOTH ends render)</h3>
+<figure>
+<pre>brandmark
+DM Serif headline 30px  "Create your Resolve workspace"
+&lt;label class="sr-only" for="email"&gt;Email address&lt;/label&gt;   <span class="c">// programmatic, not visible</span>
+&lt;input id="email" placeholder="Your email"&gt;                <span class="c">// amber focus ring</span>
+&lt;button&gt;Send code&lt;/button&gt;</pre>
+<figcaption>sr-only = position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0</figcaption>
+</figure>
+
+<h3>C3 · Fade-in group (seam behaviour — option a)</h3>
+<p>Eyebrow, subhead and footer exist in the DOM at <code>opacity:0</code> in <b>both</b> ends, so layout is identical and there is zero jump. On the <b>real landed screen only</b>, adding a <code>.landed</code> class to the screen root triggers a staggered fade:</p>
+<figure>
+<pre>.landed .eyebrow.lands{animation:fadein 520ms 420ms ease both}
+.landed .subhead.lands{animation:fadein 520ms 560ms ease both}
+.landed .foot.lands   {animation:fadein 520ms 700ms ease both}
+@keyframes <span class="k">fadein</span>{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}</pre>
+</figure>
+<p>Content: eyebrow <i>“Operational clarity for product work.”</i> (amber) · subhead <i>“Enter your email and we'll send you a code to sign in.”</i> · footer <i>“Already have a workspace? Sign in”</i> (amber link). <span class="rm">Bridge beat 4 must NOT render these.</span></p>
+
+<h3>C4 · Code-entry state</h3>
+<p>Same dark shell + glow + serif. Back row “Change email”; headline “Check your email”; subhead with bold email; 6-box OTP grid — <code>.otpbox</code> states: <code>filled</code> = border <code>rgba(255,255,255,.22)</code>, <code>active</code> = amber ring, empty = caret. “Verify and continue” button. Resend line with countdown (“Resend available in 0:42”, muted <code>#6B665A</code>).</p>
+
+<h3>C5 · Error state</h3>
+<p>OTP boxes <code>.err</code> = border + text <code>--terracotta</code>. Error row (14px terracotta + circle-i icon): “That code is incorrect or expired. Try again.” Resend becomes an active amber link. Contrast holds on dark.</p>
+
+<h2><span class="sid">SURFACE D</span>Exit: dark sign-in → light roadmap <span class="repo">repo: ResolvePM</span></h2>
+<p>Intentional dark→light on entry to the app. ~<b>6500ms</b>, two stacked full-bleed layers (<code>.x-dark</code> over <code>.x-light</code>) plus a centred <code>.xbloom</code>. Brandmark sits at the <b>same coordinates in both layers</b> = shared anchor.</p>
+
+<h3>D1 · Verified <span class="beat">0.0–2.2s</span></h3>
+<p><code>.x-dark</code> visible — brandmark + centred 56px amber check circle + DM Serif “You're in.” + muted “Setting up your workspace…” Still fully dark.</p>
+
+<h3>D2 · Amber bloom + wash <span class="beat">2.2–3.6s</span></h3>
+<p><code>.xbloom</code> ripples out from centre carrying the accent across the seam; <code>.x-dark</code> fades out; <code>.x-light</code> (surface <code>#F2EDE4</code>) fades up beneath the anchored mark.</p>
+<figure>
+<pre>.x-dark {animation:xdark 6500ms infinite}
+.x-light{animation:xlight 6500ms infinite}   <span class="c">/* starts opacity:0 */</span>
+.xbloom {animation:xbloom 6500ms infinite}    <span class="c">/* radial amber, starts opacity:0 */</span>
+@keyframes <span class="k">xdark</span> {0%,34%{opacity:1}44%,100%{opacity:0}}
+@keyframes <span class="k">xbloom</span>{0%,30%{opacity:0;transform:translate(-50%,-50%) scale(.4)}
+  44%{opacity:1;transform:translate(-50%,-50%) scale(6)}
+  58%,100%{opacity:0;transform:translate(-50%,-50%) scale(11)}}
+@keyframes <span class="k">xlight</span>{0%,36%{opacity:0}48%,100%{opacity:1}}</pre>
+</figure>
+
+<h3>D3 · Roadmap lands <span class="beat">3.6s → holds</span></h3>
+<p>First theme card scales in using the <b>existing Roadmap Cards spring</b> — reuse verbatim, do not invent a new one.</p>
+<figure>
+<pre><span class="c">/* production: cardIn .45s cubic-bezier(.34,1.56,.64,1) both */</span>
+@keyframes <span class="k">xcard</span>{0%,50%{opacity:0;transform:scale(.94) translateY(10px)}60%,100%{opacity:1;transform:none}}</pre>
+</figure>
+<p>Light-layer content: brandmark → eyebrow “Building your roadmap” (<code>#B0632E</code>) → 3 progress dots (first <code>--ink</code>, rest <code>#DDD8CE</code>) → theme card (“Theme 1 of 3” / “Finalise the new brand name from your shortlist” / Yes-amber + Not-quite-outline buttons).</p>
+
+<h3>D4 · Invariant</h3>
+<p>Brandmark position identical across <code>.x-dark</code> and <code>.x-light</code>; amber is the unbroken through-line (check → bloom → card CTA) so dark→light reads as arrival, not a flash.</p>
+
+<h2><span class="sid">SURFACE E</span>Dashboard motion <span class="repo">repo: ResolvePM</span></h2>
+<p>Every animation on the home Dashboard, in trigger order. All values are literal and locked to the <b>“match-seam”</b> character — spring on arrivals/expansions, calm ease on fades/dims. Implement with WAAPI (<code>element.animate(keyframes, options)</code>, <code>fill:'both'</code>) or the equivalent CSS <code>@keyframes</code>; staggered steps apply <code>delay + (index × stagger)</code> per element in DOM order. Reference file: <b>ResolvePM Dashboard Motion.dc.html</b>.</p>
+
+<h3>Easing tokens (dashboard)</h3>
+<table class="tok">
+<tr><td>--e-spring</td><td><code>cubic-bezier(.34,1.56,.64,1)</code> — arrivals, expansions, sheets (slight overshoot)</td></tr>
+<tr><td>--e-out</td><td><code>cubic-bezier(.22,.61,.36,1)</code> — decelerate-in reveals, restore</td></tr>
+<tr><td>--e-std</td><td><code>cubic-bezier(.4,0,.2,1)</code> — dims, press, tab color</td></tr>
+<tr><td>--e-in</td><td><code>cubic-bezier(.55,0,.85,.35)</code> — exits / route-out</td></tr>
+</table>
+
+<h3>E1 · Screen entrance <span class="beat">on land / tab return</span></h3>
+<p>Fires once when the Dashboard mounts. Three steps on one clock.</p>
+<figure>
+<pre><span class="c">// 1 · top bar</span>
+.topbar        <span class="k">340ms</span> --e-out  delay 0
+  from  opacity:0  transform:translateY(-8px)
+  to    opacity:1  transform:none
+<span class="c">// 2 · card stack — staggered, DOM order (win → blocked → today → pointer)</span>
+.stack > .card <span class="k">460ms</span> --e-spring  delay 120ms  stagger 70ms
+  from  opacity:0  transform:translateY(18px) scale(.98)
+  to    opacity:1  transform:none
+<span class="c">// 3 · global bar</span>
+.gbar          <span class="k">480ms</span> --e-spring  delay 460ms
+  from  opacity:0  transform:translateY(30px)
+  to    opacity:1  transform:none</pre>
+<figcaption>Total ≈ 940ms. Bottom tab bar is static (no entrance) — only the global bar rises.</figcaption>
+</figure>
+
+<h3>E2 · Blocked card → expand <span class="beat">tap “Waiting on” card</span></h3>
+<figure>
+<pre>.dim            <span class="k">220ms</span> --e-std   opacity 0 → 1
+.recede*        <span class="k">240ms</span> --e-std   filter blur(0)→blur(1px) · opacity 1 → .5
+.expcard        <span class="k">420ms</span> --e-spring  delay 60ms
+  from  opacity:0  transform:translateY(10px) scale(.96)
+  to    opacity:1  transform:none
+.expcard .row   <span class="k">300ms</span> --e-out   delay 240ms  stagger 55ms
+  from  opacity:0  transform:translateY(8px)   <span class="c">// divider, meta rows, note, actions</span>
+  to    opacity:1  transform:none</pre>
+<figcaption>*.recede = every card except the one being expanded. The expanding card is swapped for the detail panel in place (no reflow jump).</figcaption>
+</figure>
+
+<h3>E3 · Expand → collapse <span class="beat">tap backdrop / dismiss</span></h3>
+<figure>
+<pre>.expcard  <span class="k">240ms</span> --e-in   opacity 1→0 · transform none → translateY(8px) scale(.97)
+.recede   <span class="k">260ms</span> --e-std  delay 60ms   filter blur(1px)→blur(0) · opacity .5 → 1
+.dim      <span class="k">220ms</span> --e-std  delay 80ms   opacity 1 → 0</pre>
+<figcaption>Reverse of E2; slightly quicker. Return to default state on completion (≈300ms).</figcaption>
+</figure>
+
+<h3>E4 · Global bar → agent chat <span class="beat">tap the global bar</span></h3>
+<figure>
+<pre>.dim        <span class="k">240ms</span> --e-std     opacity 0 → 1
+.chatsheet  <span class="k">460ms</span> --e-spring  delay 40ms   transform translateY(100%) → none
+  <span class="c">// sheet = 80% height, rounded top, rises from bottom edge</span>
+.chatsheet .row <span class="k">300ms</span> --e-out delay 300ms stagger 60ms
+  from opacity:0 transform:translateY(10px)   <span class="c">// header, bot msg, user msg, input</span>
+  to   opacity:1 transform:none</pre>
+</figure>
+
+<h3>E5 · Win card <span class="beat">idle + tap route-out</span></h3>
+<div class="callout"><span class="lbl">Idle loop</span><p>The route arrow drifts <code>+3px</code> on <code>2.6s ease-in-out infinite</code> (<code>translateX 0 → 3px → 0</code>) — always running, independent of tap.</p></div>
+<figure>
+<pre>.win     <span class="k">240ms</span> --e-std  transform scale(1) → scale(.975) → scale(1)   <span class="c">// press</span>
+.screen  <span class="k">280ms</span> --e-in   delay 160ms
+  from opacity:1 transform:none
+  to   opacity:0 transform:translateX(-28px)   <span class="c">// route to work item; screen exits left</span></pre>
+</figure>
+
+<h3>E6 · Pointer card → route out <span class="beat">tap “Worth a look”</span></h3>
+<figure>
+<pre>.pointer <span class="k">260ms</span> --e-std  transform scale(1)→.99→1 · bg #FFFFFF → #FBF4EA → #FFFFFF   <span class="c">// press + tint</span>
+.screen  <span class="k">280ms</span> --e-in   delay 180ms  opacity 1→0 · transform none → translateX(-28px)</pre>
+</figure>
+
+<h3>E7 · Profile menu open <span class="beat">tap avatar (top-right)</span></h3>
+<p>Menu anchors to the avatar: <code>transform-origin: top right</code>, so it unfolds downward from its own corner. Tapping the backdrop reverses it (fade 160ms).</p>
+<figure>
+<pre>.avatar     <span class="k">260ms</span> --e-std  transform scale(1)→.93→1
+  + focus ring  box-shadow 0 0 0 0 rgba(200,160,64,0) → 0 0 0 3px rgba(200,160,64,.35)
+.dim        <span class="k">180ms</span> --e-std     opacity 0 → 1
+.amenu      <span class="k">300ms</span> --e-spring  delay 40ms
+  from opacity:0 transform:scale(.9) translateY(-6px)
+  to   opacity:1 transform:none
+.amenu .mrow <span class="k">220ms</span> --e-out delay 150ms stagger 40ms   <span class="c">// Profile · Settings · Sign out</span>
+  from opacity:0 transform:translateY(-4px)
+  to   opacity:1 transform:none</pre>
+</figure>
+
+<h3>E8 · Switch tab <span class="beat">tap another bottom-bar tab</span></h3>
+<p>Directional: outgoing content exits toward the previous tab, incoming enters from the opposite side. Same recipe for any tab pair — flip the sign for backward navigation.</p>
+<figure>
+<pre>.content-out <span class="k">240ms</span> --e-in     opacity 1→0 · transform none → translateX(-24px)
+.content-in  <span class="k">400ms</span> --e-spring  delay 90ms
+  from opacity:0 transform:translateX(28px)
+  to   opacity:1 transform:none
+.tab (active) <span class="k">300ms</span> --e-std delay 130ms   color #A7A192 → #C8A040
+  <span class="c">// icon + label crossfade via CSS transition on .tab; svg inherits currentColor</span></pre>
+<figcaption>Exit distance 24px, entry 28px — incoming travels slightly further for a settled arrival. Amber active color lands mid-transition.</figcaption>
+</figure>
+
+<h2><span class="sid">SURFACE F</span>Roadmap tab motion <span class="repo">repo: ResolvePM</span></h2>
+<p>Every animation on the Roadmap tab, plus the onboarding hand-off. Same easing tokens and “match-seam” character as the Dashboard (Surface E). WAAPI, <code>fill:'both'</code>; staggered steps apply <code>delay + (index × stagger)</code> in DOM order. Reference file: <b>ResolvePM Roadmap Motion.dc.html</b>.</p>
+
+<div class="callout"><span class="lbl">Navigation decision</span><p>The onboarding “whole picture” matrix is <b>not</b> a sixth bottom-tab or a third toggle segment — it is the same data as <i>By theme</i> with an extra axis. It lives as a <b>pull-up overlay</b> (grid icon beside the By phase / By theme toggle), so the five tabs and two views stay clean. See F5.</p></div>
+
+<h3>F1 · Screen entrance <span class="beat">on arrival / tab-in</span></h3>
+<p>The receiving end of the Dashboard’s tab-switch (Surface E8). Header → title → toggle → phase groups → global bar.</p>
+<figure>
+<pre>.hdr             <span class="k">340ms</span> --e-out    delay 0     translateY(-8px)+fade
+.rmtitle         <span class="k">420ms</span> --e-out    delay 80ms  translateY(10px)+fade   <span class="c">// eyebrow + “Your roadmap”</span>
+.toggle          <span class="k">360ms</span> --e-spring delay 200ms translateY(8px)+fade
+.phase (×3)      <span class="k">460ms</span> --e-spring delay 260ms  stagger 80ms
+  from opacity:0 transform:translateY(18px) scale(.98)   to none
+.gbar            <span class="k">480ms</span> --e-spring delay 620ms translateY(30px)+fade</pre>
+</figure>
+
+<h3>F2 · View toggle — By phase ⇄ By theme <span class="beat">tap the segmented control</span></h3>
+<p>Directional: switching right (to <i>By theme</i>) sends the outgoing view left and brings the incoming from the right; reverse for the other direction. The thumb leads on a spring; content swaps at the midpoint.</p>
+<figure>
+<pre>.thumb        <span class="k">320ms</span> --e-spring   transform translateX(0) ↔ translateX(100%)   <span class="c">// CSS transition on the thumb</span>
+.viewflow OUT <span class="k">200ms</span> --e-in       opacity 1→0 · transform none → translateX(∓18px)
+.viewflow IN  <span class="k">380ms</span> --e-spring   opacity 0→1 · transform translateX(±24px) → none   <span class="c">// after swap</span></pre>
+<figcaption>Sign flips with direction. Content swaps when the OUT leg finishes (~200ms in).</figcaption>
+</figure>
+
+<h3>F3 · Action card → expand inline <span class="beat">tap a Now / Next / Later card</span></h3>
+<p>Expands in place and pushes the cards below down — no modal. Reveals a context line + a <b>Go to work item</b> button. Only one card open at a time; tapping another collapses the first.</p>
+<figure>
+<pre>.act          <span class="k">200ms</span> --e-std     transform scale(1)→.99→1   <span class="c">// press</span>
+.actdetail    <span class="k">360ms</span> --e-spring  height 0 → content height · opacity 0→1
+  <span class="c">// animate measured px height (scrollHeight), not auto</span>
+.actdetail *  <span class="k">260ms</span> --e-out delay 120ms stagger 50ms   <span class="c">// context line, then button</span>
+  from opacity:0 transform:translateY(6px)   to none</pre>
+</figure>
+
+<h3>F4 · Action card → collapse <span class="beat">tap the open card again / another card</span></h3>
+<figure>
+<pre>.actdetail  <span class="k">240ms</span> --e-in   height (content)→0 · opacity 1→0   <span class="c">// remove node on finish</span></pre>
+</figure>
+
+<h3>F5 · Open the “whole picture” matrix <span class="beat">tap the grid icon by the toggle</span></h3>
+<p>Reuses the onboarding reveal — the same theme × Now/Next/Later grid — as a full-screen overlay. A zoom-out you pull up and dismiss (× or backdrop).</p>
+<figure>
+<pre>.matrixdim   <span class="k">220ms</span> --e-std     opacity 0→1
+.matrixpanel <span class="k">380ms</span> --e-spring  delay 40ms   opacity 0 + scale(.96) → opacity 1 + none
+.mgrid > *   <span class="k">300ms</span> --e-out     delay 200ms  stagger 40ms   <span class="c">// headers, labels, cells in DOM order</span>
+  from opacity:0 transform:translateY(8px)   to none</pre>
+<figcaption>Close = reverse: panel scale(1)→.97 + fade, backdrop fade, ~240ms --e-in.</figcaption>
+</figure>
+
+<h3>F6 · Onboarding → tab (slide away)</h3>
+<div class="callout"><span class="lbl">Source</span><p>Fires on the <b>“Open my roadmap”</b> button of <b>ResolvePM Roadmap Reveal.dc.html</b> (the “Here’s the whole picture” grid). That grid is mounted as the overlay on top of the finished Roadmap tab; the button plays this, then lands on the tab.</p></div>
+<p>The simplest clean transition. The matrix is a full-screen layer sitting on top of the already-composed Roadmap tab; on tap it slides straight down and off, revealing the tab that was there all along. <b>One transform on one element — the tab underneath never animates,</b> so there is no crossfade muddiness and nothing to measure.</p>
+<figure>
+<pre>.matrixpanel <span class="k">520ms</span> --e-out   transform translateY(0) → translateY(100%)
+.matrixdim   <span class="k">520ms</span> --e-out   opacity 1 → 0</pre>
+<figcaption>Tab layer = static. Slide direction is downward (dismiss); flip to translateY(-100%) if a push-up feels better in context.</figcaption>
+</figure>
+
+<h2><span class="sid">SURFACE G</span>Work tab motion <span class="repo">repo: ResolvePM</span></h2>
+<p>Every animation on the Work tab — a checklist grouped into Now / Waiting on / Captured inbox / Upcoming / Synced. Same easing tokens and match-seam character as Surfaces E–F. WAAPI, <code>fill:'both'</code>. Reference file: <b>ResolvePM Work Motion.dc.html</b>.</p>
+
+<div class="callout"><span class="lbl">Interaction model — read first</span><p>A task row has <b>two</b> targets. The <b>tick</b> (the circle) is the ONLY thing that completes an item (G2). Tapping the <b>row body</b> opens the item for editing (G3) — it never completes it. Wire the tick’s handler with <code>stopPropagation</code> so it doesn’t also trigger the row.</p></div>
+
+<h3>G1 · Screen entrance <span class="beat">on arrival / tab-in</span></h3>
+<figure>
+<pre>.hdr        <span class="k">340ms</span> --e-out    delay 0     translateY(-8px)+fade
+.wtitle     <span class="k">420ms</span> --e-out    delay 80ms  translateY(10px)+fade
+.wbar i     <span class="k">640ms</span> --e-out    delay 220ms width 0% → 17%   <span class="c">// progress fills; quiet</span>
+.sec (×5)   <span class="k">460ms</span> --e-spring delay 320ms stagger 80ms · translateY(18px) scale(.98)+fade
+.gbar       <span class="k">480ms</span> --e-spring delay 760ms translateY(30px)+fade</pre>
+</figure>
+
+<h3>G2 · Task check-off <span class="beat">tap the tick only</span></h3>
+<p>The completed row leaves the list; the item is then retrievable in Completed (G5). One task ≈ 8% of the bar (1 of 12).</p>
+<figure>
+<pre>.cb        <span class="k">300ms</span> --e-spring  transform scale(1)→1.25→1   <span class="c">// fill amber + check-pop</span>
+.tt        <span class="k">220ms</span> --e-std     delay 40ms   opacity 1→.6 + line-through
+.task      <span class="k">340ms</span> --e-in      delay 440ms  height+margin+padding → 0 · opacity → 0   <span class="c">// collapses out, list closes gap</span>
+.wbar i    <span class="k">520ms</span> --e-out     delay 200ms  width n/12 → (n+1)/12   <span class="c">// quiet advance</span></pre>
+</figure>
+
+<h3>G3 · Open a work item (edit) <span class="beat">tap the row body</span></h3>
+<p>Opens the item for editing rather than completing it — a detail screen pushes in from the right (forward nav): editable <b>Title</b>, <b>Theme</b>, an <b>End date</b> field, <b>Notes</b>, with <b>Save</b> + <b>Mark complete</b>. “Mark complete” closes the editor, then runs G2 on that item. Back slides it off right.</p>
+<figure>
+<pre>.editpanel        <span class="k">420ms</span> --e-spring  transform translateX(100%) → 0
+.editpanel .edrow <span class="k">260ms</span> --e-out delay 160ms stagger 45ms · translateY(8px)+fade
+close             <span class="k">300ms</span> --e-in     transform translateX(0) → translateX(100%)</pre>
+</figure>
+
+<h3>G4 · Capture → inbox <span class="beat">type into the global bar</span></h3>
+<figure>
+<pre>.gbar               <span class="k">220ms</span> --e-std     transform scale(1)→.99→1   <span class="c">// press</span>
+.sec-capture .empty <span class="k">220ms</span> --e-in delay 60ms  opacity + height → 0
+.sec-capture .task  <span class="k">380ms</span> --e-spring delay 160ms   <span class="c">// new row</span>
+  from opacity:0 height:0 transform:translateY(-8px)   to opacity:1 height:auto none
+  <span class="c">// section count flips “Empty” → “1 item”; amber “Just captured” chip</span></pre>
+</figure>
+
+<h3>G5 · View completed work <span class="beat">tap “N done this week ›” on the progress row</span></h3>
+<p>Completed items collect here — a light view onto what actually lives in the <b>Knowledge base</b> (footer “View all in Knowledge” jumps to the Knowledge tab). Grouped This week / Earlier. Same push mechanic as G3.</p>
+<figure>
+<pre>.donepanel                    <span class="k">420ms</span> --e-spring  transform translateX(100%) → 0
+.donepanel .drow, .dgrp       <span class="k">260ms</span> --e-out delay 160ms stagger 45ms · translateY(8px)+fade
+close                         <span class="k">300ms</span> --e-in     translateX(0) → translateX(100%)</pre>
+</figure>
+
+<h3>G6 · Global bar → agent chat <span class="beat">reused</span></h3>
+<div class="callout"><span class="lbl">Reuse E4</span><p>Identical motion to the Dashboard’s global bar → agent chat (Surface E4): backdrop dim, sheet rises from the bottom (spring), content fades in staggered. Only the resting caption differs — here <i>“Add a task, or ask what's next.”</i> Do not re-implement.</p></div>
+
+<h2><span class="sid">SURFACE H</span>Knowledge / Library motion <span class="repo">repo: ResolvePM</span></h2>
+<p>The Knowledge tab is intentionally <b>not</b> shaped like the list tabs — it’s a library/repository you both read from and add to (files, notes, brain-dumps), and the home for completed work + intake knowledge. Search, filter chips, a two-column typed-card grid. Same easing tokens as E–G. Reference file: <b>ResolvePM Knowledge Motion.dc.html</b>.</p>
+
+<div class="callout"><span class="lbl">Not read-only</span><p>Users add here (Write a note / Attach a file / Paste text) — the library is a dumping ground as well as a reference. Cards carry a type badge: Intake · Done (completed work) · Files · Notes. The old “Recommended action” card is removed (no distinct tap value).</p></div>
+
+<h3>H1 · Screen entrance (library reveal) <span class="beat">on arrival / tab-in</span></h3>
+<p>Deliberately grid-y, not a feed, so it reads as opening a repository.</p>
+<figure>
+<pre>.hdr            <span class="k">340ms</span> --e-out    delay 0     translateY(-8px)+fade
+.libhead        <span class="k">440ms</span> --e-out    delay 80ms  translateY(10px)+fade   <span class="c">// title + search + add tile + chips</span>
+.lib .libcard   <span class="k">420ms</span> --e-spring delay 300ms stagger 55ms
+  from opacity:0 transform:translateY(14px) scale(.96)   to none
+.gbar           <span class="k">480ms</span> --e-spring delay 760ms translateY(30px)+fade</pre>
+</figure>
+
+<h3>H2 · Filter the library <span class="beat">tap a chip — All / Intake / Completed / Files / Notes</span></h3>
+<figure>
+<pre>.lib            <span class="k">300ms</span> --e-out  opacity .35→1 · transform translateY(6px)→none   <span class="c">// grid reflows + fades up</span>
+non-matching    <span class="k">200ms</span> --e-std  opacity 1→0 then display:none (.lhide)</pre>
+<figcaption>Active chip = ink pill. Added cards honor the filter by data-type too.</figcaption>
+</figure>
+
+<h3>H3 · Add / brain-dump <span class="beat">tap the “Drop a file…” tile, ＋, or the global bar</span></h3>
+<p>A bottom sheet offers Write a note / Attach a file / Paste text; choosing one drops a fresh card into the top of the grid.</p>
+<figure>
+<pre>.addsheet       <span class="k">460ms</span> --e-spring  transform translateY(100%) → none
+.addsheet .aopt <span class="k">260ms</span> --e-out delay 160ms stagger 55ms · translateY(8px)+fade
+.libcard (new)  <span class="k">400ms</span> --e-spring delay 120ms   <span class="c">// lands top-left; grid shuffles down</span>
+  from opacity:0 transform:scale(.9) translateY(-6px)   to none</pre>
+</figure>
+
+<h3>H4 · Open an item → preview <span class="beat">tap any card</span></h3>
+<p>Document/preview screen pushes in from the right with a Download action — same push mechanic as the Work editor/completed screens (G3/G5).</p>
+<figure>
+<pre>.prevpanel          <span class="k">420ms</span> --e-spring  transform translateX(100%) → 0
+.prevpanel .docsheet <span class="k">320ms</span> --e-out delay 160ms · translateY(10px)+fade
+close               <span class="k">300ms</span> --e-in     translateX(0) → translateX(100%)</pre>
+</figure>
+
+<h3>H5 · Global bar → agent chat <span class="beat">reused</span></h3>
+<div class="callout"><span class="lbl">Reuse E4</span><p>Same motion as Dashboard E4; caption <i>“Add to your library, or ask about your project.”</i> The bar does double duty here — ask, or open the add sheet (H3). Do not re-implement.</p></div>
+
+<h2><span class="sid">SURFACE I</span>Feedback — confirmations &amp; undo <span class="repo">repo: ResolvePM</span></h2>
+<p>Cross-cutting toast system. One toast at a time, seated just above the global bar; a new action fast-swaps the current one (160ms out, then in). Same easing tokens. Reference file: <b>ResolvePM Feedback Motion.dc.html</b>.</p>
+
+<div class="callout"><span class="lbl">When to use which</span><p><b>Reversible / destructive-ish</b> actions (complete a task, delete, archive) → toast WITH Undo + a 4s depleting timer bar (I1). <b>Non-reversible / low-stakes</b> (Send reminder, Save) → shorter plain toast, no timer, no Undo (I3). DEV: cancel any pending follow-through (e.g. the check-off’s row-collapse timer) when Undo fires, or the action completes anyway after dismissal.</p></div>
+
+<h3>I1 · Confirmation toast + undo <span class="beat">reversible action (e.g. task complete)</span></h3>
+<figure>
+<pre>.toast     <span class="k">360ms</span> --e-spring  opacity 0 + translateY(20px) → none   <span class="c">// dark pill, amber tick, msg + Undo</span>
+.ttimer i  <span class="k">4000ms</span> linear     transform scaleX(1) → scaleX(0)   <span class="c">// amber depletion bar, origin left</span>
+.toast     <span class="k">260ms</span> --e-in  after 4000ms  opacity 1 → 0 + translateY(16px)   <span class="c">// auto-dismiss if window lapses</span></pre>
+</figure>
+
+<h3>I2 · Undo (reverse) <span class="beat">tap Undo before the timer lapses</span></h3>
+<figure>
+<pre>.toast  <span class="k">260ms</span> --e-in     opacity 1→0 + translateY(16px)   <span class="c">// dismiss immediately; cancel timer + pending follow-through</span>
+.task   <span class="k">300ms</span> --e-spring opacity 0 + translateX(-10px) → none   <span class="c">// the completed row returns, tick un-fills</span></pre>
+</figure>
+
+<h3>I3 · Plain confirmation <span class="beat">Send reminder · Save · non-reversible</span></h3>
+<figure>
+<pre>.toast  <span class="k">360ms</span> --e-spring  rise (as I1) — no timer bar, no Undo
+.toast  <span class="k">260ms</span> --e-in  after 2600ms  slide out</pre>
+</figure>
+
+<h3>Alpha scope</h3>
+<p>Surfaces A–I cover the alpha motion set. <b>Team tab</b> is out of scope for this version (its header reads “Coming soon”). <b>Agent chat</b> conversation (send → thinking → streamed reply) is deferred post-alpha; the global bar → chat <i>opening</i> (E4) is specced and reused across tabs.</p>
+
+</doc-page>
+<script src="doc-page.js"></script>
+</body>
+</html>

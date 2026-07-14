@@ -3,6 +3,9 @@ status: current
 note: "Imported from download copy '03-R1-signin-otp-reskin-1.md' (the current version); the copy without suffix was an older draft, now in archive/."
 ---
 
+> ⚠️ **SUPERSEDED by [`briefs/ALPHA-BUILD-TICKETS.md`](./ALPHA-BUILD-TICKETS.md) where they differ** — that pack (THE AUTHORITY for the Alpha build) carries the binding element / action / motion contract per screen. Use this brief for background only.
+
+
 # Ticket R1 — Sign-in (OTP) Reskin
 
 **Repo:** `cap-pm-cockpit-alaria`

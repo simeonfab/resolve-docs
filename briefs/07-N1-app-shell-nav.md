@@ -2,6 +2,9 @@
 status: current
 ---
 
+> ⚠️ **SUPERSEDED by [`briefs/ALPHA-BUILD-TICKETS.md`](./ALPHA-BUILD-TICKETS.md) where they differ** — that pack (THE AUTHORITY for the Alpha build) carries the binding element / action / motion contract per screen. Use this brief for background only.
+
+
 # Ticket N1 — App Shell / Navigation (BUILD FIRST)
 
 **Repo:** `cap-pm-cockpit-alaria`

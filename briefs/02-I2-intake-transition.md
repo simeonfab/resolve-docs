@@ -3,6 +3,9 @@ status: current
 note: "Imported from download copy '02-I2-intake-transition-1.md' (the current version); the copy without suffix was an older draft, now in archive/."
 ---
 
+> ⚠️ **SUPERSEDED by [`briefs/ALPHA-BUILD-TICKETS.md`](./ALPHA-BUILD-TICKETS.md) where they differ** — that pack (THE AUTHORITY for the Alpha build) carries the binding element / action / motion contract per screen. Use this brief for background only.
+
+
 # Ticket I2 — Intake Transition + Bridge Animation
 
 **Repo:** `ResolveOS-intake-frontend`
