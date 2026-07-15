@@ -50,6 +50,19 @@ Motion authority lives in the mockups dir: `mockups/Resolve_Flow_Spec.html` (Sur
 
 - `SESSION-HANDOFF.md` [historical] - Resolve Alpha session handoff (13 Jul 2026). Filing note prepended: §1 incident is CLOSED (no incident, main git-verified) and §2's "string-concat generator is now gone" is FALSE (1.4 never committed). Live state lives in Notion `Resolve Current Context`.
 
+## Session 2026-07-14 (audit → pipeline rebuild → human-in-loop pivot)
+
+- `briefs/session-2026-07-14/SESSION-CODIFICATION-14-15-JULY.md` [current] — **READ FIRST.** Entry point: session codification, 14-15 July 2026. Reconciles audit findings with pipeline rebuild, human-in-loop pivot decisions.
+- `briefs/F33-REFEREE-REDESIGN-BRIEF.md` [current] — The critical-path design brief for the Referee redesign (finding F33, session codification).
+- `briefs/session-2026-07-14/ALPHA-EXECUTION-PLAN.md` [current] — Alpha execution plan from session codification.
+- `briefs/session-2026-07-14/SCREEN-CONTRACT-TEMPLATE.md` [current] — Screen contract template.
+- `briefs/session-2026-07-14/AUDIT-BRIEF-INTAKE.md` [current] — Audit brief - Intake.
+- `briefs/session-2026-07-14/WALK-2-FINDINGS.md` [current] — Walk 2 findings (post-rebuild audit, F34–F38).
+- `briefs/session-2026-07-14/WALK-2-FIX-PLAN.md` [current] — Walk 2 fix plan.
+- `briefs/session-2026-07-14/SPIKE-what-is-a-good-roadmap.md` [current] — Spike: what is a good roadmap?
+- `briefs/session-2026-07-14/BETA-BACKLOG-additions.md` [current] — Beta backlog additions from session codification.
+- `briefs/session-2026-07-14/NEXT-CHAT-BRIEF-roadmap-format.md` [current] — Next chat brief: roadmap format.
+
 ## resolve-pipeline/ - Phase 1 pipeline modules
 
 - `00-README.md` [current] - Pipeline module set overview (v0.1): prompt modules + enforcement spec, model-agnostic. Gate 1 is the only halt; Gate 2 degrades to provisional + refusals (T0.3).

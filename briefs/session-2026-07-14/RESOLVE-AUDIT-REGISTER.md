@@ -1,7 +1,5 @@
 # RESOLVE — AUDIT REGISTER
 
-See briefs/session-2026-07-14/WALK-2-FINDINGS.md for findings F34-F38 (post-rebuild walk).
-
 **Compiled 14 July 2026.** Every finding from every diagnostic and audit run 13–14 July.
 
 **Purpose:** one place to see every known issue *before* deciding how to fix any of them.
