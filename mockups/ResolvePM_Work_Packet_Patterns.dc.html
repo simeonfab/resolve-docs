@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--soft:#4A4A44;--ghost:#9A9A92;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terra:#8B4A2A;--green:#5E7D4F}
+*{box-sizing:border-box}
+body{margin:0;background:#141311;font-family:'Inter',sans-serif;color:#FBF8F2}
+a{color:var(--amber);text-decoration:none}a:hover{color:#E0BC5E}
+.band{max-width:1180px;margin:0 auto;padding:48px 28px 8px}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.btitle{font-family:'DM Serif Display',serif;font-size:32px;line-height:1.15;margin:0 0 14px;max-width:840px}
+.bsub{font-size:14.5px;line-height:1.65;color:#B4AFA3;max-width:760px;margin:0}
+.bsub b{color:#F5F1E8;font-weight:600}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;font-size:12px;color:#8A8578}
+.lg{border:1px solid rgba(255,255,255,.12);border-radius:7px;padding:6px 11px}
+.lg b{color:var(--amber);font-weight:700}
+.mband{border-top:1px solid rgba(255,255,255,.1);margin-top:26px}
+.mband .band{padding-top:44px}
+.itemtag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;background:var(--amber);color:var(--ink);border-radius:5px;padding:2px 9px;margin-bottom:14px}
+.lane{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#8A8578;border:1px solid rgba(255,255,255,.14);border-radius:5px;padding:2px 8px;margin:0 0 14px 8px}
+.stage{display:flex;gap:34px;flex-wrap:wrap;align-items:flex-start;justify-content:flex-start;padding:36px 28px 8px;max-width:1180px;margin:0 auto}
+.col{display:flex;flex-direction:column;align-items:center;gap:12px;width:392px;max-width:100vw}
+.col.wide{width:812px;max-width:100vw}
+.collabel{font-size:13px;font-weight:700;color:#F5F1E8;align-self:flex-start}
+.colnote{font-size:12px;line-height:1.55;color:#8A8578;max-width:372px;align-self:flex-start}
+.colnote b{color:var(--amber);font-weight:600}
+.phone{width:390px;max-width:100vw;background:var(--surface);border:1px solid rgba(0,0,0,.28);border-radius:26px;box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden;position:relative}
+.phone.dark{background:var(--ink)}
+.glow{position:absolute;top:-90px;left:50%;transform:translateX(-50%);width:360px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(200,160,64,.15),transparent 68%);pointer-events:none}
+/* ---------- work tab internals (reused from Work Tab) ---------- */
+.wt{position:relative;min-height:720px;display:flex;flex-direction:column}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 10px;flex-shrink:0}
+.hdr .l{display:flex;align-items:center;gap:9px}
+.hdr .logo{width:26px;height:26px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:15px}
+.hdr .nm{font-size:15px;font-weight:700;color:var(--ink)}
+.hdr .avatar{width:32px;height:32px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--ink)}
+.content{flex:1;overflow-y:auto;padding:8px 18px 120px}
+.eyebrow{font-size:12px;font-weight:600;color:var(--terra);margin-bottom:6px}
+.ptitle{font-family:'DM Serif Display',serif;font-size:28px;margin:0 0 6px;color:var(--ink)}
+.wprog{display:flex;align-items:center;gap:11px;margin:8px 0 18px}
+.wbar{flex:1;height:5px;border-radius:3px;background:#E0DACE;overflow:hidden}
+.wbar i{display:block;height:100%;background:var(--amber);border-radius:3px}
+.wlabel{font-size:12px;color:var(--ghost);font-weight:500;white-space:nowrap}
+.sec{margin-bottom:20px}
+.sechd{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+.secdot{width:9px;height:9px;border-radius:50%;background:var(--border)}
+.sec.now .secdot{background:var(--amber)}
+.secname{font-size:14px;font-weight:700;color:var(--ink)}
+.seccount{font-size:12px;color:var(--ghost);margin-left:auto}
+.newbtn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--terra);background:none;border:none;cursor:pointer;font-family:inherit;margin-left:auto}
+.newbtn svg{width:13px;height:13px}
+.task{display:flex;gap:11px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 13px;margin-bottom:9px;position:relative;transition:opacity .3s,transform .3s}
+.sec.now .task{border-left:3px solid var(--amber)}
+.cb{width:20px;height:20px;border-radius:50%;border:1.6px solid var(--border);flex-shrink:0;margin-top:1px;cursor:pointer;background:none;padding:0;display:flex;align-items:center;justify-content:center}
+.cb:hover{border-color:var(--amber)}
+.cb.don{background:var(--amber);border-color:var(--amber)}
+.cb.don svg{width:11px;height:11px;color:var(--ink)}
+.ti{flex:1;min-width:0}
+.tt{font-size:14px;font-weight:500;line-height:1.35;color:var(--ink)}
+.tmeta{display:flex;align-items:center;gap:8px;margin-top:7px;flex-wrap:wrap}
+.tag{font-size:10.5px;font-weight:600;color:var(--terra);display:inline-flex;align-items:center;gap:5px}
+.tag .td{width:6px;height:6px;border-radius:50%;background:var(--terra)}
+.datechip{font-size:10.5px;font-weight:600;color:var(--soft);background:#EFE9DE;border-radius:5px;padding:2px 8px;display:inline-flex;align-items:center;gap:5px}
+.datechip svg{width:11px;height:11px;opacity:.7}
+.datechip.over{color:#8B4A2A;background:#F4E4DC}
+.datechip.over .od{width:5px;height:5px;border-radius:50%;background:#B0632E}
+.trash{background:none;border:none;cursor:pointer;color:var(--ghost);padding:4px;margin:-4px -4px 0 0;flex:none;align-self:flex-start}
+.trash:hover{color:var(--terra)}
+.trash svg{width:15px;height:15px;display:block}
+.task.settling{opacity:.5}
+/* done section */
+.donehd{display:flex;align-items:center;gap:9px;cursor:pointer;padding:8px 0;user-select:none}
+.donehd .chev{width:14px;height:14px;color:var(--ghost);transition:transform .2s}
+.donehd.open .chev{transform:rotate(90deg)}
+.donehd .dn{font-size:13px;font-weight:600;color:var(--soft)}
+.donehd .dc{font-size:12px;color:var(--ghost);margin-left:auto}
+.donerow{display:flex;gap:11px;align-items:center;padding:9px 12px;background:#F6F2E9;border-radius:9px;margin-bottom:7px}
+.donerow .cb{cursor:pointer}
+.donerow .tt{color:var(--ghost);text-decoration:line-through;text-decoration-color:#C9C2B4}
+/* create sheet */
+.scrim{position:absolute;inset:0;background:rgba(26,26,24,.42);z-index:30;display:flex;align-items:flex-end;animation:fade .18s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.sheet{width:100%;background:var(--card);border-radius:20px 20px 0 0;padding:8px 20px 22px;box-shadow:0 -8px 30px rgba(0,0,0,.2);animation:up .24s cubic-bezier(.22,.61,.36,1) both}
+@keyframes up{from{transform:translateY(30px);opacity:.4}to{transform:none;opacity:1}}
+.grab{width:38px;height:4px;border-radius:2px;background:var(--border);margin:6px auto 16px}
+.sheeth{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:16px}
+.fld{margin-bottom:14px}
+.flab{font-size:11px;font-weight:600;color:var(--ghost);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;display:block}
+.flab .opt{color:#C0BAAE;font-weight:500;text-transform:none;letter-spacing:0}
+.fin{width:100%;border:1px solid var(--border);border-radius:9px;padding:11px 12px;font-size:14px;font-family:inherit;color:var(--ink);background:#FAFAF7;outline:none}
+.fin:focus{border-color:var(--amber)}
+.fin::placeholder{color:var(--ghost)}
+textarea.fin{resize:none;line-height:1.4}
+.daterow{display:flex;align-items:center;gap:8px}
+.datebtn{display:inline-flex;align-items:center;gap:8px;border:1px dashed var(--border);border-radius:9px;padding:10px 13px;font-size:13.5px;font-weight:500;color:var(--soft);background:#FAFAF7;cursor:pointer;font-family:inherit}
+.datebtn.set{border-style:solid;border-color:var(--amber);color:var(--ink)}
+.datebtn svg{width:14px;height:14px;color:var(--amber)}
+.dateclear{background:none;border:none;color:var(--ghost);cursor:pointer;font-size:12px;font-family:inherit;padding:6px}
+.dateclear:hover{color:var(--terra)}
+.sheetact{display:flex;gap:10px;margin-top:6px}
+.sbtn{flex:1;height:46px;border-radius:10px;border:1px solid var(--border);background:transparent;font-size:14px;font-weight:600;font-family:inherit;color:var(--soft);cursor:pointer}
+.sbtn.pri{background:var(--amber);border-color:var(--amber);color:var(--ink);font-weight:700}
+.sbtn.pri:disabled{opacity:.45;cursor:not-allowed}
+/* date picker popover */
+.dp{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-top:10px;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.dphd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.dpmo{font-size:13.5px;font-weight:700;color:var(--ink)}
+.dpwk{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4px}
+.dpwk span{font-size:10px;font-weight:600;color:var(--ghost);text-align:center}
+.dpgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.dpcell{height:32px;border:none;background:none;border-radius:8px;font-size:13px;font-family:inherit;color:var(--ink);cursor:pointer}
+.dpcell:hover{background:#F1ECE1}
+.dpcell.empty{visibility:hidden}
+.dpcell.today{color:var(--terra);font-weight:700}
+.dpcell.sel{background:var(--amber);color:var(--ink);font-weight:700}
+/* undo toast */
+.toast{position:absolute;left:16px;right:16px;bottom:20px;z-index:40;display:flex;align-items:center;gap:12px;background:var(--ink);color:#F5F1E8;border-radius:12px;padding:13px 15px;box-shadow:0 10px 30px rgba(0,0,0,.35);animation:up .24s ease both}
+.toast .tmsg{flex:1;font-size:13.5px}
+.toast .tmsg b{color:#F5F1E8}
+.toast .undo{background:none;border:none;color:var(--amber);font-weight:700;font-size:13.5px;font-family:inherit;cursor:pointer}
+.toast .tbar{position:absolute;left:0;bottom:0;height:3px;background:var(--amber);border-radius:0 0 0 12px;animation:drain 5s linear both}
+@keyframes drain{from{width:100%}to{width:0}}
+.empty{border:1px dashed var(--border);border-radius:10px;padding:15px;font-size:13px;color:var(--ghost);line-height:1.5;text-align:center}
+/* tabbar */
+.tabbar{display:flex;background:var(--card);border-top:1px solid var(--border);padding:8px 6px 12px;position:relative;z-index:5}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;font-weight:500;color:var(--ghost)}
+.tab svg{width:20px;height:20px}
+.tab.active{color:var(--amber)}
+.tab.dormant{opacity:.32;filter:grayscale(.4)}
+.tab.dormant .tlb{color:transparent;background:var(--border);border-radius:3px;height:9px;width:34px;margin-top:1px}
+.tab.waking{animation:wake .5s ease both}
+@keyframes wake{from{opacity:.32;transform:translateY(3px)}to{opacity:1;transform:none}}
+.gbar{position:absolute;left:16px;right:16px;bottom:72px;display:flex;align-items:center;gap:10px;background:var(--ink);border-radius:24px;padding:12px 15px;box-shadow:0 8px 22px rgba(26,26,24,.3);z-index:4}
+.gbar .gsp svg{width:16px;height:16px;color:var(--amber);display:block}
+.gbar .gcap{flex:1;font-size:13.5px;color:#E7E2D6;font-weight:500}
+.gbar .gmic svg{width:16px;height:16px;color:#8A8578;display:block}
+/* ---------- loader (section B) ---------- */
+.ldr{padding:40px 26px 34px;min-height:560px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.ldr .lmark{display:flex;align-items:center;gap:8px;align-self:flex-start;margin-bottom:auto}
+.ldr .lmark .logo{width:22px;height:22px;border-radius:6px;background:var(--amber);color:var(--ink);font-family:'DM Serif Display',serif;font-size:13px;display:flex;align-items:center;justify-content:center}
+.ldr .lmark .nm{font-size:14px;font-weight:700;color:var(--ink)}
+.lring{width:52px;height:52px;border-radius:50%;border:3px solid #E6E0D4;border-top-color:var(--amber);animation:spin 900ms linear infinite;margin-bottom:20px}
+.lring.rest{border-color:var(--amber);animation:breathe 3200ms ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{0%,100%{opacity:.82}50%{opacity:1}}
+.loadh{font-family:'DM Serif Display',serif;font-size:23px;color:var(--ink);margin:0 0 8px}
+.loadsub{font-size:13.5px;color:var(--soft);margin:0 0 22px;max-width:280px;line-height:1.5}
+.checklist{width:100%;max-width:290px;text-align:left}
+.ci{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:13px;color:var(--soft)}
+.ci .mk{width:18px;height:18px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;flex:none}
+.ci .mk svg{width:10px;height:10px;color:var(--ink)}
+.ci.pending{color:var(--ghost)}
+.ci.pending .mk{background:none;border:1px dashed var(--border)}
+.ci.active .mk{background:none;border:2px solid var(--amber);animation:breathe 1400ms ease-in-out infinite}
+.shimmer{width:100%;max-width:290px;height:4px;border-radius:2px;background:#E6E0D4;overflow:hidden;margin-top:22px}
+.shimmer i{display:block;height:100%;width:40%;border-radius:2px;background:var(--amber);animation:slide 1600ms ease-in-out infinite}
+@keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
+.faildot{width:52px;height:52px;border-radius:50%;border:3px solid var(--terra);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.faildot svg{width:22px;height:22px;color:var(--terra)}
+.failbtn{margin-top:auto;width:100%;max-width:290px;height:44px;border-radius:10px;border:1px solid var(--border);background:transparent;font-size:14px;font-weight:600;font-family:inherit;color:var(--ink);cursor:pointer}
+/* ---------- keyframe strip (section A) ---------- */
+.kfrow{display:flex;gap:14px;flex-wrap:wrap}
+.kf{width:238px}
+.kfframe{width:238px;height:150px;background:var(--ink);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 18px;position:relative;overflow:hidden}
+.kfframe .kfglow{position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(200,160,64,.22),transparent 68%)}
+.kftime{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--amber);margin-top:10px}
+.kfdesc{font-size:12px;color:#8A8578;line-height:1.45;margin-top:4px}
+.mi-serif{font-family:'DM Serif Display',serif;color:#FBF8F2;position:relative}
+.mi-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(200,160,64,.4);border-radius:9px;padding:7px 11px;font-size:11.5px;font-weight:600;color:#F5F1E8;position:relative}
+.mi-chip .ck{width:18px;height:18px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center}
+.mi-chip .ck svg{width:10px;height:10px;color:var(--ink)}
+.mi-dot{width:26px;height:26px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:14px}
+.mi-fan{display:flex;gap:6px;margin-top:9px;position:relative}
+.mi-fan span{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:5px 9px;font-size:10px;color:#D8D3C7}
+.beatstable{width:100%;max-width:812px;border-collapse:collapse;margin-top:6px}
+.beatstable td,.beatstable th{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.09);font-size:12.5px;text-align:left;vertical-align:top}
+.beatstable th{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:#8A8578;border-bottom:1px solid rgba(255,255,255,.2)}
+.beatstable td:first-child{font-family:'JetBrains Mono',monospace;color:var(--amber);white-space:nowrap;width:96px}
+.beatstable .bnm{color:#F5F1E8;font-weight:600}
+.beatstable .old{color:#6E6A5F;text-decoration:line-through}
+/* ---------- theme rail (section E) ---------- */
+.railwrap{background:var(--surface);border-radius:16px;padding:20px;width:392px}
+.railgrid{display:grid;grid-template-columns:64px 1fr 1fr;gap:6px}
+.railgrid.fixw{grid-template-columns:130px 1fr 1fr}
+.railgrid.rot{grid-template-columns:40px 1fr 1fr}
+.hcell{font-size:11px;font-weight:700;color:var(--ghost);padding:0 2px 6px;text-align:center}
+.hcell.now{color:var(--amber)}
+.corner{visibility:hidden}
+.tlabel{background:var(--ink);color:#F2EDE4;border-radius:8px;padding:8px;display:flex;align-items:center}
+.tname{font-weight:600;font-size:11.5px;line-height:1.25}
+.tlabel.brk .tname{word-break:break-all}
+.tlabel.rot{justify-content:center;padding:6px 2px}
+.tlabel.rot .tname{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;text-align:left}
+.tlabel.trunc .tname{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cell{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px;display:flex;flex-direction:column;gap:4px}
+.cell.nowc{border-color:var(--amber);border-width:1.5px}
+.cell.empty{align-items:center;justify-content:center;color:var(--ghost);font-size:10px;border-style:dashed}
+.chip{font-size:10.5px;color:var(--ink);background:#FAFAF7;border-radius:6px;padding:5px 6px;line-height:1.3}
+/* note cards */
+.notegrid{max-width:1180px;margin:24px auto 0;padding:0 28px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.note{border:1px dashed rgba(200,160,64,.4);border-radius:10px;padding:15px 17px;font-size:12.5px;line-height:1.6;color:#B4AFA3}
+.note h4{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin:0 0 9px}
+.note b{color:#F5F1E8;font-weight:600}
+.note ul{margin:8px 0 0;padding-left:16px}.note li{margin-bottom:5px}
+.note.banned{border-color:rgba(139,74,42,.55)}.note.banned h4{color:#C8763E}
+.note.rec{border-color:rgba(94,125,79,.55)}.note.rec h4{color:#88A874}
+.foot{max-width:1180px;margin:20px auto 0;padding:20px 28px 60px;border-top:1px solid rgba(255,255,255,.1);font-family:'JetBrains Mono',monospace;font-size:11px;color:#6E6A5F}
+</style></helmet>
+<div class="root">
+
+<div class="band">
+<span class="badge">Work-packet patterns · one engagement · seven items</span>
+<h1 class="btitle">Five pattern lanes for the work loop, the loaders and the shell.</h1>
+<p class="bsub">Every frame renders live at 390 and reuses the shipped vocabulary — amber through-line, honest plain-English copy, the drawer + Work-row language. <b>Section C is interactive</b> (create, date, complete, delete, undo, done). A, B, D and E are annotated to the exact state. Each item is quoted on its own lane; final copy and per-item tickets live in the build brief.</p>
+<div class="legend"><span class="lg"><b>A</b> · Bridge re-timed ≤5s</span><span class="lg"><b>B</b> · Loader overrun</span><span class="lg"><b>C</b> · Work loop ★ interactive</span><span class="lg"><b>D</b> · Dormant nav</span><span class="lg"><b>E</b> · Theme-rail text</span></div>
+</div>
+
+<!-- ============ A ============ -->
+<div class="mband"><div class="band">
+<span class="itemtag">A</span><span class="lane">intake · ResolveOS-intake-frontend</span>
+<h2 class="btitle" style="font-size:26px">The bridge, folded from 8.2s into 4.6s.</h2>
+<p class="bsub">The old bridge held <b>four narrated beats</b> at ~2s each. The cap is now ≤5s, so beat 2 (first-move pin) <b>merges into</b> the trophy zoom — the first move surfaces <b>while</b> the card is still growing, one continuous move instead of a separate held beat. Workspace-forming compresses to ~1.4s. The final <b>park beat is untouched and still holds-until-ready</b>: amber stays the through-line the whole way, so a slow backend just extends the arrival frame rather than stalling mid-motion.</p>
+</div>
+<div class="stage" style="padding-top:30px">
+<div class="col wide">
+<div class="collabel">A1 · Compressed keyframe strip — three beats, ~4.6s</div>
+<div class="kfrow">
+<div class="kf"><div class="kfframe"><div class="kfglow"></div><div class="mi-serif" style="font-size:15px">🏆 Cleared the fog</div><div class="mi-chip" style="margin-top:12px"><span class="ck"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Finalize the brand name</div></div><div class="kftime">0.0 – 2.0s</div><div class="kfdesc"><b style="color:#F5F1E8">Beat 1+2 merged.</b> Trophy zooms and the first move rises inside the same motion — no separate pin beat.</div></div>
+<div class="kf"><div class="kfframe"><div class="kfglow"></div><div style="display:flex;align-items:center;gap:8px"><div class="mi-dot">R</div><span style="color:#F5F1E8;font-weight:700;font-size:16px">Resolve</span></div><div class="mi-fan"><span>First move</span><span>Roadmap</span><span>Context</span></div></div><div class="kftime">2.0 – 3.4s</div><div class="kfdesc"><b style="color:#F5F1E8">Workspace forms.</b> Mark + context chips, compressed to ~1.4s from ~2s.</div></div>
+<div class="kf"><div class="kfframe" style="justify-content:flex-start;align-items:flex-start;padding:16px"><div class="kfglow" style="top:-70px"></div><div style="display:flex;align-items:center;gap:7px"><div class="mi-dot" style="width:20px;height:20px;font-size:12px">R</div><span style="color:#F5F1E8;font-weight:700;font-size:13px">Resolve</span></div></div><div class="kftime">3.4 – 4.6s → holds</div><div class="kfdesc"><b style="color:#F5F1E8">Park beat, unchanged.</b> Mark rests top-left, R1 glow settles. <b style="color:#F5F1E8">Holds until ready</b> — this is where a slow backend waits.</div></div>
+</div>
+</div>
+<div class="col wide">
+<div class="collabel">A2 · Beat table — what compressed, what held</div>
+<table class="beatstable">
+<tr><th>New timing</th><th>Beat</th><th>Change from 8.2s version</th></tr>
+<tr><td>0.0–2.0s</td><td><span class="bnm">Trophy zoom + first move</span></td><td>Beats 1 &amp; 2 <span class="old">2.3s + 2.1s</span> → merged into one 2.0s move. The pin no longer waits its turn; it rides the zoom.</td></tr>
+<tr><td>2.0–3.4s</td><td><span class="bnm">Workspace forms</span></td><td>Beat 3 <span class="old">2.0s</span> → 1.4s. Same mark + chip fan, tighter stagger (40ms).</td></tr>
+<tr><td>3.4–4.6s→hold</td><td><span class="bnm">Park / arrival</span></td><td><b style="color:#F5F1E8">Unchanged.</b> Byte-for-byte R1's first frame; holds-until-ready. Redirect fires while it holds.</td></tr>
+</table>
+</div>
+</div>
+<div class="notegrid">
+<div class="note rec"><h4>Arrival preserved</h4>Amber is carried through all three beats and into the park glow, so the seam still reads as <b>arrival, not a cut</b>. Nothing dark→light flashes; the compression only removes the second held beat.</div>
+<div class="note"><h4>Hold-until-ready</h4>The 4.6s is the <b>floor</b>, not a ceiling. On a fast backend the redirect fires at 4.6s. On a slow one the park frame simply holds — motion never stalls because the only remaining motion is the settled glow breathe.</div>
+<div class="note"><h4>Reduced motion</h4>Zoom and chip stagger drop to a &lt;120ms cross-fade between the three beats; the park frame is identical. Total still ≤5s.</div>
+</div>
+</div>
+
+<!-- ============ B ============ -->
+<div class="mband"><div class="band">
+<span class="itemtag">B</span><span class="lane">house-wide · every narrated loader</span>
+<h2 class="btitle" style="font-size:26px">What a loader does when the real wait outlasts its story.</h2>
+<p class="bsub">No loader today says what happens past the end of its narrated loop — checklists just stall on the last tick. This is the <b>generic overrun treatment</b>, specced here against the intake <b>"Reading your project"</b> loader but written to drop onto any narrated loader (Weighing, cockpit milestones). Three moments: the loop's honest end, the softened overrun, and the boundary into failure.</p>
+</div>
+<div class="stage" style="padding-top:30px">
+
+<div class="col"><div class="collabel">B1 · Loop complete — the honest last beat</div>
+<div class="phone"><div class="wt"><div class="ldr">
+<div class="lmark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="lring"></div>
+<h2 class="loadh">Reading your project…</h2>
+<p class="loadsub">Resolve is making sense of what you shared</p>
+<div class="checklist">
+<div class="ci"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Reading what you shared</div>
+<div class="ci"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Separating decided from open</div>
+<div class="ci"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Spotting the gaps</div>
+<div class="ci active"><span class="mk"></span>Shaping your path</div>
+</div>
+</div></div></div>
+<div class="colnote">The narrated loop's final beat, still honest: the last row is <b>active, not pre-ticked</b>. In product the loop lands here around <b>~5s</b>. If real work is done, the reveal fires. If not — B2.</div></div>
+
+<div class="col"><div class="collabel">B2 · Overrun — softened, still moving</div>
+<div class="phone"><div class="wt"><div class="ldr">
+<div class="lmark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="lring"></div>
+<h2 class="loadh">Still on it.</h2>
+<p class="loadsub">Taking a little longer — your project has more in it than most. Nothing's stuck.</p>
+<div class="checklist">
+<div class="ci"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Reading what you shared</div>
+<div class="ci"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Separating decided from open</div>
+<div class="ci"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Spotting the gaps</div>
+<div class="ci active"><span class="mk"></span>Shaping your path — carefully</div>
+</div>
+<div class="shimmer"><i></i></div>
+</div></div></div>
+<div class="colnote">After <b>N seconds past the loop</b> (spec: <b>8s</b>) the copy softens and reframes the wait as <b>depth, not a fault</b>. The ring keeps spinning; an <b>indeterminate shimmer</b> replaces the finished checklist's progress so it never reads as frozen. The last line gains a quiet honest qualifier. Loops indefinitely — this is a holding pattern, not a countdown.</div></div>
+
+<div class="col"><div class="collabel">B3 · Boundary — overrun ends, failure begins</div>
+<div class="phone"><div class="wt"><div class="ldr">
+<div class="lmark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="faildot"><svg viewBox="0 0 22 22" fill="none"><path d="M11 6v6M11 15.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+<h2 class="loadh">This one didn't go through.</h2>
+<p class="loadsub">Something on our side got stuck — not your project. It's all still saved.</p>
+<div class="checklist" style="opacity:.5">
+<div class="ci"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Reading what you shared</div>
+<div class="ci"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Separating decided from open</div>
+<div class="ci pending"><span class="mk"></span>Spotting the gaps</div>
+<div class="ci pending"><span class="mk"></span>Shaping your path</div>
+</div>
+<button class="failbtn">Try this again →</button>
+</div></div></div>
+<div class="colnote">Only past a <b>hard ceiling</b> (spec: <b>45s</b>) does overrun hand to the existing <b>failed</b> sibling. This is the one place the tone shifts from breathe to stop: ring goes still + terracotta, copy owns the fault (<b>"our side, not your project"</b>), and a real retry appears. Everything before this stays warm.</div></div>
+
+</div>
+<div class="notegrid">
+<div class="note"><h4>The two thresholds</h4><b>N = 8s past loop end</b> → soften to overrun. <b>45s absolute</b> → failure boundary. Both are per-loader overridable; these are the house defaults. Between them the loader is honest about waiting without ever implying it's broken.</div>
+<div class="note rec"><h4>Drop-in for any loader</h4>Only two strings change per loader: the overrun headline and the softened subline. The shimmer, thresholds and failure hand-off are shared. Cockpit milestone loaders inherit it unchanged.</div>
+<div class="note banned"><h4>Banned in overrun</h4><ul><li>Countdowns or "~30s remaining"</li><li>A spinner that stops before failure (reads as frozen)</li><li>Apology tone before the 45s boundary</li><li>Blaming the user's input for the wait</li></ul></div>
+</div>
+</div>
+
+<!-- ============ C ============ -->
+<div class="mband"><div class="band">
+<span class="itemtag">C</span><span class="lane">cockpit · Work tab + item drawer · cap-pm-cockpit-alaria</span>
+<h2 class="btitle" style="font-size:26px">The work loop, made whole — create, date, complete, delete, done.</h2>
+<p class="bsub">The largest lane. Six patterns, all extensions of the existing drawer + Work-row language. <b>The phone below is live</b> — add a task, give it a due date, tick it complete, delete it and undo, and expand the Done section. The mini-frames pin the specific treatments (overdue chip, undo toast, delete confirm) so review doesn't depend on triggering them.</p>
+</div>
+<div class="stage" style="padding-top:30px">
+
+<div class="col"><div class="collabel">C · Live — the whole loop in one frame</div>
+<div class="phone"><div class="wt">
+<div class="hdr"><div class="l"><div class="logo">R</div><div class="nm">Resolve</div></div><div class="avatar">S</div></div>
+<div class="content">
+<div class="eyebrow">Everything on your plate</div>
+<h1 class="ptitle">Your work</h1>
+<div class="wprog"><div class="wbar"><i style="width:{{ progPct }}"></i></div><span class="wlabel">{{ progLabel }}</span></div>
+
+<div class="sec now">
+<div class="sechd"><span class="secdot"></span><span class="secname">Now</span><button class="newbtn" onClick="{{ openCreate }}"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2.5v9M2.5 7h9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>New task</button></div>
+<sc-for list="{{ activeItems }}" as="item" hint-placeholder-count="3">
+<div class="task">
+<button class="cb" onClick="{{ item.toggle }}"></button>
+<div class="ti"><div class="tt">{{ item.title }}</div>
+<div class="tmeta"><span class="tag"><span class="td"></span>{{ item.theme }}</span>
+<sc-if value="{{ item.dueLabel }}" hint-placeholder-val="{{ true }}"><span class="{{ item.dueChipCls }}"><sc-if value="{{ item.overdue }}" hint-placeholder-val="{{ false }}"><span class="od"></span></sc-if><svg viewBox="0 0 14 14" fill="none"><rect x="2" y="3" width="10" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2 6h10M5 2v2M9 2v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>{{ item.dueLabel }}</span></sc-if>
+</div></div>
+<button class="trash" onClick="{{ item.del }}"><svg viewBox="0 0 16 16" fill="none"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8h5.8l.6-8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+</sc-for>
+</div>
+
+<sc-if value="{{ hasDone }}" hint-placeholder-val="{{ true }}">
+<div class="sec">
+<div class="donehd {{ doneHdCls }}" onClick="{{ toggleDoneSec }}"><svg class="chev" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="dn">Done</span><span class="dc">{{ doneCount }} banked</span></div>
+<sc-if value="{{ doneOpen }}" hint-placeholder-val="{{ false }}">
+<sc-for list="{{ doneItems }}" as="item" hint-placeholder-count="1">
+<div class="donerow"><button class="cb don" onClick="{{ item.toggle }}"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="ti"><div class="tt">{{ item.title }}</div></div></div>
+</sc-for>
+</sc-if>
+</div>
+</sc-if>
+</div>
+
+<sc-if value="{{ createOpen }}" hint-placeholder-val="{{ false }}">
+<div class="scrim" onClick="{{ closeCreate }}">
+<div class="sheet" onClick="{{ stop }}">
+<div class="grab"></div>
+<div class="sheeth">New task</div>
+<div class="fld"><label class="flab">Title</label><input class="fin" placeholder="What needs doing?" value="{{ draftTitle }}" onChange="{{ onTitle }}" onInput="{{ onTitle }}"></div>
+<div class="fld"><label class="flab">Description <span class="opt">· optional</span></label><textarea class="fin" rows="2" placeholder="Any detail worth keeping" value="{{ draftDesc }}" onChange="{{ onDesc }}" onInput="{{ onDesc }}"></textarea></div>
+<div class="fld"><label class="flab">Due date <span class="opt">· optional</span></label>
+<div class="daterow"><button class="{{ dateBtnCls }}" onClick="{{ toggleDp }}"><svg viewBox="0 0 14 14" fill="none"><rect x="2" y="3" width="10" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2 6h10M5 2v2M9 2v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>{{ draftDueLabel }}</button><sc-if value="{{ draftDue }}" hint-placeholder-val="{{ false }}"><button class="dateclear" onClick="{{ clearDue }}">Clear</button></sc-if></div>
+<sc-if value="{{ dpOpen }}" hint-placeholder-val="{{ false }}">
+<div class="dp">
+<div class="dphd"><span class="dpmo">August 2026</span></div>
+<div class="dpwk"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+<div class="dpgrid"><sc-for list="{{ dpCells }}" as="c" hint-placeholder-count="35"><button class="{{ c.cls }}" onClick="{{ c.pick }}">{{ c.day }}</button></sc-for></div>
+</div>
+</sc-if>
+</div>
+<div class="sheetact"><button class="sbtn" onClick="{{ closeCreate }}">Cancel</button><button class="sbtn pri" disabled="{{ createDisabled }}" onClick="{{ submitCreate }}">Add to Now</button></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+<div class="toast"><span class="tmsg">Deleted <b>{{ toastTitle }}</b></span><button class="undo" onClick="{{ undo }}">Undo</button><span class="tbar" key="{{ toastKey }}"></span></div>
+</sc-if>
+
+<div class="gbar"><span class="gsp"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l1.3 3.9L13 6.2l-3.7 1.1L8 11 6.7 7.3 3 6.2l3.7-1.1z" fill="currentColor"/></svg></span><span class="gcap">Add a task, or ask what's next</span><span class="gmic"><svg viewBox="0 0 16 16" fill="none"><rect x="6" y="2" width="4" height="7" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 8a4 4 0 008 0M8 12v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span></div>
+<div class="tabbar">
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>Dashboard</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 11h9M4 16h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Roadmap</div>
+<div class="tab active"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6l2 2 3-3M4 14l2 2 3-3M13 6h5M13 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Work</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 17c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4M15 6.5a2.2 2.2 0 010 4.4M16 17c0-2 1-3.2 2.5-3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Team</div>
+<div class="tab"><svg viewBox="0 0 22 22" fill="none"><path d="M5 4h9a2 2 0 012 2v12l-4-2-4 2V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Knowledge</div>
+</div>
+</div></div>
+<div class="colnote"><b>Try it:</b> New task → title + optional date → Add. Tick a circle to complete (it drops into Done). Trash any row → Undo toast (~5s). Expand Done to see banked work. The overdue row (<b>Landing page copy</b>) shows the quiet terracotta due chip.</div></div>
+
+<div class="col"><div class="collabel">C-states · pinned treatments</div>
+<div class="phone"><div class="wt"><div class="content" style="padding-top:18px">
+<div class="secname" style="margin-bottom:12px">3 · Date chip &amp; overdue</div>
+<div class="task" style="border-left:3px solid var(--amber)"><button class="cb"></button><div class="ti"><div class="tt">Write down the current baseline</div><div class="tmeta"><span class="tag"><span class="td"></span>Finalise the brand name</span><span class="datechip"><svg viewBox="0 0 14 14" fill="none"><rect x="2" y="3" width="10" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2 6h10M5 2v2M9 2v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Aug 5</span></div></div></div>
+<div class="task" style="border-left:3px solid var(--amber)"><button class="cb"></button><div class="ti"><div class="tt">Landing page copy from Priya</div><div class="tmeta"><span class="tag"><span class="td"></span>Reposition</span><span class="datechip over"><span class="od"></span><svg viewBox="0 0 14 14" fill="none"><rect x="2" y="3" width="10" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2 6h10M5 2v2M9 2v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Aug 1 · overdue</span></div></div></div>
+
+<div class="secname" style="margin:22px 0 12px">5 · Delete confirm</div>
+<div class="task"><button class="cb"></button><div class="ti"><div class="tt">Decide what not to do this week</div><div class="tmeta"><span class="tag"><span class="td"></span>Reposition</span></div>
+<div style="margin-top:11px;padding-top:11px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px"><span style="font-size:12.5px;color:var(--soft);flex:1">Delete this task?</span><button class="sbtn" style="height:34px;flex:none;padding:0 14px;font-size:12.5px">Keep</button><button class="sbtn" style="height:34px;flex:none;padding:0 14px;font-size:12.5px;background:#F4E4DC;border-color:#E4C9BC;color:#8B4A2A;font-weight:700">Delete</button></div>
+</div></div>
+
+<div class="secname" style="margin:22px 0 12px">6 · Done, collapsed</div>
+<div class="donehd"><svg class="chev" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="dn">Done</span><span class="dc">4 banked</span></div>
+</div></div></div>
+<div class="colnote">Overdue is <b>information, not shame</b>: same chip, terracotta ink + a small dot, "overdue" spelled out — no red, no icon-alarm. Delete confirms <b>inline on the row</b> (drawer action mirror), then the undo toast is the real safety net. Done collapses to a <b>count</b> so completing reads as banked progress.</div></div>
+
+</div>
+<div class="notegrid">
+<div class="note"><h4>1 · Create</h4>New task lives in the <b>Now</b> section header (quiet text button) and the global bar. Opens a bottom sheet: <b>title required</b>, description + due date optional. Adds straight to Now.</div>
+<div class="note"><h4>2 · Date picker</h4>In-drawer month grid, <b>clearable</b>, today marked. A styled platform-native <code>&lt;input type=date&gt;</code> is an acceptable fallback on mobile — the custom grid is the drawer-consistent default.</div>
+<div class="note"><h4>4 · Complete</h4>Fast path: tap the circle. Row shows a <b>~700ms settle</b> (checkmark fills, fades to .5) then drops into Done — long enough to feel earned, short enough not to block.</div>
+<div class="note rec"><h4>5 · Delete + undo</h4>Soft delete. Inline confirm on the row, then a <b>~5s undo toast</b> with a draining amber bar. Undo restores in place. Nothing is hard-deleted until the toast expires.</div>
+</div>
+</div>
+
+<!-- ============ D ============ -->
+<div class="mband"><div class="band">
+<span class="itemtag">D</span><span class="lane">first-run shell · cap-pm-cockpit-alaria</span>
+<h2 class="btitle" style="font-size:26px">Four tabs asleep until the dashboard arrives.</h2>
+<p class="bsub">During first-run only <b>Roadmap</b> is live. The other four don't vanish — that would hide where the app is going — they render <b>dormant</b>: ghosted, desaturated, labels reduced to a quiet bar. They come alive as <b>part of the arrival reveal</b>, waking left-to-right in a short amber-tinged sweep.</p>
+</div>
+<div class="stage" style="padding-top:30px">
+
+<div class="col"><div class="collabel">D1 · First-run — Roadmap live, four dormant</div>
+<div class="phone"><div class="wt" style="min-height:auto">
+<div style="height:520px;background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--ghost);font-size:13px;padding:24px;text-align:center;line-height:1.6">Roadmap is the only live surface<br>during first-run generation.</div>
+<div class="tabbar">
+<div class="tab dormant"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg><span class="tlb"></span></div>
+<div class="tab active"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 11h9M4 16h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Roadmap</div>
+<div class="tab dormant"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6l2 2 3-3M4 14l2 2 3-3M13 6h5M13 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="tlb"></span></div>
+<div class="tab dormant"><svg viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 17c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4M15 6.5a2.2 2.2 0 010 4.4M16 17c0-2 1-3.2 2.5-3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="tlb"></span></div>
+<div class="tab dormant"><svg viewBox="0 0 22 22" fill="none"><path d="M5 4h9a2 2 0 012 2v12l-4-2-4 2V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="tlb"></span></div>
+</div>
+</div></div>
+<div class="colnote">Dormant = <b>ghosted mark + quiet label bar</b>, ~32% opacity and slightly desaturated. Not blank (the shape of the app stays legible) and <b>not tappable</b>. Roadmap holds full amber. This reads as "coming", never "broken".</div></div>
+
+<div class="col"><div class="collabel">D2 · Arrival — the four wake (click Wake)</div>
+<div class="phone"><div class="wt" style="min-height:auto">
+<div style="height:520px;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center">
+<div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink)">Your workspace is ready.</div>
+<button class="sbtn pri" style="flex:none;width:auto;padding:0 20px;height:42px" onClick="{{ wake }}">Explore your workspace →</button>
+</div>
+<div class="tabbar" key="{{ wakeKey }}">
+<div class="{{ tabWakeCls0 }}"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="12" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>Dashboard</div>
+<div class="tab active"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 11h9M4 16h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Roadmap</div>
+<div class="{{ tabWakeCls1 }}" style="animation-delay:.1s"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6l2 2 3-3M4 14l2 2 3-3M13 6h5M13 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Work</div>
+<div class="{{ tabWakeCls2 }}" style="animation-delay:.2s"><svg viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 17c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4M15 6.5a2.2 2.2 0 010 4.4M16 17c0-2 1-3.2 2.5-3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Team</div>
+<div class="{{ tabWakeCls3 }}" style="animation-delay:.3s"><svg viewBox="0 0 22 22" fill="none"><path d="M5 4h9a2 2 0 012 2v12l-4-2-4 2V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Knowledge</div>
+</div>
+</div></div>
+<div class="colnote">On arrival the four fade ghost→full and rise 3px, <b>staggered 100ms</b> left-to-right, so the nav "fills in" as the dashboard lands. Labels resolve from bar to text in the same beat. <b>Reduced motion:</b> a single &lt;120ms cross-fade, no stagger, no rise.</div></div>
+
+</div>
+</div>
+
+<!-- ============ E ============ -->
+<div class="mband"><div class="band">
+<span class="itemtag">E</span><span class="lane">roadmap "whole picture" · theme rail</span>
+<h2 class="btitle" style="font-size:26px">Theme titles that stay whole.</h2>
+<p class="bsub">The vertical theme rail on the roadmap grid is only ~64px wide, so long titles <b>fragment mid-word</b>, one syllable per line. Acceptance: <b>no title broken mid-word or cut off</b>, at 390 or desktop, up to ~60 characters. Three treatments below; the recommend is E3.</p>
+</div>
+<div class="stage" style="padding-top:30px">
+
+<div class="col"><div class="collabel">E1 · Today — fragmented (the bug)</div>
+<div class="railwrap"><div class="railgrid">
+<div class="hcell corner"></div><div class="hcell now">Now</div><div class="hcell">Next</div>
+<div class="tlabel brk"><span class="tname">Validate with customer feedback</span></div>
+<div class="cell nowc"><div class="chip">Choose the first signal</div></div>
+<div class="cell"><div class="chip">Create outreach draft</div></div>
+<div class="tlabel brk"><span class="tname">Reposition for a higher price point</span></div>
+<div class="cell nowc"><div class="chip">Decide what not to do</div></div>
+<div class="cell empty">Nothing yet</div>
+</div></div>
+<div class="colnote">At 64px the title breaks <b>every few characters</b> — "Val-idate with cus-tomer" — and tall rails shove the grid down. Unreadable and ugly.</div></div>
+
+<div class="col"><div class="collabel">E2 · Option — rotated rail (40px)</div>
+<div class="railwrap"><div class="railgrid rot">
+<div class="hcell corner"></div><div class="hcell now">Now</div><div class="hcell">Next</div>
+<div class="tlabel rot"><span class="tname">Validate with customer feedback</span></div>
+<div class="cell nowc"><div class="chip">Choose the first signal</div></div>
+<div class="cell"><div class="chip">Create outreach draft</div></div>
+<div class="tlabel rot"><span class="tname">Reposition for a higher price point</span></div>
+<div class="cell nowc"><div class="chip">Decide what not to do</div></div>
+<div class="cell empty">Nothing yet</div>
+</div></div>
+<div class="colnote">Text rotated 90°, single line, <b>never breaks</b>. Buys the most grid width (40px rail). Cost: reading sideways is slower, and &gt;60-char titles still need an ellipsis + tap.</div></div>
+
+<div class="col"><div class="collabel">E3 · Option — wider rail, word-wrap + truncate ★</div>
+<div class="railwrap"><div class="railgrid fixw">
+<div class="hcell corner"></div><div class="hcell now">Now</div><div class="hcell">Next</div>
+<div class="tlabel trunc"><span class="tname">Validate with customer feedback</span></div>
+<div class="cell nowc"><div class="chip">Choose the first signal</div></div>
+<div class="cell"><div class="chip">Create outreach draft</div></div>
+<div class="tlabel trunc"><span class="tname">Reposition for a higher price point</span></div>
+<div class="cell nowc"><div class="chip">Decide what not to do</div></div>
+<div class="cell empty">Nothing yet</div>
+</div></div>
+<div class="colnote"><b>Recommended.</b> Rail widens to 130px; titles wrap on <b>word boundaries</b>, clamp to 2 lines, and anything longer truncates with the full title on tap/hover (the same provisional-tooltip affordance already in the grid). Reads naturally, holds ~60 chars, identical at 390 and desktop.</div></div>
+
+</div>
+<div class="notegrid">
+<div class="note rec"><h4>Why E3</h4>It keeps horizontal reading (fastest), never breaks a word (<code>word-break</code> stays normal), and reuses the <b>existing tooltip</b> for overflow — no new affordance to build. Costs ~66px of grid width vs E2, acceptable at 390 with 2 visible phase columns.</div>
+<div class="note"><h4>Acceptance test</h4>Longest live theme "<b>Reposition for a higher price point</b>" (35 ch) wraps to 2 clean lines. A synthetic 60-char title clamps to 2 lines + ellipsis, full text on tap. No mid-word break at either width.</div>
+<div class="note"><h4>Fallback</h4>If product wants maximum grid width for a dense portfolio view, E2 (rotated) is the drop-in alternate — same data, same tooltip, narrower rail.</div>
+</div>
+</div>
+
+<p class="foot">ResolvePM · Work-packet patterns A–E · every frame live at 390 · section C interactive · final copy + per-item tickets in ResolvePM Work Packet Brief.dc.html</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = {
+    items: [
+      {id:1, title:'Write down the current baseline', theme:'Finalise the brand name', due:'2026-08-05', done:false},
+      {id:2, title:'Decide what not to do this week', theme:'Reposition', due:null, done:false},
+      {id:3, title:'Landing page copy from Priya', theme:'Reposition', due:'2026-08-01', done:false},
+      {id:4, title:'Confirm your roadmap', theme:'Finalise the brand name', due:null, done:true},
+    ],
+    seq: 5,
+    createOpen:false,
+    draft:{title:'',desc:'',due:null},
+    dpOpen:false,
+    doneOpen:false,
+    toast:null,
+    toastSeq:0,
+    wake:0,
+  };
+  TODAY = '2026-08-05';
+  MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  fmt(iso){ if(!iso) return null; const p=iso.split('-'); return this.MONTHS[+p[1]-1]+' '+(+p[2]); }
+  view(it){
+    const overdue = it.due && it.due < this.TODAY && !it.done;
+    return {
+      ...it,
+      dueLabel: it.due ? (this.fmt(it.due) + (overdue?' · overdue':'')) : null,
+      overdue,
+      dueChipCls: overdue ? 'datechip over' : 'datechip',
+      toggle: ()=>this.toggleDone(it.id),
+      del: ()=>this.deleteItem(it.id),
+    };
+  }
+  toggleDone(id){
+    this.setState(s=>({items:s.items.map(i=>i.id===id?{...i,done:!i.done}:i)}));
+  }
+  deleteItem(id){
+    this.setState(s=>{
+      const item = s.items.find(i=>i.id===id);
+      return {items:s.items.filter(i=>i.id!==id), toast:item, toastSeq:s.toastSeq+1};
+    });
+    clearTimeout(this._t);
+    this._t = setTimeout(()=>this.setState({toast:null}), 5000);
+  }
+  undo(){
+    clearTimeout(this._t);
+    this.setState(s=> s.toast ? {items:[...s.items, s.toast].sort((a,b)=>a.id-b.id), toast:null} : {});
+  }
+  openCreate(){ this.setState({createOpen:true, dpOpen:false, draft:{title:'',desc:'',due:null}}); }
+  closeCreate(){ this.setState({createOpen:false, dpOpen:false}); }
+  submitCreate(){
+    this.setState(s=>{
+      if(!s.draft.title.trim()) return {};
+      const it = {id:s.seq, title:s.draft.title.trim(), theme:'Captured', due:s.draft.due, done:false};
+      return {items:[...s.items, it], seq:s.seq+1, createOpen:false, dpOpen:false, draft:{title:'',desc:'',due:null}};
+    });
+  }
+  dpCells(){
+    // August 2026: 1st is Saturday (index 6)
+    const days = 31, firstDow = 6;
+    const cells = [];
+    for(let i=0;i<firstDow;i++) cells.push({day:'', cls:'dpcell empty', pick:()=>{}});
+    for(let d=1;d<=days;d++){
+      const iso = '2026-08-'+String(d).padStart(2,'0');
+      let cls='dpcell';
+      if(iso===this.TODAY) cls+=' today';
+      if(iso===this.state.draft.due) cls+=' sel';
+      cells.push({day:d, cls, pick:()=>this.setState(s=>({draft:{...s.draft,due:iso}, dpOpen:false}))});
+    }
+    return cells;
+  }
+  renderVals(){
+    const items = this.state.items;
+    const done = items.filter(i=>i.done);
+    const active = items.filter(i=>!i.done);
+    const total = items.length;
+    const draft = this.state.draft;
+    const wk = c => this.state.wake ? 'tab '+c+' waking' : 'tab '+c+' dormant';
+    return {
+      activeItems: active.map(i=>this.view(i)),
+      doneItems: done.map(i=>this.view(i)),
+      hasDone: done.length>0,
+      doneCount: done.length,
+      doneOpen: this.state.doneOpen,
+      doneHdCls: this.state.doneOpen ? 'open' : '',
+      toggleDoneSec: ()=>this.setState(s=>({doneOpen:!s.doneOpen})),
+      progPct: Math.round(done.length/Math.max(total,1)*100)+'%',
+      progLabel: done.length+' of '+total+' done this week',
+
+      createOpen: this.state.createOpen,
+      draftTitle: draft.title,
+      draftDesc: draft.desc,
+      draftDue: draft.due,
+      draftDueLabel: draft.due ? this.fmt(draft.due) : 'Add a due date',
+      dateBtnCls: draft.due ? 'datebtn set' : 'datebtn',
+      createDisabled: !draft.title.trim(),
+      onTitle: e=>{ const v=e.target.value; this.setState(s=>({draft:{...s.draft,title:v}})); },
+      onDesc: e=>{ const v=e.target.value; this.setState(s=>({draft:{...s.draft,desc:v}})); },
+      toggleDp: ()=>this.setState(s=>({dpOpen:!s.dpOpen})),
+      clearDue: ()=>this.setState(s=>({draft:{...s.draft,due:null}})),
+      dpOpen: this.state.dpOpen,
+      dpCells: this.dpCells(),
+      openCreate: ()=>this.openCreate(),
+      closeCreate: ()=>this.closeCreate(),
+      submitCreate: ()=>this.submitCreate(),
+      stop: e=>e.stopPropagation(),
+
+      toast: this.state.toast,
+      toastTitle: this.state.toast ? this.state.toast.title : '',
+      toastKey: 'toast-'+this.state.toastSeq,
+      undo: ()=>this.undo(),
+
+      wake: ()=>this.setState(s=>({wake:s.wake+1})),
+      wakeKey: 'wake-'+this.state.wake,
+      tabWakeCls0: wk(''), tabWakeCls1: wk(''), tabWakeCls2: wk(''), tabWakeCls3: wk(''),
+    };
+  }
+}
+</script>
+</body>
+</html>

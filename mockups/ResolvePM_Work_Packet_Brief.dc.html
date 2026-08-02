@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><script src="./doc-page.js"></script><style>
+doc-page:not(:defined){visibility:hidden}
+:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#7A756A;--surface:#F2EDE4;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A;--green:#5E7D4F}
+*{box-sizing:border-box}
+body{margin:0;background:#3A372F}
+doc-page{font-family:'Inter',sans-serif;color:var(--ink);line-height:1.55;font-size:13px}
+a{color:var(--terracotta)}a:hover{color:#6f3a21}
+.doctitle{font-family:'DM Serif Display',serif;font-size:32px;line-height:1.1;margin:0 0 8px}
+.docsub{font-size:14px;color:var(--ink-soft);margin:0 0 4px}
+.docmeta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-ghost);margin:0;line-height:1.7}
+.rule{height:2px;background:var(--ink);margin:18px 0 22px}
+.part{font-size:12px;font-weight:700;color:var(--terracotta);letter-spacing:.04em;margin:32px 0 4px}
+h2{font-size:19px;font-weight:700;margin:6px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+h3{font-size:15px;font-weight:700;margin:20px 0 8px}
+.lead{font-size:13px;color:var(--ink-soft);margin:0 0 16px}
+p{margin:0 0 10px}
+b{color:var(--ink);font-weight:700}
+code{font-family:'JetBrains Mono',monospace;font-size:10.5px;background:#F3EFE7;border-radius:3px;padding:0 4px;color:#5A4A1E}
+.flag{background:#FBF3E4;border-left:3px solid var(--amber);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 16px}
+.override{background:#FBEDE6;border-left:3px solid var(--terracotta);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 16px}
+.override b{color:#8B4A2A}
+.settled{background:#F0F3EC;border-left:3px solid var(--green);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 12px}
+.settled b{color:#3F5836}
+.tok{width:100%;border-collapse:collapse;margin:2px 0 12px}
+.tok td{font-size:12px;padding:5px 9px;border-bottom:1px solid var(--border);vertical-align:top}
+.tok td:first-child{font-family:'JetBrains Mono',monospace;color:#5A4A1E;white-space:nowrap;width:120px}
+.tok td b{color:var(--ink)}
+.tok th{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-ghost);text-align:left;padding:0 9px 6px;border-bottom:1px solid var(--ink)}
+.repo{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:500;background:var(--ink);color:#F5F1E8;border-radius:5px;padding:2px 8px;margin-bottom:8px}
+.copy{background:#141311;border-radius:10px;padding:14px 16px;margin:4px 0 14px}
+.copy .cl{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);margin:0 0 8px}
+.copy .ce{margin:0 0 9px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.09)}
+.copy .ce:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.copy .ck{font-family:'JetBrains Mono',monospace;font-size:10px;color:#8A8578;display:block;margin-bottom:3px}
+.copy .cv{font-size:13px;color:#F5F1E8;line-height:1.5}
+.copy .cv.serif{font-family:'DM Serif Display',serif;font-size:16px}
+.linkrow{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 14px}
+.lk{font-family:'JetBrains Mono',monospace;font-size:11px;background:#F3EFE7;border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--terracotta);text-decoration:none}
+.lk:hover{border-color:var(--amber);color:#6f3a21}
+.tk{border:1px solid var(--border);border-radius:9px;padding:12px 14px;margin:0 0 10px;break-inside:avoid}
+.tk .tkh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+.tk .tkid{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--amber)}
+.tk .tkt{font-weight:700;font-size:13.5px;color:var(--ink)}
+.tk .tkest{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-ghost);white-space:nowrap}
+.tk ul{margin:6px 0 0;padding-left:16px}
+.tk li{font-size:12px;margin-bottom:4px;color:var(--ink-soft)}
+.tk li b{color:var(--ink)}
+.beat{width:100%;border-collapse:collapse;margin:2px 0 12px}
+.beat td,.beat th{font-size:12px;padding:6px 9px;border-bottom:1px solid var(--border);vertical-align:top}
+.beat th{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-ghost);text-align:left;border-bottom:1px solid var(--ink)}
+.beat td:first-child{font-family:'JetBrains Mono',monospace;color:#5A4A1E;white-space:nowrap;width:110px}
+.beat .old{color:#B0A99A;text-decoration:line-through}
+.q{margin:0 0 14px;padding:0;list-style:none}
+.q li{position:relative;padding:9px 0 9px 30px;border-top:1px solid var(--border);font-size:12.5px}
+.q li:first-child{border-top:none}
+.q li .qn{position:absolute;left:0;top:9px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);font-weight:500}
+.q li b{color:var(--ink)}
+.q li .rec{color:var(--green);font-weight:600}
+.foot{margin-top:26px;padding-top:12px;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-ghost)}
+</style></helmet>
+<doc-page size="letter" margin="0.7in">
+<p class="doctitle">Work-Packet Patterns — Build Brief</p>
+<p class="docsub">ResolvePM · Five pattern lanes across intake, the loaders, the cockpit work loop and the first-run shell. One engagement, quoted per lane.</p>
+<p class="docmeta">audience: tech lead → review + ticket creation · status: design complete, awaiting sign-off<br>reference mockup: ResolvePM Work Packet Patterns.dc.html (A–E live at 390, C interactive) · joins: Roadmap Reveal · Work Tab · Intake Transition · Daily Limit<br>repos: cap-pm-cockpit-alaria (C, D, E) · ResolveOS-intake-frontend (A) · house-wide (B)</p>
+<div class="rule"></div>
+
+<p class="part">00 · DESIGN LINKS</p>
+<h2>Everything is a playable mockup</h2>
+<p class="lead">Open the mockup before reviewing — section C is fully interactive (create a task, set a date, complete, delete, undo, expand Done). A, B, D, E are annotated to their exact states.</p>
+<div class="linkrow">
+<a class="lk" href="./ResolvePM Work Packet Patterns.dc.html">▸ Work Packet Patterns — A–E live</a>
+<a class="lk" href="./ResolvePM Work Tab.dc.html">▸ Work Tab — base rows</a>
+<a class="lk" href="./ResolvePM Intake Transition.dc.html">▸ Intake Transition — old bridge</a>
+<a class="lk" href="./ResolvePM Roadmap Reveal.dc.html">▸ Roadmap Reveal — theme grid</a>
+</div>
+<table class="tok">
+<tr><th>Lane</th><th>What it is</th><th>Repo / surface</th></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>A</b></td><td>Bridge re-timed to ≤5s</td><td>ResolveOS-intake-frontend · bridge</td></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>B</b></td><td>Loader overrun (generic pattern)</td><td>house-wide · every narrated loader</td></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>C ★</b></td><td>Work loop: create / date / complete / delete / done</td><td>cap-pm-cockpit-alaria · Work + drawer</td></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>D</b></td><td>Dormant nav (first-run)</td><td>cap-pm-cockpit-alaria · shell</td></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>E</b></td><td>Theme-rail text treatment</td><td>cap-pm-cockpit-alaria · roadmap grid</td></tr>
+</table>
+<div class="flag"><b>Copy ships as written.</b> Every string in the copy blocks below is final. Do not paraphrase in code — the honest, warm wording is the deliverable.</div>
+
+<!-- A -->
+<p class="part">A · INTAKE</p>
+<h2>Bridge re-timed to ≤5s</h2>
+<p class="lead">The old bridge held <b>four narrated beats</b> at ~2s each (8.2s total, final beat held-until-ready). The cap is now ≤5s. Beat 2 (the first-move pin) <b>merges into</b> beat 1's trophy zoom — the first move surfaces <i>during</i> the zoom, not as a separate held beat. Workspace-forming compresses. The park beat is unchanged and still holds-until-ready.</p>
+<table class="beat">
+<tr><th>New timing</th><th>Beat</th><th>Change</th></tr>
+<tr><td>0.0–2.0s</td><td><b>Trophy zoom + first move</b></td><td>Beats 1 &amp; 2 <span class="old">2.3s + 2.1s</span> merged into one 2.0s move. The pin rides the zoom instead of waiting its turn.</td></tr>
+<tr><td>2.0–3.4s</td><td><b>Workspace forms</b></td><td>Beat 3 <span class="old">2.0s</span> → 1.4s. Same mark + context-chip fan, tighter 40ms stagger.</td></tr>
+<tr><td>3.4–4.6s → hold</td><td><b>Park / arrival</b></td><td><b>Unchanged.</b> Byte-for-byte R1's first frame; holds-until-ready; redirect fires while it holds.</td></tr>
+</table>
+<div class="copy">
+<p class="cl">A · bridge captions (final)</p>
+<div class="ce"><span class="ck">beat 1 caption</span><span class="cv">Bringing your first move with you</span></div>
+<div class="ce"><span class="ck">beat 2 caption</span><span class="cv">Setting up your workspace</span></div>
+<div class="ce"><span class="ck">beat 3 (park)</span><span class="cv">— no caption; the mark rests and the glow settles into the real screen —</span></div>
+</div>
+<div class="settled"><b>Arrival preserved.</b> Amber is the through-line across all three beats and into the park glow, so the seam still reads as arrival. The 4.6s is a <b>floor</b>: fast backends redirect at 4.6s, slow ones simply hold the park frame — the only motion left is the settled glow breathe, so nothing ever stalls mid-move. Reduced motion: zoom + stagger become a &lt;120ms cross-fade between beats; total still ≤5s.</div>
+
+<!-- B -->
+<p class="part">B · HOUSE-WIDE</p>
+<h2>Loader overrun — one pattern for every narrated loader</h2>
+<p class="lead">No loader defines what happens when the real wait outlasts its narrated loop; checklists just stall on the last tick. This is the generic treatment, specced against the intake <b>"Reading your project"</b> loader but written to drop onto any of them (Weighing, cockpit milestones).</p>
+<table class="tok">
+<tr><th>Threshold</th><th>Behaviour</th></tr>
+<tr><td><b>Loop end (~5s)</b></td><td>Last checklist row is <b>active, not pre-ticked</b>. If work is done, reveal fires.</td></tr>
+<tr><td><b>+8s past loop</b></td><td>Soften to overrun: swap headline + subline, ring keeps spinning, <b>indeterminate shimmer</b> replaces finished progress. Loops indefinitely.</td></tr>
+<tr><td><b>45s absolute</b></td><td>Hand to the existing <b>failed</b> sibling: ring still + terracotta, honest fault copy, real retry.</td></tr>
+</table>
+<div class="copy">
+<p class="cl">B · overrun copy (final) — specced on "Reading your project"</p>
+<div class="ce"><span class="ck">overrun headline</span><span class="cv serif">Still on it.</span></div>
+<div class="ce"><span class="ck">overrun subline</span><span class="cv">Taking a little longer — your project has more in it than most. Nothing's stuck.</span></div>
+<div class="ce"><span class="ck">last checklist row (gains qualifier)</span><span class="cv">Shaping your path — carefully</span></div>
+<div class="ce"><span class="ck">failure headline (boundary)</span><span class="cv serif">This one didn't go through.</span></div>
+<div class="ce"><span class="ck">failure subline</span><span class="cv">Something on our side got stuck — not your project. It's all still saved.</span></div>
+<div class="ce"><span class="ck">failure control</span><span class="cv">Try this again →</span></div>
+</div>
+<div class="settled"><b>Drop-in for any loader.</b> Only two strings change per loader — the overrun headline and subline. Shimmer, thresholds and the failure hand-off are shared. Cockpit milestone loaders inherit it unchanged.</div>
+<div class="override"><b>Banned in overrun:</b> countdowns or "~30s remaining"; a spinner that stops before the failure boundary (reads as frozen); apology tone before 45s; blaming the user's input for the wait.</div>
+
+<!-- C -->
+<p class="part">C · COCKPIT — THE LARGEST LANE</p>
+<span class="repo">cap-pm-cockpit-alaria · Work tab + item drawer</span>
+<h2>The work loop, made whole</h2>
+<p class="lead">Six patterns, all extensions of the existing drawer + Work-row language. The mockup's phone runs the whole loop live.</p>
+
+<h3>1 · Create affordance + create sheet</h3>
+<p>Entry from two places: a quiet <b>New task</b> text button in the <b>Now</b> section header, and the global input bar. Opens a bottom sheet — <b>title required</b>, description + due date optional. Submits straight into Now.</p>
+<div class="copy">
+<p class="cl">C1 · create sheet (final)</p>
+<div class="ce"><span class="ck">section-header button</span><span class="cv">New task</span></div>
+<div class="ce"><span class="ck">sheet title</span><span class="cv">New task</span></div>
+<div class="ce"><span class="ck">title field</span><span class="cv">Title · placeholder: "What needs doing?"</span></div>
+<div class="ce"><span class="ck">description field</span><span class="cv">Description · optional · placeholder: "Any detail worth keeping"</span></div>
+<div class="ce"><span class="ck">date field</span><span class="cv">Due date · optional · "Add a due date"</span></div>
+<div class="ce"><span class="ck">primary / cancel</span><span class="cv">Add to Now · Cancel</span></div>
+</div>
+
+<h3>2 · Date picker (in-drawer, clearable)</h3>
+<p>Custom month grid inside the sheet/drawer — today marked, selected day amber, a <b>Clear</b> control once set. <b>Rule:</b> the platform-native <code>&lt;input type=date&gt;</code> is an acceptable fallback on mobile if styled to the surface, but the custom grid is the drawer-consistent default so the picker matches the rest of the drawer language.</p>
+
+<h3>3 · Date chip on rows + overdue</h3>
+<p>Due date renders as a quiet chip in the row meta, beside the theme tag. Overdue is a <b>distinct but calm</b> variant — terracotta ink, a small dot, the word "overdue" spelled out. Overdue is information, not shame.</p>
+<div class="override"><b>Overdue is not alarming:</b> no red, no warning triangle, no icon-alarm. Same chip shape, terracotta ink + dot, "· overdue" appended. It informs; it does not scold.</div>
+
+<h3>4 · Complete affordance + just-completed behaviour</h3>
+<p>Fast path: tap the circle on the row — no drawer needed. The completed row shows a <b>~700ms settle</b> (checkmark fills, row fades to ~0.5 opacity) then drops into the Done section. Long enough to feel earned, short enough not to block the next tick.</p>
+
+<h3>5 · Delete confirm + undo toast</h3>
+<p>Soft delete. Delete is a drawer action (and an inline row confirm); on confirm the row leaves and a <b>~5s undo toast</b> appears with a draining amber bar. Undo restores the item in place. Nothing is hard-deleted until the toast expires.</p>
+<div class="copy">
+<p class="cl">C5 · delete + undo (final)</p>
+<div class="ce"><span class="ck">inline confirm prompt</span><span class="cv">Delete this task?</span></div>
+<div class="ce"><span class="ck">confirm buttons</span><span class="cv">Keep · Delete</span></div>
+<div class="ce"><span class="ck">undo toast</span><span class="cv">Deleted "[task title]" · Undo</span></div>
+</div>
+
+<h3>6 · Done-item visibility</h3>
+<p>Completed items live in a <b>collapsed Done section</b> at the foot of the Now list, showing a count ("<b>N banked</b>"). Expandable to review or un-complete. Completing feels like <b>banking progress</b>, not deletion — the count going up is the reward.</p>
+<div class="settled"><b>"Banked", not "done and gone".</b> The count is deliberate: it makes completion visible as accumulation. Un-completing from the Done section returns the row to Now.</div>
+
+<!-- D -->
+<p class="part">D · FIRST-RUN SHELL</p>
+<h2>Dormant nav state</h2>
+<p class="lead">During first-run only <b>Roadmap</b> is live. The other four render <b>dormant</b> — ghosted mark + a quiet label bar, ~32% opacity, slightly desaturated, not tappable. They don't vanish (that would hide where the app is going); they read as "coming", never "broken". They come alive as part of the arrival reveal.</p>
+<table class="tok">
+<tr><th>Element</th><th>Treatment</th></tr>
+<tr><td><b>Dormant tab</b></td><td>Ghosted icon at ~32% opacity + slight desaturation; label collapses to a quiet bar (no text). Non-interactive.</td></tr>
+<tr><td><b>Roadmap tab</b></td><td>Full amber, live, the only tappable surface.</td></tr>
+<tr><td><b>Wake (arrival)</b></td><td>Four tabs fade ghost→full and rise 3px, <b>staggered 100ms left-to-right</b>; labels resolve bar→text in the same beat.</td></tr>
+</table>
+<div class="settled"><b>Reduced motion:</b> the wake becomes a single &lt;120ms cross-fade — no stagger, no rise. The dormant and live end-states are identical to the animated path.</div>
+
+<!-- E -->
+<p class="part">E · ROADMAP "WHOLE PICTURE"</p>
+<h2>Theme-rail text treatment</h2>
+<p class="lead">The vertical theme rail on the roadmap grid is only ~64px wide, so long titles fragment mid-word (one syllable per line) and tall rails shove the grid down. Acceptance: <b>no title broken mid-word or cut off</b>, at 390 or desktop, up to ~60 characters.</p>
+<table class="tok">
+<tr><th>Option</th><th>Treatment</th></tr>
+<tr><td><b>E1</b></td><td>Today — fragmented. The bug: 64px rail, <code>break-all</code> wrapping.</td></tr>
+<tr><td><b>E2</b></td><td>Rotated rail (40px): text 90°, single line, never breaks. Buys most grid width; reading sideways is slower.</td></tr>
+<tr><td><b>E3 ★</b></td><td><b>Recommended.</b> Rail widens to 130px; titles wrap on word boundaries, clamp to 2 lines; overflow truncates with full title on tap/hover (reuse the existing provisional-tooltip affordance).</td></tr>
+</table>
+<div class="settled"><b>Why E3.</b> Keeps horizontal reading (fastest), never breaks a word (<code>word-break</code> stays normal), reuses the existing tooltip for overflow — no new affordance. Acceptance: "Reposition for a higher price point" (35 ch) wraps to 2 clean lines; a synthetic 60-char title clamps + ellipsis with full text on tap; no mid-word break at 390 or desktop. E2 is the drop-in alternate if a dense portfolio view needs maximum grid width.</div>
+
+<!-- decisions -->
+<p class="part">OPEN DECISIONS TO LOCK</p>
+<h2>Confirm before ticketing</h2>
+<ul class="q">
+<li><span class="qn">A</span><b>Bridge floor vs. cap.</b> Is 4.6s acceptable as the floor, or must fast paths land closer to a hard 3s? <span class="rec">Recommend: 4.6s floor — it preserves the three-beat arrival read.</span></li>
+<li><span class="qn">B</span><b>Overrun thresholds.</b> Confirm N = 8s past loop and the 45s absolute ceiling, or set per-loader values with eng. <span class="rec">Recommend: ship the house defaults, override per loader only where the backend p95 demands it.</span></li>
+<li><span class="qn">C</span><b>Date picker: custom vs. native.</b> Ship the custom in-drawer grid everywhere, or allow styled native <code>date</code> input on mobile? <span class="rec">Recommend: custom grid as default; native accepted where the drawer can't host the grid.</span></li>
+<li><span class="qn">C</span><b>Completed-item retention.</b> Does Done keep everything for the week, or roll off after N days? Confirm so the "N banked" count stays meaningful.</li>
+<li><span class="qn">D</span><b>Dormant tap behaviour.</b> Fully inert, or a one-line "arriving with your dashboard" toast on tap? <span class="rec">Recommend: inert — the ghost state already says it.</span></li>
+<li><span class="qn">E</span><b>Rail treatment.</b> Lock E3 (wider rail) as default, E2 (rotated) reserved for dense views?</li>
+</ul>
+
+<!-- tickets -->
+<p class="part">TICKETS — QUOTED PER LANE</p>
+<h2>Suggested breakdown</h2>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-WP-A</span> · Bridge re-timed ≤5s</span><span class="tkest">~0.5d · intake</span></div>
+<ul><li><b>Re-time the existing bridge</b> to the three-beat, 4.6s sequence: merge the first-move pin into the trophy zoom, compress workspace-forming to 1.4s.</li><li>Keep the park beat and its hold-until-ready untouched; redirect fires during the hold.</li><li>Reduced-motion cross-fade path. Captions per copy block A.</li></ul></div>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-WP-B</span> · Loader overrun pattern</span><span class="tkest">~1.5d · house-wide</span></div>
+<ul><li><b>Shared overrun behaviour</b> for every narrated loader: +8s soften (swap two strings, indeterminate shimmer, ring keeps moving), 45s hand-off to the failed sibling.</li><li>Wire it first onto the intake "Reading" loader (copy block B), then confirm Weighing + cockpit milestone loaders inherit it.</li><li>Per-loader threshold overrides; the two-string surface for each.</li></ul></div>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-WP-C</span> · Work loop — create/date/complete/delete/done</span><span class="tkest">~3–4d · cockpit</span></div>
+<ul><li><b>The full loop</b> (§C 1–6): create sheet, in-drawer date picker, date + overdue chips, tap-to-complete with settle, soft delete + undo toast, collapsed Done section with count.</li><li>All as extensions of the existing drawer + Work-row components. Copy per §C blocks.</li><li>Largest lane — sub-split into create/dates (C1–3) and complete/delete/done (C4–6) if two devs.</li></ul></div>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-WP-D</span> · Dormant nav + arrival wake</span><span class="tkest">~0.5d · shell</span></div>
+<ul><li><b>Dormant treatment</b> for the four non-Roadmap tabs during first-run; wake animation as part of the arrival reveal (staggered 100ms) + reduced-motion path.</li><li>Depends on the arrival-reveal trigger already owning the moment.</li></ul></div>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-WP-E</span> · Theme-rail text</span><span class="tkest">~0.5d · roadmap grid</span></div>
+<ul><li><b>Rail treatment E3</b>: widen to 130px, word-wrap, 2-line clamp, overflow tooltip reusing the provisional affordance. Acceptance test in §E.</li><li>E2 (rotated) behind a flag for dense views if product wants it.</li></ul></div>
+
+<p class="foot">ResolvePM Work-Packet Patterns · Build Brief · see ResolvePM Work Packet Patterns.dc.html for live A–E and the interactive work loop (section C).</p>
+</doc-page>
+</x-dc>
+</body>
+</html>
