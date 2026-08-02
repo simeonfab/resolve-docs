@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><script src="./doc-page.js"></script><style>
+doc-page:not(:defined){visibility:hidden}
+:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#7A756A;--surface:#F2EDE4;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A;--green:#5E7D4F}
+*{box-sizing:border-box}
+body{margin:0;background:#3A372F}
+doc-page{font-family:'Inter',sans-serif;color:var(--ink);line-height:1.55;font-size:13px}
+a{color:var(--terracotta)}a:hover{color:#6f3a21}
+.doctitle{font-family:'DM Serif Display',serif;font-size:32px;line-height:1.1;margin:0 0 8px}
+.docsub{font-size:14px;color:var(--ink-soft);margin:0 0 4px}
+.docmeta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-ghost);margin:0;line-height:1.7}
+.rule{height:2px;background:var(--ink);margin:18px 0 22px}
+.part{font-size:12px;font-weight:700;color:var(--terracotta);letter-spacing:.04em;margin:30px 0 4px}
+h2{font-size:19px;font-weight:700;margin:6px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.lead{font-size:13px;color:var(--ink-soft);margin:0 0 16px}
+p{margin:0 0 10px}
+b{color:var(--ink);font-weight:700}
+code{font-family:'JetBrains Mono',monospace;font-size:10.5px;background:#F3EFE7;border-radius:3px;padding:0 4px;color:#5A4A1E}
+.conv{margin:0 0 16px;padding-left:0;list-style:none}
+.conv li{position:relative;padding-left:18px;margin-bottom:7px}
+.conv li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--amber)}
+.flag{background:#FBF3E4;border-left:3px solid var(--amber);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 16px}
+.override{background:#FBEDE6;border-left:3px solid var(--terracotta);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 16px}
+.override b{color:#8B4A2A}
+.settled{background:#F0F3EC;border-left:3px solid var(--green);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 12px}
+.settled b{color:#3F5836}
+.tok{width:100%;border-collapse:collapse;margin:2px 0 8px}
+.tok td{font-size:12px;padding:5px 9px;border-bottom:1px solid var(--border);vertical-align:top}
+.tok td:first-child{font-family:'JetBrains Mono',monospace;color:#5A4A1E;white-space:nowrap;width:150px}
+.tok td b{color:var(--ink)}
+.tok th{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-ghost);text-align:left;padding:0 9px 6px;border-bottom:1px solid var(--ink)}
+.repo{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:500;background:var(--ink);color:#F5F1E8;border-radius:5px;padding:2px 8px;margin-bottom:8px}
+.copy{background:#141311;border-radius:10px;padding:14px 16px;margin:4px 0 14px}
+.copy .cl{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);margin:0 0 8px}
+.copy .ce{margin:0 0 9px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.09)}
+.copy .ce:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.copy .ck{font-family:'JetBrains Mono',monospace;font-size:10px;color:#8A8578;display:block;margin-bottom:3px}
+.copy .cv{font-size:13px;color:#F5F1E8;line-height:1.5}
+.copy .cv.serif{font-family:'DM Serif Display',serif;font-size:16px}
+.q{margin:0 0 14px;padding:0;list-style:none}
+.q li{position:relative;padding:9px 0 9px 30px;border-top:1px solid var(--border);font-size:12.5px}
+.q li:first-child{border-top:none}
+.q li .qn{position:absolute;left:0;top:9px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);font-weight:500}
+.q li b{color:var(--ink)}
+.q li .rec{color:var(--green);font-weight:600}
+.tick td:first-child{color:var(--green);font-weight:700}
+.branch{display:flex;gap:10px;margin:6px 0 12px}
+.bcard{flex:1;background:#F7F3EB;border:1px solid var(--border);border-radius:9px;padding:12px 13px}
+.bcard .bh{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--terracotta);margin:0 0 6px}
+.bcard .bt{font-weight:700;font-size:13px;margin:0 0 4px}
+.bcard p{font-size:11.5px;color:var(--ink-soft);margin:0}
+.linkrow{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 8px}
+.lk{font-family:'JetBrains Mono',monospace;font-size:11px;background:#F3EFE7;border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--terracotta);text-decoration:none}
+.lk:hover{border-color:var(--amber);color:#6f3a21}
+.tk{border:1px solid var(--border);border-radius:9px;padding:12px 14px;margin:0 0 10px;break-inside:avoid}
+.tk .tkh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+.tk .tkid{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--amber)}
+.tk .tkt{font-weight:700;font-size:13.5px;color:var(--ink)}
+.tk .tkest{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-ghost);white-space:nowrap}
+.tk ul{margin:6px 0 0;padding-left:16px}
+.tk li{font-size:12px;margin-bottom:4px;color:var(--ink-soft)}
+.tk li b{color:var(--ink)}
+.foot{margin-top:26px;padding-top:12px;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-ghost)}
+</style></helmet>
+<doc-page size="letter" margin="0.7in">
+<p class="doctitle">Daily Limit Reached — Build Brief</p>
+<p class="docsub">ResolvePM · The honest "today's roadmaps are done" state on <code>/roadmap</code>, plus the pre-signup notice on the intake bridge.</p>
+<p class="docmeta">audience: tech lead → review + ticket creation · status: design complete, awaiting sign-off<br>reference mockup: ResolvePM Daily Limit.dc.html (all states playable) · joins: ResolvePM Roadmap Reveal.dc.html (pending/stalled/failed siblings)<br>repos: cap-pm-cockpit-alaria (Surface 1) · ResolveOS-intake-frontend (Surface 2)</p>
+<div class="rule"></div>
+
+<p class="part">00 · DESIGN LINKS</p>
+<h2>Everything is a playable mockup</h2>
+<p class="lead">Open these before reviewing the spec — every frame, both variants and the reduced-motion treatment render live at 390px, with the desktop-frame check inline.</p>
+<div class="linkrow">
+<a class="lk" href="./ResolvePM Daily Limit.dc.html">▸ ResolvePM Daily Limit.dc.html — full spec sheet</a>
+<a class="lk" href="./ResolvePM Roadmap Reveal.dc.html">▸ Roadmap Reveal — sibling states</a>
+</div>
+<table class="tok">
+<tr><th>Frame in mockup</th><th>What it is</th></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>State 1</b></td><td>Default — nothing started today (pure reassurance)</td></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>State 2</b></td><td>Paused part-way — progress acknowledged (recommended when ≥1 milestone banked)</td></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>State 3</b></td><td>Reduced-motion treatment (applies to 1 and 2)</td></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>State 4</b></td><td>Desktop-frame check — 390 column on the parchment field</td></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>Surface 2 · A/B</b></td><td>Pre-signup bridge notice + the matching post-signup screen</td></tr>
+</table>
+
+<p class="part">01 · THE MODEL</p>
+<h2>A fourth sibling, not an error</h2>
+<p class="lead">This is the same screen slot as the narrated progress checklist on <code>/roadmap</code> — a sibling of pending / stalled / failed. It reuses their skeleton and amber logic, but reads <b>calm, not alarming</b>. It is not an error state and must never look like one.</p>
+<ul class="conv">
+<li>The daily generation capacity is reached. <b>Nothing is lost</b> — the project, context and any work done so far are saved; generation resumes automatically the next day.</li>
+<li>There is <b>no working retry</b>, and dead controls are banned. The state carries <b>one live control</b>: a real "Back to your dashboard" navigation. No disabled button, no countdown, no "try again".</li>
+<li>The processing ring is <b>complete and still</b> (a slow opacity breathe, no rotation). Rotation reads as "working now", and it isn't.</li>
+</ul>
+<div class="flag"><b>Copy ships as written.</b> Every string in §3 is final. Do not paraphrase in code — the honest-but-warm wording is the deliverable.</div>
+
+<p class="part">02 · WHICH VARIANT FIRES</p>
+<h2>One branch, on milestones completed</h2>
+<p class="lead">Same state, same slot, same control. The only branch is how much work was banked before the limit was hit:</p>
+<div class="branch">
+<div class="bcard"><p class="bh">milestonesDone === 0</p><p class="bt">State 1 — pure reassurance</p><p>Nothing started today. Settled ring + "what happens next" card. No checklist.</p></div>
+<div class="bcard" style="border-color:var(--amber)"><p class="bh">milestonesDone ≥ 1</p><p class="bt">State 2 — progress acknowledged ★</p><p>Paused mid-way. Reuse the pending checklist, frozen: ticked rows stay amber, unreached rows fall back to dashed "awaiting" cards.</p></div>
+</div>
+<div class="override"><b>Never show an empty checklist.</b> At zero milestones there is nothing to acknowledge — fall back to State 1. State 2 is the recommended default whenever real progress exists.</div>
+
+<p class="part">03 · FINAL COPY — SURFACE 1</p>
+<span class="repo">cap-pm-cockpit-alaria · /roadmap</span>
+<h2>State 1 — nothing started today</h2>
+<div class="copy">
+<p class="cl">State 1 · pure reassurance</p>
+<div class="ce"><span class="ck">eyebrow</span><span class="cv">Your roadmap</span></div>
+<div class="ce"><span class="ck">headline</span><span class="cv serif">We're building this first thing tomorrow.</span></div>
+<div class="ce"><span class="ck">ring caption</span><span class="cv">Resolve builds a set number of roadmaps each day so every one gets real attention — and we've hit the limit for today.</span></div>
+<div class="ce"><span class="ck">body ¶1</span><span class="cv">Nothing is lost. Your project, your context and the direction you chose are saved exactly as you left them.</span></div>
+<div class="ce"><span class="ck">body ¶2</span><span class="cv">Yours is next in line. It starts on its own in the morning — there's nothing for you to redo, and nothing to press.</span></div>
+<div class="ce"><span class="ck">card — "What happens next"</span><span class="cv"><b>Tomorrow</b> · Resolve builds your roadmap. You don't need to be here for it.<br><b>When you open Resolve</b> · It's finished and waiting on this screen.</span></div>
+<div class="ce"><span class="ck">button (live nav)</span><span class="cv">Back to your dashboard →</span></div>
+<div class="ce"><span class="ck">footer</span><span class="cv">Your project is there already — notes, context and your first move.</span></div>
+</div>
+<h2 style="margin-top:20px">State 2 — paused part-way</h2>
+<div class="copy">
+<p class="cl">State 2 · progress acknowledged</p>
+<div class="ce"><span class="ck">headline</span><span class="cv serif">We got part of the way. The rest lands tomorrow.</span></div>
+<div class="ce"><span class="ck">intro</span><span class="cv">Resolve builds a set number of roadmaps each day so every one gets real attention, and we've hit the limit for today — so yours stopped at a clean point rather than being rushed.</span></div>
+<div class="ce"><span class="ck">checklist — ticked</span><span class="cv">Read everything you brought in · Found the themes that can move the outcome · Put them in the order that pays off soonest</span></div>
+<div class="ce"><span class="ck">checklist — awaiting (dashed)</span><span class="cv">Turning each theme into first moves · Setting up your first week</span></div>
+<div class="ce"><span class="ck">hold row</span><span class="cv">Saved here, exactly as it is, until the morning.</span></div>
+<div class="ce"><span class="ck">body</span><span class="cv">Nothing is lost and nothing gets repeated — it picks up from this line, not from the start.</span></div>
+<div class="ce"><span class="ck">button + footer</span><span class="cv">Back to your dashboard → · The finished themes are already on your dashboard.</span></div>
+</div>
+<div class="settled"><b>Checklist rows are shared with the pending state.</b> Use the exact same milestone strings; State 2 renders them frozen where generation stopped, so the labels must match character-for-character or the transition looks like a different list.</div>
+
+<p class="part">04 · FINAL COPY — SURFACE 2</p>
+<span class="repo">ResolveOS-intake-frontend · bridge</span>
+<h2>Pre-signup notice + post-signup screen</h2>
+<p class="lead">A variant of the existing bridge / Continue moment — <b>not a new page</b>. Same dark shell, same mark, the recommendation already read. The primary CTA and Download report are untouched; one paragraph is swapped and one "Already saved" card is added.</p>
+<div class="copy">
+<p class="cl">Surface 2A · bridge, before auth</p>
+<div class="ce"><span class="ck">eyebrow</span><span class="cv">Before you continue</span></div>
+<div class="ce"><span class="ck">headline</span><span class="cv serif">Your plan is saved. We'll build it in the morning.</span></div>
+<div class="ce"><span class="ck">body ¶1</span><span class="cv">Resolve builds a set number of roadmaps each day so every one gets real attention, and we've hit the limit for today. Sign up now and yours is first in line tomorrow.</span></div>
+<div class="ce"><span class="ck">card — "Already saved"</span><span class="cv">Everything you told us about the project · The direction you just read, and your first move · Nothing to fill in twice</span></div>
+<div class="ce"><span class="ck">body ¶2</span><span class="cv">Signing up is what keeps it — without an account there's nowhere for the finished roadmap to land.</span></div>
+<div class="ce"><span class="ck">CTA (unchanged) + secondary + footer</span><span class="cv">Continue in Resolve → · Download report · Open Resolve tomorrow and your roadmap is there.</span></div>
+</div>
+<div class="copy">
+<p class="cl">Surface 2B · after sign-up, same day</p>
+<div class="ce"><span class="ck">headline</span><span class="cv serif">You're in. We're building this first thing tomorrow.</span></div>
+<div class="ce"><span class="ck">ring caption</span><span class="cv">Just as we said at the door — we've hit the limit for today, and yours is next.</span></div>
+<div class="ce"><span class="ck">body</span><span class="cv">Your account is set up and everything from intake is in it. Nothing to re-enter.</span></div>
+<div class="ce"><span class="ck">button (solid amber)</span><span class="cv">Go to your dashboard →</span></div>
+</div>
+<div class="flag"><b>The two surfaces must not contradict.</b> A founder who saw 2A and signs up lands on 2B, whose ring caption references what they were already told ("just as we said at the door"). If Surface 2 is deferred, 2B is dropped and the founder lands on plain State 1.</div>
+
+<p class="part">05 · MOTION</p>
+<h2>Quick, and honestly still</h2>
+<table class="tok">
+<tr><th>Element</th><th>Motion</th></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>Enter</b></td><td>opacity 0→1 + 6px rise on headline, ring and card, <b>staggered 60ms</b>, ~200ms ease, fill:both</td></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>Ring</b></td><td>holds a <b>3.2s opacity breathe</b> at 0.85→1 · <b>no rotation</b> · full amber stroke, filled centre dot</td></tr>
+<tr><td style="font-family:inherit;color:var(--ink);width:auto"><b>Ticked rows</b></td><td>do <b>not</b> re-animate — they were already ticked in the pending state; State 2 inherits them mid-flight</td></tr>
+</table>
+<div class="settled"><b>Reduced motion (<code>prefers-reduced-motion</code>):</b> drop the breathe (ring held at full opacity), enter becomes a single <b>&lt;120ms opacity fade</b> — no translate, no stagger. Copy and layout identical; no second design to maintain.</div>
+
+<p class="part">06 · BANNED HERE</p>
+<h2>Non-negotiable — reject in review</h2>
+<div class="override"><ul style="margin:0;padding-left:18px">
+<li><b>No dead controls:</b> no disabled buttons, no "retry" / "try again".</li>
+<li><b>No countdown</b> timers or "resumes in 6h 12m".</li>
+<li><b>No counters:</b> "X generations remaining" appears nowhere in the product.</li>
+<li><b>No system vocabulary:</b> quota · rate limit · API · tokens · capacity pool.</li>
+<li><b>No error tone:</b> no red, warning triangles, apology or blame.</li>
+<li><b>No upsell:</b> nothing implying payment or upgrading removes the limit.</li>
+</ul></div>
+
+<p class="part">07 · OPEN DECISIONS TO LOCK</p>
+<h2>Confirm before ticketing</h2>
+<ul class="q">
+<li><span class="qn">1</span><b>State 2 trigger source.</b> What signals <code>milestonesDone</code> at the moment the limit is hit — the same progress feed the pending checklist ticks on? <span class="rec">Recommend: reuse that feed; snapshot its last-completed index.</span></li>
+<li><span class="qn">2</span><b>Where "Back to your dashboard" lands.</b> The cockpit home with the saved project + first move already present. Confirm the route.</li>
+<li><span class="qn">3</span><b>Surface 2 in scope?</b> Ship the bridge notice (2A) + post-signup screen (2B), or defer and land everyone on State 1? <span class="rec">Recommend: ship — it's the cheaper, higher-trust moment to say it.</span></li>
+<li><span class="qn">4</span><b>Auto-return on the next day.</b> When generation resumes and finishes overnight, does this screen live-swap to the reveal, or is it picked up on next open? Confirm so the "waiting on this screen" copy stays true.</li>
+</ul>
+
+<p class="part">08 · TICKETS</p>
+<h2>Suggested breakdown</h2>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-DL-1</span> · Daily limit state on /roadmap</span><span class="tkest">~1.5d · Surface 1</span></div>
+<ul><li><b>New sibling state</b> in the <code>/roadmap</code> generation surface, alongside pending/stalled/failed.</li><li>States 1 + 2 with the <code>milestonesDone</code> branch (§2); settled ring, "what happens next" card, frozen checklist reusing pending's rows.</li><li>Single live "Back to your dashboard" nav (§07 Q2). Final copy §3.</li><li>Enter + breathe motion and reduced-motion path (§5).</li></ul></div>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-DL-2</span> · Pre-signup bridge notice</span><span class="tkest">~0.5d · Surface 2 · deferrable</span></div>
+<ul><li><b>Variant of the existing bridge screen</b> — swap ¶1, add the "Already saved" card. CTA + Download report untouched. Copy §4 (2A).</li><li>Post-signup State-1 variant (2B) with the "just as we said at the door" line so the surfaces stay consistent.</li><li>Gated on the same limit signal as R-DL-1, evaluated before auth.</li></ul></div>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-DL-3</span> · Limit signal + resume</span><span class="tkest">est. w/ eng · shared dep</span></div>
+<ul><li>The signal both surfaces read (limit reached today) and the <code>milestonesDone</code> snapshot for State 2.</li><li>Overnight resume + how this screen updates when it finishes (§07 Q4). Backend-owned; sizing with eng.</li></ul></div>
+
+<p class="foot">ResolvePM Daily Limit Reached · Build Brief · see ResolvePM Daily Limit.dc.html for live, playable references of every state, both variants, reduced-motion and the desktop-frame check.</p>
+</doc-page>
+</x-dc>
+</body>
+</html>

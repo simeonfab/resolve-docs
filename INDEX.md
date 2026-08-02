@@ -91,6 +91,8 @@ Motion authority lives in the mockups dir: `mockups/Resolve_Flow_Spec.html` (Sur
 - `ResolvePM_Global_Bar_Contextual_dc.html` [current] - Global bar - Contextual variant. **THE chosen §T2.15 target.**
 - `ResolvePM_Global_Bar_dc.html` [current] - Global bar - non-Contextual variant. The alternative layout option referenced by T2.15 (Contextual is chosen). **Newly filed to mockups/** (an older copy also sits in archive/).
 - `ResolvePM_Portfolio_dc.html` [current] - Portfolio view mockup. **Newly filed.**
+- `ResolvePM_Daily_Limit.dc.html` [current] - Daily limit reached state on /roadmap (fourth sibling of pending/stalled/failed): States 1 (nothing started) + 2 (paused part-way), reduced-motion frame, desktop-frame check, and the optional Surface 2 bridge notice. All states playable. **Newly filed 2 Aug; filename kept as delivered (`.dc.html`).**
+- `ResolvePM_Daily_Limit_Brief.dc.html` [current] - Build brief for the daily-limit state: final copy (§3–4, ships verbatim), variant branch on milestonesDone (§2), motion + reduced-motion (§5), banned list (§6), open decisions (§7), ticket breakdown (§8). Pairs with `ResolvePM_Daily_Limit.dc.html`. **Newly filed 2 Aug.**
 
 ### Motion authority (Surfaces A–I)
 - `Resolve_Flow_Spec.html` [current] - **THE motion spec.** Every animation as literal copy-pasteable values (duration, easing, delay, stagger, keyframes), organized Surfaces A–I. **Newly filed.**

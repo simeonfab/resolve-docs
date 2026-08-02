@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--soft:#4A4A44;--ghost:#9A9A92;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terra:#8B4A2A}
+*{box-sizing:border-box}
+body{margin:0;background:#141311;font-family:'Inter',sans-serif;color:#FBF8F2}
+a{color:var(--amber);text-decoration:none}
+a:hover{color:#E0BC5E}
+.band{max-width:1180px;margin:0 auto;padding:48px 28px 8px}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.btitle{font-family:'DM Serif Display',serif;font-size:32px;line-height:1.15;margin:0 0 14px;max-width:820px}
+.bsub{font-size:14.5px;line-height:1.65;color:#B4AFA3;max-width:720px;margin:0}
+.bsub b{color:#F5F1E8;font-weight:600}
+.flowline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px;font-size:12.5px;color:#8A8578}
+.fstep{border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:7px 12px}
+.fstep.here{border-color:var(--amber);color:#F5F1E8;background:rgba(200,160,64,.08)}
+.farrow{color:#5F5B50}
+.siblings{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:#8A8578}
+.sib{border:1px dashed rgba(255,255,255,.16);border-radius:7px;padding:6px 10px}
+.sib.here{border-style:solid;border-color:var(--amber);color:#F5F1E8}
+.stage{display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;justify-content:center;padding:44px 24px 8px}
+.col{display:flex;flex-direction:column;align-items:center;gap:12px;width:392px;max-width:100vw}
+.collabel{font-size:13px;font-weight:700;color:#F5F1E8}
+.colnote{font-size:12px;line-height:1.55;color:#8A8578;text-align:center;max-width:352px}
+.colnote b{color:var(--amber);font-weight:600}
+.phone{width:392px;max-width:100vw;background:var(--surface);border:1px solid rgba(0,0,0,.28);border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden;position:relative}
+.glow{position:absolute;top:-90px;left:50%;transform:translateX(-50%);width:380px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(200,160,64,.16),rgba(200,160,64,.05) 42%,transparent 70%);pointer-events:none}
+.screen{position:relative;padding:32px 24px 26px;min-height:640px;display:flex;flex-direction:column}
+.mark{display:flex;align-items:center;gap:8px;margin-bottom:22px}
+.mark .logo{width:24px;height:24px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:14px;flex:none}
+.mark .nm{font-size:15px;font-weight:700;color:var(--ink)}
+.progress{display:flex;gap:6px;margin-bottom:22px}
+.seg{height:4px;flex:1;border-radius:2px;background:var(--border)}
+.seg.done{background:var(--amber)}
+.seg.on{background:rgba(200,160,64,.42)}
+.eyebrow{color:var(--terra);font-size:13px;font-weight:600;margin-bottom:9px}
+.headline{font-family:'DM Serif Display',serif;font-size:27px;line-height:1.18;margin:0 0 16px;color:var(--ink)}
+.para{font-size:14.5px;line-height:1.62;color:var(--soft);margin:0 0 13px}
+.para b{color:var(--ink);font-weight:600}
+/* the ring — same slot as the pending state's spinner, but settled: full stroke, no rotation */
+.ringrow{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.ring{width:44px;height:44px;border-radius:50%;border:3px solid var(--amber);display:flex;align-items:center;justify-content:center;flex:none;position:relative}
+.ring:after{content:"";width:9px;height:9px;border-radius:50%;background:var(--amber)}
+.ring.rest{animation:breathe 3200ms ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.85}50%{opacity:1}}
+.ringtxt{font-size:12.5px;line-height:1.5;color:var(--soft)}
+.ringtxt b{color:var(--ink);font-weight:600}
+/* next-up card — replaces the checklist in the pure-reassurance variant */
+.nextcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 17px;margin:4px 0 16px}
+.nextcard .nh{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);margin-bottom:12px}
+.nline{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--border)}
+.nline:first-of-type{border-top:none;padding-top:0}
+.nwhen{font-size:11.5px;font-weight:700;color:var(--amber);width:78px;flex:none;line-height:1.45;padding-top:1px}
+.nwhat{font-size:13.5px;line-height:1.5;color:var(--ink)}
+.nwhat span{color:var(--soft)}
+/* milestone checklist — the pending state's list, frozen where it stopped */
+.list{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 16px;margin:2px 0 16px}
+.li{display:flex;gap:11px;align-items:flex-start;padding:8px 0;font-size:13.5px;line-height:1.45}
+.tick{width:18px;height:18px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.tick.on{background:var(--amber)}
+.tick.on svg{width:11px;height:11px;color:var(--ink)}
+.tick.wait{border:1px dashed var(--border)}
+.li.done{color:var(--ink)}
+.li.wait{color:var(--ghost)}
+.li.wait .lt{border-bottom:1px dashed var(--border);padding-bottom:1px}
+.holdrow{display:flex;align-items:center;gap:9px;border-top:1px solid var(--border);margin-top:8px;padding-top:11px;font-size:12px;color:var(--soft)}
+.holdrow .hd{width:7px;height:7px;border-radius:50%;background:var(--amber);flex:none}
+.spacer{flex:1;min-height:8px}
+.btn{width:100%;height:46px;border-radius:10px;border:1px solid var(--border);background:transparent;font-size:14.5px;font-weight:700;font-family:inherit;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px}
+.btn:hover{border-color:var(--amber)}
+.btn svg{width:15px;height:15px}
+.btn.solid{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+.foot{font-size:12px;line-height:1.5;color:var(--ghost);margin-top:11px;text-align:center}
+/* desktop frame check */
+.deskwrap{width:100%;max-width:1120px;margin:0 auto;padding:8px 28px 0}
+.desk{background:#E4DED2;border-radius:16px;padding:34px 0;display:flex;justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative;overflow:hidden}
+.desk .dglow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:640px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(200,160,64,.22),transparent 68%)}
+.deskcard{width:390px;background:var(--surface);border:1px solid #D5CFC3;border-radius:22px;box-shadow:0 18px 44px rgba(0,0,0,.18);position:relative;z-index:1}
+/* dark bridge (surface 2) */
+.bridge{width:392px;max-width:100vw;background:var(--ink);border:1px solid rgba(255,255,255,.08);border-radius:28px;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.bglow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:380px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(200,160,64,.2),transparent 68%)}
+.bscreen{position:relative;padding:32px 24px 26px;min-height:640px;display:flex;flex-direction:column}
+.bmark{display:flex;align-items:center;gap:8px;margin-bottom:24px}
+.bmark .logo{width:24px;height:24px;border-radius:7px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:14px}
+.bmark .nm{font-size:15px;font-weight:700;color:#F5F1E8}
+.beyebrow{font-size:13px;font-weight:600;color:var(--amber);margin-bottom:9px}
+.bhead{font-family:'DM Serif Display',serif;font-size:27px;line-height:1.18;color:#FBF8F2;margin:0 0 16px}
+.bpara{font-size:14.5px;line-height:1.62;color:#B4AFA3;margin:0 0 13px}
+.bpara b{color:#F5F1E8;font-weight:600}
+.saved{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:15px 16px;margin:4px 0 16px}
+.saved .sh{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:11px}
+.sline{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.5;color:#D8D3C7;padding:6px 0}
+.sline svg{width:14px;height:14px;color:var(--amber);flex:none;margin-top:3px}
+.bcta{width:100%;height:47px;border-radius:10px;border:none;background:var(--amber);color:var(--ink);font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px}
+.bcta svg{width:16px;height:16px}
+.bsec{width:100%;height:44px;margin-top:10px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:transparent;color:#D8D3C7;font-size:13.5px;font-weight:600;font-family:inherit;cursor:pointer}
+.bfoot{font-size:12px;line-height:1.5;color:#8A8578;margin-top:12px;text-align:center}
+/* spec blocks */
+.mband{border-top:1px solid rgba(255,255,255,.1);margin-top:34px}
+.mband .band{padding-top:44px}
+.notegrid{max-width:1180px;margin:26px auto 0;padding:0 28px 64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.note{border:1px dashed rgba(200,160,64,.4);border-radius:10px;padding:15px 17px;font-size:12.5px;line-height:1.62;color:#B4AFA3}
+.note h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin:0 0 9px}
+.note b{color:#F5F1E8;font-weight:600}
+.note ul{margin:8px 0 0;padding-left:16px}
+.note li{margin-bottom:5px}
+.banned{border-color:rgba(139,74,42,.55)}
+.banned h4{color:#C8763E}
+@media(max-width:720px){.btitle{font-size:26px}}
+</style></helmet>
+<div class="root" style="{{ rootStyle }}">
+
+<div class="band">
+<span class="badge">Spec 1.5 · Daily limit reached</span>
+<h1 class="btitle">Today's building is done. Nothing is lost, and nobody has to do anything.</h1>
+<p class="bsub">A fourth sibling of the <b>/roadmap</b> generation surface — same skeleton as pending, stalled and failed, same amber logic, but <b>calm, not alarming</b>: this is not an error. It carries the settled ring where pending carries the moving one, and it holds <b>one live control</b> — a real navigation to the dashboard. No disabled button, no countdown, no "try again". Two entry paths share the state: nothing started today (1), or the work paused at a safe point part-way (2).</p>
+<div class="flowline"><span class="fstep">Intake</span><span class="farrow">→</span><span class="fstep">Bridge</span><span class="farrow">→</span><span class="fstep">Sign-up</span><span class="farrow">→</span><span class="fstep here">/roadmap — daily limit state</span><span class="farrow">→</span><span class="fstep">Roadmap Reveal (tomorrow)</span></div>
+<div class="siblings"><span class="sib">Pending · narrated checklist</span><span class="sib">Stalled · softened copy</span><span class="sib">Failed · error + retry</span><span class="sib here">Daily limit · this spec</span></div>
+</div>
+
+<div class="stage">
+
+<div class="col"><div class="collabel">1 · Default — nothing started today (path a)</div><div class="phone"><div class="glow"></div><div class="screen">
+<div class="mark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="progress"><div class="seg done"></div><div class="seg done"></div><div class="seg on"></div></div>
+<div class="eyebrow">Your roadmap</div>
+<h1 class="headline">We're building this first thing tomorrow.</h1>
+<div class="ringrow"><div class="ring rest"></div><div class="ringtxt">Resolve builds a set number of roadmaps each day so every one gets real attention — and <b>we've hit the limit for today.</b></div></div>
+<p class="para">Nothing is lost. Your project, your context and the direction you chose are saved exactly as you left them.</p>
+<p class="para">Yours is next in line. It starts on its own in the morning — <b>there's nothing for you to redo, and nothing to press.</b></p>
+<div class="nextcard"><div class="nh">What happens next</div>
+<div class="nline"><div class="nwhen">Tomorrow</div><div class="nwhat">Resolve builds your roadmap. <span>You don't need to be here for it.</span></div></div>
+<div class="nline"><div class="nwhen">When you open Resolve</div><div class="nwhat">It's finished and waiting on this screen.</div></div>
+</div>
+<div class="spacer"></div>
+<button class="btn" onClick="{{ noop }}">Back to your dashboard<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<p class="foot">Your project is there already — notes, context and your first move.</p>
+</div></div>
+<div class="colnote">Reads as <b>care, not failure</b>: the limit exists so each roadmap gets attention. One live control, a real navigation. The ring is <b>complete and still</b> — the visual difference from pending is that it stopped moving, not that it turned red.</div></div>
+
+<div class="col"><div class="collabel">2 · Paused part-way (path b) — recommended</div><div class="phone"><div class="glow"></div><div class="screen">
+<div class="mark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="progress"><div class="seg done"></div><div class="seg done"></div><div class="seg on"></div></div>
+<div class="eyebrow">Your roadmap</div>
+<h1 class="headline">We got part of the way. The rest lands tomorrow.</h1>
+<p class="para">Resolve builds a set number of roadmaps each day so every one gets real attention, and <b>we've hit the limit for today</b> — so yours stopped at a clean point rather than being rushed.</p>
+<div class="list">
+<div class="li done"><span class="tick on"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lt">Read everything you brought in</span></div>
+<div class="li done"><span class="tick on"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lt">Found the themes that can move the outcome</span></div>
+<div class="li done"><span class="tick on"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lt">Put them in the order that pays off soonest</span></div>
+<div class="li wait"><span class="tick wait"></span><span class="lt">Turning each theme into first moves</span></div>
+<div class="li wait"><span class="tick wait"></span><span class="lt">Setting up your first week</span></div>
+<div class="holdrow"><span class="hd"></span>Saved here, exactly as it is, until the morning.</div>
+</div>
+<p class="para">Nothing is lost and nothing gets repeated — it picks up from this line, not from the start.</p>
+<div class="spacer"></div>
+<button class="btn" onClick="{{ noop }}">Back to your dashboard<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<p class="foot">The finished themes are already on your dashboard.</p>
+</div></div>
+<div class="colnote">Stronger than pure reassurance: the founder sees <b>real work banked</b>. The same checklist as pending, frozen — ticked rows keep amber, unreached rows fall back to the <b>dashed "awaiting" cards</b> from the reveal vocabulary. Ship this variant when progress ≥ 1 milestone; fall back to 1 at zero.</div></div>
+
+<div class="col"><div class="collabel">3 · Reduced motion (applies to 1 and 2)</div><div class="phone"><div class="glow"></div><div class="screen">
+<div class="mark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="progress"><div class="seg done"></div><div class="seg done"></div><div class="seg on"></div></div>
+<div class="eyebrow">Your roadmap</div>
+<h1 class="headline">We're building this first thing tomorrow.</h1>
+<div class="ringrow"><div class="ring"></div><div class="ringtxt">Resolve builds a set number of roadmaps each day so every one gets real attention — and <b>we've hit the limit for today.</b></div></div>
+<p class="para">Nothing is lost. Your project, your context and the direction you chose are saved exactly as you left them.</p>
+<p class="para">Yours is next in line. It starts on its own in the morning — <b>there's nothing for you to redo, and nothing to press.</b></p>
+<div class="nextcard"><div class="nh">What happens next</div>
+<div class="nline"><div class="nwhen">Tomorrow</div><div class="nwhat">Resolve builds your roadmap. <span>You don't need to be here for it.</span></div></div>
+<div class="nline"><div class="nwhen">When you open Resolve</div><div class="nwhat">It's finished and waiting on this screen.</div></div>
+</div>
+<div class="spacer"></div>
+<button class="btn" onClick="{{ noop }}">Back to your dashboard<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<p class="foot">Your project is there already — notes, context and your first move.</p>
+</div></div>
+<div class="colnote">Under <b>prefers-reduced-motion</b>: the ring's 3.2s opacity breathe is dropped (held at full), the enter transition becomes a plain <b>opacity fade under 120ms</b> with no translate, and nothing else changes. Identical copy and layout — <b>no second design to maintain</b>.</div></div>
+
+</div>
+
+<div class="deskwrap">
+<div class="collabel" style="margin-bottom:10px">4 · Desktop-frame check — 390 column on the parchment field</div>
+<div class="desk"><div class="dglow"></div><div class="deskcard"><div class="screen" style="min-height:600px">
+<div class="mark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="progress"><div class="seg done"></div><div class="seg done"></div><div class="seg on"></div></div>
+<div class="eyebrow">Your roadmap</div>
+<h1 class="headline">We're building this first thing tomorrow.</h1>
+<div class="ringrow"><div class="ring rest"></div><div class="ringtxt">Resolve builds a set number of roadmaps each day so every one gets real attention — and <b>we've hit the limit for today.</b></div></div>
+<p class="para">Nothing is lost. Your project, your context and the direction you chose are saved exactly as you left them.</p>
+<p class="para">Yours is next in line. It starts on its own in the morning — <b>there's nothing for you to redo, and nothing to press.</b></p>
+<div class="nextcard"><div class="nh">What happens next</div>
+<div class="nline"><div class="nwhen">Tomorrow</div><div class="nwhat">Resolve builds your roadmap. <span>You don't need to be here for it.</span></div></div>
+<div class="nline"><div class="nwhen">When you open Resolve</div><div class="nwhat">It's finished and waiting on this screen.</div></div>
+</div>
+<div class="spacer"></div>
+<button class="btn" onClick="{{ noop }}">Back to your dashboard<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div></div></div>
+<div class="colnote" style="max-width:640px;margin:12px auto 0">No change but the container: the column keeps its 390 measure, the amber glow reads against the parchment field, and the single control stays full-width inside the card rather than stretching.</div>
+</div>
+
+<div class="mband"><div class="band">
+<span class="badge">Surface 2 · Optional — quoted separately</span>
+<h2 class="btitle" style="font-size:28px">Say it before they sign up, not after.</h2>
+<p class="bsub">A variant of the <b>bridge / Continue</b> moment in intake, not a new page: same dark shell, same mark, the recommendation already read. If the day's building is gone, the founder hears it <b>before</b> they invest in an account — so signing up still feels like progress, not a bait-and-switch. Same tone rules; the CTA is unchanged and still primary.</p>
+</div>
+<div class="stage" style="padding-top:34px">
+
+<div class="col"><div class="collabel">A · Bridge — capacity notice before auth</div><div class="bridge"><div class="bglow"></div><div class="bscreen">
+<div class="bmark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="beyebrow">Before you continue</div>
+<h1 class="bhead">Your plan is saved. We'll build it in the morning.</h1>
+<p class="bpara">Resolve builds a set number of roadmaps each day so every one gets real attention, and <b>we've hit the limit for today</b>. Sign up now and yours is first in line tomorrow.</p>
+<div class="saved"><div class="sh">Already saved</div>
+<div class="sline"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.2l3 3L12 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything you told us about the project</div>
+<div class="sline"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.2l3 3L12 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>The direction you just read, and your first move</div>
+<div class="sline"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.2l3 3L12 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Nothing to fill in twice</div>
+</div>
+<p class="bpara">Signing up is what keeps it — without an account there's nowhere for the finished roadmap to land.</p>
+<div class="spacer"></div>
+<button class="bcta" onClick="{{ noop }}">Continue in Resolve<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<button class="bsec" onClick="{{ noop }}">Download report</button>
+<p class="bfoot">Open Resolve tomorrow and your roadmap is there.</p>
+</div></div>
+<div class="colnote">One paragraph swapped and one card added on the existing bridge screen. The <b>primary CTA and Download report are untouched</b>. It answers the only real question at this moment — "is signing up still worth it?" — with what's already saved, not with an apology.</div></div>
+
+<div class="col"><div class="collabel">B · After sign-up, same day</div><div class="phone"><div class="glow"></div><div class="screen">
+<div class="mark"><div class="logo">R</div><div class="nm">Resolve</div></div>
+<div class="progress"><div class="seg done"></div><div class="seg done"></div><div class="seg on"></div></div>
+<div class="eyebrow">Your roadmap</div>
+<h1 class="headline">You're in. We're building this first thing tomorrow.</h1>
+<div class="ringrow"><div class="ring rest"></div><div class="ringtxt">Just as we said at the door — <b>we've hit the limit for today</b>, and yours is next.</div></div>
+<p class="para">Your account is set up and everything from intake is in it. Nothing to re-enter.</p>
+<div class="nextcard"><div class="nh">What happens next</div>
+<div class="nline"><div class="nwhen">Tomorrow</div><div class="nwhat">Resolve builds your roadmap. <span>You don't need to be here for it.</span></div></div>
+<div class="nline"><div class="nwhen">When you open Resolve</div><div class="nwhat">It's finished and waiting on this screen.</div></div>
+</div>
+<div class="spacer"></div>
+<button class="btn solid" onClick="{{ noop }}">Go to your dashboard<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<p class="foot">Your project, notes and first move are there now.</p>
+</div></div>
+<div class="colnote">If Surface 2 ships, the founder who signs up anyway lands on <b>state 1 with one changed line</b> — it references what they were already told, so the two surfaces don't contradict each other. Control goes solid amber here because it's the only forward move on a first visit.</div></div>
+
+</div>
+
+<div class="notegrid">
+<div class="note"><h4>Which variant fires</h4>Same state, one branch on <b>milestones completed</b>: 0 → variant 1 (pure reassurance), ≥1 → variant 2 (progress acknowledged). Nothing else differs — same slot, same skeleton, same control. Never show an empty checklist.</div>
+<div class="note"><h4>Motion</h4>Enter: 200ms opacity + 6px rise on the headline, ring and card, staggered 60ms. Ring holds a 3.2s opacity breathe at 0.85→1 — <b>no rotation</b>, because rotation reads as "working now" and it isn't. Ticked rows do not re-animate; they were already ticked in the pending state.</div>
+<div class="note"><h4>Reduced motion</h4>Breathe removed, ring held at full opacity. Enter becomes a &lt;120ms opacity fade, no translate, no stagger. Copy and layout identical.</div>
+<div class="note banned"><h4>Banned here</h4><ul><li>Disabled buttons, retry, "try again"</li><li>Countdown timers or "resumes in 6h 12m"</li><li>"X generations remaining", any counter</li><li>quota · rate limit · API · tokens · capacity</li><li>Red, warning triangles, apology tone</li><li>Anything implying paying removes it</li></ul></div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C8A040&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#C8A040&quot;,&quot;#B0632E&quot;,&quot;#8B4A2A&quot;]}}">
+class Component extends DCLogic {
+  renderVals(){
+    return {
+      rootStyle: { '--amber': this.props.accent || '#C8A040' },
+      noop: (e) => e.preventDefault(),
+    };
+  }
+}
+</script>
+</body>
+</html>
