@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><script src="./doc-page.js"></script><style>
+doc-page:not(:defined){visibility:hidden}
+:root{--ink:#1A1A18;--ink-soft:#4A4A44;--ink-ghost:#7A756A;--surface:#F2EDE4;--border:#DDD8CE;--amber:#C8A040;--terracotta:#8B4A2A;--green:#5E7D4F}
+*{box-sizing:border-box}
+body{margin:0;background:#3A372F}
+doc-page{font-family:'Inter',sans-serif;color:var(--ink);line-height:1.55;font-size:13px}
+a{color:var(--terracotta)}a:hover{color:#6f3a21}
+.doctitle{font-family:'DM Serif Display',serif;font-size:32px;line-height:1.1;margin:0 0 8px}
+.docsub{font-size:14px;color:var(--ink-soft);margin:0 0 4px}
+.docmeta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-ghost);margin:0;line-height:1.7}
+.rule{height:2px;background:var(--ink);margin:18px 0 22px}
+.part{font-size:12px;font-weight:700;color:var(--terracotta);letter-spacing:.04em;margin:32px 0 4px}
+h2{font-size:19px;font-weight:700;margin:6px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+h3{font-size:15px;font-weight:700;margin:20px 0 8px}
+.lead{font-size:13px;color:var(--ink-soft);margin:0 0 16px}
+p{margin:0 0 10px}
+b{color:var(--ink);font-weight:700}
+code{font-family:'JetBrains Mono',monospace;font-size:10.5px;background:#F3EFE7;border-radius:3px;padding:0 4px;color:#5A4A1E}
+.conv{margin:0 0 16px;padding-left:0;list-style:none}
+.conv li{position:relative;padding-left:18px;margin-bottom:7px}
+.conv li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--amber)}
+.flag{background:#FBF3E4;border-left:3px solid var(--amber);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 16px}
+.override{background:#FBEDE6;border-left:3px solid var(--terracotta);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 16px}
+.override b{color:#8B4A2A}
+.settled{background:#F0F3EC;border-left:3px solid var(--green);padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 12px}
+.settled b{color:#3F5836}
+.dep{background:#EEF0F4;border-left:3px solid #5A6B86;padding:10px 12px;border-radius:0 6px 6px 0;font-size:12.5px;margin:0 0 12px}
+.dep b{color:#3C4A63}
+.tok{width:100%;border-collapse:collapse;margin:2px 0 12px}
+.tok td{font-size:12px;padding:5px 9px;border-bottom:1px solid var(--border);vertical-align:top}
+.tok td:first-child{font-family:'JetBrains Mono',monospace;color:#5A4A1E;white-space:nowrap;width:130px}
+.tok td b{color:var(--ink)}
+.tok th{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-ghost);text-align:left;padding:0 9px 6px;border-bottom:1px solid var(--ink)}
+.linkrow{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 14px}
+.lk{font-family:'JetBrains Mono',monospace;font-size:11px;background:#F3EFE7;border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--terracotta);text-decoration:none}
+.lk:hover{border-color:var(--amber);color:#6f3a21}
+.copy{background:#141311;border-radius:10px;padding:14px 16px;margin:4px 0 14px}
+.copy .cl{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);margin:0 0 8px}
+.copy .ce{margin:0 0 9px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.09)}
+.copy .ce:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.copy .ck{font-family:'JetBrains Mono',monospace;font-size:10px;color:#8A8578;display:block;margin-bottom:3px}
+.copy .cv{font-size:13px;color:#F5F1E8;line-height:1.5}
+.copy .cv.serif{font-family:'DM Serif Display',serif;font-size:16px}
+.arow{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:baseline;padding:9px 0;border-top:1px solid var(--border)}
+.arow:first-child{border-top:none}
+.arow .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);font-weight:500}
+.arow .nm{font-weight:700;font-size:13px}
+.arow .ds{font-size:12px;color:var(--ink-soft);margin-top:2px}
+.arow .ds code{font-family:'JetBrains Mono',monospace;font-size:10.5px;background:#F3EFE7;border-radius:3px;padding:0 4px;color:#5A4A1E}
+.mots{margin:6px 0 8px}
+.mrw{padding:0 0 9px;margin-bottom:9px;border-bottom:1px dotted var(--border);break-inside:avoid}
+.mrw:last-child{border-bottom:none;margin-bottom:0}
+.mrw .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.mel{font-weight:700;font-size:13px;color:var(--ink)}
+.mtm{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);white-space:nowrap;flex:none;text-align:right;line-height:1.5}
+.mtrig{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--terracotta);margin:3px 0}
+.mmv{font-size:12px;color:var(--ink-soft);margin-top:3px}
+.mmv code{font-family:'JetBrains Mono',monospace;font-size:10.5px;background:#F3EFE7;border-radius:3px;padding:0 4px;color:#5A4A1E}
+.q{margin:0 0 14px;padding:0;list-style:none}
+.q li{position:relative;padding:9px 0 9px 30px;border-top:1px solid var(--border);font-size:12.5px}
+.q li:first-child{border-top:none}
+.q li .qn{position:absolute;left:0;top:9px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);font-weight:500}
+.q li b{color:var(--ink)}
+.q li .rec{color:var(--green);font-weight:600}
+.tk{border:1px solid var(--border);border-radius:9px;padding:12px 14px;margin:0 0 10px;break-inside:avoid}
+.tk .tkh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+.tk .tkid{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--amber)}
+.tk .tkt{font-weight:700;font-size:13.5px;color:var(--ink)}
+.tk .tkest{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-ghost);white-space:nowrap}
+.tk ul{margin:6px 0 0;padding-left:16px}
+.tk li{font-size:12px;margin-bottom:4px;color:var(--ink-soft)}
+.tk li b{color:var(--ink)}
+.foot{margin-top:26px;padding-top:12px;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-ghost)}
+</style></helmet>
+<doc-page size="letter" margin="0.7in">
+<p class="doctitle">Dashboard Content — Build Brief</p>
+<p class="docsub">ResolvePM · what earns the dashboard's real estate. The highest-value move as hero, with a quiet momentum strip and a glanceable support rail. Mobile-first, checked on desktop.</p>
+<p class="docmeta">audience: design lead → PM sign-off → ticketing · status: design complete, recommendation made, awaiting the (a)/(b) call<br>reference mockup: ResolvePM Dashboard Content.dc.html (direction a is live/playable; b + desktop annotated) · joins: Dashboard · Roadmap Reveal · Work Tab · item drawer<br>repo: cap-pm-cockpit-alaria · dashboard surface · supersedes the three-card stack in ResolvePM Dashboard Brief.dc.html</p>
+<div class="rule"></div>
+
+<p class="part">00 · DESIGN LINKS</p>
+<h2>Open the mockup first</h2>
+<p class="lead">Direction (a) is fully playable — complete a shortlist task and watch it bank into momentum, expand the Waiting-on card in place. (b) and the desktop check are annotated to their exact states.</p>
+<div class="linkrow">
+<a class="lk" href="./ResolvePM Dashboard Content.dc.html">▸ Dashboard Content — a (live), b, desktop</a>
+<a class="lk" href="./ResolvePM Dashboard.dc.html">▸ Dashboard — current stack</a>
+<a class="lk" href="./ResolvePM Work Tab.dc.html">▸ Work Tab — queue + completion source</a>
+<a class="lk" href="./ResolvePM Roadmap Reveal.dc.html">▸ Roadmap Reveal — focus theme</a>
+</div>
+<div class="flag"><b>Copy ships as written.</b> Every string in the copy blocks below is final. Do not paraphrase in code — the honest, plain-English wording is the deliverable.</div>
+
+<p class="part">01 · THE FRAME</p>
+<h2>What the dashboard is for</h2>
+<p class="lead">The remaining gap is <b>content, not spacing</b> — the density pass (T5) already shipped. Design to one job:</p>
+<ul class="conv">
+<li><b>Orient the founder in ~5 seconds</b> and point them at their single highest-value next move. The "good morning, here's what matters today" surface.</li>
+<li>It is <b>not</b> a full analytics view and <b>not</b> a second roadmap. The Roadmap tab owns the plan; the dashboard owns <b>today</b>.</li>
+<li>The anchor is settled: the hero is the <b>highest-value activity = the first task of the roadmap's focus theme, live</b> — it advances as work completes. Everything else supports it; nothing rivals it for prominence.</li>
+</ul>
+
+<p class="part">02 · THE RECOMMENDATION — (a) vs (b)</p>
+<h2>Ship (a): single focus + a quiet momentum strip</h2>
+<p class="lead"><b>Rationale.</b> We recommend <b>(a)</b> — a single-focus surface with one quiet momentum strip — over <b>(b)</b>, the light command-centre. The dashboard's whole promise is orientation in five seconds, and orientation is a function of hierarchy, not information: the instant a second panel carries equal visual weight, the eye has to choose where to land and the "one next move" stops being obvious — which is exactly the busyness the density pass just removed. (a) keeps a single dominant object (the hero), and demotes momentum, the ranked queue, and blockers into calm, glanceable support that a founder reads only <i>after</i> they've seen the move. It reads as calm and true to the surface's job. The desktop "empty" complaint is real but it is a <b>hierarchy</b> problem, not a <b>quantity</b> problem — we solve it by letting the hero grow to fill the width (§05), not by adding widgets. What (b) costs: it uses the real estate more literally and surfaces more at once, but re-introduces four competing panels, pushes orientation past five seconds, and drifts the dashboard toward being a second roadmap. We keep (b)'s good idea — momentum and blockers are worth showing — but as subordinate context, not co-equal cards.</p>
+<div class="settled"><b>Default lean confirmed.</b> Focus first, supporting context second. The momentum strip is the one piece of (b) we bring across, deliberately down-weighted (thin strip, no card chrome, muted type). If product wants (b) later for a "power" density mode, it's a settings toggle over the same data — not the default.</div>
+
+<p class="part">03 · ANATOMY (direction a)</p>
+<h2>Four zones, one column, ranked by leverage</h2>
+<div class="arow"><div class="n">—</div><div><div class="nm">Top bar</div><div class="ds">Greeting (<code>Good morning, {name}</code>) + "Here's what matters today", avatar right. Unchanged from current.</div></div></div>
+<div class="arow"><div class="n">01</div><div><div class="nm">Hero — the highest-value move</div><div class="ds">Dark card, amber sun-glow (the app's visual anchor). Carries: eyebrow, the move (serif), <b>why it matters</b> (support), the <b>focus theme it serves</b> (tag), a one-tap <b>Start this</b>, and a meta line stating it's live. Tap Start / card = route to the work item. This is the only dark card; it never has a rival.</div></div></div>
+<div class="arow"><div class="n">02</div><div><div class="nm">Momentum strip — what changed</div><div class="ds">Quiet light strip directly under the hero. "Since Monday · N moved" + up to 3 recently-completed items. <b>No card chrome competing with the hero.</b> Reassurance + proof the anchor is live. <b>Depends on completion data (§06).</b></div></div></div>
+<div class="arow"><div class="n">03</div><div><div class="nm">Then this — the shortlist</div><div class="ds">Top 2 of the value-ranked queue as light task rows (checkbox + theme tag). Answers "after this, then this." Completing one settles it into momentum (proves the loop). Absorbs the old Pointer's job of pointing forward.</div></div></div>
+<div class="arow"><div class="n">04</div><div><div class="nm">Waiting on — needs attention</div><div class="ds">One stalled item, surfaced so it's not lost. Tap = <b>expand in place</b> (detail + Send reminder / View in Work). Calm terracotta, never alarming. The old Blocked card, kept and demoted below the shortlist.</div></div></div>
+<div class="arow"><div class="n">—</div><div><div class="nm">Global bar</div><div class="ds">Unchanged. "Ask Resolve, or capture a thought" + mic. Spec lives in the shell/global-bar brief.</div></div></div>
+<div class="override"><b>What we dropped, on purpose.</b> No counts-without-a-decision, no charts, no vanity metrics. The momentum count is the only number, and it exists because it doubles as reassurance ("you're moving") — not as a metric to optimise.</div>
+
+<p class="part">04 · CURRENT CARDS — DISPOSITION</p>
+<h2>Keep / merge / evolve</h2>
+<table class="tok">
+<tr><th>Today's card</th><th>Becomes</th><th>Why</th></tr>
+<tr><td><b>Win / Decide-first</b></td><td><b>Hero, evolved</b></td><td>Now the live highest-value move (first task of focus theme). Gains a theme tag + explicit Start + "advances as you finish" meta.</td></tr>
+<tr><td><b>Blocked</b></td><td><b>Kept, demoted</b> → Waiting on</td><td>Still valuable, still expand-in-place. Moved below the shortlist so it never competes with the move.</td></tr>
+<tr><td><b>Pointer</b></td><td><b>Reconceived</b> → Then this</td><td>The soft "worth a look" nudge is replaced by something more useful: the actual next items in the ranked queue.</td></tr>
+<tr><td>—</td><td><b>New: Momentum strip</b></td><td>Candidate #2, promoted to Alpha because it earns the space as reassurance + proof the anchor is live. See §06 dependency.</td></tr>
+</table>
+
+<p class="part">05 · DESKTOP — HOW THE HERO EARNS THE WIDTH</p>
+<h2>Answering the empty-real-estate complaint</h2>
+<p class="lead">Desktop does <b>not</b> get more cards. It gets a <b>bigger hero</b>. Two-column body: the move dominates the left (~1.35fr), the support rail (momentum / then this / waiting) sits calm on the right (~1fr). The founder still lands on one thing; the rail is glance-context.</p>
+<table class="tok">
+<tr><td>layout</td><td><code>grid-template-columns: 1.35fr 1fr</code>, gap <b>34px</b>, body padding <b>38–44px</b></td></tr>
+<tr><td>hero headline</td><td>DM Serif Display <b>38px</b> (vs 24px mobile), max <b>16ch</b> — the serif carries the width</td></tr>
+<tr><td>hero support</td><td>Inter <b>16px</b>, max 44ch · theme tag 13px · Start button 15px</td></tr>
+<tr><td>support rail</td><td>momentum rows, 2 shortlist tasks, 1 waiting card — same components, no new ones</td></tr>
+</table>
+<div class="settled"><b>Same components, two sizes.</b> Nothing on desktop exists that isn't on mobile. The width is filled by scale and whitespace, not by inventing widgets — which keeps a single source of truth and keeps "orient in 5s" intact on both.</div>
+
+<p class="part">06 · DEPENDENCIES — SEQUENCE THIS</p>
+<h2>What needs unbuilt work</h2>
+<div class="dep"><b>Momentum strip needs completion data.</b> "N moved since Monday" and the recently-completed rows require the <b>work loop's completion events</b> (R-WP-C, the create/date/complete/delete/done lane). Until that ships there are no completions to show. <b>Sequence:</b> build the hero + then-this + waiting on now (they read the existing ranked queue); land the momentum strip <b>after R-WP-C</b> so it has real signal. Ship-safe fallback until then: the strip <b>collapses</b> when there are zero completions in the window — do not show "0 moved" or a placeholder.</div>
+<div class="dep"><b>Hero data derivation is ticketed elsewhere.</b> The highest-value-move logic (first task of the focus theme, advancing on completion) is owned by <code>decide-first-highest-value-ticket.md</code>. This brief specs <b>presentation only</b>. Build consumes that ticket's output; don't re-derive here.</div>
+<div class="dep"><b>Focus theme comes from Roadmap.</b> The "Focus theme · {name}" tag reads the roadmap's current focus theme. No new pipeline — reuse the existing theme reference the Roadmap tab already owns.</div>
+
+<p class="part">07 · FINAL COPY (ships verbatim)</p>
+<h2>Every string</h2>
+<div class="copy">
+<p class="cl">Top bar + hero</p>
+<div class="ce"><span class="ck">greeting / subhead</span><span class="cv">Good morning, Simeon · Here's what matters today</span></div>
+<div class="ce"><span class="ck">hero eyebrow</span><span class="cv">Your highest-value move</span></div>
+<div class="ce"><span class="ck">hero move (serif) — sample from live data</span><span class="cv serif">Test the shortlisted brand names with real customers.</span></div>
+<div class="ce"><span class="ck">hero support (why it matters)</span><span class="cv">Everything downstream — the website, packaging, the comms plan — hangs on the name. Get it validated before you build on it.</span></div>
+<div class="ce"><span class="ck">theme tag</span><span class="cv">Focus theme · Finalise the brand name</span></div>
+<div class="ce"><span class="ck">start button</span><span class="cv">Start this</span></div>
+<div class="ce"><span class="ck">hero meta (states it's live)</span><span class="cv">First move in this week's focus. Updates the moment you finish something.</span></div>
+</div>
+<div class="copy">
+<p class="cl">Momentum strip</p>
+<div class="ce"><span class="ck">label · count</span><span class="cv">Since Monday · N moved</span></div>
+<div class="ce"><span class="ck">just-completed flag (on items banked this session)</span><span class="cv">just now</span></div>
+<div class="ce"><span class="ck">sample rows</span><span class="cv">Confirmed your roadmap · Wrote down the baseline · Picked the first signal</span></div>
+</div>
+<div class="copy">
+<p class="cl">Then this (shortlist)</p>
+<div class="ce"><span class="ck">label · hint</span><span class="cv">Then this · Ranked queue</span></div>
+<div class="ce"><span class="ck">sample rows (title · theme tag)</span><span class="cv">Decide what not to do this week · Reposition   —   Draft the customer-comms plan · Finalise the brand name</span></div>
+<div class="ce"><span class="ck">cleared state</span><span class="cv">Shortlist clear. Your next move updates when the focus theme advances.</span></div>
+</div>
+<div class="copy">
+<p class="cl">Waiting on</p>
+<div class="ce"><span class="ck">label · hint</span><span class="cv">Waiting on · 1 stalled</span></div>
+<div class="ce"><span class="ck">title · chip</span><span class="cv">Landing page copy from Priya · 3 days</span></div>
+<div class="ce"><span class="ck">body</span><span class="cv">Final draft was due Monday. Nothing in the shared doc since your note.</span></div>
+<div class="ce"><span class="ck">expanded meta</span><span class="cv">Stalled since Mon, Jul 3 · Waiting on Priya (contractor)</span></div>
+<div class="ce"><span class="ck">expanded note</span><span class="cv">You asked for the hero-section rewrite and two headline options. No reply on the thread yet.</span></div>
+<div class="ce"><span class="ck">actions</span><span class="cv">Send reminder · View in Work</span></div>
+</div>
+
+<p class="part">08 · MOTION + REDUCED MOTION</p>
+<h2>How it moves — and the reduced-motion path for each state</h2>
+<div class="mots">
+<div class="mrw">
+<div class="top"><span class="mel">Hero glow — breathe <span style="font-weight:600;color:#7A756A;font-size:10px">(idle, always on)</span></span><span class="mtm">6000ms · ease-in-out<br>infinite</span></div>
+<div class="mtrig">reduced motion: freeze at <code>opacity .9</code>, no scale</div>
+<div class="mmv">The amber glow pulses so the hero feels lit. <code>opacity .72→1→.72</code>, <code>scale(1)→1.08→1</code>. Pure CSS, <code>pointer-events:none</code>.</div>
+</div>
+<div class="mrw">
+<div class="top"><span class="mel">Start arrow — drift <span style="font-weight:600;color:#7A756A;font-size:10px">(idle)</span></span><span class="mtm">2600ms · ease-in-out<br>infinite</span></div>
+<div class="mtrig">reduced motion: static arrow</div>
+<div class="mmv">Arrow in the Start button nudges <code>translateX(0→3px→0)</code> to hint it goes somewhere.</div>
+</div>
+<div class="mrw">
+<div class="top"><span class="mel">Complete → bank into momentum</span><span class="mtm">settle ~720ms<br>fade .5s</span></div>
+<div class="mtrig">reduced motion: <code>&lt;120ms</code> opacity fade, no scale; item still moves to momentum</div>
+<div class="mmv">Tap a shortlist checkbox: it fills amber, the row fades to ~.45 + <code>scale(.99)</code> over the settle, then leaves the list and appears in the momentum strip with a "just now" flag and the count increments. Demonstrates the anchor advancing.</div>
+</div>
+<div class="mrw">
+<div class="top"><span class="mel">Waiting on → expand in place</span><span class="mtm">panel 300–420ms<br>spring</span></div>
+<div class="mtrig">reduced motion: instant height, opacity crossfade only</div>
+<div class="mmv">Tap the card: detail (stalled-since, waiting-on, note, actions) grows in beneath the summary. Tap again to collapse. Reuses the current Dashboard blocked-expand behaviour.</div>
+</div>
+<div class="mrw">
+<div class="top"><span class="mel">Stack entrance</span><span class="mtm">per-card spring<br>stagger 70ms</span></div>
+<div class="mtrig">reduced motion: single <code>&lt;120ms</code> opacity fade, no translate, no stagger</div>
+<div class="mmv">On landing, hero → momentum → then-this → waiting reveal top-to-bottom, matching the current Dashboard cascade and tab-transition easing family.</div>
+</div>
+</div>
+<div class="settled"><b>Reduced-motion end-states are identical to the animated path.</b> Every state above lands in exactly the same layout; only the transition between states changes. Nothing depends on motion to be understood.</div>
+
+<p class="part">09 · OPEN DECISIONS TO LOCK</p>
+<h2>Confirm before ticketing</h2>
+<ul class="q">
+<li><span class="qn">1</span><b>Direction (a) vs (b).</b> Lock (a) — single focus + quiet momentum — as the default? <span class="rec">Recommend: yes. (b) available later as an opt-in density mode over the same data.</span></li>
+<li><span class="qn">2</span><b>Momentum window.</b> "Since Monday" (week-anchored) or "since you were last here" (session-anchored)? <span class="rec">Recommend: since last visit, labelled with the actual day — truer to "what changed while you were away."</span></li>
+<li><span class="qn">3</span><b>Momentum in the empty case.</b> Confirm the strip <b>collapses</b> at zero completions (no "0 moved"). <span class="rec">Recommend: collapse — and until R-WP-C ships it's simply absent.</span></li>
+<li><span class="qn">4</span><b>Shortlist depth.</b> Show top 2 or top 3 of the ranked queue on the dashboard? <span class="rec">Recommend: 2 on mobile, 2 on desktop — more turns "then this" into a list and pulls focus off the hero.</span></li>
+<li><span class="qn">5</span><b>Hero tap target.</b> Whole card routes, or only the Start button? <span class="rec">Recommend: whole card routes; Start is the visible affordance.</span></li>
+</ul>
+
+<p class="part">10 · TICKETS</p>
+<h2>Suggested breakdown</h2>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-DB-1</span> · Hero — highest-value move</span><span class="tkest">~1.5d · cockpit</span></div>
+<ul><li><b>Evolve the win card</b> into the live hero: eyebrow, serif move, why-it-matters support, focus-theme tag, Start button + route, "advances as you finish" meta. Glow breathe + arrow drift (existing motion).</li><li>Consumes <code>decide-first-highest-value-ticket.md</code> output; reads the Roadmap focus theme for the tag. No new data pipeline.</li></ul></div>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-DB-2</span> · Then this + Waiting on</span><span class="tkest">~1d · cockpit</span></div>
+<ul><li><b>Shortlist rows</b> from the ranked queue (top 2, checkbox + theme tag) with complete-to-settle; <b>Waiting on</b> as the demoted blocked card with expand-in-place (Send reminder / View in Work).</li><li>Reuses Work-row + current blocked-expand components. Copy per §07.</li></ul></div>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-DB-3</span> · Momentum strip</span><span class="tkest">~0.5d · cockpit · <b>after R-WP-C</b></span></div>
+<ul><li><b>Quiet strip</b> under the hero: "Since {day} · N moved" + up to 3 completed rows, "just now" flag on session banks, collapses at zero.</li><li><b>Blocked on completion data</b> from the work loop (R-WP-C). Sequence after it.</li></ul></div>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-DB-4</span> · Desktop layout</span><span class="tkest">~0.5d · cockpit</span></div>
+<ul><li><b>Two-column desktop</b>: hero left (1.35fr, 38px serif), support rail right (1fr). Same components, no new widgets. Breakpoint + type scale per §05.</li></ul></div>
+<div class="tk"><div class="tkh"><span class="tkt"><span class="tkid">R-DB-5</span> · Reduced-motion + entrance</span><span class="tkest">~0.5d · cockpit</span></div>
+<ul><li><b>Stack entrance</b> cascade + the reduced-motion paths for every state in §08. End-states identical to the animated path.</li></ul></div>
+
+<p class="foot">ResolvePM Dashboard Content · Build Brief · see ResolvePM Dashboard Content.dc.html for the live direction (a), the (b) comparison, and the desktop-frame check.</p>
+</doc-page>
+</x-dc>
+</body>
+</html>

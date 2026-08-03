@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+:root{--ink:#1A1A18;--soft:#4A4A44;--ghost:#9A9A92;--surface:#F2EDE4;--card:#FFFFFF;--border:#DDD8CE;--amber:#C8A040;--terra:#8B4A2A;--green:#5E7D4F}
+*{box-sizing:border-box}
+body{margin:0;background:#141311;font-family:'Inter',sans-serif;color:#FBF8F2}
+a{color:var(--amber);text-decoration:none}a:hover{color:#E0BC5E}
+/* header band */
+.band{max-width:1240px;margin:0 auto;padding:48px 28px 8px}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.btitle{font-family:'DM Serif Display',serif;font-size:32px;line-height:1.15;margin:0 0 14px;max-width:860px}
+.bsub{font-size:14.5px;line-height:1.65;color:#B4AFA3;max-width:800px;margin:0}
+.bsub b{color:#F5F1E8;font-weight:600}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;font-size:12px;color:#8A8578}
+.lg{border:1px solid rgba(255,255,255,.12);border-radius:7px;padding:6px 11px}
+.lg b{color:var(--amber);font-weight:700}
+.stage{display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start;justify-content:flex-start;padding:38px 28px 60px;max-width:1240px;margin:0 auto}
+.drail{min-width:0}
+.dhero{min-width:0}
+.col{display:flex;flex-direction:column;gap:12px;width:392px;max-width:100vw}
+.col.wide{width:100%;max-width:980px}
+.collabel{font-size:14px;font-weight:700;color:#F5F1E8;display:flex;align-items:center;gap:9px}
+.star{color:var(--amber)}
+.rec-pill{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;background:var(--amber);color:var(--ink);border-radius:5px;padding:2px 8px}
+.alt-pill{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;border:1px solid rgba(255,255,255,.2);color:#8A8578;border-radius:5px;padding:2px 8px}
+.colnote{font-size:12px;line-height:1.55;color:#8A8578;max-width:380px}
+.colnote b{color:var(--amber);font-weight:600}
+.reset{align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:11px;color:#8A8578;background:none;border:1px solid rgba(255,255,255,.16);border-radius:7px;padding:5px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.reset svg{width:11px;height:11px}
+.reset:hover{color:var(--amber);border-color:rgba(200,160,64,.4)}
+/* phone shell */
+.phone{width:390px;max-width:100vw;background:var(--surface);border:1px solid rgba(0,0,0,.28);border-radius:26px;box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden;position:relative}
+.screen{padding:22px 16px 88px;min-height:720px;position:relative;transition:filter .22s}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:2px 4px 20px}
+.greeting{font-size:15px;font-weight:600;color:var(--ink)}
+.gsub{font-size:12px;color:#8A8578;margin-top:2px}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--ink);font-size:14px}
+/* hero */
+.hero{background:var(--ink);border-radius:12px;padding:20px 18px;position:relative;overflow:hidden;cursor:pointer}
+.hero .glow{position:absolute;top:-58px;right:-36px;width:180px;height:180px;background:radial-gradient(circle,rgba(200,160,64,.32),rgba(200,160,64,.10) 46%,transparent 72%);pointer-events:none;animation:breathe 6000ms ease-in-out infinite}
+.hero>*{position:relative}
+.hero .eb{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#D9A97C;margin-bottom:9px}
+.hero h2{font-family:'DM Serif Display',serif;color:#FBF8F2;font-size:24px;line-height:1.26;margin:0 0 9px}
+.hero .sp{font-size:13.5px;color:#C0BBAE;line-height:1.5;margin:0}
+.hero .themetag{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-size:11.5px;font-weight:600;color:#D9C9A6}
+.hero .themetag .rd{width:7px;height:7px;border-radius:50%;background:var(--amber)}
+.hero .startrow{display:flex;align-items:center;gap:12px;margin-top:16px}
+.startbtn{display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:var(--ink);border:none;border-radius:9px;padding:11px 18px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;transition:transform .18s}
+.startbtn:active{transform:scale(.96)}
+.startbtn svg{width:13px;height:13px;animation:drift 2600ms ease-in-out infinite}
+.herometa{font-size:11px;color:#7C7768;line-height:1.4;flex:1}
+@keyframes breathe{0%,100%{opacity:.72;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes drift{0%,100%{transform:translateX(0)}50%{transform:translateX(3px)}}
+/* momentum strip */
+.mstrip{margin-top:14px;background:#F6F1E8;border:1px solid var(--border);border-radius:10px;padding:12px 13px}
+.mhd{display:flex;align-items:baseline;gap:8px;margin-bottom:9px}
+.mlbl{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#8A8578}
+.mcount{font-size:11.5px;font-weight:600;color:var(--green);margin-left:auto}
+.mrow{display:flex;align-items:center;gap:9px;padding:4px 0;font-size:12.5px;color:var(--soft)}
+.mrow .tick{width:15px;height:15px;border-radius:50%;background:#E6E0D2;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mrow.fresh .tick{background:var(--green)}
+.mrow .tick svg{width:9px;height:9px;color:#8A8578}
+.mrow.fresh .tick svg{color:#fff}
+.mrow .jn{margin-left:auto;font-size:10px;font-weight:600;color:var(--green);opacity:0;animation:jnin .4s .1s forwards}
+@keyframes jnin{to{opacity:1}}
+/* then this */
+.section{margin-top:16px}
+.slbl{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#8A8578;margin-bottom:9px;display:flex;align-items:baseline}
+.slbl .hint{margin-left:auto;font-weight:500;letter-spacing:0;text-transform:none;font-size:11px;color:#A8A296}
+.task{display:flex;gap:11px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:8px;transition:opacity .5s,transform .5s;align-items:flex-start}
+.task.settling{opacity:.45;transform:scale(.99)}
+.cb{width:20px;height:20px;border-radius:50%;border:1.6px solid var(--border);flex-shrink:0;margin-top:1px;cursor:pointer;background:none;padding:0;display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s}
+.cb.on{background:var(--amber);border-color:var(--amber)}
+.cb svg{width:11px;height:11px;color:var(--ink);opacity:0;transition:opacity .3s}
+.cb.on svg{opacity:1}
+.ti{flex:1;min-width:0}
+.tt{font-size:13.5px;font-weight:500;color:var(--ink);line-height:1.35}
+.tmeta{margin-top:5px}
+.tag{font-size:10.5px;font-weight:600;color:var(--terra);display:inline-flex;align-items:center;gap:5px}
+.tag .td{width:6px;height:6px;border-radius:50%;background:var(--terra)}
+.cleared{border:1px dashed var(--border);border-radius:10px;padding:13px;font-size:12.5px;color:#8A8578;line-height:1.5;text-align:center}
+/* waiting on */
+.wcard{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 13px;cursor:pointer}
+.wtop{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.wtitle{font-size:13.5px;font-weight:600;color:var(--ink);margin:0}
+.wchip{font-size:10.5px;font-weight:600;color:var(--terra);background:#F4E4DC;border-radius:5px;padding:2px 8px;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+.wchip .cd{width:5px;height:5px;border-radius:50%;background:var(--terra)}
+.wbody{font-size:12px;color:#6B665A;line-height:1.45;margin:6px 0 0}
+.wdetail{overflow:hidden}
+.wdivider{height:1px;background:var(--border);margin:12px 0}
+.wmeta{display:flex;justify-content:space-between;font-size:11.5px;color:#8A8578;margin-bottom:7px}
+.wmeta b{color:var(--soft);font-weight:600}
+.wnote{font-size:12px;color:#5C574C;line-height:1.5;background:var(--surface);border-radius:7px;padding:9px 11px;margin-top:6px}
+.wactions{display:flex;gap:9px;margin-top:12px}
+.btn{border-radius:7px;padding:9px 13px;font-size:12.5px;font-weight:600;border:none;cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;border:1px solid var(--border);color:var(--ink)}
+.dimmed{filter:blur(.6px);opacity:.5}
+/* global bar */
+.gbar{position:absolute;left:16px;right:16px;bottom:18px;display:flex;align-items:center;gap:10px;background:var(--ink);border-radius:24px;padding:12px 15px;box-shadow:0 8px 22px rgba(26,26,24,.3)}
+.gbar .gsp{color:var(--amber);flex-shrink:0;display:flex}.gbar .gsp svg{width:16px;height:16px}
+.gbar .gcap{flex:1;font-size:13px;color:#E7E2D6;font-weight:500}
+.gbar .gmic svg{width:16px;height:16px;color:#8A8578}
+/* ---- alt (b) command centre ---- */
+.bscreen{padding:22px 16px 88px;min-height:720px;position:relative}
+.bhero{background:var(--ink);border-radius:12px;padding:15px 15px;position:relative;overflow:hidden}
+.bhero .glow{position:absolute;top:-40px;right:-26px;width:120px;height:120px;background:radial-gradient(circle,rgba(200,160,64,.28),transparent 70%);pointer-events:none}
+.bhero>*{position:relative}
+.bhero .eb{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#D9A97C;margin-bottom:6px}
+.bhero h2{font-family:'DM Serif Display',serif;color:#FBF8F2;font-size:18px;line-height:1.25;margin:0}
+.bhero .pill{display:inline-flex;align-items:center;gap:5px;margin-top:9px;font-size:11px;font-weight:600;color:var(--amber)}
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.bc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px}
+.bc.full{grid-column:1/3}
+.bc .ceb{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#8A8578;margin-bottom:7px;display:flex;align-items:baseline}
+.bc .ceb .n{margin-left:auto;color:var(--terra);font-weight:700}
+.bc .cbig{font-size:22px;font-weight:700;color:var(--ink);font-family:'DM Serif Display',serif;line-height:1}
+.bc .csm{font-size:12px;color:var(--soft);line-height:1.4;margin-top:4px}
+.bminirow{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--soft);padding:4px 0}
+.bminirow .d{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.costnote{margin-top:12px;background:#2A1D16;border:1px solid rgba(139,74,42,.4);border-radius:9px;padding:11px 13px;font-size:11.5px;line-height:1.5;color:#D9A97C}
+.costnote b{color:#E9C9A6}
+/* ---- desktop check ---- */
+.desk{background:var(--surface);border:1px solid rgba(0,0,0,.2);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.45);overflow:hidden}
+.dtop{display:flex;align-items:center;gap:14px;padding:16px 26px;background:var(--card);border-bottom:1px solid var(--border)}
+.dtop .logo{width:28px;height:28px;border-radius:8px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:'DM Serif Display',serif;font-size:16px}
+.dtop .nm{font-size:16px;font-weight:700;color:var(--ink)}
+.dtop .dgreet{margin-left:24px;font-size:13px;color:#8A8578}
+.dtop .davatar{margin-left:auto;width:34px;height:34px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--ink);font-size:14px}
+.dbody{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:34px;padding:38px 40px 44px}
+.dhero{background:var(--ink);border-radius:16px;padding:38px 36px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.dhero .glow{position:absolute;top:-90px;right:-60px;width:320px;height:320px;background:radial-gradient(circle,rgba(200,160,64,.28),rgba(200,160,64,.08) 48%,transparent 72%);pointer-events:none;animation:breathe 6000ms ease-in-out infinite}
+.dhero>*{position:relative}
+.dhero .eb{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D9A97C;margin-bottom:16px}
+.dhero h2{font-family:'DM Serif Display',serif;color:#FBF8F2;font-size:clamp(26px,3.4vw,38px);line-height:1.2;margin:0 0 16px;max-width:16ch}
+.dhero .sp{font-size:16px;color:#C0BBAE;line-height:1.6;margin:0;max-width:44ch}
+.dhero .themetag{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:13px;font-weight:600;color:#D9C9A6}
+.dhero .themetag .rd{width:8px;height:8px;border-radius:50%;background:var(--amber)}
+.dhero .startrow{display:flex;align-items:center;gap:16px;margin-top:26px}
+.dstart{display:inline-flex;align-items:center;gap:9px;background:var(--amber);color:var(--ink);border:none;border-radius:10px;padding:14px 24px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer}
+.dstart svg{width:15px;height:15px}
+.dhero .herometa{font-size:12.5px;color:#7C7768;line-height:1.45;max-width:22ch}
+.drail{display:flex;flex-direction:column;gap:18px}
+.dsec .dlbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8A8578;margin-bottom:10px;display:flex;align-items:baseline}
+.dsec .dlbl .n{margin-left:auto;font-weight:600;letter-spacing:0;text-transform:none;color:var(--green)}
+.dsec .dlbl .nt{margin-left:auto;font-weight:600;letter-spacing:0;text-transform:none;color:var(--terra)}
+.dmrow{display:flex;align-items:center;gap:9px;padding:5px 0;font-size:13px;color:var(--soft)}
+.dmrow .tick{width:16px;height:16px;border-radius:50%;background:#E6E0D2;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dmrow .tick svg{width:9px;height:9px;color:#8A8578}
+.dtask{display:flex;gap:11px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 13px;margin-bottom:8px;align-items:flex-start}
+.dtask .cb{width:20px;height:20px;border-radius:50%;border:1.6px solid var(--border);flex-shrink:0;margin-top:1px}
+.dtask .tt{font-size:13.5px;font-weight:500;color:var(--ink);line-height:1.35}
+.dtask .tag{font-size:10.5px;font-weight:600;color:var(--terra);display:inline-flex;align-items:center;gap:5px;margin-top:5px}
+.dtask .tag .td{width:6px;height:6px;border-radius:50%;background:var(--terra)}
+.dwcard{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 13px}
+@media (prefers-reduced-motion: reduce){
+.hero .glow,.dhero .glow{animation:none;opacity:.9}
+.startbtn svg{animation:none}
+.task{transition:opacity .12s}
+.mrow .jn{animation:none;opacity:1}
+}
+</style></helmet>
+
+<div class="band">
+<span class="badge">ResolvePM · Dashboard content</span>
+<h1 class="btitle">Give the empty dashboard a job: one move, quietly supported.</h1>
+<p class="bsub">The dashboard exists to <b>orient the founder in ~5 seconds and point them at their single highest-value next move</b> — not to be a second roadmap or an analytics wall. Recommendation: <b>direction (a)</b> — a single-focus hero with a <b>quiet momentum strip</b> beneath it. Focus first; supporting context second. Below: the recommended build (live), the command-centre alternative (b) and what it costs, and the desktop-frame check.</p>
+<div class="legend">
+<span class="lg"><b>Hero</b> = highest-value move, live</span>
+<span class="lg"><b>Momentum</b> = what changed since last visit</span>
+<span class="lg"><b>Then this</b> = next in the ranked queue</span>
+<span class="lg"><b>Waiting on</b> = stalled, surfaced not lost</span>
+</div>
+</div>
+
+<div class="stage">
+
+<!-- ============ RECOMMENDED (a) ============ -->
+<div class="col">
+<div class="collabel"><span class="star">★</span> Direction (a) — recommended <span class="rec-pill">LIVE · playable</span></div>
+<div class="colnote">Tap <b>a shortlist checkbox</b> — the item banks into the momentum strip (proving the hero <b>advances as work completes</b>). Tap <b>Waiting on</b> to expand it in place. Hero glow breathes on idle.</div>
+<button class="reset" onClick="{{ reset }}"><svg viewBox="0 0 12 12" fill="none"><path d="M10 3a4.5 4.5 0 10.6 3.5M10 1.5V3.5H8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Reset</button>
+<div class="phone"><div class="screen {{ dimClass }}">
+<div class="topbar"><div><div class="greeting">Good morning, Simeon</div><div class="gsub">Here's what matters today</div></div><div class="avatar">S</div></div>
+
+<div class="hero">
+<div class="glow"></div>
+<div class="eb">Your highest-value move</div>
+<h2>{{ heroHeadline }}</h2>
+<p class="sp">{{ heroSupport }}</p>
+<div class="themetag"><span class="rd"></span>Focus theme · Finalise the brand name</div>
+<div class="startrow">
+<button class="startbtn">Start this<svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<span class="herometa">First move in this week's focus. Updates the moment you finish something.</span>
+</div>
+</div>
+
+<sc-if value="{{ showMomentum }}" hint-placeholder-val="{{ true }}">
+<div class="mstrip">
+<div class="mhd"><span class="mlbl">Since Monday</span><span class="mcount">{{ momentumCount }} moved</span></div>
+<sc-for list="{{ momentumList }}" as="m" hint-placeholder-count="3">
+<div class="mrow {{ m.cls }}"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>{{ m.t }}<span class="jn">{{ m.jn }}</span></div>
+</sc-for>
+</div>
+</sc-if>
+
+<div class="section">
+<div class="slbl">Then this<span class="hint">Ranked queue</span></div>
+<sc-for list="{{ shortlist }}" as="s" hint-placeholder-count="2">
+<div class="task {{ s.cls }}">
+<button class="cb {{ s.cbCls }}" onClick="{{ s.toggle }}"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<div class="ti"><div class="tt">{{ s.t }}</div><div class="tmeta"><span class="tag"><span class="td"></span>{{ s.theme }}</span></div></div>
+</div>
+</sc-for>
+<sc-if value="{{ allCleared }}" hint-placeholder-val="{{ false }}">
+<div class="cleared">Shortlist clear. Your next move updates when the focus theme advances.</div>
+</sc-if>
+</div>
+
+<div class="section">
+<div class="slbl">Waiting on<span class="hint">1 stalled</span></div>
+<div class="wcard" onClick="{{ toggleExpand }}">
+<div class="wtop"><p class="wtitle">Landing page copy from Priya</p><span class="wchip"><span class="cd"></span>3 days</span></div>
+<p class="wbody">Final draft was due Monday. Nothing in the shared doc since your note.</p>
+<sc-if value="{{ expanded }}" hint-placeholder-val="{{ false }}">
+<div class="wdetail">
+<div class="wdivider"></div>
+<div class="wmeta"><span>Stalled since</span><b>Mon, Jul 3</b></div>
+<div class="wmeta"><span>Waiting on</span><b>Priya (contractor)</b></div>
+<div class="wnote">You asked for the hero-section rewrite and two headline options. No reply on the thread yet.</div>
+<div class="wactions"><button class="btn primary">Send reminder</button><button class="btn ghost">View in Work</button></div>
+</div>
+</sc-if>
+</div>
+</div>
+
+<div class="gbar"><span class="gsp"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l1.3 3.9L13 6.2l-3.7 1.1L8 11 6.7 7.3 3 6.2l3.7-1.1z" fill="currentColor"/></svg></span><span class="gcap">Ask Resolve, or capture a thought</span><span class="gmic"><svg viewBox="0 0 16 16" fill="none"><rect x="6" y="2" width="4" height="7" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 8a4 4 0 008 0M8 12v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span></div>
+</div></div>
+</div>
+
+<!-- ============ ALTERNATIVE (b) ============ -->
+<div class="col">
+<div class="collabel">Direction (b) — light command-centre <span class="alt-pill">for comparison</span></div>
+<div class="colnote">Same hero, <b>demoted to make room</b> for momentum + blocked + queue shown at once. Uses the desktop real estate, but every panel competes for the eye — the "one next move" stops being obvious.</div>
+<div class="phone"><div class="bscreen">
+<div class="topbar"><div><div class="greeting">Good morning, Simeon</div><div class="gsub">Here's what matters today</div></div><div class="avatar">S</div></div>
+<div class="bhero"><div class="glow"></div>
+<div class="eb">Your highest-value move</div>
+<h2>Test the shortlisted brand names with real customers.</h2>
+<div class="pill">Start this →</div>
+</div>
+<div class="bgrid">
+<div class="bc"><div class="ceb">Momentum <span class="n">+3</span></div><div class="cbig">3</div><div class="csm">moved since Monday</div></div>
+<div class="bc"><div class="ceb">Waiting on <span class="n">1</span></div><div class="cbig">3d</div><div class="csm">Landing copy · Priya</div></div>
+<div class="bc full"><div class="ceb">Up next <span class="n">4 queued</span></div>
+<div class="bminirow"><span class="d" style="background:var(--terra)"></span>Decide what not to do this week</div>
+<div class="bminirow"><span class="d" style="background:var(--terra)"></span>Draft the customer-comms plan</div>
+<div class="bminirow"><span class="d" style="background:var(--amber)"></span>Schedule the roadmap review</div>
+</div>
+<div class="bc full"><div class="ceb">This week's focus</div><div class="csm">Finalise the brand name · 1 of 6 done</div></div>
+</div>
+<div class="costnote"><b>What (b) costs:</b> four panels of equal weight re-introduce the busyness the density pass removed. The eye lands nowhere first — orientation takes longer than 5s, and the hero no longer reads as <b>the</b> thing to do.</div>
+</div></div>
+</div>
+
+</div>
+
+<!-- ============ DESKTOP CHECK ============ -->
+<div class="stage">
+<div class="col wide">
+<div class="collabel">Desktop-frame check — direction (a) <span class="rec-pill">recommended</span></div>
+<div class="colnote" style="max-width:900px">The empty-desktop complaint is answered by <b>letting the hero earn the width</b> — 38px serif, generous breathing room — with momentum, queue and blockers in a calm secondary rail. No new widgets, no charts. The founder still lands on one move; the rail is glanceable context, never a competing grid.</div>
+<div class="desk">
+<div class="dtop"><div class="logo">R</div><div class="nm">Resolve</div><div class="dgreet">Good morning, Simeon — here's what matters today</div><div class="davatar">S</div></div>
+<div class="dbody">
+<div class="dhero"><div class="glow"></div>
+<div class="eb">Your highest-value move</div>
+<h2>Test the shortlisted brand names with real customers.</h2>
+<p class="sp">Everything downstream — the website, packaging, the comms plan — hangs on the name. Get it validated before you build on it.</p>
+<div class="themetag"><span class="rd"></span>Focus theme · Finalise the brand name</div>
+<div class="startrow">
+<button class="dstart">Start this<svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<span class="herometa">First move in this week's focus. Updates the moment you finish something.</span>
+</div>
+</div>
+<div class="drail">
+<div class="dsec"><div class="dlbl">Since Monday <span class="n">3 moved</span></div>
+<div class="dmrow"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Confirmed your roadmap</div>
+<div class="dmrow"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Wrote down the baseline</div>
+<div class="dmrow"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.3 2.3L9.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Picked the first signal</div>
+</div>
+<div class="dsec"><div class="dlbl">Then this <span class="n" style="color:#8A8578">Ranked queue</span></div>
+<div class="dtask"><span class="cb"></span><div><div class="tt">Decide what not to do this week</div><div class="tag"><span class="td"></span>Reposition</div></div></div>
+<div class="dtask"><span class="cb"></span><div><div class="tt">Draft the customer-comms plan</div><div class="tag"><span class="td"></span>Finalise the brand name</div></div></div>
+</div>
+<div class="dsec"><div class="dlbl">Waiting on <span class="nt">1 stalled</span></div>
+<div class="dwcard"><div class="wtop"><p class="wtitle">Landing page copy from Priya</p><span class="wchip"><span class="cd"></span>3 days</span></div><p class="wbody">Final draft was due Monday. Nothing in the shared doc since your note.</p></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:900},&quot;heroHeadline&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Test the shortlisted brand names with real customers.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;heroSupport&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Everything downstream — the website, packaging, the comms plan — hangs on the name. Get it validated before you build on it.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showMomentum&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+class Component extends DCLogic {
+  state = { done: [], settling: null, expanded: false };
+
+  shortlistData() {
+    return [
+      { id: 's1', t: 'Decide what not to do this week', theme: 'Reposition' },
+      { id: 's2', t: 'Draft the customer-comms plan', theme: 'Finalise the brand name' },
+    ];
+  }
+  baseMomentum() {
+    return [
+      { t: 'Confirmed your roadmap' },
+      { t: 'Wrote down the baseline' },
+      { t: 'Picked the first signal' },
+    ];
+  }
+
+  toggleTask(id) {
+    if (this.state.done.includes(id) || this.state.settling) return;
+    this.setState({ settling: id });
+    setTimeout(() => this.setState(s => ({ done: [...s.done, id], settling: null })), 720);
+  }
+
+  renderVals() {
+    const done = this.state.done;
+    const all = this.shortlistData();
+    const showMomentum = this.props.showMomentum ?? true;
+
+    const shortlist = all.filter(s => !done.includes(s.id)).map(s => ({
+      ...s,
+      cls: this.state.settling === s.id ? 'settling' : '',
+      cbCls: this.state.settling === s.id ? 'on' : '',
+      toggle: () => this.toggleTask(s.id),
+    }));
+
+    const banked = done.map(id => {
+      const item = all.find(s => s.id === id);
+      return { t: item.t, cls: 'fresh', jn: 'just now' };
+    });
+    const momentumList = [
+      ...this.baseMomentum().map(m => ({ t: m.t, cls: '', jn: '' })),
+      ...banked,
+    ];
+
+    return {
+      heroHeadline: this.props.heroHeadline ?? 'Test the shortlisted brand names with real customers.',
+      heroSupport: this.props.heroSupport ?? 'Everything downstream — the website, packaging, the comms plan — hangs on the name. Get it validated before you build on it.',
+      showMomentum,
+      momentumCount: 3 + done.length,
+      momentumList,
+      shortlist,
+      allCleared: done.length === all.length,
+      expanded: this.state.expanded,
+      dimClass: this.state.expanded ? '' : '',
+      toggleExpand: () => this.setState(s => ({ expanded: !s.expanded })),
+      reset: () => this.setState({ done: [], settling: null, expanded: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>
